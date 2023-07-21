@@ -1,11 +1,15 @@
+@import url("theme.css");
+
 :root {
   --font-family-serif: et-book, Palatino, "Palatino Linotype", "Palatino LT STD",
     "Book Antiqua", Georgia, serif;
   --font-family-sans: "fira-go", sans-serif;
   --font-family-monospace: "Source Code Pro", "Fira Mono", monospace;
 
-  --sl-hue-accent: 235;
-  --sl-font: var(--font-family-sans);
+  --sl-font: var(--font-family-serif);
+  --sl-font-mono: var(--font-family-monospace);
+
+  --sl-hue-accent: var(--sl-hue-red);
 }
 
 .header.flex {
@@ -14,9 +18,9 @@
   justify-content: space-between;
 }
 .header.flex site-search {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .site-title.flex {
