@@ -7,7 +7,10 @@ export default defineConfig({
     starlight({
       title: "Application Development II",
       logo: { light: "./src/assets/logo.svg", dark: "./src/assets/logo.svg" },
-      customCss: [ "./src/styles/style.css", ],
+      customCss: [ 
+        "./src/styles/style.css", 
+        "./src/fonts/font-faces.css", 
+      ],
       lastUpdated: true,
       social: {
         github: "https://github.com/michaelhaaf/5A6-F23",

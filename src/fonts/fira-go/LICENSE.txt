@@ -1,0 +1,12 @@
+--2023-07-21 15:26:11--  https://github.com/bBoxType/FiraGO/blob/master/OFL.txt
+Loaded CA certificate '/etc/ssl/certs/ca-certificates.crt'
+Resolving github.com (github.com)... 140.82.112.4
+Connecting to github.com (github.com)|140.82.112.4|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 9169 (9.0K) [text/plain]
+Saving to: ‘OFL.txt’
+
+     0K ........                                              100% 47.6M=0s
+
+2023-07-21 15:26:11 (47.6 MB/s) - ‘OFL.txt’ saved [9169/9169]
+

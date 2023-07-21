@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "fira-go";
+  src: url("./FiraGO_WEB/Roman/FiraGO-Book.eot");
+  src: url("./FiraGO_WEB/Roman/FiraGO-Book.eot?#iefix")
+      format("embedded-opentype"),
+    url("./FiraGO_WEB/Roman/FiraGO-Book.woff")
+      format("woff"),
+    url("./FiraGO_WEB/Roman/FiraGO-Book.woff2")
+      format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "fira-go";
+  src: url("./FiraGO_WEB/Italic/FiraGO-BookItalic.eot");
+  src: url("./FiraGO_WEB/Italic/FiraGO-BookItalic.eot#iefix")
+      format("embedded-opentype"),
+    url("./FiraGO_WEB/Italic/FiraGO-BookItalic.woff")
+      format("woff"),
+    url("./FiraGO_WEB/Italic/FiraGO-BookItalic.woff2")
+      format("woff2");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "fira-go";
+  src: url("./FiraGO_WEB/Roman/FiraGO-Bold.eot");
+  src: url("./FiraGO_WEB/Roman/FiraGO-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("./FiraGO_WEB/Roman/FiraGO-Bold.woff")
+      format("woff"),
+    url("./FiraGO_WEB/Roman/FiraGO-Bold.woff2")
+      format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
