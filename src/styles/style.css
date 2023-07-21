@@ -6,10 +6,8 @@
   --font-family-sans: "fira-go", sans-serif;
   --font-family-monospace: "Source Code Pro", "Fira Mono", monospace;
 
-  --sl-font: var(--font-family-serif);
+  --sl-font: var(--font-family-sans), var(--font-family-serif);
   --sl-font-mono: var(--font-family-monospace);
-
-  --sl-hue-accent: var(--sl-hue-red);
 }
 
 .header.flex {
