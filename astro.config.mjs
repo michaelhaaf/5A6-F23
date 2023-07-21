@@ -6,20 +6,32 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "Application Development II",
+      logo: { light: "./src/assets/logo.svg", dark: "./src/assets/logo.svg" },
+      customCss: [ "./src/styles/style.css", ],
+      lastUpdated: true,
       social: {
         github: "https://github.com/michaelhaaf/5A6-F23",
       },
       sidebar: [
         {
           label: "About",
-          items: [
-            // Each item here is one entry in the navigation menu.
-            { label: "This Site", link: "/about/this-site/" },
-          ],
+          autogenerate: { directory: "about" },
+        },
+        {
+          label: "Lectures",
+          autogenerate: { directory: "lectures" },
+        },
+        {
+          label: "Tutorials",
+          autogenerate: { directory: "tutorials" },
         },
         {
           label: "Assignments",
           autogenerate: { directory: "assignments" },
+        },
+        {
+          label: "Resources",
+          autogenerate: { directory: "resources" },
         },
       ],
     }),
