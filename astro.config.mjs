@@ -33,6 +33,14 @@ export default defineConfig({
           autogenerate: { directory: "assignments" },
         },
         {
+          label: "Exams",
+          autogenerate: { directory: "exams" },
+        },
+        {
+          label: "Project",
+          autogenerate: { directory: "project" },
+        },
+        {
           label: "Resources",
           autogenerate: { directory: "resources" },
         },

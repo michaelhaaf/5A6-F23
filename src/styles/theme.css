@@ -1,5 +1,5 @@
 :root {
-  --sl-color-white: hsl(0, 0%, 100%); /* “white” */
+  --sl-color-white: hsl(245deg, 70%, 95%); /* “white” */
   --sl-color-gray-1: hsl(245deg, 50%, 91%);
   --sl-color-gray-2: hsl(247deg, 30%, 75%);
   --sl-color-gray-3: hsl(248deg, 15%, 61%);
@@ -39,9 +39,9 @@
   --sl-color-purple: hsl(var(--sl-hue-purple), 57%, 78%);
   --sl-color-purple-low: hsl(var(--sl-hue-purple), var(--sl-saturation-alt), var(--sl-brightness-low));
 
-  --sl-color-accent-high: var(--sl-color-blue-high);
-  --sl-color-accent: var(--sl-color-blue);
-  --sl-color-accent-low: var(--sl-color-blue-low);
+  --sl-color-accent-high: var(--sl-color-red-high);
+  --sl-color-accent: var(--sl-color-red);
+  --sl-color-accent-low: var(--sl-color-red-low);
 
   --sl-color-text-accent: var(--sl-color-accent);
   --sl-color-text-invert: var(--sl-color-black);
@@ -90,6 +90,7 @@
   --sl-color-purple: hsl(var(--sl-hue-purple), var(--sl-saturation), var(--sl-brightness));
   --sl-color-purple-low: hsl(var(--sl-hue-purple), var(--sl-saturation-alt), var(--sl-brightness-low));
 
+  --sl-hue-accent: var(--sl-hue-red);
   --sl-color-accent-high: hsl(var(--sl-hue-accent), var(--sl-saturation-alt), var(--sl-brightness-high));
   --sl-color-accent: hsl(var(--sl-hue-accent), var(--sl-saturation), var(--sl-brightness));
   --sl-color-accent-low: hsl(var(--sl-hue-accent), var(--sl-saturation-alt), var(--sl-brightness-low));
@@ -97,4 +98,3 @@
   --sl-color-text-accent: var(--sl-color-accent);
   --sl-color-text-invert: var(--sl-color-black);
 }
-
