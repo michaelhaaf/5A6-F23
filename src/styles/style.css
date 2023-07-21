@@ -7,3 +7,18 @@
   --sl-hue-accent: 235;
   --sl-font: var(--font-family-sans);
 }
+
+.header.flex {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+.header.flex site-search {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.site-title.flex {
+  gap: 0;
+}
