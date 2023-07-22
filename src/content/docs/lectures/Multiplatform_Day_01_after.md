@@ -1,18 +1,11 @@
 ---
 title: Introduction to Kotlin
 description: intro to kotlin
+cover: "./img/Multiplatform_Day_01_after0.jpg"
+coverAlt: "A phone."
 ---
 
-## Related Technologies for Multiplatform Applications
-
-![](././img/Multiplatform_Day_01_after0.jpg)
-
-## 420-731-AB
 Instructor: Talib Hussain
-
-Day 1: Introduction
-
-## Objectives
 
 * Meet and Greet
 * Course Outline
@@ -22,7 +15,7 @@ Day 1: Introduction
   * Variables
   * Types
 
-## Welcome!
+## Learning Goals
 
 * You'll be learning:
   * How to program in a new language – Kotlin – that is based on Java but uses a more concise syntax
@@ -249,7 +242,7 @@ Who's usually on Mac?
 
 Hot off the presses: [https://blog\.jetbrains\.com/kotlin/2023/05/compose\-multiplatform\-for\-ios\-is\-in\-alpha/](https://blog.jetbrains.com/kotlin/2023/05/compose-multiplatform-for-ios-is-in-alpha/)
 
-![](././img/Multiplatform_Day_01_after1.png)
+![](./img/Multiplatform_Day_01_after1.png)
 
 ## Let's jump right in
 
@@ -279,7 +272,7 @@ At key points\, capture screenshots as indicated\.  Zip those up and upload to L
   * Macs at JAC should be properly setup…
 * Make sure you have a GitHub account and are signed in\.
 
-![](././img/Multiplatform_Day_01_after2.png)
+![](./img/Multiplatform_Day_01_after2.png)
 
 Mac instructions \(Only on your own home machine\)
 

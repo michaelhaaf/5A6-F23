@@ -5,7 +5,7 @@ description: kotlin fundamentals
 
 ## Related Technologies for Multiplatform Applications
 
-![](./img/Multiplatform_Day_02_after20.jpg)
+![A phone.](./img/Multiplatform_Day_02_after20.jpg)
 
 ## 420-731-AB
 Instructor: Talib Hussain
