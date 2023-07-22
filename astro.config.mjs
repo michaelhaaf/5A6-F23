@@ -19,30 +19,37 @@ export default defineConfig({
         {
           label: "About",
           autogenerate: { directory: "about" },
+          collapsed: true,
         },
         {
           label: "Lectures",
           autogenerate: { directory: "lectures" },
+          collapsed: true,
         },
         {
           label: "Tutorials",
           autogenerate: { directory: "tutorials" },
+          collapsed: true,
         },
         {
           label: "Assignments",
           autogenerate: { directory: "assignments" },
+          collapsed: true,
         },
         {
           label: "Exams",
           autogenerate: { directory: "exams" },
+          collapsed: true,
         },
         {
           label: "Project",
           autogenerate: { directory: "project" },
+          collapsed: true,
         },
         {
           label: "Resources",
           autogenerate: { directory: "resources" },
+          collapsed: true,
         },
       ],
     }),
