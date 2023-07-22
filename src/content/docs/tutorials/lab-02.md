@@ -3,8 +3,6 @@ title: Lab 2
 description: intro to kotlin
 ---
 
-## Exercise
-
 Worth 1%
 
 Do as many of the coding problems at the following site as you can until time indicated by teacher.
