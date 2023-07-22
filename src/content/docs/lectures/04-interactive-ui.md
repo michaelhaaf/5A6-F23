@@ -61,7 +61,7 @@ In App.kt, import `ui.theme.AppTheme`
  
 In App.kt, wrap your components in `AppTheme` rather than `MaterialTheme`.
  
-  ```kotlin
+```kotlin
 fun App() {
   AppTheme {
     Banner("Jane")

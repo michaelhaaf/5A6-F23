@@ -1,5 +1,5 @@
 ---
-title: Coupling and Cohesion
+title: Design Patterns
 description: A guide in my new Starlight docs site.
 ---
 
