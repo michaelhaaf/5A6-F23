@@ -31,12 +31,12 @@ Many design patterns and architectural patterns seek to help produce systems and
 
 Cohesion refers to
 
-“How closely the operations in a routine are related” \*
+“How closely the operations in a routine are related”
 
 - One method should only do one thing, or one module should deal with one thing only.
 - E.g., "Opposite" of "Kitchen-Sink" class
 
-Code should exhibit <span style="color:##0055A4">strong cohesion </span> (being highly cohesive)
+Code should exhibit **strong cohesion**:
 
 - Methods: each method performs one operation.
 - Classes: a class achieves a fine-grain design or implementation goal.
@@ -66,17 +66,11 @@ Coupling refers to
   - Weak cohesion implies strong coupling.
   - Strong cohesion implies loose coupling.
 
-If a code has strong or tight coupling, a single change in one method or data structure will cause <span style="color:##0055A4">ripple eﬀects</span> .
+If a code has strong or tight coupling, a single change in one method or data structure will cause **ripple effects**, i.e., additional changes in other parts of the system.
 
-- Additional changes in other parts of the system.
-
-We want to build systems with parts that are
-
-<span style="color:##0055A4">highly cohesive</span> & <span style="color:#0055A4">loosely coupled.</span>
+We want to build systems with parts that are **highly cohesive** and **loosely coupled**.
 
 ![](./img/Multiplatform_Day_17_before1.png)
-
-##
 
 ![](./img/Multiplatform_Day_17_before2.png)
 
