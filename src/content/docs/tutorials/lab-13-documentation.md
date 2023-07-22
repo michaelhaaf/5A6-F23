@@ -1,6 +1,6 @@
 ---
-title: Lab 13
-description: intro to kotlin
+title: Lab 13 (Documentation)
+description: documentation
 ---
 
 Worth 0.5%

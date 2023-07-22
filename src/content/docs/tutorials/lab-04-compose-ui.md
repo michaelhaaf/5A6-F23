@@ -1,6 +1,6 @@
 ---
-title: Lab 4
-description: intro to kotlin
+title: Lab 4 (Compose UI)
+description: compose ui
 ---
 
 Worth 0.5%

@@ -1,6 +1,6 @@
 ---
-title: Lab 12
-description: intro to kotlin
+title: Lab 12 (git)
+description: git
 ---
 
 Worth 0.5%

@@ -1,6 +1,6 @@
 ---
-title: Lab 3
-description: intro to kotlin
+title: Lab 3 (Compose Fundamentals)
+description: compose practise
 ---
 
 

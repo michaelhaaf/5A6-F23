@@ -1,6 +1,6 @@
 ---
-title: Lab 1
-description: intro to kotlin
+title: Lab 1 (Development Environment)
+description: dev env
 ---
 
 Worth 0\.5%

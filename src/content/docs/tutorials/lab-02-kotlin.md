@@ -1,5 +1,5 @@
 ---
-title: Lab 2
+title: Lab 2 (Intro to Kotlin)
 description: intro to kotlin
 ---
 
