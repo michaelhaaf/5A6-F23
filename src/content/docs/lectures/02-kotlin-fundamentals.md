@@ -6,18 +6,21 @@ description: kotlin fundamentals
 Kotlin Basics, continued:
 
 Imperative programming:
+
 - Strings
 - Arrays
 - Lists
 - When
 
 Functional programming:
+
 - Loops
 - Ranges
 - Lambda functions
 - .map, .filter, .repeat
 
 Object Oriented programming:
+
 - Classes
 - Constructors
 - Inheritance
@@ -32,7 +35,7 @@ Object Oriented programming:
 
 Access string characters using array notation
 
-```kotlin 
+```kotlin
 name = "Jane"
 println(name[0]) // output: 'J'
 ```
@@ -91,7 +94,7 @@ val nums = arrayOf<Int>(1, 2, 3, 4)
 
 Create an array with a set of default values
 
-```kotlin 
+```kotlin
 var nums = Array<Int>(4, { 0 })
 var nums = IntArray(4, { 0 })
 var nums = IntArray(4, { it }) // keyword it (short for "iterator")
@@ -121,7 +124,7 @@ Several types of collections (List, Set, Map, etc.)
 #### Kotlin `for-in` vs Java `for`
 
 In Kotlin, there is no traditional `for` loop (e.g., no counting over index values…)
-Instead, a `for – in`  loop is used.
+Instead, a `for – in` loop is used.
 
 - Kotlin just calls it a **for** loop. But for – in helps distinguish it from the "usual"
   This is used to iterate over elements in a collection
@@ -158,7 +161,7 @@ Use **downTo** to specify a range that is decreasing
 
 ```kotlin
 for (x in 10 downTo 1) {
-  // ... 
+  // ...
 }
 ```
 
@@ -170,10 +173,10 @@ if (y in 1..100) {
 }
 ```
 
-More information: 
-  - [https://www.baeldung.com/kotlin/ranges](https://www.baeldung.com/kotlin/ranges)
-  - [https://www.w3schools.com/KOTLIN/kotlin_ranges.php](https://www.w3schools.com/KOTLIN/kotlin_ranges.php)
+More information:
 
+- [https://www.baeldung.com/kotlin/ranges](https://www.baeldung.com/kotlin/ranges)
+- [https://www.w3schools.com/KOTLIN/kotlin_ranges.php](https://www.w3schools.com/KOTLIN/kotlin_ranges.php)
 
 ### Conditionals
 
@@ -192,12 +195,13 @@ val result = when (option) {
 println(result)   // output: "Choice 2 or 4"
 ```
 
-Like `switch` in Java, the Kotlin `when` statement can replace branching `if / else-if / else` expressions. 
+Like `switch` in Java, the Kotlin `when` statement can replace branching `if / else-if / else` expressions.
 
 **Unlike** `switch`, you do **not** need a `break` between cases.
 
-More information: 
-- [Kotlin `when` (w3schools)](https://www.w3schools.com/KOTLIN/kotlin_when.php), 
+More information:
+
+- [Kotlin `when` (w3schools)](https://www.w3schools.com/KOTLIN/kotlin_when.php),
 - [replacing switch with when tutorial](https://blog.mindorks.com/replace-switch-with-when-in-kotlin/)
 
 ## Functional Programming Techniques
@@ -238,7 +242,6 @@ Greets with an index
 ```kotlin
 repeat(3) { index -> println("Hello with index $index") }
 ```
-
 
 ### Lambda Expressions
 
@@ -301,7 +304,7 @@ class Car {
     }
 ```
 
-### Terminology 
+### Terminology
 
 - "Fields" (from Java) are generally called **properties**
 - "Methods" (from Java) are called **class functions**
@@ -332,8 +335,8 @@ class Car(var brand: String, var model: String, var year: Int)
 Constructor arguments can have default values:
 
 ```kotlin
-class Car(var brand: String, 
-          var model: String = "Unknown", 
+class Car(var brand: String,
+          var model: String = "Unknown",
           var year:Int = 2022)
 ```
 
@@ -472,12 +475,10 @@ Kotlin offers different types of classes, e.g.,
 
 ![](./img/Multiplatform_Day_02_after25.png)
 
-
-
 ## Null safety
 
 Kotlin is designed as a null safe language. By default, variables in Kotlin cannot be set to `null`.
- 
+
 Instead, there is a [special nullable type](https://medium.com/mobile-app-development-publication/swift-optional-and-kotlin-nullable-a-comparison-773227f277c3) which allows you to use `null` subject to certain rules.
 
 ### `null` assignment rules
@@ -565,27 +566,29 @@ fun getZipCode(user: User?): ZipCode? = user?.address?.zipCode
 ### Imperative programming
 
 Spend 20 minutes creating and calling different functions that use parameters, variables, types, strings, arrays and lists in different ways.
-  - Goal: Become familiar with the new syntax
-    Explore [https://www.w3schools.com/KOTLIN/kotlin_examples.php](https://www.w3schools.com/KOTLIN/kotlin_examples.php)
-  - Up to "Kotlin For Loop" (skip When)
-    CodeLabs to Explore:
-  - Functions: [https://developer.android.com/codelabs/basic-android-kotlin-compose-functions##0](https://developer.android.com/codelabs/basic-android-kotlin-compose-functions#0)
-  - Collections: [https://developer.android.com/codelabs/basic-android-kotlin-compose-collections##0](https://developer.android.com/codelabs/basic-android-kotlin-compose-collections#0)
-    - Up to end of Lists
+
+- Goal: Become familiar with the new syntax
+  Explore [https://www.w3schools.com/KOTLIN/kotlin_examples.php](https://www.w3schools.com/KOTLIN/kotlin_examples.php)
+- Up to "Kotlin For Loop" (skip When)
+  CodeLabs to Explore:
+- Functions: [https://developer.android.com/codelabs/basic-android-kotlin-compose-functions##0](https://developer.android.com/codelabs/basic-android-kotlin-compose-functions#0)
+- Collections: [https://developer.android.com/codelabs/basic-android-kotlin-compose-collections##0](https://developer.android.com/codelabs/basic-android-kotlin-compose-collections#0)
+  - Up to end of Lists
 
 ### Functional programming
 
 Spend 20 minutes exploring when, ranges, lambda functions, functional programming, etc. in detail
-  - Goal: Become familiar with the new syntax
-    Explore [https://www.w3schools.com/KOTLIN/kotlin_examples.php](https://www.w3schools.com/KOTLIN/kotlin_examples.php)
-  - When and Ranges
-    CodeLab to Explore:
-  - Lambdas: [https://developer.android.com/codelabs/basic-android-kotlin-compose-function-types-and-lambda##3](https://developer.android.com/codelabs/basic-android-kotlin-compose-function-types-and-lambda#3)
 
+- Goal: Become familiar with the new syntax
+  Explore [https://www.w3schools.com/KOTLIN/kotlin_examples.php](https://www.w3schools.com/KOTLIN/kotlin_examples.php)
+- When and Ranges
+  CodeLab to Explore:
+- Lambdas: [https://developer.android.com/codelabs/basic-android-kotlin-compose-function-types-and-lambda##3](https://developer.android.com/codelabs/basic-android-kotlin-compose-function-types-and-lambda#3)
 
 ### Object Oriented programming
 
 Spend 20 minutes exploring Kotlin OOP in detail
+
 - Goal: Become familiar with the new syntax
   Explore [https://www.w3schools.com/KOTLIN/kotlin_examples.php](https://www.w3schools.com/KOTLIN/kotlin_examples.php)
 - Classes section
@@ -593,5 +596,3 @@ Spend 20 minutes exploring Kotlin OOP in detail
 - [https://docs.google.com/presentation/d/1FSZwOeSwL-XNkMXnKDy-YPMEpCPKyb29RlpekSzzJDY/edit##slide=id.gb9961b3fa0_0_433](https://docs.google.com/presentation/d/1FSZwOeSwL-XNkMXnKDy-YPMEpCPKyb29RlpekSzzJDY/edit#slide=id.gb9961b3fa0_0_433)
   CodeLab to Explore:
 - [https://developer.android.com/codelabs/basic-android-kotlin-compose-classes-and-objects##0](https://developer.android.com/codelabs/basic-android-kotlin-compose-classes-and-objects#0)
-
-

@@ -71,7 +71,7 @@ fun main() {
 
 We don't need to add 'public' since public is the default visibility in Kotlin.
 
-Semicolons are optional! But, this means that line breaks are significant. 
+Semicolons are optional! But, this means that line breaks are significant.
 
 When a function has parameters, you must specify the type. The type is written after the parameter name and preceded by a colon
 
@@ -83,7 +83,7 @@ fun greeting(message: String) {
 
 If a function returns something, you must specify the return type
 
-  - The return type is written after the parentheses containing the parameters and preceded by a colon (and is before the brace)
+- The return type is written after the parentheses containing the parameters and preceded by a colon (and is before the brace)
 
 ```kotlin
 fun augmentMessage(message: String) : String {
@@ -117,11 +117,12 @@ fun greeting(name: String, age: Int) {
 Note: That's string interpolation – cool.
 
 Kotlin functions can be called using named arguments
-  - A named argument uses the `=` operator to provide the name of the parameter in the calling line and the value being passed in
-    - `greeting(name="Xing", age=15)`
-  - Order of named parameters doesn't matter
-    - `greeting(age=15, name="Xing")` also works
-  - Named and positional parameters cannot be mixed unless you retain order
+
+- A named argument uses the `=` operator to provide the name of the parameter in the calling line and the value being passed in
+  - `greeting(name="Xing", age=15)`
+- Order of named parameters doesn't matter
+  - `greeting(age=15, name="Xing")` also works
+- Named and positional parameters cannot be mixed unless you retain order
 
 ### Default arguments
 
@@ -136,7 +137,8 @@ fun greeting(name: String = "Unknown", age: Int = 10) {
 Some, all or none may have default values.
 
 When calling a function, a parameter with a default argument may be omitted. In that case, the default value will be used.
-  - Typically, you will use named parameters when omitting a parameter
+
+- Typically, you will use named parameters when omitting a parameter
 
 As long as the omitted parameters are **last** in the parameter list, you can use positional parameters as well. The following are all valid
 
@@ -144,13 +146,14 @@ As long as the omitted parameters are **last** in the parameter list, you can us
 - `greeting(name="Joe")`
 - `greeting("Jane")`
 
-These are not valid: 
+These are not valid:
+
 - `<span style="color:##FF0000">greeting(5)</span>`
 - `<span style="color:##FF0000">greeting(age=5, "Juan")</span>`
 
 ### Single expression / "One-Line" Functions
 
-If you have a function that has just a single expression, the curly braces are optional. The following code snippets are equivalent: 
+If you have a function that has just a single expression, the curly braces are optional. The following code snippets are equivalent:
 
 ```kotlin
 fun convertToFahrenheit(degree : Float) : Float {
@@ -159,7 +162,6 @@ fun convertToFahrenheit(degree : Float) : Float {
 
 fun convertToFahrenheit(degree : Float) = (degree * 9 / 5) + 32
 ```
-
 
 ## Variables
 
@@ -191,6 +193,7 @@ fun convertToFahrenheit(degree : Float) = (degree * 9 / 5) + 32
 - Still have Double.MIN_VALUE, etc.
 
 ## Additional Resources
+
 - [https://play.kotlinlang.org/byExample/overview](https://play.kotlinlang.org/byExample/overview)
 - [https://developer.android.com/teach\##teach\-a\-class](https://developer.android.com/teach#teach-a-class)
 - [https://www.w3schools.com/KOTLIN/index.php](https://www.w3schools.com/KOTLIN/index.php)
@@ -199,4 +202,3 @@ fun convertToFahrenheit(degree : Float) = (degree * 9 / 5) + 32
 - [https://www.slideshare.net/GoogleDevelopersLeba/android\-development\-with\-kotlin\-course](https://www.slideshare.net/GoogleDevelopersLeba/android-development-with-kotlin-course)
 - Codelabs:
   - [https://developer.android.com/codelabs/basic\-android\-kotlin\-compose\-functions\##0](https://developer.android.com/codelabs/basic-android-kotlin-compose-functions#0)
-
