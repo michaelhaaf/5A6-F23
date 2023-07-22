@@ -58,34 +58,56 @@ Some links
 - [https://dev.to/digvijayjadhav98/code-documentation-a-guide-for-beginners-4cj7](https://dev.to/digvijayjadhav98/code-documentation-a-guide-for-beginners-4cj7)
 - [https://www.jetbrains.com/help/idea/working-with-code-documentation.html](https://www.jetbrains.com/help/idea/working-with-code-documentation.html)
 
-## 1. What your code does
+### 1. What your code does
 
 The purpose of / operation performed by the code should be apparent.
 
 A lot of this can be accomplished using good naming for your class names, method names and parameter names.
 
-- Bad naming: class MyClass { boolean MyMethod(x,y) {…} }  What the heck is this for?
-- Ambiguous naming: class Operations { boolean checkDigits(int num1, int num2) {…} }  What does a true result mean?
-- Better naming: class MathOperations { boolean isLargerThan(int numberChecking, int numberComparedTo) {…}  Pretty clear…
+- Bad naming:
+
+  ```kotlin
+    // What the heck is this for?
+    class MyClass { boolean MyMethod(x,y) {…} }
+  ```
+
+- Ambiguous naming:
+
+  ```kotlin
+    // What does a true result mean?
+    class Operations { boolean checkDigits(int num1, int num2) {…} }
+  ```
+
+- Better naming:
+
+  ```kotlin
+    // Pretty clear...
+    class MathOperations { boolean isLargerThan(int numberChecking, int numberComparedTo) {…}
+  ```
 
 But often names are not enough on their own or naming alone becomes unwieldy
 
-- Really???: class IntegerAndWholeNumberMathOperations { boolean isWholeNumberLargerThanAndThrowAnInvalidWholeNumberExceptionIfEitherNumberIsNegative(int wholeNumberChecking, int wholeNumberComparedTo) {…}
+- Really???: `class IntegerAndWholeNumberMathOperations { boolean isWholeNumberLargerThanAndThrowAnInvalidWholeNumberExceptionIfEitherNumberIsNegative(int wholeNumberChecking, int wholeNumberComparedTo) {…}`
 
 Class and/or Method documentation provides a way for you to clearly indicate the purpose of your classes and methods.
 
-- /** Class containing math operations for integer and whole numbers. All methods are static. **/
-- class MathOperations {
-- /\*\* Method that compares the value of two whole numbers to see if the first one, numberChecking,
-- is larger than the second, numberComparedTo
-- - @param int numberChecking: Value being checked. It is an integer that must be a whole number
-- - @param int numberComparedTo: Value being compared against. It is integer that must be a whole number
-- - @returns true if numberChecking is larger than numberComparedTo. Returns false otherwise.
-- - @throws InvalidWholeNumberException if either parameter is negative
-- \*\*/
-- public static boolean isLargerThan(int numberChecking, int numberComparedTo) {…}
+```kotlin
+/** Class containing math operations for integer and whole numbers. All methods are static. **/
+class MathOperations {
 
-## 2. Why it does what it does
+  /** public boolean isLargerThan(int numberChecking, int numberCompared)
+    Method that compares the value of two whole numbers to see if the first one, numberChecking,
+    is larger than the second, numberComparedTo
+
+    @param int numberChecking: Value being checked. It is an integer that must be a whole number
+    @param int numberComparedTo: Value being compared against. It is integer that must be a whole number
+    @returns true if numberChecking is larger than numberComparedTo. Returns false otherwise.
+    @throws InvalidWholeNumberException if either parameter is negative
+  **/
+  public static boolean isLargerThan(int numberChecking, int numberComparedTo) {…}
+```
+
+### 2. Why it does what it does
 
 Your documentation should capture the role of your code in context.
 
@@ -103,7 +125,7 @@ A sentence or two is often enough to capture this
 - E.g., This is a support function that may be called at anytime to determine whether a user is authorized
 - E.g., This function must be called at the beginning of the application before any database operations are performed. It must be called exactly once or there will be a risk of duplicate database handles and dropped data.
 
-## 3. How it does it
+### 3. How it does it
 
 This is the level of documentation that tries to capture the thing that is often nearest-and-dearest to a developer's heart (but they often don't document at all, ironically).
 
@@ -130,18 +152,24 @@ Algorithm:
 
 Edge Cases: Usually, each edge case is documented using low-level documentation.
 
-- boolean collisionCheck() {
-- if (aaa) { // Screen boundary case
-- } else if (bbb) { // Wall collision case
-- } else { // No collision case
-- }
+```kotlin
+boolean collisionCheck() {
+  if (aaa) {
+    // Screen boundary case
+  } else if (bbb) {
+    // Wall collision case
+  } else {
+    // No collision case
+  }
+}
+```
 
 3rd Party dependencies should generally be documented in high-level documentation at th class or method level as appropriate.
 
 - Broad dependencies are captured at the class level (e.g., This repository implementation uses MySql).
 - Use of a specific library for a particular support function may be best documented at the method level (e.g., Uses the XXX validation library). The reason for documenting here instead of just at a low-level is that the 3rd party function may return unexpected outputs or throw unexpected errors that a developer wants to be aware of without looking at your code.
 
-## 4. How to Use It
+### 4. How to Use It
 
 This is the level of code that most developers actually do, but often at a shallow or pro-forma level
 
@@ -166,23 +194,7 @@ Examples are worth a thousand words
 - It is still true when your code is stable.
 - Sadly, most developers don't do this!
 
-## Avoid frustrations!!
-
-How often have your looked up documentation on how to use a method and been confused on what the method does?
-
-How often have you just wanted to understand how to use a particular object or method but been unable to find an example? Had to resort to scouring the internet and stack overflow?
-
-- Why doesn't the documentation just tell me how to use it?!!!
-
-How often have you spent time trying to debug an issue only to find out that you were providing an invalid value to a method written by someone else – but there was nothing indicating that such a value was invalid.
-
-How often have your tried to resort to reading someone else's code in order to try to figure out why you are getting certain errors when using their code?
-
-Frustrating…. Right? <insert expletives about that _##_$! coder/coding team>
-
-**Don't be that coder… ** Make your code easy for other developers to use and understand. Your good documentation will save others a lot of time and frustration. Your bad or lack of documentation will likely waste time and cause frustration.
-
-## Talib's Recommendation:Document-First Approach
+## Talib's Recommendation: Document-First Approach
 
 Instead of documentation being the "red-headed stepchild", make it the superstar.
 
@@ -207,7 +219,7 @@ Once you feel confident in your code working, revisit the documentation and make
 
 - If you still have anything left to do later, include an explicit "TODO"
 
-## Help yourself and your teammates
+### Help yourself and your teammates
 
 The most likely "developer-user" of the code you write will be your future self.
 
@@ -227,7 +239,7 @@ Code for your future self
 - Include appropriate "notes-to-self", "TODO"s and so on to ensure that when you come back to this code, your will quickly be able to remember what you had in mind earlier.
 - Remember to clean these up as you go if they are addressed or become obsolete, overtaken-by-events, irrelevant, etc.
 
-## Some challenges
+### Some challenges
 
 Obsolete documentation
 
@@ -261,7 +273,7 @@ Well-formatted, well-written, but not useful…
 - E.g., does not make it clear how to call the method. Examples here are most useful.
 - Sadly, a lot of JavaDoc provided in official and 3rd party libraries is like this.
 
-## Excuses, Excuses….
+### Excuses, Excuses….
 
 I don't/didn't have time
 
@@ -289,8 +301,10 @@ I hate documentation
 
 I put something, ok, stop (de-)bugging me
 
-- // method that adds
-- public int add(int x, int y)
+```// kotlin
+method that adds
+public int add(int x, int y)
+```
 
 Do I have to (whine)?
 
@@ -324,7 +338,7 @@ Community-specific
 
 Required (e.g., by Client)
 
-## Readme
+### Readme
 
 A proper Readme file is documentation with guidelines on how to use a project.
 
@@ -352,14 +366,12 @@ Known issues and credits
 
 License and versioning
 
-## IDE Helpers
+### Tools & tricks
 
 Some IDEs, in some languages, offer support for auto-generating some simple formatting for code documentation
 
 - E.g., Android Studio in Java
 - Sadly, not for Dart/Flutter
-
-## And more
 
 Writing understandable, maintainable code also involves a variety of other good coding habits:
 
@@ -369,58 +381,6 @@ Writing understandable, maintainable code also involves a variety of other good 
 - Minimizing redundancy
 - Maximizing reusability
 
-## Exercise 13: Documentation
+## Exercises
 
-Worth 0.5%
-
-In this exercise, you will explore about documentation and practice documenting your code
-
-## 1. The Good, The Bad, The Ugly
-
-Spend 10 minutes looking through packages available at pub.dev.
-
-Examine the documentation made available in the code, readme or more (website, etc.).
-
-Find examples of documentation that you find very well done and useful – "The Good". Take a couple screenshots.
-
-Find examples of documentation that you find done poorly or vacuously – "The Bad". Take a couple screenshots.
-
-Find examples of documentation that you find done very badly or even misleading – "The Ugly". Take a couple screenshots.
-
-## 2. Document-First
-
-Write a class that will perform math, string or array operations of your choosing.
-
-- It should have at least 2 methods – one "simple" and one "more complex"
-
-Think about the class for a few minutes and design it in your head or on paper.
-
-Now, create a new file and write some initial class documentation summarizing that class
-
-- Take a screenshot showing your documentation before you code
-
-Start coding the class
-
-For each method, write the documentation first.
-
-- Take a couple screenshots showing your documentation before and after you code each method.
-
-## 3. Add Docs
-
-Look over some of the key classes in your project so far.
-
-Are they good, bad or ugly when it comes to documentation?
-
-- Hands-Up For Ugly…
-- Hands-Up For Bad…
-- Hands-Up for Good…
-
-Pick one that isn't "good" and make it so.
-
-- Optional: Leverage an IDE documentation helper if you can find one.
-
-Screenshare your (newly updated) "Good"!
-
-Capture some screenshots of your "Good"
-
-Zip up all screenshots and upload to Lea.
+## Additional resources
