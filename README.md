@@ -1,17 +1,10 @@
-# Starlight Starter Kit: Basics
+# Application Development II course repository
 
-```
-npm create astro@latest -- --template starlight
-```
+This repository contains the source code and contents for the Fall 2023 offering of 420-5A6: Application Development II at John Abbott College.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/starlight/tree/main/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/starlight/tree/main/examples/basics)
+## 🚀 Site structure
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro + Starlight project, you'll see the following folders and files:
+This project is built using a modification of the [Starlight](https://starlight.astro.build/) theme from the [Astro](https://astro.build/) static site generation framework.
 
 ```
 .
@@ -45,7 +38,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
