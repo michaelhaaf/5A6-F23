@@ -128,9 +128,9 @@ At parent level:
 
 ```kotlin
 ImageCard(
-  showImage=showImage, 
+  showImage=showImage,
   setShowImage={ showImage = it},
-  count=count, 
+  count=count,
   setCount={ count = it}
 )
 ```
@@ -139,7 +139,7 @@ At child level:
 
 ```kotlin
 fun ImageCard(
-  showImage: Boolean, 
+  showImage: Boolean,
   setShowImage: (Boolean) -> Unit,
   count: Int, setCount: (Int) -> Unit)
   …
@@ -272,7 +272,7 @@ fun DisplayList() {
 }
 ```
 
-Stateless 
+Stateless
 
 ```kotlin
 @Composable
