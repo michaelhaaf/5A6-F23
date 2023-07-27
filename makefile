@@ -11,10 +11,10 @@ CONTENT_MD    ?= $(foreach dir, $(CONTENT_DIRS), $(wildcard $(dir)/*.md))
 
 # TARGETS
 ZIPS   := $(addsuffix .zip, $(ARCHIVE_DIRS))
-SLIDES := $(CONTENT_MD:src/content/docs/%.md=src/content/slides/%.html)
-PDF    := $(CONTENT_MD:src/content/docs/%.md=src/content/pdf/%.pdf)
-ODT    := $(CONTENT_MD:src/content/docs/%.md=src/content/odt/%.odt)
-PPTX   := $(CONTENT_MD:src/content/docs/%.md=src/content/pptx/%.odt)
+SLIDES := $(CONTENT_MD:src/content/docs/%.md=src/artefacts/slides/%.html)
+PDF    := $(CONTENT_MD:src/content/docs/%.md=src/artefacts/pdf/%.pdf)
+ODT    := $(CONTENT_MD:src/content/docs/%.md=src/artefacts/odt/%.odt)
+PPTX   := $(CONTENT_MD:src/content/docs/%.md=src/artefacts/pptx/%.odt)
 
 ## MAKE RULES
 

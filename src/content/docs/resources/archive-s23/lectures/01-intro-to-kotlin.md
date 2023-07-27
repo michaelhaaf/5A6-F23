@@ -5,7 +5,7 @@ description: intro to kotlin
 
 ![](./img/Multiplatform_Day_01_after1.png)
 
-## Kotlin
+## What is Kotlin?
 
 - General\-purpose, statically\-typed, open\-source language
 - Created by JetBrains – the company who built IntelliJ IDEA and Android Studio

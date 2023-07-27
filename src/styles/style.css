@@ -10,6 +10,8 @@
   --sl-font-mono: var(--font-family-monospace);
 }
 
+/* Site header overrides */
+
 .header.flex {
   display: flex;
   flex-flow: row nowrap;
@@ -24,3 +26,7 @@
 .site-title.flex {
   gap: 0;
 }
+
+/* Page hero overrides */
+
+
