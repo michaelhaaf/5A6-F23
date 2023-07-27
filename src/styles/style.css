@@ -10,6 +10,14 @@
   --sl-font-mono: var(--font-family-monospace);
 }
 
+/* https://moderncss.dev/pure-css-smooth-scroll-back-to-top/#add-smooth-scrolling */
+/* Smooth scrolling IF user doesn't have a preference due to motion sensitivities */
+@media screen and (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 /* Site header overrides */
 
 .header.flex {
@@ -30,3 +38,32 @@
 /* Page hero overrides */
 
 
+/* Custom components */
+
+blockquote {
+  --color-light: #E0D4F6;
+  --color-dark: #675883;
+
+  margin: 2rem auto;
+  color: var(--color-dark);
+  background-color: var(--color-light);
+  font-size: 1.15rem;
+  /* Smol Responsive Padding FTW! */
+  padding: clamp(.75rem, 3%, 2rem);
+  /* Provide a max-width and prevent overflow */
+  width: min(50ch, 90%);
+  /* Help prevent overflow of long words/names/URLs */
+  word-break: break-word;
+  /* Optional, not supported for all languages */
+  hyphens: auto;
+}
+
+blockquote footer {
+  padding: 0.25em 0.5em;
+  margin-top: 1rem;
+  color: var(--color-light);
+  background-color: var(--color-dark);
+  font-size: 0.9rem;
+  /* Creates a visual box shrunk to `max-content` */
+  width: fit-content;
+}
