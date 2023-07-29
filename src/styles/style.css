@@ -37,6 +37,24 @@
 
 /* Page hero overrides */
 
+.hero {
+  display: grid;
+  grid-template-areas: "hero";
+  grid-template-columns: 1fr;
+}
+
+.hero > * {
+  grid-area: hero;
+}
+
+.hero div.flex {
+  z-index: 1;
+}
+.hero img {
+  object-fit: cover;
+  height: min(60vh, 600px) !important;
+  width: 100% !important;
+}
 
 /* Custom components */
 
