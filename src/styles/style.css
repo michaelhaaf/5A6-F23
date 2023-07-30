@@ -38,19 +38,57 @@
 /* Page hero overrides */
 
 .hero {
+  position: relative;
   display: grid;
   grid-template-areas: "hero";
   grid-template-columns: 1fr;
+  padding-block: 0;
+  align-items: end;
+}
+.hero::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: var(--sl-color-backdrop-overlay);
+  opacity: 0.66;
+  backdrop-filter: blur(5px);
+}
+
+:root[data-theme="light"] .hero :is(h1, .tagline, .action) {
+  color: var(--sl-color-text-invert);
+}
+
+:root[data-theme="light"] .hero::after {
+  background-color: transparent;
 }
 
 .hero > * {
   grid-area: hero;
 }
 
-.hero div.flex {
+.hero > div.flex {
   z-index: 1;
+  background-color: var(--sl-color-backdrop-overlay);
+  backdrop-filter: blur(5px);
 }
+
+.hero > div.flex > div.flex {
+  padding-inline: 2rem;
+}
+
+.hero .copy {
+  padding: 1rem;
+}
+
+.hero .stack {
+  gap: 0;
+}
+
 .hero img {
+  position: relative;
+  z-index: -1;
   object-fit: cover;
   height: min(60vh, 600px) !important;
   width: 100% !important;
@@ -59,7 +97,7 @@
 /* Custom components */
 
 blockquote {
-  --color-light: #E0D4F6;
+  --color-light: #e0d4f6;
   --color-dark: #675883;
 
   margin: 2rem auto;
@@ -67,7 +105,7 @@ blockquote {
   background-color: var(--color-light);
   font-size: 1.15rem;
   /* Smol Responsive Padding FTW! */
-  padding: clamp(.75rem, 3%, 2rem);
+  padding: clamp(0.75rem, 3%, 2rem);
   /* Provide a max-width and prevent overflow */
   width: min(50ch, 90%);
   /* Help prevent overflow of long words/names/URLs */
