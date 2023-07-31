@@ -9,6 +9,9 @@
       "@assets/*": [
         "src/assets/*"
       ],
+      "@overrides/*": [
+        "src/overrides/*"
+      ],
       "@starlight/*": [
         "node_modules/@astrojs/starlight/*"
       ]
