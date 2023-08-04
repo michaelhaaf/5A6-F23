@@ -61,16 +61,6 @@ export function customSchema() {
 			/** Display a hero section on this page. */
 			hero: z
 				.object({
-					/**
-					 * The large title text to show. If not provided, will default to the top-level `title`.
-					 * Can include HTML.
-					 */
-					title: z.string().optional(),
-					/**
-					 * A short bit of text about your project.
-					 * Will be displayed in a smaller size below the title.
-					 */
-					tagline: z.string().optional(),
 					/** The image to use in the hero. You can provide either a relative `file` path or raw `html`. */
 					image: z
 						.object({

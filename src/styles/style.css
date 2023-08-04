@@ -30,23 +30,6 @@ a:hover {
 	color: var(--sl-color-white);
 }
 
-/* Site header overrides */
-
-.header.flex {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-}
-.header.flex site-search {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.site-title.flex {
-  gap: 0;
-}
-
 /* Navigation overrides */
 
 a[aria-current],
@@ -91,4 +74,8 @@ blockquote footer {
   font-size: 0.9rem;
   /* Creates a visual box shrunk to `max-content` */
   width: fit-content;
+}
+
+.first-col-header td:first-child {
+  font-weight: bold;
 }

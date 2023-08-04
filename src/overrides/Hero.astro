@@ -9,21 +9,22 @@ import { type StarlightDocsEntry } from "@starlight/utils/routing";
 interface Props {
   entry: StarlightDocsEntry;
   sidebar: SidebarEntry[];
-  hero: NonNullable<CollectionEntry<"docs">["data"]["hero"]>;
+  hero: CollectionEntry<"docs">["data"]["hero"];
 }
 
 const {
-  title = Astro.props.entry.data.title,
   image,
   figure,
-  tagline = Astro.props.entry.data.description,
   actions,
-} = Astro.props.hero;
+} = Astro.props.hero ?? {};
 
 const pageLinks = getPrevNextLinks(Astro.props.sidebar, config.pagination, {
   prev: Astro.props.entry.data.prev,
   next: Astro.props.entry.data.next,
 });
+
+const title = Astro.props.entry.data.title;
+const tagline = Astro.props.entry.data.description;
 
 const resourceLinks = {
   pdf: title + ".pdf",
@@ -40,35 +41,57 @@ const defaultActions = [
 ---
 
 <div class="hero">
-
-  <div class="base">
-    {
-      figure && (
+  {
+    figure ? (
+      <div class="base">
         <Figure image={image}, caption={figure.caption}, credit={figure.credit} />
-      )
-    }
-  </div>
-  <div class="flex stack overlay">
-    <div class="flex copy">
-      <h1 id="_top" data-page-title set:html={title} />
-      {tagline && <div class="tagline" set:html={tagline} />}
-    </div>
-    {
-      actions.length > 0 && (
-        <div class="flex actions">
-          {actions.map(({ text, ...attrs }) => (
-            <CallToAction {...attrs} set:html={text} />
-          ))}
+      </div>
+
+      <div class="flex stack overlay">
+        <div class="flex copy">
+          <h1 id="_top" data-page-title set:html={title} />
+          {tagline && <div class="tagline" set:html={tagline} />}
         </div>
-      ) || (
-        <div class="flex actions">
-          {defaultActions.map(({ text, ...attrs }) => (
-            <CallToAction {...attrs} set:html={text} />
-          ))}
+        {
+          actions && actions.length > 0 && (
+            <div class="flex actions">
+              {actions.map(({ text, ...attrs }) => (
+                <CallToAction {...attrs} set:html={text} />
+              ))}
+            </div>
+          ) || (
+            <div class="flex actions">
+              {defaultActions.map(({ text, ...attrs }) => (
+                <CallToAction {...attrs} set:html={text} />
+              ))}
+            </div>
+          )
+        }
+      </div>
+    ) : ( 
+      <div class="flex stack">
+        <div class="flex copy">
+          <h1 id="_top" data-page-title set:html={title} />
+          {tagline && <div class="tagline" set:html={tagline} />}
         </div>
-      )
-    }
-  </div>
+        {
+          actions && actions.length > 0 && (
+            <div class="flex actions">
+              {actions.map(({ text, ...attrs }) => (
+                <CallToAction {...attrs} set:html={text} />
+              ))}
+            </div>
+          ) || (
+            <div class="flex actions">
+              {defaultActions.map(({ text, ...attrs }) => (
+                <CallToAction {...attrs} set:html={text} />
+              ))}
+            </div>
+          )
+        }
+      </div>
+    )
+  }
 </div>
 
 <style>
@@ -78,7 +101,6 @@ const defaultActions = [
     place-items: center;
     place-content: center;
     overflow: hidden;
-    border: 1px solid var(--sl-color-gray-6);
   }
 
   .hero > :is(.base, .overlay) {
@@ -108,6 +130,7 @@ const defaultActions = [
 
   .overlay > * {
     margin-inline: auto;
+    text-align: left;
   }
 
   h1 {

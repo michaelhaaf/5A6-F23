@@ -93,37 +93,13 @@ const hasHero = Boolean(entry.data.hero);
 			<TwoColumnContent {hasToC}>
 				<RightSidebar slot="right-sidebar" {headings} {locale} {tocConfig} />
 				<main data-pagefind-body={entry.slug !== '404'} lang={entryMeta.lang} dir={entryMeta.dir}>
-					{/* TODO: Revisit how this logic flows. */}
-					{
-						entry.data.hero ? (
-							<ContentPanel>
-								<Hero hero={entry.data.hero} entry={entry} sidebar={sidebar} />
-								<MarkdownContent>
-									<slot />
-								</MarkdownContent>
-								<Footer {...{ entry, dir, lang, locale, sidebar }} />
-							</ContentPanel>
-						) : (
-							<>
-								<ContentPanel>
-									<h1
-										id="_top"
-										data-page-title
-										style="font-size: var(--sl-text-h1); line-height: var(--sl-line-height-headings); font-weight: 600; color: var(--sl-color-white); margin-top: 1rem;"
-									>
-										{entry.data.title}
-									</h1>
-									{isFallback && <FallbackContentNotice {locale} />}
-								</ContentPanel>
-								<ContentPanel>
-									<MarkdownContent>
-										<slot />
-									</MarkdownContent>
-									<Footer {...{ entry, dir, lang, locale, sidebar }} />
-								</ContentPanel>
-							</>
-						)
-					}
+						<ContentPanel>
+							<Hero hero={entry.data.hero} entry={entry} sidebar={sidebar} />
+							<MarkdownContent>
+								<slot />
+							</MarkdownContent>
+							<Footer {...{ entry, dir, lang, locale, sidebar }} />
+						</ContentPanel>
 				</main>
 			</TwoColumnContent>
 		</PageFrame>
