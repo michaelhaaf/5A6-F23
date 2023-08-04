@@ -20,16 +20,21 @@ const {
   actions,
 } = Astro.props.hero;
 
-const links = getPrevNextLinks(Astro.props.sidebar, config.pagination, {
+const pageLinks = getPrevNextLinks(Astro.props.sidebar, config.pagination, {
   prev: Astro.props.entry.data.prev,
   next: Astro.props.entry.data.next,
 });
 
+const resourceLinks = {
+  pdf: title + ".pdf",
+  slides: title + ".html"
+}
+
 const defaultActions = [
-  { text: "Previous", link: links.prev?.href, icon: { type: "icon", name: "left-arrow" } }, 
-  { text: "PDF", link: links.prev?.href, icon: { type: "icon", name: "document" } }, 
-  { text: "Slides", link: links.prev?.href, icon: { type: "icon", name: "external" } }, 
-  { text: "Next", link: links.next?.href, icon: { type: "icon", name: "right-arrow" } }, 
+  { text: "Previous", link: pageLinks.prev?.href, icon: { type: "icon", name: "left-arrow" } }, 
+  { text: "PDF", link:resourceLinks.pdf, icon: { type: "icon", name: "document" } }, 
+  { text: "Slides", link: resourceLinks.slides, icon: { type: "icon", name: "external" } }, 
+  { text: "Next", link: pageLinks.next?.href, icon: { type: "icon", name: "right-arrow" } }, 
 ]
 
 ---
