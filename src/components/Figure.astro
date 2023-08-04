@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+
+const { image, caption, credit } = Astro.props;
+
+const imageAttrs = {
+  loading: "eager" as const,
+  decoding: "async" as const,
+  width: image?.width ? image.width : 720,
+  alt: image?.alt,
+};
+---
+
+<figure>
+  <picture>
+    {
+      image?.file ? (
+        image.file.format === "svg" ? (
+          <img src={image.file.src} {...imageAttrs} />
+        ) : (
+          <Image src={image.file} {...imageAttrs} />
+        )
+      ) : (
+        image?.html && <div class="hero-html flex" set:html={image.html} />
+      )
+    }
+  </picture>
+  <figcaption>
+    <small>
+      <a href={credit.link}>{credit.title}</a> by {credit.name}
+      ({credit.license})
+    </small>
+    {caption}
+  </figcaption>
+</figure>
+
+<style>
+
+  figure {
+    border: 1px solid var(--sl-color-gray-6);
+  }
+
+  img {
+    display: block;
+    object-fit: contain;
+    max-width: 100%;
+    height: auto;
+    filter: brightness(50%);
+  }
+
+  :root[data-theme="light"] img {
+    filter: brightness(100%);
+  }
+
+  figcaption {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid var(--sl-color-gray-6);
+  }
+
+  figcaption small {
+    font-size: var(--sl-text-xs);
+    text-align: right;
+  }
+
+</style>

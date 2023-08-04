@@ -16,6 +16,7 @@ export default defineConfig({
       },
       customCss: ["./src/styles/style.css", "./src/fonts/font-faces.css"],
       lastUpdated: true,
+      pagination: true,
       social: {
         github: "https://github.com/michaelhaaf/5A6-F23",
       },
@@ -45,13 +46,6 @@ export default defineConfig({
           label: "Assignments",
           autogenerate: {
             directory: "assignments",
-          },
-          collapsed: true,
-        },
-        {
-          label: "Exams",
-          autogenerate: {
-            directory: "exams",
           },
           collapsed: true,
         },

@@ -1,42 +1,49 @@
 ---
+import config from "virtual:starlight/user-config";
 import type { CollectionEntry } from "astro:content";
-import { Image } from "astro:assets";
+import Figure from "@components/Figure.astro";
 import CallToAction from "@starlight/components/CallToAction.astro";
+import { type SidebarEntry, getPrevNextLinks } from "@starlight/utils/navigation";
+import { type StarlightDocsEntry } from "@starlight/utils/routing";
 
 interface Props {
-  fallbackTitle: string;
+  entry: StarlightDocsEntry;
+  sidebar: SidebarEntry[];
   hero: NonNullable<CollectionEntry<"docs">["data"]["hero"]>;
 }
 
 const {
-  title = Astro.props.fallbackTitle,
-  tagline,
+  title = Astro.props.entry.data.title,
   image,
+  figure,
+  tagline = Astro.props.entry.data.description,
   actions,
 } = Astro.props.hero;
 
-const imageAttrs = {
-  loading: "eager" as const,
-  decoding: "async" as const,
-  width: 1000,
-  height: 1000,
-  alt: "Default alt",
-};
+const links = getPrevNextLinks(Astro.props.sidebar, config.pagination, {
+  prev: Astro.props.entry.data.prev,
+  next: Astro.props.entry.data.next,
+});
+
+const defaultActions = [
+  { text: "Previous", link: links.prev?.href, icon: { type: "icon", name: "left-arrow" } }, 
+  { text: "PDF", link: links.prev?.href, icon: { type: "icon", name: "document" } }, 
+  { text: "Slides", link: links.prev?.href, icon: { type: "icon", name: "external" } }, 
+  { text: "Next", link: links.next?.href, icon: { type: "icon", name: "right-arrow" } }, 
+]
+
 ---
 
 <div class="hero">
-  {
-    image?.file ? (
-      image.file.format === "svg" ? (
-        <img src={image.file.src} {...imageAttrs} />
-      ) : (
-        <Image src={image.file} {...imageAttrs} />
+
+  <div class="base">
+    {
+      figure && (
+        <Figure image={image}, caption={figure.caption}, credit={figure.credit} />
       )
-    ) : (
-      image?.html && <div class="hero-html flex" set:html={image.html} />
-    )
-  }
-  <div class="flex stack">
+    }
+  </div>
+  <div class="flex stack overlay">
     <div class="flex copy">
       <h1 id="_top" data-page-title set:html={title} />
       {tagline && <div class="tagline" set:html={tagline} />}
@@ -48,6 +55,12 @@ const imageAttrs = {
             <CallToAction {...attrs} set:html={text} />
           ))}
         </div>
+      ) || (
+        <div class="flex actions">
+          {defaultActions.map(({ text, ...attrs }) => (
+            <CallToAction {...attrs} set:html={text} />
+          ))}
+        </div>
       )
     }
   </div>
@@ -56,40 +69,47 @@ const imageAttrs = {
 <style>
   .hero {
     display: grid;
-    align-items: center;
-    gap: 1rem;
-    padding-bottom: 1rem;
+    grid-template: "hero";
+    place-items: center;
+    place-content: center;
+    overflow: hidden;
+    border: 1px solid var(--sl-color-gray-6);
   }
 
-  .hero > img,
-  .hero > .hero-html {
-    object-fit: contain;
-    width: min(70%, 20rem);
-    height: auto;
-    margin-inline: auto;
+  .hero > :is(.base, .overlay) {
+    grid-area: hero;
   }
 
   .stack {
     flex-direction: column;
-    gap: clamp(1.5rem, calc(1.5rem + 1vw), 2rem);
-    text-align: center;
   }
 
   .copy {
     flex-direction: column;
-    gap: 1rem;
-    align-items: center;
+    padding: 0.5rem;
+    gap: 0.5rem;
   }
 
   .copy > * {
     max-width: 50ch;
   }
 
+  .overlay {
+    inset: 0;
+    width: 100%;
+    background-color: var(--sl-color-backdrop-overlay);
+    backdrop-filter: blur(10px);
+  }
+
+  .overlay > * {
+    margin-inline: auto;
+  }
+
   h1 {
     font-size: clamp(
-      var(--sl-text-3xl),
+      var(--sl-text-2xl),
       calc(0.25rem + 5vw),
-      var(--sl-text-6xl)
+      var(--sl-text-4xl)
     );
     line-height: var(--sl-line-height-headings);
     font-weight: 600;
@@ -100,7 +120,7 @@ const imageAttrs = {
     font-size: clamp(
       var(--sl-text-base),
       calc(0.0625rem + 2vw),
-      var(--sl-text-xl)
+      var(--sl-text-lg)
     );
     color: var(--sl-color-gray-2);
   }
@@ -108,32 +128,10 @@ const imageAttrs = {
   .actions {
     gap: 1rem 2rem;
     flex-wrap: wrap;
-    justify-content: center;
   }
 
-  @media (min-width: 50rem) {
-    .hero {
-      grid-template-columns: 7fr 4fr;
-      gap: 3%;
-      padding-block: clamp(2.5rem, calc(1rem + 10vmin), 10rem);
-    }
-
-    .hero > img,
-    .hero > .hero-html {
-      order: 2;
-      width: min(100%, 25rem);
-    }
-
-    .stack {
-      text-align: start;
-    }
-
-    .copy {
-      align-items: flex-start;
-    }
-
-    .actions {
-      justify-content: flex-start;
-    }
+  :root[data-theme="light"] .hero :is(h1, .tagline) {
+    color: var(--sl-color-text-invert);
   }
+
 </style>

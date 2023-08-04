@@ -56,7 +56,7 @@ export function customSchema() {
 			 * Set the layout style for this page.
 			 * Can be `'doc'` (the default) or `'splash'` for a wider layout without any sidebars.
 			 */
-			template: z.enum(['doc', 'splash']).default('doc'),
+			template: z.enum(['doc', 'splash', 'assignment', 'tutorial']).default('doc'),
 
 			/** Display a hero section on this page. */
 			hero: z
@@ -80,6 +80,8 @@ export function customSchema() {
 							file: image().optional(),
 							/** Raw HTML string instead of an image file. Useful for inline SVGs or more complex hero content. */
 							html: z.string().optional(),
+							/** Optionally specify target width of image */
+							width: z.string().optional(),
 						})
 						.optional(),
 					/** An array of call-to-action links displayed at the bottom of the hero. */
@@ -107,6 +109,21 @@ export function customSchema() {
 						})
 						.array()
 						.default([]),
+					/** An optional addition to the hero image: creates a <figure> elem with the specified caption and credti metadata */
+					figure: z
+						.object({
+							/** A string describing the relevance of the <img> element to the rest of the document. Creates a <figcaption> element. */
+							caption: z.string().optional(),
+							/** Metadata object describing image content. Inspired by https://www.pixsy.com/academy/image-user/image-credits/ */
+							credit: z
+								.object({
+									name: z.string().optional(),
+									title: z.string().optional(),
+									link: z.string().optional(),
+									license: z.string().optional(),
+								}),
+						})
+						.optional(),
 				})
 				.optional(),
 
@@ -145,6 +162,19 @@ export function customSchema() {
 					label: z.string().optional(),
 				})
 				.default({}),
+
+			/**
+			 * The previous navigation link configuration.
+			 * Overrides the `pagination` global config or the link text and/or URL.
+
+			 */
+			created: z.date().optional(),
+			/**
+			 * The next navigation link configuration.
+			 * Overrides the `pagination` global config or the link text and/or URL.
+			 */
+			tags: z.string().array().default([]),
+
 		});
 }
 
