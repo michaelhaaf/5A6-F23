@@ -101,6 +101,7 @@ const defaultActions = [
     place-items: center;
     place-content: center;
     overflow: hidden;
+    border-bottom: 1px solid var(--sl-color-gray-6);
   }
 
   .hero > :is(.base, .overlay) {
@@ -110,6 +111,12 @@ const defaultActions = [
   .stack {
     flex-direction: column;
   }
+
+  .stack > * {
+    margin-inline: auto;
+    text-align: left;
+  }
+
 
   .copy {
     flex-direction: column;
@@ -126,11 +133,6 @@ const defaultActions = [
     width: 100%;
     background-color: var(--sl-color-backdrop-overlay);
     backdrop-filter: blur(10px);
-  }
-
-  .overlay > * {
-    margin-inline: auto;
-    text-align: left;
   }
 
   h1 {
@@ -158,7 +160,7 @@ const defaultActions = [
     flex-wrap: wrap;
   }
 
-  :root[data-theme="light"] .hero :is(h1, .tagline) {
+  :root[data-theme="light"] .overlay :is(h1, .tagline) {
     color: var(--sl-color-text-invert);
   }
 
