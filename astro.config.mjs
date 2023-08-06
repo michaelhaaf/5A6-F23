@@ -26,7 +26,7 @@ export default defineConfig({
           autogenerate: {
             directory: "about",
           },
-          collapsed: true,
+          collapsed: false,
         },
         {
           label: "Lectures",
