@@ -3,6 +3,22 @@ title: About this website
 description: Description of technologies and resources used to build this website. Acknowledgements, copyright, terms of use, etc. can be found on this page.
 ---
 
+## Getting around
+
+### About
+
+### Lectures
+
+### Quizzes
+
+### Assignments
+
+### Project
+
+### Resources
+
+### Moodle
+
 ## Course content
 
 Course content, both for lectures and assignments, has been adapted by me from a variety of sources. This section serves the purpose of both acknowledging these references as well as pointing the way for curious students to begin investigating further into course material than we had time to cover.
@@ -37,6 +53,8 @@ All course content was either written by [Michael Haaf](https://github.com/micha
 > [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)
 
 ## Course website
+
+Details about how this website was built follow.
 
 ### Colophon
 
