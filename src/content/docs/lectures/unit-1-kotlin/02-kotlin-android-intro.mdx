@@ -10,77 +10,59 @@ tags: [ "tag1", "tag2" ]
 
 Kotlin is a new, modern programming language created by programmers, for programmers. It's focused on clarity, conciseness, and code safety.
 
-- General\-purpose, statically\-typed, open\-source language
-- Created by JetBrains – the company who built IntelliJ IDEA and Android Studio
-  - v1.0 released 2016
-- It runs on a Java Virtual Machine (JVM) and can be used anywhere Java is used
-- Somewhat similar to Java, but has many simplifications in syntax and a variety of modern capabilities, such as null safety
-  - Avoid boilerplate code
-  - Avoid specifying types when unnecessary
+### Robust
 
-- Android mobile development has been "Kotlin\-first" since 2019
-- Over 95% of the top thousand Android apps use Kotlin.
-  - [https://kotlinlang.org/docs/android\-overview.html](https://kotlinlang.org/docs/android-overview.html)
-- Used by over 60% of professional Android developers
-  - [https://developer.android.com/kotlin](https://developer.android.com/kotlin)
-- 100% Java interoperable
-  - Can call Java code from Kotlin and Kotlin code from Java
-  - [https://kotlinlang.org/docs/java\-interop.html](https://kotlinlang.org/docs/java-interop.html)
-  - [https://kotlinlang.org/docs/java\-to\-kotlin\-interop.html](https://kotlinlang.org/docs/java-to-kotlin-interop.html)
-
-
-Robust code
 The creators of Kotlin made various design decisions about the language to help programmers create robust code. For example, null-pointer exceptions in software have caused financial losses and spectacular computer crashes, and have resulted in countless hours of debugging. So Kotlin distinguishes between nullable and non-nullable data types, which helps catch more errors at compile time. Kotlin is strongly typed, and it does a lot to infer the types from your code. It has lambdas, coroutines, and properties, which allow you to write less code with fewer bugs.
 
-Mature platform
+### Mature
+
 Kotlin has been around since 2011, and was released as open source in 2012. It reached version 1.0 in 2016, and since 2017 Kotlin has been an officially supported language for building Android apps. It's included with the IntelliJ IDEA as well as Android Studio 3.0 and later.
 
-Concise, readable code
+### Concise
+
 Code written in Kotlin can be very concise, and the language is designed to eliminate boilerplate code such as getters and setters. For example, consider the following Java code:
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-public class Aquarium {
+<Tabs>
+  <TabItem label="Java">
+    ```java
+      public class Aquarium {
 
-   private int mTemperature;
+         private int mTemperature;
 
-   public Aquarium() { }
+         public Aquarium() { }
 
-   public int getTemperature() {
-       return mTemperature;
-   }
+         public int getTemperature() {
+             return mTemperature;
+         }
 
-   public void setTemperature(int mTemperature) {
-       this.mTemperature = mTemperature;
-   }
+         public void setTemperature(int mTemperature) {
+             this.mTemperature = mTemperature;
+         }
 
-   @Override
-   public String toString() {
-       return "Aquarium{" +
-               "mTemperature=" + mTemperature +
-               '}';
-   }
-}
+         @Override
+         public String toString() {
+             return "Aquarium{" +
+                     "mTemperature=" + mTemperature +
+                     '}';
+         }
+      }
+    ```
+  </TabItem>
+  <TabItem label="Kotlin">
+    ```kotlin
+      data class Aquarium (var temperature: Int = 0)
+    ```
+  </TabItem>
+</Tabs>
+
+
 It can be written concisely like this in Kotlin:
 
 
-data class Aquarium (var temperature: Int = 0)
 Sometimes the goals of conciseness and readability are at odds with each other. Kotlin is designed to use "just enough boilerplate code" to ensure readability while keeping things concise.
 
 Interoperable with Java
 Kotlin code compiles so that you can use Java and Kotlin code side-by-side, and continue to use your favorite Java libraries. You can add Kotlin code to an existing Java program, or if you want to migrate your program completely, IntelliJ IDEA and Android Studio both include tools to migrate existing Java code to Kotlin code.
 
-import { Tabs, TabItem } from '@astrojs/starlight/components';
-
-<Tabs>
-  <TabItem label="Kotlin">
-    ```kotlin
-      Sirius, Vega, Betelgeuse
-      println("Hello!")
-    ```
-  </TabItem>
-  <TabItem label="Java">
-    ```java
-      Io, Europa, Ganymede
-    ```
-  </TabItem>
-</Tabs>
