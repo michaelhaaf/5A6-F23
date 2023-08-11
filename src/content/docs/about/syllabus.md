@@ -7,6 +7,10 @@ From the [course outline](/about/course-outline):
 
 > This course covers the process of software development, consisting of the proposal, design, implementation, documentation, and deployment of a software project. Students will learn the skills necessary to create a mobile application using the Android framework in Kotlin.
 
+This course continues on Application Development I, with a few twists. Rather than developing in a language and for a platform that we are all familiar with, we will **practise learning new programming paradigms in a new language**, for the purpose of **creating applications that cohere with modern development best practises**. We will do this by engaging with open source projects right from the beginning of this course, and learning how they are constructed in order to make similar applications ourselves.
+
+After this course, you should feel more confident approaching developing a new project in ANY programming language, for ANY platform, by employing the best practises for a specific language and target platform to a higher level.
+
 ## Course Format
 
 ### Logistics
@@ -28,30 +32,26 @@ From the [course outline](/about/course-outline):
 
 ### Assessment
 
-More detail to fill. In summary:
-
 - 30% Assignments (1 per month)
 - 20% Quizzes (In-class, biweekly)
-- 50% Project (Throughout the semeseter, 5 sub-deliverables)
+- 50% Project (Throughout the semeseter, 4 sub-deliverables)
 
 ### Rough schedule
 
-- Month 1: Build a simple single-screen app in Kotlin with a UI
-  - Android or iOS
-  - Exercises: Learn Kotlin, get completely setup & with git, initial app
-  - Assignment 1: Basic App
-  - Project: Form Teams & Determine type of app
-- Month 2: Build a multi-screen app that connects to a database
-  - Android & iOS
-  - Exercises: Navigate, Connect to database, Integrated App
-  - Assignment 2: Multi-screen App
-  - Milestone 1: Design Document & Design Presentation
-- Month 3: Build an app with error handling, user authentication, 3rd party api, and good UI layout
-  - Android & iOS
-  - Self-guided exercises, Test prep & Test
-  - Milestone 2: Preliminary demo
-- Month 4: Complete project & demo in Android & iOS
-  - Final project: Final demo
+- Month 1: **Learning to program in Kotlin**
+  - Assignment 1: A series of Kotlin exercises
+  - Project: Form Teams & Deploy an existing application with changes
+- Month 2: **Learning to build user interfaces in Jetpack Compose**
+  - Assignment 2: Jetpack Compose for developing a simple UI application
+  - Project: Propose your own application, set up the development/documentation/integration/deployment infrastructure
+- Month 3: **Learning to use system architecture for application requirements**
+  - Assignment 3: TBD
+  - Milestone 3: Preliminary demo, solicit feedback/contributions from others in class
+- Month 4: **Learning design patterns for improving the quality of your code**
+  - Assignment 4: TBD
+  - Milestone 4: Final project
+
+Throughout the semester, **Quizzes** will be given in-class to continuously assess everyone's understanding of the course material so far. 
 
 ## Course material
 

@@ -33,28 +33,28 @@ export default defineConfig({
           autogenerate: {
             directory: "lectures",
           },
-          collapsed: true,
+          collapsed: false,
         },
         {
-          label: "Tutorials",
+          label: "Quizzes",
           autogenerate: {
-            directory: "tutorials",
+            directory: "quizzes",
           },
-          collapsed: true,
+          collapsed: false,
         },
         {
           label: "Assignments",
           autogenerate: {
             directory: "assignments",
           },
-          collapsed: true,
+          collapsed: false,
         },
         {
           label: "Project",
           autogenerate: {
             directory: "project",
           },
-          collapsed: true,
+          collapsed: false,
         },
         {
           label: "Resources",
