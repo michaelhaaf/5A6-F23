@@ -11,9 +11,9 @@ This course continues on Application Development I, with a few twists. Rather th
 
 After this course, you should feel more confident approaching developing a new project in ANY programming language, for ANY platform, by employing the best practises for a specific language and target platform to a higher level.
 
-## Course Format
+## Logistics
 
-### Logistics
+This is a ?? credit course, with 6 hours of class time per week.
 
 - **Classroom:** Penfield 322 (the Mac lab)
 - **Class times:** Mon 16:00-17:30, Wed 16:00-17:30, Fri 14:30-17:30 
@@ -53,6 +53,16 @@ After this course, you should feel more confident approaching developing a new p
 
 Throughout the semester, **Quizzes** will be given in-class to continuously assess everyone's understanding of the course material so far. 
 
+## Course policies
+
+### Expectations
+
+### Course evaluation and evolution
+
+### Office hours
+
+### Academic integrity
+
 ## Course material
 
 There are no required textbooks for this course -- this website will contain all of the content that you need to complete course deliverables. Additionally, each lecture will contain references to additional resources for exploring each topic in further detail beyond the scope of the course.
@@ -75,15 +85,3 @@ There are no required textbooks for this course -- this website will contain all
   - Do: If you get an idea or suggestions from a source (including another person), put a reference to it in your comments
   - Do: If you do happen to copy a portion of code exactly, put a clear indication of what isn't yours in the comments  otherwise cheating/plagiarism (which = mark of 0 and reported to college).
   - You don't have to give a source for my code provided in class/slides. But, if I or another student help you figure out how to do something complex, always nice to given a shout out in the comments.
-
-## Course policies
-
-### Expectations
-
-### Course evaluation and evolution
-
-### Office hours
-
-### Academic integrity
-
-## Additional Resources
