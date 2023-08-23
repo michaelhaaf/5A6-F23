@@ -2,7 +2,7 @@
 title: Course Outline
 description: "Official course outline document for the Fall 2023 offering of Application Development II (420-5A6-AB) at John Abbott College.
 
-You can consider this document to be the abstract requirements defined for us to complete. The course syllabus contains the concrete implementation, if you will, of the actual tasks we will complete to meet these requirements."
+This document defines the overall learning requirements of this course. The course syllabus, on the other hand, is the real implementation of this specific course in Fall 2023, that is, the specific tasks and expectations that meet the course outline requirements."
 ---
 
 {% table %}
@@ -42,19 +42,16 @@ You can consider this document to be the abstract requirements defined for us to
 * Office 
 * Penfield 311
 ---
-* Phone
-* TBD
----
-* Email 
-* michael.haaf@johnabbott.qc.ca
----
 * Office Hours 
-* Posted on office door. Appointments can be made outside of the posted hours when the need arises.                                    
+* Tuesdays 11:30AM - 1PM
+---
+* Contact 
+* Teams/MIO/michael.haaf@johnabbott.qc.ca
 {% /table %}
 
 ## INTRODUCTION
 
-This course covers the process of software development, consisting of the proposal, design, implementation, documentation, and deployment of a software project. Students will learn the skills necessary to create a mobile application using the Android framework in Kotlin.
+This course covers the process of software development, consisting of the proposal, design, implementation, documentation, and deployment of a software project. Students will learn the skills necessary to create a mobile application using the Android framework in Java or Kotlin.
 
 ## COURSE OBJECTIVES
 
@@ -146,10 +143,6 @@ This course covers the process of software development, consisting of the propos
 * X
 {% /table %}
 
-Final evaluation consists of the project and the assignments.
-
-(Note: Weeks indicated for Tests and Project are tentative)
-
 ## COURSE CONTENT
 
 ---
@@ -158,83 +151,59 @@ Final evaluation consists of the project and the assignments.
 * General Learning Objective 
 * Specific Learning Objective
 ---
-* 1 Setup and use the Android development environment. 
+* Setup and use the Android development environment. 
 *
-  1. Setup up the IDE.
-  2. Create and configure Android simulator(s) appropriate for the app.
-  3. Monitor the simulator using the Android Debug Bridge, log viewer and profiler.
-*
----
-* 2 Create simple Android UI.
-*
-  1. Identify the basic UI components (views).
-  2. Modify components using properties.
-  3. Construct a responsive UI using layout managers.
-  4. Inflate layouts.
-  5. Extract view references from the component tree.
-  6. Interact programmatically with components.
+  1. Choose, install, and configure an Android IDE
+  2. Iteratively debug and develop code using automated build porcess and emulator behavior/logs/profile.
 *
 ---
-* 3 Develop an app that includes activities, fragments, and containers.
+* Design and implement Android user interfaces.
 *
-  1. Appropriately group an app into activities and fragments
-  2. Understand activity lifecycle and associated events.
-  3. Specify the launching activity of an app.
-  4. Embed multiple fragments into an activity.
-  5. Use Intents to implement app navigation.
-  6. Reuse fragments across activities.
-  7. Incorporate dialog fragments in an app.
-  8. Display a collection of data in a container UI component, ex: RecyclerView.
-  9. Design and implement an interactive data adapter.
-  10. Notify the adapter of data set changes.
+  1. Create, modify, and manage UI components programmatically (appearance, behavior, and state).
+  2. Define dynamic and responsive layouts.
+  3. Understand programmatic relation between interface and application architecture.
+  4. Understand at a high level the mechanisms for defining user interface components.
+  5. Design a custom component.
+  6. Add event handling to UI components.
 *
 ---
-* 4 Design an application using event-driven programming.
+* Develop complex application behavior using event-driven programming on Android architecture.
+*
+  1. Understand the Android stack and its differences from other target platforms.
+  2. Understand and implement event handling/management.
+  3. Define essential application behaviors (e.g.: app launch, navigation, data display/entry, component interaction).
+  4. Request appropriate app permissions from the user.
+  5. Use intents to access Android services
+  6. Read and write data to device's filesystem and/or the local database.
+  7. Store app preferences.
+  8. Incorporate custom features from elements of the Android framework (e.g.:notifications, sensors, GPS, animation, etc.).
+*
+---
+* Perform asynchronous tasks in an app.
 * 
-  1. Add event handlers to UI components.
-  2. Add events to fragments/dialogs using the callback pattern.
+  1. Review the role of threads in computation, apply concepts to Android stack.
+  2. Implement background tasks.
+  3. Incorporate asyncrhonous tasks in the application design.
 *
 ---
-* 5 Include custom UI components in an app. 
+* Use build automation tools.
 *
-  1. Design a custom component by extending an existing component.
-  2. Draw the component using the drawing classes (Paint, Canvas, etc.).
-  3. Add events to custom UI components using the callback pattern.
-*
----
-* 6 Improve on basic app development.
-*
-  1. Request appropriate app permissions from the user.
-  2. Use intents to access Android services (ex: phone).
-  3. Read and write data to device's filesystem and/or the local database.
-  4. Store app preferences.
-  5. Incorporate custom features from elements of the Android framework. Ex: notifications, sensors, GPS, animation, etc.
-*
---
-* 7 Perform asynchronous tasks in an app.
-*
-  1. Understand simple thread concepts.
-  2. Implement background tasks using threads.
-  3. Incorporate asynchronous tasks in the application design.
-*
----
-* 8 Use build automation tools.
-*
-  1. Identify the tasks of the build automation tool.
-  2. Add software dependencies.
-  3. Include 3rd party libraries into an application.
+  1. Understand the lifecycle of application software: created, maintained, distributed, used, and modified.
+  2. Understand the role of build automation tools for application development, and apply them to the creation of an Android application.
+  3. Manage internal, external, and 3rd party software dependences.
   4. Create custom build tasks.
 *
 ---
-* 9 Develop a complete Android app.
+* Develop a complete Android app.
 *
-  1. Propose an idea for an app.
+  1. Develop an Android application over the course of a semester.
   2. Develop and evaluate an app prototype.
-  3. Design and implement an app from the proposed idea.
+  3. Design and implement an app from the propsed idea.
   4. Use version control in development, including branches to develop new features and fix bugs.
   5. Produce code documentation.
-  6. Understand the process for deploying an app.
+  6. Manage automated deployment and distribution of the application.
 *
+---
 {% /table %}
 
 ## TENTATIVE SCHEDULE
@@ -242,46 +211,46 @@ Final evaluation consists of the project and the assignments.
 {% table %}
 --
 * Week 1 
-* Android Development Environment
+* Introduction to Kotlin, Compose and Android Development Environment
 ---
 * Week 2
-* Android UI / Activities / Events
+* Kotlin language; Quiz 1
 ---
 * Week 3
-* Events / App / Fragments
+* Compose components and UI layout
 ---
 * Week 4
-* Lists
+* Basic event handling and user input; Quiz 2
 ---
 * Week 5
-* Lists/ Local Storage
+* State management and displaying lists
 ---
 * Week 6
-* Custom UI / Custom Events
+* Navigation and routing; Quiz 3
 ---
 * Week 7
-* Custom Events / Intents
+* Local storage
 ---
 * Week 8
-* Intents
+* Asynchronous tasks, Coroutines and Flow; Quiz 4
 ---
 * Week 9
-* Asynchronous tasks
+* Authentication; Project
 ---
 * Week 10
-*  Asynchronous tasks
+* Advanced (Intents, Permissions, Background tasks, Notifications, Custom features); Quiz 5
 ---
 * Week 11
-* Development
+* Advanced (Intents, Permissions, Background tasks, Notifications, Custom features); Project
 ---
 * Week 12
-* Project
+* Quiz 6; Project
 ---
 * Week 13
-* Project / Build tools
+* Project
 ---
 * Week 14
-* Deployment / Documentation / Project
+* Project
 ---
 * Week 15
 * Project
@@ -300,8 +269,7 @@ TBD
 This course consists of 90 hours of scheduled lectures and lab work. In
 addition, each student will be required to do 45 hours of personal study
 that includes research, personally booked computer time and work at
-home. Léa, the course management system within Omnivox, will be used in
-this course.
+home. Moodle will be used in this course.
 
 ## DEPARTMENTAL LATE POLICY
 
@@ -315,7 +283,7 @@ maximum number of allowed late days has been reached will not be graded.
 ## DEPARTMENTAL ATTENDANCE POLICY
 
 See Article 4 of the IPESA,
-[Policy-7-IPESA.pdf](http://departments.johnabbott.qc.ca/wp-content/uploads/2017/08/Policy-7-IPESA.pdf)
+[Policy-7-IPESA.pdf](https://johnabbott.qc.ca/wp-content/uploads/2021/05/Policy-No.-7-IPESA-FINAL.pdf)
 
 Active learning of competencies requires hands on learning with interactive classroom work, which requires no more than 20% absences.
 
@@ -330,14 +298,14 @@ result in a grade of 0 for the assessment related to that activity.
 
 **COLLEGE POLICIES -** IPESA, Institutional Policy on the Evaluation of
 Student Achievement:
-[Policy-7-IPESA.pdf](http://departments.johnabbott.qc.ca/wp-content/uploads/2017/08/Policy-7-IPESA.pdf)
+[Policy-7-IPESA.pdf](https://johnabbott.qc.ca/wp-content/uploads/2021/05/Policy-No.-7-IPESA-FINAL.pdf)
 
-□ **Changes to Evaluation Plan in Course Outline** (Article 5.3)
+**Changes to Evaluation Plan in Course Outline** (Article 5.3)
 
 Changes require documented unanimous consent from regularly attending
 students and approval by the department and the program dean
 
-□ **Religious Holidays** (Articles 3.2.13 and 4.1.6)
+**Religious Holidays** (Articles 3.2.13 and 4.1.6)
 
 Students who wish to miss classes in order to observe religious holidays
 must inform their teacher of their intent in writing within **the first
@@ -345,12 +313,12 @@ two weeks of the semester**
 
 **Student Rights and Responsibilities:** (Articles 3.2.18 and 3.3.6)
 
-□ It is the responsibility of students to keep all assessed material
+- It is the responsibility of students to keep all assessed material
 returned to them and/or all digital work submitted to the teacher in the
 event of a grade review. (The deadline for a Grade Review is 4 weeks
 after the start of the next regular semester.)
 
-□ Students have the right to receive graded evaluations, for regular day
+- Students have the right to receive graded evaluations, for regular day
 division courses, within two weeks after the due date or exam/test date,
 except in extenuating circumstances. A maximum of three (3) weeks may
 apply in certain circumstances (e.g. major essays) if approved by the
@@ -360,7 +328,7 @@ grade submission deadline (see current Academic Calendar). For intensive
 courses (i.e. intersession, abridged courses) and AEC courses, timely
 feedback must be adjusted accordingly;
 
-□ **Academic Procedure: Academic Integrity, Cheating and Plagiarism**
+**Academic Procedure: Academic Integrity, Cheating and Plagiarism**
 (Article 9.1 and 9.2)
 
 Cheating and plagiarism are unacceptable at John Abbott College. They
