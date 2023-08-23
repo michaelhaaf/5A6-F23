@@ -1,23 +1,9 @@
 ---
 title: About this website
 description: Description of technologies and resources used to build this website. Acknowledgements, copyright, terms of use, etc. can be found on this page.
+sidebar:
+    hidden: true
 ---
-
-## Getting around
-
-### About
-
-### Lectures
-
-### Quizzes
-
-### Assignments
-
-### Project
-
-### Resources
-
-### Moodle
 
 ## Course content
 

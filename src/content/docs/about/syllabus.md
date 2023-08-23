@@ -11,30 +11,37 @@ This course continues on Application Development I, with a few twists. Rather th
 
 After this course, you should feel more confident approaching developing a new project in ANY programming language, for ANY platform, by employing the best practises for a specific language and target platform to a higher level.
 
+On top of that, you should have your own [Android application][sample-apps] deployed on GitHub as a testament to what you learned.
+
+[sample-apps]: https://github.com/androiddevnotes/awesome-jetpack-compose-android-apps
+
 ## Logistics
 
-This is a ?? credit course, with 6 hours of class time per week.
+This is a 3 credit course, with 6 hours of class time per week.
 
 - **Classroom:** Penfield 322 (the Mac lab)
 - **Class times:** Mon 16:00-17:30, Wed 16:00-17:30, Fri 14:30-17:30 
 - **Office:** Penfield 311
 - **Office hours:** TBD
 - **Email:** michael DOT haaf AT johnabbott DOT qc DOT ca
-- **Course webpage:** This website for all content, [Moodle](#) for assignment/project/quiz submissions.
+- **Course webpage:** This website for all content, [Moodle][moodle] for assignment/project/quiz submissions.
 
 ### Communication
 - MIO - For communicating (non-time-critical)
 - Email - For communicating (time-critical).  Will aim for <24hr response.
-- Moodle - For receiving & submitting exercises/assignments/project and getting marks
+- [Moodle][moodle] - For receiving & submitting exercises/assignments/project and getting marks
 - [Android Studio][android-studio]
   - We use this for development and debugging.
 - Github – For maintaining and sharing codebase
 
+[android-studio]: https://developer.android.com/studio
+[moodle]: https://moodle.johnabbott.qc.ca/course/view.php?id=452
+
 ### Assessment
 
-- 30% Assignments (1 per month)
-- 20% Quizzes (In-class, biweekly)
-- 50% Project (Throughout the semeseter, 4 sub-deliverables)
+- 30% Assignments (Lab time/take home, approximately 1 per 2-3 weeks)
+- 15% Quizzes (In-class, approximately biweekly)
+- 55% Project (Throughout the semeseter, 4 sub-deliverables)
 
 ### Rough schedule
 
@@ -53,35 +60,6 @@ This is a ?? credit course, with 6 hours of class time per week.
 
 Throughout the semester, **Quizzes** will be given in-class to continuously assess everyone's understanding of the course material so far. 
 
-## Course policies
-
-### Expectations
-
-### Course evaluation and evolution
-
-### Office hours
-
-### Academic integrity
-
 ## Course material
 
 There are no required textbooks for this course -- this website will contain all of the content that you need to complete course deliverables. Additionally, each lecture will contain references to additional resources for exploring each topic in further detail beyond the scope of the course.
-
-### Main materials
-
-### Extra resources
-
-### On Stack Overflow, AI, etc.
-
-- There are lots of cool tools and resources out there to help us as programmers.
-- Recently, AI tools are in focus. Here, for example, we have autocomplete/code generation tools in our IDEs. ChatGPT and other such tools are also available.
-- Bottom-line – you're here to learn. You learn by doing things yourself, not by having them done for you or told to you. It is best to think of these tools as aids for speeding up doing what you already know.
-- So, for example, if you find yourself looking for an autocomplete suggestion or code generation in order to figure out what you're supposed to do… stop yourself.
-  - save yourself typing - ok
-  - save yourself thinking – not ok
-- As for other resources online or getting help from someone else, they are all great for researching solutions for how to do things. But, in the end, you need to be able to do it yourself.
-  - Don't: Borrow solutions you don't understand.
-  - Don't: Copy lots of code and expect it to all work out.
-  - Do: If you get an idea or suggestions from a source (including another person), put a reference to it in your comments
-  - Do: If you do happen to copy a portion of code exactly, put a clear indication of what isn't yours in the comments  otherwise cheating/plagiarism (which = mark of 0 and reported to college).
-  - You don't have to give a source for my code provided in class/slides. But, if I or another student help you figure out how to do something complex, always nice to given a shout out in the comments.
