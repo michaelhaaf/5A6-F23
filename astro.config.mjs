@@ -18,6 +18,7 @@ export default defineConfig({
       lastUpdated: true,
       pagination: true,
       social: {
+        gitlab: "https://moodle.johnabbott.qc.ca/course/view.php?id=452",
         github: "https://github.com/michaelhaaf/5A6-F23",
       },
       sidebar: [
@@ -36,13 +37,6 @@ export default defineConfig({
           collapsed: false,
         },
         {
-          label: "Quizzes",
-          autogenerate: {
-            directory: "quizzes",
-          },
-          collapsed: false,
-        },
-        {
           label: "Assignments",
           autogenerate: {
             directory: "assignments",
@@ -55,13 +49,6 @@ export default defineConfig({
             directory: "project",
           },
           collapsed: false,
-        },
-        {
-          label: "Resources",
-          autogenerate: {
-            directory: "resources",
-          },
-          collapsed: true,
         },
       ],
     }),
