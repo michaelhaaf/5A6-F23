@@ -22,7 +22,7 @@ This is a 3 credit course, with 6 hours of class time per week.
 - **Classroom:** Penfield 322 (the Mac lab)
 - **Class times:** Mon 16:00-17:30, Wed 16:00-17:30, Fri 14:30-17:30 
 - **Office:** Penfield 311
-- **Office hours:** TBD
+- **Office hours:** Tues 11:30 - 12:30pm, 1pm - 2:30pm
 - **Email:** michael DOT haaf AT johnabbott DOT qc DOT ca
 - **Course webpage:** This website for all content, [Moodle][moodle] for assignment/project/quiz submissions.
 
@@ -30,9 +30,6 @@ This is a 3 credit course, with 6 hours of class time per week.
 - MIO - For communicating (non-time-critical)
 - Email - For communicating (time-critical).  Will aim for <24hr response.
 - [Moodle][moodle] - For receiving & submitting exercises/assignments/project and getting marks
-- [Android Studio][android-studio]
-  - We use this for development and debugging.
-- Github – For maintaining and sharing codebase
 
 [android-studio]: https://developer.android.com/studio
 [moodle]: https://moodle.johnabbott.qc.ca/course/view.php?id=452
