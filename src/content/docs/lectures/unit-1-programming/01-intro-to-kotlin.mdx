@@ -1,11 +1,35 @@
 ---
 title: Introduction to Kotlin
-description: intro to kotlin
+description: Fundamentals of the main programming language we will use this semester.
 ---
 
-![](./img/Multiplatform_Day_01_after1.png)
+**Overview**
 
-## What is Kotlin?
+*These notes are adapted from slides by Talib Hussain. There may be some mistakes -- let me know if there is something here that doesn't make sense.*
+
+**Fundamentals of Kotlin**
+- Functions
+- Variables
+- Types
+- Strings
+- Arrays
+- Lists
+
+**Kotlin Operations**
+- Loops
+- Ranges
+- When
+
+**Functional Programming**
+- Lambda functions
+- `.map`, `.filter`
+
+**Object Oriented Programming**
+- Classes
+- Constructors
+- Inheritance
+
+## Why Kotlin? (why notlin?)
 
 - General\-purpose, statically\-typed, open\-source language
 - Created by JetBrains – the company who built IntelliJ IDEA and Android Studio
@@ -24,19 +48,60 @@ description: intro to kotlin
   - [https://kotlinlang.org/docs/java\-interop.html](https://kotlinlang.org/docs/java-interop.html)
   - [https://kotlinlang.org/docs/java\-to\-kotlin\-interop.html](https://kotlinlang.org/docs/java-to-kotlin-interop.html)
 
-## Main Concepts
+## Jetpack Compose
 
-![](./img/Multiplatform_Day_01_after11.png)
+Part of the reason to learn Kotlin is to take advanage of Jetpack Compose. (what is that?)
 
-Null safety:
+* Modern declarative UI toolkit for component\-based UI \("composables"\)
+* Created by Google
+  * V1\.0 released July 2021
+* 100% Kotlin
+* Greatly simplifies the coding of UI for Android
+  * Can cut development time in half
+  * Is now the recommended approach to creating UIs for Android
+* Conceptually similar to React and Flutter
+  * Similar declarative approach using components
+  * Strong integration with Google's Material Design
+  * [https://developer\.android\.com/jetpack/compose/designsystems/material3](https://developer.android.com/jetpack/compose/designsystems/material3)
+* 24% of the top 1000 apps on Google Play have adopted Compose
+  * [https://android\-developers\.googleblog\.com/2023/05/whats\-new\-in\-jetpack\-compose\.html](https://android-developers.googleblog.com/2023/05/whats-new-in-jetpack-compose.html)
+* Lots of great documentation to help you learn
+  * [https://developer\.android\.com/courses/jetpack\-compose/course](https://developer.android.com/courses/jetpack-compose/course)
+  * [https://developer\.android\.com/jetpack/compose/documentation](https://developer.android.com/jetpack/compose/documentation)
+
+## Getting started
+
+- Open Android Studio and follow the default setup steps for a new project.
+* The default project \("Empty Activity"\) in Android Studio actually creates a Kotlin\-Compose app
+  * It is now the standard for Android app development
+* There is a very cool new feature called "Live Edit"\, but it is only available in the very latest release of Android Studio and Gradle\.
+  * You may need to update (try doing that!)
+* We'll walkthrough the project files to see what the basic setup is
+  * Uses Gradle \(build\.gradle\.kts\) to specify dependencies on 3rd party packages
+    * Analogous in some ways to using npm for Node\.js\, but all specified explicitly in a single place\.  Gradle will download all required packages for you automatically\.
+  * Gradle also specifies various details for building the project \(e\.g\.\, applicationId\, minSdk level\, version\)
+* Main entry point is "MainActivity\.kt"
+  * Single activity design
+
+## Concepts
+
+What new features does Kotlin bring to the table that Java/any-other-programming language lacks?
+
+### Null safety
 - What normally happens when you try to reference an object that hasn't been created yet in your code? What can the consequences of that be? 
 - What if the programming language we use just doesn't let you create null objects?
-- The **type** system in Kotlin is designed around [Null safety](https://kotlinlang.org/docs/null-safety.html).
+- The **type** system in Kotlin is designed around [Null safety](https://kotlinlang.org/docs/null-safety.html) -- that is, preventing the non-existence of data by design.
 
-Composable UI design
-- 
+### Composable UI design
+- What is a user interface? Not just in computing -- what other devices do you use on a regular basis?
+- Is each part of the interface entirely separate? Can the interface be understood as a collection of components, or just as one universal whole?
+- The answers to these questions have programming consquences! When does the **DRY** principle (do not repeat yourself) contradict the requirements of the interface, what is the least annoying way to repeat yourself when needed?
+- [Composable design](https://developer.android.com/jetpack/compose/mental-model) is emphasised in Kotlin: a complex user interface should be **de-composable** into constituent parts, and **re-composable** from previous solutions.
 
-Declarative UI
+### Declarative UI
+- Do you care whether the buttons in Moodle/Omnivox/whatever website are writtin in XML, HTML, JSON, ???
+- When reading code, do you prefer to know **how** something is done, or **what** it does?
+- Kotlin emphasises [Declarative design principles](https://www.youtube.com/watch?v=VsStyq4Lzxo) to prevent developers from having to reinvent the wheel each time a new component is added. Furthermore, declarative programming has the benefit of being much easier to read (interpret) than **procedural** programming.
 
 ## Similarities with Java
 
@@ -62,8 +127,6 @@ Declarative UI
   - Use `arrayOf()` `listOf()` `arrayListOf()` etc.
 
 ## Functions
-
-![](./img/Multiplatform_Day_01_after12.png)
 
 The **fun** keyword is used to declare a function
 
@@ -98,17 +161,18 @@ fun augmentMessage(message: String) : String {
 - If a function returns nothing, you can omit the type or use the special return type **Unit**
   - No 'void'
 
-### Try it as we go ([Lab 1](/tutorials/lab-01))
+### Try it as we go 
 
-In App.kt, replace "Hello World" with a call to `greeting()` with an appropriate argument
+([Clone this project to your directory for some exercises to do in class](https://github.com/tshussain/KotlinWithCompose.git)
 
-In the App.kt file, define a function called greeting.
+
+In `App.kt`, replace "Hello World" with a call to `greeting()` with an appropriate argument
+
+In the `App.kt` file, define a function called greeting.
 
 As we learn more about functions and variables, play around with the function definition and the function call to try variations out.
 
 To see the results of a println in Android Studio, select `View > Tool Windows > Logcat`
-
-![](./img/Multiplatform_Day_01_after13.png)
 
 ### Named arguments
 
