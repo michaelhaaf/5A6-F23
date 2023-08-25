@@ -19,7 +19,8 @@
 }
 
 /* Baseline for default links: https://moderncss.dev/modern-css-for-dynamic-component-based-architecture/ */
-a {
+a,
+.starlight-aside a {
   text-decoration: none;
 	color: var(--sl-color-text-accent);
 }

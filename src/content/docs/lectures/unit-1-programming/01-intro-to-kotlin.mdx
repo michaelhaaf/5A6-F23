@@ -34,7 +34,7 @@ description: Fundamentals of the main programming language we will use this seme
 - General\-purpose, statically\-typed, open\-source language
 - Created by JetBrains – the company who built IntelliJ IDEA and Android Studio
   - v1.0 released 2016
-- It runs on a Java Virtual Machine (JVM) and can be used anywhere Java is used
+- It runs on a [Java Virtual Machine (JVM)](https://en.wikipedia.org/wiki/Java_virtual_machine) and can be used anywhere Java is used
 - Somewhat similar to Java, but has many simplifications in syntax and a variety of modern capabilities, such as null safety
   - Avoid boilerplate code
   - Avoid specifying types when unnecessary
@@ -59,10 +59,9 @@ Part of the reason to learn Kotlin is to take advanage of Jetpack Compose. (what
 * Greatly simplifies the coding of UI for Android
   * Can cut development time in half
   * Is now the recommended approach to creating UIs for Android
-* Conceptually similar to React and Flutter
+* Conceptually similar to [React](https://react.dev/) and [Flutter](https://flutter.dev/)
   * Similar declarative approach using components
-  * Strong integration with Google's Material Design
-  * [https://developer\.android\.com/jetpack/compose/designsystems/material3](https://developer.android.com/jetpack/compose/designsystems/material3)
+  * Strong integration with Google's [Material Design](https://developer.android.com/jetpack/compose/designsystems/material3)
 * 24% of the top 1000 apps on Google Play have adopted Compose
   * [https://android\-developers\.googleblog\.com/2023/05/whats\-new\-in\-jetpack\-compose\.html](https://android-developers.googleblog.com/2023/05/whats-new-in-jetpack-compose.html)
 * Lots of great documentation to help you learn
@@ -83,6 +82,19 @@ Part of the reason to learn Kotlin is to take advanage of Jetpack Compose. (what
 * Main entry point is "MainActivity\.kt"
   * Single activity design
 
+## Similarity to React (Web Dev II)
+
+* Notice the rough similarity to React JSX
+  * Nested UI components
+    * @Composable indicates a UI component much like a JSX component
+  * Named "properties" on components
+    * Really are named parameters to functions in Kotlin
+  * "Single Activity" design pattern
+    * Similar in rough concept to single page app design of React
+  * State management and re\-render UI when state changes
+    * Here we see a "ViewModel" class approach\.  We'll also see parameter passing\, the provider pattern\, and storing state in variables \(more similar to React\)\.
+* [https://www\.jetpackcompose\.app/compare\-declarative\-frameworks/JetpackCompose\-vs\-React\-vs\-SwiftUI](https://www.jetpackcompose.app/compare-declarative-frameworks/JetpackCompose-vs-React-vs-SwiftUI)
+
 ## Concepts
 
 What new features does Kotlin bring to the table that Java/any-other-programming language lacks?
@@ -95,13 +107,19 @@ What new features does Kotlin bring to the table that Java/any-other-programming
 ### Composable UI design
 - What is a user interface? Not just in computing -- what other devices do you use on a regular basis?
 - Is each part of the interface entirely separate? Can the interface be understood as a collection of components, or just as one universal whole?
-- The answers to these questions have programming consquences! When does the **DRY** principle (do not repeat yourself) contradict the requirements of the interface, what is the least annoying way to repeat yourself when needed?
+- The answers to these questions have programming consequences! When does the **DRY** principle (do not repeat yourself) contradict the requirements of the interface? What is the least annoying way to repeat yourself when needed?
 - [Composable design](https://developer.android.com/jetpack/compose/mental-model) is emphasised in Kotlin: a complex user interface should be **de-composable** into constituent parts, and **re-composable** from previous solutions.
 
 ### Declarative UI
 - Do you care whether the buttons in Moodle/Omnivox/whatever website are writtin in XML, HTML, JSON, ???
-- When reading code, do you prefer to know **how** something is done, or **what** it does?
+- When reading code, do you prefer to know **how** something is done, or **what** it does? Maybe there isn't just one answer to this question, but consider the most common scenario: you are tasked with making changes to a codebase written by others, that you are not familiar with, and you don't have very much time.
 - Kotlin emphasises [Declarative design principles](https://www.youtube.com/watch?v=VsStyq4Lzxo) to prevent developers from having to reinvent the wheel each time a new component is added. Furthermore, declarative programming has the benefit of being much easier to read (interpret) than **procedural** programming.
+
+:::tip[Programming paradigms]
+What does it mean for a programming language to be considered [declarative](https://en.wikipedia.org/wiki/Declarative_programming) or [imperative](https://en.wikipedia.org/wiki/Imperative_programming)? What about [functional](https://en.wikipedia.org/wiki/Functional_programming) or [object oriented](https://en.wikipedia.org/wiki/Object-oriented_programming)? 
+
+These terms are examples of [programming paradigms](https://en.wikipedia.org/wiki/Programming_paradigm). We'll dive deeper into what exactly programming paradigms are, and what they have to do with application development, very soon. For now, it's okay to have a hazy understanding of these terms and try to pick up their meanings based on context. You can read links I have embedded above as well for reference.
+:::
 
 ## Similarities with Java
 
@@ -110,7 +128,6 @@ What new features does Kotlin bring to the table that Java/any-other-programming
 - `if` / `if-else` / `if-else-if`
 - `while` / `do-while`
 - `break` / `continue` / `return`
-  - (Though Kotlin adds ability to use labels)
 - Index arrays/strings starting at `0`
 - Array API (access, append, delete, etc.)
 
@@ -128,15 +145,30 @@ What new features does Kotlin bring to the table that Java/any-other-programming
 
 ## Functions
 
-The **fun** keyword is used to declare a function
+The `fun` keyword is used to declare a function.
 
-```kotlin
-fun main() {
-  println("Hello World")
-}
-```
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-We don't need to add 'public' since public is the default visibility in Kotlin.
+<Tabs>
+  <TabItem label="Kotlin">
+    ```kotlin
+    fun main() {
+      println("Hello World")
+    }
+    ```
+  </TabItem>
+  <TabItem label="Java">
+    ```java
+    public static void main() {
+      System.out.println("Hello, World!"); 
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+:::tip
+We don't need to add `public`: in Kotlin, `public` is the default visibility.
+:::
 
 Semicolons are optional! But, this means that line breaks are significant.
 
@@ -163,7 +195,7 @@ fun augmentMessage(message: String) : String {
 
 ### Try it as we go 
 
-([Clone this project to your directory for some exercises to do in class](https://github.com/tshussain/KotlinWithCompose.git)
+[Clone this project to your directory for some exercises to do in class](https://github.com/tshussain/KotlinWithCompose.git)
 
 
 In `App.kt`, replace "Hello World" with a call to `greeting()` with an appropriate argument

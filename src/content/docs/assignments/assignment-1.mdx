@@ -1,24 +1,52 @@
 ---
 title: "Module 1: Programming"
-description: "For this assignment, you will learn the main programming language that we will use in this course. This semester, that will be Kotlin -- the official language of the Android development stack."
-created: 2023-08-11
-tags: [ "tag1", "tag2" ]
+description: "For this assignment, you will practise techniques you have learned in Java, using the main programming language that we will use in this course. This semester, that will be Kotlin -- the official language of the Android development stack."
 sidebar:
-  hidden: true
+  hidden: false
 ---
 
 <div class="first-col-header">
 | A1 | Overview |
 | --- | --- |
-| Worth: | 10% |
-| Due: | Some time in September |
-| Hand-in: | `.zip` containing project files to [Moodle](https://moodle.johnabbott.qc.ca/). See [Submitting your work](#submitting-your-work) for more information. |
+| Worth: | 7% of final grade. |
+| Due: | September 8, 11:59pm |
+| Hand-in: | `.zip` containing project files to [Moodle](https://moodle.johnabbott.qc.ca/course/view.php?id=452). |
 | Notes: | [Course late penalty](/about/syllabus) applies. |
 </div>
 
-## Setup
+**Overview**
 
-[Kotlin Bootcamp for Programmers](https://developer.android.com/courses/kotlin-bootcamp/overview)
+For this assignment, you will create a sorting program. This kind of program should be familiar to you at this point in your computer science education: the data structure we will use is very similar to the [binary search tree](https://en.wikipedia.org/wiki/Binary_search_tree) you implemented in Java in a previous course. 
 
-## Submitting your work
+This is an individual assignment. You may assist other classmates but:
 
+> Your submitted work must be clear, complete, and YOUR OWN. You must be prepared to explain any part of your work to me in person. Failure to do so can/will void any grade you get on this assignment.
+
+## Goal
+
+Building off of problems you have solved in other languages, this assignment will get you used to the mechanics of Kotlin. This assignment really has nothing to do with Android development at all -- Kotlin, like Java and other languages, is a multi-platform language with many capabilities that distinguish it. You will find the [course notes](/lectures/unit-1-programming/01-intro-to-kotlin) a useful reference when you are stuck.
+
+- It is assumed you already know how to create, insert, and traverse a Binary Search Tree (BST) data structure in Java or C#. 
+- You are welcome to review your previous courses for examples. 
+- You are welcome to make use of any code provided in lectures without explicitly referencing it, some of the lecture content may be directly useful for this assignment.
+- You are also welcome to make use of this Kotlin example BST available [here](https://www.baeldung.com/kotlin/binary-tree) as a starting point / for reference.
+
+## Requirements
+
+- Use a data class to store at least three pieces of information about a Person (one string, one Int, and one nullable type)
+- Create a Node object that will be stored in the tree. A Node will contain a Person, a left Node, and a right Node.
+- Create a BinarySearchTree class that stores the tree
+  - In its constructor, it should accept a lambda function that will be used to determine the sort order. 
+  - Create an `insert()` function that will insert a Person into the tree (using the sorting function to keep the BST sorted and in sorted order)
+  - Create a `toList()` function that returns a list of all the Persons in the BST, in sorted order.
+- Repeat 3 times. Build a BST containing at least 10 Persons (using canned data, random data, user-entered data, etc.) and display the contents of the BST in sorted order.
+  - All information about each Person should be displayed
+  - You may display the information in the console (e.g. using `println()`) OR on the emulator screen using Compose
+- BST 1: Lambda should sort in alphabetical order on the String field
+- BST 2: Lambda should sort in increasing order on the Int field
+- BST 3: Lambda should sort in size-of-String order on the String field
+
+## Marking Scheme
+
+- 80% functionality (works, meets requirements)
+- 20% documentation (all classes and functions should have reasonable documentation describing their purpose and any assumptions)
