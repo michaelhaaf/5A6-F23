@@ -1,44 +1,45 @@
 ---
-import config from 'virtual:starlight/user-config';
-import type { MarkdownHeading } from 'astro';
-import { getSidebar } from '@starlight/utils/navigation';
-import type { Route } from '@starlight/utils/routing';
+import config from "virtual:starlight/user-config";
+import type { MarkdownHeading } from "astro";
+import { getSidebar } from "@starlight/utils/navigation";
+import type { Route } from "@starlight/utils/routing";
 
 // Built-in CSS styles.
-import '@starlight/style/props.css';
-import '@starlight/style/reset.css';
-import '@starlight/style/shiki.css';
-import '@starlight/style/util.css';
+import "@starlight/style/props.css";
+import "@starlight/style/reset.css";
+import "@starlight/style/shiki.css";
+import "@starlight/style/util.css";
 
 // Components — can override built-in CSS, but not user CSS.
-import ContentPanel from '@starlight/components/ContentPanel.astro';
-import FallbackContentNotice from '@starlight/components/FallbackContentNotice.astro';
-import Footer from '@starlight/components/Footer.astro';
-import HeadSEO from '@starlight/components/HeadSEO.astro';
-import Header from '@starlight/components/Header.astro';
-import MarkdownContent from '@starlight/components/MarkdownContent.astro';
-import RightSidebar from '@starlight/components/RightSidebar.astro';
-import Sidebar from '@starlight/components/Sidebar.astro';
-import SkipLink from '@starlight/components/SkipLink.astro';
-import ThemeProvider from '@starlight/components/ThemeProvider.astro';
-import PageFrame from '@starlight/layout/PageFrame.astro';
-import TwoColumnContent from '@starlight/layout/TwoColumnContent.astro';
+import ContentPanel from "@starlight/components/ContentPanel.astro";
+import FallbackContentNotice from "@starlight/components/FallbackContentNotice.astro";
+import Footer from "@starlight/components/Footer.astro";
+import HeadSEO from "@starlight/components/HeadSEO.astro";
+import Header from "@starlight/components/Header.astro";
+import MarkdownContent from "@starlight/components/MarkdownContent.astro";
+import RightSidebar from "@starlight/components/RightSidebar.astro";
+import Sidebar from "@starlight/components/Sidebar.astro";
+import SkipLink from "@starlight/components/SkipLink.astro";
+import ThemeProvider from "@starlight/components/ThemeProvider.astro";
+import PageFrame from "@starlight/layout/PageFrame.astro";
+import TwoColumnContent from "@starlight/layout/TwoColumnContent.astro";
 
 // Component overrides
-import Hero from '@overrides/Hero.astro';
+import Hero from "@overrides/Hero.astro";
 
 // Remark component CSS (needs to override `MarkdownContent.astro`)
-import '@starlight/style/asides.css';
+import "@starlight/style/asides.css";
 
 // Important that this is the last import so it can override built-in styles.
-import 'virtual:starlight/user-css';
+import "virtual:starlight/user-css";
 
 type Props = Route & { headings: MarkdownHeading[] };
 
-const { dir, entry, entryMeta, headings, isFallback, lang, locale } = Astro.props;
+const { dir, entry, entryMeta, headings, isFallback, lang, locale } =
+	Astro.props;
 const sidebar = getSidebar(Astro.url.pathname, locale);
 
-const hasSidebar = entry.data.template !== 'splash';
+const hasSidebar = entry.data.template !== "splash";
 const tocConfig = !hasSidebar
 	? false
 	: entry.data.tableOfContents !== undefined
@@ -67,7 +68,9 @@ const hasHero = Boolean(entry.data.hero);
 			/* Add scroll padding to ensure anchor headings aren't obscured by nav */
 			html {
 				/* Additional padding is needed to account for the mobile TOC */
-				scroll-padding-top: calc(1.5rem + var(--sl-nav-height) + var(--sl-mobile-toc-height));
+				scroll-padding-top: calc(
+					1.5rem + var(--sl-nav-height) + var(--sl-mobile-toc-height)
+				);
 			}
 			main {
 				padding-bottom: 3vh;
@@ -92,14 +95,19 @@ const hasHero = Boolean(entry.data.hero);
 			{hasSidebar && <Sidebar slot="sidebar" {sidebar} {locale} />}
 			<TwoColumnContent {hasToC}>
 				<RightSidebar slot="right-sidebar" {headings} {locale} {tocConfig} />
-				<main data-pagefind-body={entry.slug !== '404'} lang={entryMeta.lang} dir={entryMeta.dir}>
-						<ContentPanel>
-							<Hero hero={entry.data.hero} entry={entry} sidebar={sidebar} />
-							<MarkdownContent>
-								<slot />
-							</MarkdownContent>
-							<Footer {...{ entry, dir, lang, locale, sidebar }} />
-						</ContentPanel>
+				<main
+					data-pagefind-body={entry.slug !== "404"}
+					lang={entryMeta.lang}
+					dir={entryMeta.dir}
+				>
+					<ContentPanel>
+						<Hero hero={entry.data.hero} entry={entry} sidebar={sidebar} />
+						<div class="overview">Overview</div>
+						<MarkdownContent>
+							<slot />
+						</MarkdownContent>
+						<Footer {...{ entry, dir, lang, locale, sidebar }} />
+					</ContentPanel>
 				</main>
 			</TwoColumnContent>
 		</PageFrame>

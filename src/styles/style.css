@@ -56,3 +56,11 @@ a[aria-current]:focus {
   white-space: nowrap;
   vertical-align: top;
 }
+
+.overview {
+  margin-top: 2.5rem;
+  font-size: var(--sl-text-h2);
+  line-height: var(--sl-line-height-headings);
+  font-weight: 600;
+  color: var(--sl-color-white);
+}
