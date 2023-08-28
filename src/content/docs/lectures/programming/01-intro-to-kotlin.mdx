@@ -3,8 +3,6 @@ title: Introduction to Kotlin
 description: Fundamentals of the main programming language we will use this semester.
 ---
 
-**Overview**
-
 *These notes are adapted from slides by Talib Hussain. There may be some mistakes -- let me know if there is something here that doesn't make sense.*
 
 **Fundamentals of Kotlin**
@@ -31,30 +29,30 @@ description: Fundamentals of the main programming language we will use this seme
 
 ## Why Kotlin? (why notlin?)
 
-- General\-purpose, statically\-typed, open\-source language
+- General-purpose, statically-typed, open-source language
 - Created by JetBrains – the company who built IntelliJ IDEA and Android Studio
   - v1.0 released 2016
 - It runs on a [Java Virtual Machine (JVM)](https://en.wikipedia.org/wiki/Java_virtual_machine) and can be used anywhere Java is used
 - Somewhat similar to Java, but has many simplifications in syntax and a variety of modern capabilities, such as null safety
   - Avoid boilerplate code
   - Avoid specifying types when unnecessary
-- Android mobile development has been "Kotlin\-first" since 2019
+- Android mobile development has been "Kotlin-first" since 2019
 - Over 95% of the top thousand Android apps use Kotlin.
-  - [https://kotlinlang.org/docs/android\-overview.html](https://kotlinlang.org/docs/android-overview.html)
+  - [https://kotlinlang.org/docs/android-overview.html](https://kotlinlang.org/docs/android-overview.html)
 - Used by over 60% of professional Android developers
   - [https://developer.android.com/kotlin](https://developer.android.com/kotlin)
 - 100% Java interoperable
   - Can call Java code from Kotlin and Kotlin code from Java
-  - [https://kotlinlang.org/docs/java\-interop.html](https://kotlinlang.org/docs/java-interop.html)
-  - [https://kotlinlang.org/docs/java\-to\-kotlin\-interop.html](https://kotlinlang.org/docs/java-to-kotlin-interop.html)
+  - [https://kotlinlang.org/docs/java-interop.html](https://kotlinlang.org/docs/java-interop.html)
+  - [https://kotlinlang.org/docs/java-to-kotlin-interop.html](https://kotlinlang.org/docs/java-to-kotlin-interop.html)
 
 ## Jetpack Compose
 
 Part of the reason to learn Kotlin is to take advanage of Jetpack Compose. (what is that?)
 
-* Modern declarative UI toolkit for component\-based UI \("composables"\)
+* Modern declarative UI toolkit for component-based UI ("composables")
 * Created by Google
-  * V1\.0 released July 2021
+  * V1.0 released July 2021
 * 100% Kotlin
 * Greatly simplifies the coding of UI for Android
   * Can cut development time in half
@@ -63,37 +61,37 @@ Part of the reason to learn Kotlin is to take advanage of Jetpack Compose. (what
   * Similar declarative approach using components
   * Strong integration with Google's [Material Design](https://developer.android.com/jetpack/compose/designsystems/material3)
 * 24% of the top 1000 apps on Google Play have adopted Compose
-  * [https://android\-developers\.googleblog\.com/2023/05/whats\-new\-in\-jetpack\-compose\.html](https://android-developers.googleblog.com/2023/05/whats-new-in-jetpack-compose.html)
+  * [https://android-developers.googleblog.com/2023/05/whats-new-in-jetpack-compose.html](https://android-developers.googleblog.com/2023/05/whats-new-in-jetpack-compose.html)
 * Lots of great documentation to help you learn
-  * [https://developer\.android\.com/courses/jetpack\-compose/course](https://developer.android.com/courses/jetpack-compose/course)
-  * [https://developer\.android\.com/jetpack/compose/documentation](https://developer.android.com/jetpack/compose/documentation)
+  * [https://developer.android.com/courses/jetpack-compose/course](https://developer.android.com/courses/jetpack-compose/course)
+  * [https://developer.android.com/jetpack/compose/documentation](https://developer.android.com/jetpack/compose/documentation)
 
 ## Getting started
 
 - Open Android Studio and follow the default setup steps for a new project.
-* The default project \("Empty Activity"\) in Android Studio actually creates a Kotlin\-Compose app
+* The default project ("Empty Activity") in Android Studio actually creates a Kotlin-Compose app
   * It is now the standard for Android app development
-* There is a very cool new feature called "Live Edit"\, but it is only available in the very latest release of Android Studio and Gradle\.
+* There is a very cool new feature called "Live Edit", but it is only available in the very latest release of Android Studio and Gradle.
   * You may need to update (try doing that!)
 * We'll walkthrough the project files to see what the basic setup is
-  * Uses Gradle \(build\.gradle\.kts\) to specify dependencies on 3rd party packages
-    * Analogous in some ways to using npm for Node\.js\, but all specified explicitly in a single place\.  Gradle will download all required packages for you automatically\.
-  * Gradle also specifies various details for building the project \(e\.g\.\, applicationId\, minSdk level\, version\)
-* Main entry point is "MainActivity\.kt"
+  * Uses Gradle (build.gradle.kts) to specify dependencies on 3rd party packages
+    * Analogous in some ways to using npm for Node.js, but all specified explicitly in a single place.  Gradle will download all required packages for you automatically.
+  * Gradle also specifies various details for building the project (e.g., applicationId, minSdk level, version)
+* Main entry point is "MainActivity.kt"
   * Single activity design
 
 ## Similarity to React (Web Dev II)
 
 * Notice the rough similarity to React JSX
   * Nested UI components
-    * @Composable indicates a UI component much like a JSX component
+    * `@Composable` indicates a UI component much like a JSX component
   * Named "properties" on components
     * Really are named parameters to functions in Kotlin
   * "Single Activity" design pattern
     * Similar in rough concept to single page app design of React
-  * State management and re\-render UI when state changes
-    * Here we see a "ViewModel" class approach\.  We'll also see parameter passing\, the provider pattern\, and storing state in variables \(more similar to React\)\.
-* [https://www\.jetpackcompose\.app/compare\-declarative\-frameworks/JetpackCompose\-vs\-React\-vs\-SwiftUI](https://www.jetpackcompose.app/compare-declarative-frameworks/JetpackCompose-vs-React-vs-SwiftUI)
+  * State management and re-render UI when state changes
+    * Here we see a `ViewModel` class approach.  We'll also see parameter passing, the provider pattern, and storing state in variables (more similar to React).
+* [https://www.jetpackcompose.app/compare-declarative-frameworks/JetpackCompose-vs-React-vs-SwiftUI](https://www.jetpackcompose.app/compare-declarative-frameworks/JetpackCompose-vs-React-vs-SwiftUI)
 
 ## Concepts
 
@@ -137,8 +135,7 @@ These terms are examples of [programming paradigms](https://en.wikipedia.org/wik
 - Declaring functions, parameters, return types
 - Declaring variables / constants
   - Specifying types is optional
-- No primitive types \- All types are objects (hence capitalized)
-- Using Strings varies in some ways
+- No [primitive types](/lectures/00-topics-to-review/#primitive-vs-derived-types) - All types are objects (hence capitalized)
 - Easy string interpolation using `$`
 - How to create an array, list, etc.
   - Use `arrayOf()` `listOf()` `arrayListOf()` etc.
@@ -172,26 +169,47 @@ We don't need to add `public`: in Kotlin, `public` is the default visibility.
 
 Semicolons are optional! But, this means that line breaks are significant.
 
-When a function has parameters, you must specify the type. The type is written after the parameter name and preceded by a colon
+When a function has parameters, you must specify the type. Unlike in Java, the type is written **after** the parameter name, and is preceded by a colon:
 
-```kotlin
-fun greeting(message: String) {
-  println(message)
-}
-```
+<Tabs>
+  <TabItem label="Kotlin">
+    ```kotlin
+    fun greeting(message: String) {
+      println(message)
+    }
+    ```
+  </TabItem>
+  <TabItem label="Java">
+    ```java
+    public static void greeting(String message) {
+      System.out.println("Hello, World!"); 
+    }
+    ```
+  </TabItem>
+</Tabs>
 
-If a function returns something, you must specify the return type
+If a function returns something, you must specify the return type.
 
 - The return type is written after the parentheses containing the parameters and preceded by a colon (and is before the brace)
+- If a function returns nothing, you can omit the type (i.e., no `void`!)
 
-```kotlin
-fun augmentMessage(message: String) : String {
-  return "This is the message: " \+ message;
-}
-```
+<Tabs>
+  <TabItem label="Kotlin">
+    ```kotlin
+    fun augmentMessage(message: String) : String {
+      return "This is the message: " + message;
+    }
+    ```
+  </TabItem>
+  <TabItem label="Java">
+    ```java
+    public static String augmentMessage(String message) {
+      return "This is the message: " + message;
+    }
+    ```
+  </TabItem>
+</Tabs>
 
-- If a function returns nothing, you can omit the type or use the special return type **Unit**
-  - No 'void'
 
 ### Try it as we go 
 
@@ -208,25 +226,51 @@ To see the results of a println in Android Studio, select `View > Tool Windows >
 
 ### Named arguments
 
-```kotlin
-fun greeting(name: String, age: Int) {
-  println ("Hello $name, you are now $age old")
-}
-```
+One neat feature of Kotlin (that requires a bunch of [extra code to replicate in Java](https://www.digitalocean.com/community/tutorials/builder-design-pattern-in-java)) is that functions can be called using [named arguments](https://www.baeldung.com/kotlin/default-named-arguments).
 
-Note: That's string interpolation – cool.
+Normally, functions depend on being provided arguments in the order they are defined. This makes a function with many arguments difficult to interpret: imagine a function called `createShape` with four size parameters. When calling the function, that would look like `createShape(10, 20, 0.3, 123)` -- what does each parameter mean? What if you get the order wrong? 
 
-Kotlin functions can be called using named arguments
+Named arguments allow the function caller to **explicitly** specify the parameter for each argument in a function call. Here are some other examples:
 
-- A named argument uses the `=` operator to provide the name of the parameter in the calling line and the value being passed in
-  - `greeting(name="Xing", age=15)`
-- Order of named parameters doesn't matter
-  - `greeting(age=15, name="Xing")` also works
-- Named and positional parameters cannot be mixed unless you retain order
+<Tabs>
+  <TabItem label="Kotlin">
+    ```kotlin
+    // function definition
+    fun greeting(name: String, age: Int) {
+      println ("Hello $name, you are now $age old")
+    }
+
+    // function call (normal position argument) 
+    greeting("Bobson", 123) // "Hello Bobson, you are now 123 old"
+
+    // function call (new named argument -- look at how clear that is!)
+    greeting(name="Bobson", age=123) // "Hello Bobson, you are now 123 old"
+
+    // function call (we can even change the order. Why not?)
+    greeting(age=123, name="Bobson") // "Hello Bobson, you are now 123 old"
+    ```
+  </TabItem>
+  <TabItem label="Java">
+    ```java
+    // function definition
+    public static String greeting(String name, int age) {
+      System.out.println(String.format("Hello %s, you are now %s old", name, age));
+    }
+
+    // function call (position argument function call)
+    greeting("Bobson", 123); // "Hello Bobson, you are now 123 old"
+
+    // function call (new named argument function call)
+    greeting(name="Bobson", age=123); // Syntax error! This isn't a thing in Java. 
+    ```
+  </TabItem>
+</Tabs>
+
+Notice how much easier [string interpolation](https://www.baeldung.com/java-string-interpolation) is in Kotlin – cool.
 
 ### Default arguments
 
-A parameter in a function can be specified with a default value by using the assignment operator and provided the value
+Another feature impossible in Java without [a bunch of extra code](https://www.digitalocean.com/community/tutorials/builder-design-pattern-in-java), A parameter in a function can be specified with a default value using the assignment operator:
 
 ```kotlin
 fun greeting(name: String = "Unknown", age: Int = 10) {
@@ -234,13 +278,11 @@ fun greeting(name: String = "Unknown", age: Int = 10) {
 }
 ```
 
-Some, all or none may have default values.
+Some, all or none of the parameters may have default values.
 
-When calling a function, a parameter with a default argument may be omitted. In that case, the default value will be used.
+When calling a function, **a parameter with a default argument may be omitted**. In that case, the default value will be used.
 
-- Typically, you will use named parameters when omitting a parameter
-
-As long as the omitted parameters are **last** in the parameter list, you can use positional parameters as well. The following are all valid
+As long as the omitted arguments are **last** in the parameter list, you can use positional arguments as well. The following are all valid:
 
 - `greeting (age=5)`
 - `greeting(name="Joe")`
@@ -248,12 +290,14 @@ As long as the omitted parameters are **last** in the parameter list, you can us
 
 These are not valid:
 
-- `<span style="color:##FF0000">greeting(5)</span>`
-- `<span style="color:##FF0000">greeting(age=5, "Juan")</span>`
+- `greeting(5)`
+- `greeting(age=5, "Juan")`
+
+Why aren't these valid? Positional arguments cannot be ambiguous -- it needs to be clear which parameter each positional argument is being assigned to. Don't worry about memorizing this -- it should make logical sense.
 
 ### Single expression / "One-Line" Functions
 
-If you have a function that has just a single expression, the curly braces are optional. The following code snippets are equivalent:
+Just like in Java, for a function that has a single expression, the curly braces are optional. The following code snippets are equivalent:
 
 ```kotlin
 fun convertToFahrenheit(degree : Float) : Float {
@@ -265,16 +309,33 @@ fun convertToFahrenheit(degree : Float) = (degree * 9 / 5) + 32
 
 ## Variables
 
-- The **var** keyword is used to declare a variable that may change in value
-- The **val** keyword is used to declare a constant
-  - var name = "Joe"
-  - val birthyear = 1985
-- Use of val is recommended where possible.
+One of the major [differences from Java](#differences-from-java) mentioned above is that Kotlin does not have primitive types -- all types are defined objects. This causes Kotlin to have variable behavior that looks more like Javascript than Java, which is a handy way to remember the following:
+
+- The `var` keyword is used to declare a variable that may change in value (similar to `let` in Javascript)
+- The `val` keyword is used to declare a constant (similar to `const` in Java)
+
+```kotlin
+var name = "Joe"
+val birthyear = 1985
+
+name = "Bobson" // this is fine
+birthyear = 1984 // Compiler error!
+```
+
+- Use of `val` is recommended where possible. 
 - Cool feature: we don't have to specify a type – Kotlin will figure it out based on the first assignment.
   - Once a type is assigned, it can't be changed.
 - But, we can still specify a type if we wish. Unlike Java, the type is written after the variable name and preceded by a colon
-  - var name: String = "Joe"
-  - val birthyear: Int = 1985
+- Let's see another example:
+
+```kotlin
+var height = 55
+var name: String = "Joe"
+val birthyear: Int = 1985
+
+height = "fifty-five" // error!
+name = 55 // error!
+```
 
 ## Types
 
@@ -285,20 +346,24 @@ fun convertToFahrenheit(degree : Float) = (degree * 9 / 5) + 32
   - Boolean
   - String
   - Also: Float, Long, Short
-  - Note: All capitalized.
-- Conversion:
+  - Note: All capitalized (no primitive types!)
+- Conversion: every type class has built-in conversion methods
   - You can convert one type to another using a toXXX() method on the object
-    - value1.toInt()
-    - value2.toString()
-- Still have Double.MIN_VALUE, etc.
+
+```kotlin
+value1.toInt() // throws an error only if value1 cannot be converted to an int
+value2.toString() // doesn't matter what value2 is, this should always work
+```
+
+- All of the familiar Java built-ins are in Kotlin as well: `Double.MIN_VALUE`, `Integer.MAX_VALUE`, etc.
 
 ## Additional Resources
 
 - [https://play.kotlinlang.org/byExample/overview](https://play.kotlinlang.org/byExample/overview)
-- [https://developer.android.com/teach\##teach\-a\-class](https://developer.android.com/teach#teach-a-class)
+- [https://developer.android.com/teach##teach-a-class](https://developer.android.com/teach#teach-a-class)
 - [https://www.w3schools.com/KOTLIN/index.php](https://www.w3schools.com/KOTLIN/index.php)
 - [https://kotlinlang.org/docs/home.html](https://kotlinlang.org/docs/home.html)
 - [https://eecs441.eecs.umich.edu/](https://eecs441.eecs.umich.edu/)
-- [https://www.slideshare.net/GoogleDevelopersLeba/android\-development\-with\-kotlin\-course](https://www.slideshare.net/GoogleDevelopersLeba/android-development-with-kotlin-course)
+- [https://www.slideshare.net/GoogleDevelopersLeba/android-development-with-kotlin-course](https://www.slideshare.net/GoogleDevelopersLeba/android-development-with-kotlin-course)
 - Codelabs:
-  - [https://developer.android.com/codelabs/basic\-android\-kotlin\-compose\-functions\##0](https://developer.android.com/codelabs/basic-android-kotlin-compose-functions#0)
+  - [https://developer.android.com/codelabs/basic-android-kotlin-compose-functions##0](https://developer.android.com/codelabs/basic-android-kotlin-compose-functions#0)

@@ -5,21 +5,7 @@ description: How does Object Oriented Programming work in Kotlin?
 
 *These notes are adapted from slides by Talib Hussain. There may be some mistakes -- let me know if there is something here that doesn't make sense.*
 
-## OOP in Kotlin
-
-A basic class in Kotlin is similar to one in Java
-
-```kotlin
-class Car {
-    var brand = ""
-    var model = ""
-    var year = 0
-    fun updateModel(newmodel: String){...}
-        ...
-    }
-```
-
-### Terminology
+## Terminology
 
 - "Fields" (from Java) are generally called **properties**
 - "Methods" (from Java) are called **class functions**
@@ -37,11 +23,54 @@ class Car {
 [https://www.baeldung.com/kotlin/visibility-modifiers](https://www.baeldung.com/kotlin/visibility-modifiers)
 :::
 
+## Classes
+
+We're about to see one of the main [reasons to use Kotlin instead of Java](/lectures/programming/01-intro-to-kotlin/#why-kotlin-why-notlin), that is, the ability to "avoid boilerplate code". This is everywhere in Kotlin,  but **class definitions** are an especially clear example.
+
+The best way to see this is just to look for yourself:
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs>
+  <TabItem label="Java">
+    ```java
+    /* 
+        The following is a class called SomeClass. 
+        It has a constructor, a private field, and a public setter/getter
+    */
+    public class SomeClass {
+       private int someField;
+
+       public SomeClass(int someField) {
+          this.someField = someField;
+       }
+
+       public int getSomeField() {
+          return someField;
+       }
+
+       public void setSomeField(int someField) {
+          this.someField = someField;
+       }
+    }
+    ```
+  </TabItem>
+  <TabItem label="Kotlin">
+    ```kotlin
+    /* 
+        The following is a class called SomeClass. 
+        It has a constructor, a property, and a public setter/getter for that property
+    */
+    class SomeClass(var someField : Int)
+    ```
+  </TabItem>
+</Tabs>
+
+In the following sections, we'll deconstruct how this is achieved in Kotlin.
+
 ### Constructors
 
-For a simple class, we can just define a constructor
-
-We don't have to explicitly define all the fields, etc.
+For a simple class, we can just define a constructor. Unlike Java, we don't have to explicitly define all the fields, etc.
 
 ```kotlin
 class Car(var brand: String, var model: String, var year: Int)
@@ -241,30 +270,27 @@ This returns null if the given _str_ string is null
 
 ### Java vs. Kotlin Example
 
-Java
-
-```kotlin
-public ZipCode getZipCode(User user) {
-  if (user != null) {
-    if (user.getAddress() != null)
-      return user.getAddress().getZipCode();
+<Tabs>
+  <TabItem label="Java">
+    ```java
+    public ZipCode getZipCode(User user) {
+      if (user != null) {
+        if (user.getAddress() != null)
+          return user.getAddress().getZipCode();
+        }
+        return null;
+      }
     }
-    return null;
-  }
-}
-```
+    ```
+  </TabItem>
+  <TabItem label="Kotlin">
+    ```kotlin
+    fun getZipCode(user: User?): ZipCode? {
+      return user?.address?.zipCode;
+    }
 
-Kotlin
-
-```kotlin
-fun getZipCode(user: User?): ZipCode? {
-  return user?.address?.zipCode;
-}
-```
-
-Or, even more concisely
-
-```kotlin
-fun getZipCode(user: User?): ZipCode? = user?.address?.zipCode
-```
-
+    // This is an equivalent one-liner
+    fun getZipCode(user: User?): ZipCode? = user?.address?.zipCode
+    ```
+  </TabItem>
+</Tabs>
