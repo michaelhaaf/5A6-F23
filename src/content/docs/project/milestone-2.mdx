@@ -1,34 +1,78 @@
 ---
-title: "Milestone 2: Forking an existing application"
-description: "In this milestone, we will get a better picture of what is possible using Jetpack Compose by inspecting sample applications we can find on GitHub."
-created: 2023-08-11
+title: "Milestone 2: Setting up the Android development environment"
+description: "We will begin the semester project by familiarizing ourselves with how Kotlin applications are built and deployed for Android applications. In this milestone, you will build on GitHub skills learned last semester to automatically build and version a basic Android application."
 sidebar:
-  hidden: false
+  hidden: true
 ---
 
 <div class="first-col-header">
-| Milestone 2 | Overview |
+| | |
 | --- | --- |
 | Worth: | 5% |
 | Due: | Some time in September |
-| Hand-in: | an in-class presentation | 
+| Hand-in: | A link to your group GitHub repository handed in on Moodle. See [Requirements](#requirements) for more information. |
+| Notes: | [Course late penalty](/about/syllabus) applies. |
 </div>
+
+This milestone (and all following milestones) will be a group project, completed in teams of 2-3.
+
+## Goals
+
+- Review basic mechanics of application deployment using GitHub
+- Understand how Kotlin projects are built into applications using Gradle
+- Understand the Android development stack
 
 ## Requirements
 
-- Fork at least one existing Android application
-- Build and run it locally
-- Present in-class your findings
+The course project will see your groups create a complete Android application over the course of the semester. 
 
-## Sample applications
+This milestone starts things off by having you set up an automated development environment on GitHub -- we will build on this repository as the semester progresses with more sophisticated features.
 
-### Official Jetpack Compose samples
+The basic requirements for Milestone 1 build on skills you learned last semester: 
 
-- [Sample compose apps](https://developer.android.com/samples?text=compose&hl=en)
+- create a repository shared amongst your teammembers 
+- write a GitHub actions `.yml` file to automate building your source code
+- maintain the a clean repository history with appropriate usage of [branch protection](), [pull requests](), [commit messages](), and the [merge](), [rebase](), and [squash]() commands
+- document the usage of your project using a repository README
 
-### Other Android apps
+You will also be expected to:
 
-- [orgzly (note taking app)](https://github.com/orgzly/orgzly-android)
-- [K-9 Mail (email app)](https://github.com/thundernest/k-9)
-- [streetcomplete (OpenStreetMap editor)](https://github.com/streetcomplete/streetcomplete)
-- ["30 Best Open-Source Android Apps with Source Code For Developers to Practise"](https://techlog360.com/best-open-source-android-apps/)
+- 
+- make use of Gradle in your GitHub action workflow to build your Kotlin project
+- manage dependencies (JDK version)
+
+Each of these requirements is explained in more detail in the subsections below.
+
+### Code
+
+Requirement TBD
+
+### git best practices
+
+> An **atomic commit** is a commit that includes changes related to only one feature or task of your program. There are two main reasons for doing this: first, if something you change turns out to cause some problems, it is easy to revert the specific change without losing other changes; and second, it enables you to write better commit messages. 
+>
+> [The Odin Project](https://www.theodinproject.com/lessons/foundations-git-basics)
+
+### README
+
+- Group name and members
+- 
+
+### Create shared repository
+
+### Automated build using GitHub action 
+
+- `.github/workflow` yaml: just a build step for now, we will make it more sohpisticated thruought semester
+`
+- https://docs.gradle.org/current/userguide/github-actions.html
+
+## Marking Scheme
+
+- 25%: Functionality (succesful automated build) 
+- 25%: README (meets requirements)
+- 25%: git commit messages (meet requirement)
+- 25%: GitHub repository setup (meets requirements)
+
+## Additional Resources
+
+- [git documentation](https://git-scm.com/docs)
