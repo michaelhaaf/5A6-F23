@@ -1,5 +1,5 @@
 ---
-title: "Module 1: Programming"
+title: "Module 1: Programming (Version 2)"
 description: "For this assignment, you will practise techniques you have learned in Java, using the main programming language that we will use in this course. This semester, that will be Kotlin -- the official language of the Android development stack."
 sidebar:
   hidden: false
@@ -9,8 +9,8 @@ sidebar:
 | | |
 | --- | --- |
 | Worth: | 7% of final grade. |
-| Due: | September 8, 11:59pm |
-| Hand-in: | `.zip` containing project files to [Moodle](https://moodle.johnabbott.qc.ca/course/view.php?id=452). |
+| Due: | **September 12, 11:59pm** |
+| Hand-in: | `.zip` containing project files to [Moodle](https://moodle.johnabbott.qc.ca/course/view.php?id=452). See the [updated requirements](#deliverable) for more details |
 | Notes: | [Course late penalty](/about/syllabus) applies. |
 </div>
 
@@ -24,27 +24,80 @@ This is an individual assignment. You may assist other classmates but:
 
 Building off of problems you have solved in other languages, this assignment will get you used to the mechanics of Kotlin. This assignment really has nothing to do with Android development at all -- Kotlin, like Java and other languages, is a multi-platform language with many capabilities that distinguish it. You will find the [course notes](/lectures/unit-1-programming/01-intro-to-kotlin) a useful reference when you are stuck.
 
-- It is assumed you already know how to create, insert, and traverse a Binary Search Tree (BST) data structure in Java or C#. 
-- You are welcome to review your previous courses for examples. 
+## Prerequisites
+
+- It is assumed you already know how to create, insert, and traverse a Binary Search Tree (BST) data structure in Java or C#. You are welcome to review your previous courses for examples. 
 - You are welcome to make use of any code provided in lectures without explicitly referencing it, some of the lecture content may be directly useful for this assignment.
-- You are also welcome to make use of this Kotlin example BST available [here](https://www.baeldung.com/kotlin/binary-tree) as a starting point / for reference.
+- You are welcome to use code from other sources as well (in order of usefulness: the [KotlinDocs](https://kotlinlang.org/docs/home.html), reputable online sources, help from your friends, StackOverflow/or similar, ChatGPT or similar) **PROVIDED you follow the rules I have outlined in the [Documentation](#documentation) section of these instructions**.
+- Some reasons:
+  - In school and the professional world, developers make frequent use of eachothers code. 
+  - It is very important to ensure you document correctly when you use the code of others. Some reasons:
+    - Code tends to be [licenced](https://choosealicense.com/) in a way that mandates that your usage of that code follows some explicit instructions
+    - You will eventually forget where you found the code, which will likely mean that you no longer will understand the code you have written
+    - Plagiarism is taken seriously at school and at work -- the consequences can be dire in either case. Its pays dividends to practise good habits and have a clear mind about what you have written.
+
+### Starter code
+
+- You welcome to make use of this [Kotlin example BST from baeldung.com](https://www.baeldung.com/kotlin/binary-tree) as a starting point for reference -- NOTE WELL that this BST has extra behaviors ours will not need. **I recommend trying to see if you can get this code to work, but NOT using it directly for our actual assignment** (otherwise you will waste time getting it to fit our requirements, you will genuinely be better off starting from scratch).
+- You may also make use of the lambda example code that I wrote in class on Friday Sep 1. I have uploaded the code to an [online interactive REPL](https://pl.kotl.in/CYJmoZj7o?theme=darcula), you can also [download the code directly to your machine](/code/sep1-lambda-eg/calculator.kt).
+
 
 ## Requirements
 
-- Use a data class to store at least three pieces of information about a Person (one string, one Int, and one nullable type)
-- Create a Node object that will be stored in the tree. A Node will contain a Person, a left Node, and a right Node.
-- Create a BinarySearchTree class that stores the tree
+- Use a [data class](/lectures/programming/02-oop-in-kotlin/#data-classes) to store at least three pieces of information about a `Person`:
+  - **one `String`**
+  - **one `Int`**
+  - **one [Nullable type](/lectures/programming/02-oop-in-kotlin/#null-safety) of your choice** 
+- Create a `Node` object that will be stored in the tree. A `Node` will contain a Person, a left `Node`, and a right `Node`.
+- Create a `BinarySearchTree` class that stores the tree
   - In its constructor, it should accept a lambda function that will be used to determine the sort order. 
-  - Create an `insert()` function that will insert a Person into the tree (using the sorting function to keep the BST sorted and in sorted order)
-  - Create a `toList()` function that returns a list of all the Persons in the BST, in sorted order.
-- Repeat 3 times. Build a BST containing at least 10 Persons (using canned data, random data, user-entered data, etc.) and display the contents of the BST in sorted order.
-  - All information about each Person should be displayed
+  - Create an `insert()` function that will insert a `Person` into the tree (using the sorting function to keep the BST sorted and in sorted order)
+  - Create a `toList()` function that returns a list of all the `Person` objects in the BST, in sorted order.
+- Repeat 3 times. Build a BST containing at least 10 `Person` objects (using canned data, random data, user-entered data, etc.) and display the contents of the BST in sorted order.
+  - All information aboutk each `Person` should be displayed
   - You may display the information in the console (e.g. using `println()`) OR on the emulator screen using Compose
-- BST 1: Lambda should sort in alphabetical order on the String field
-- BST 2: Lambda should sort in increasing order on the Int field
-- BST 3: Lambda should sort in size-of-String order on the String field
+- BST 1: Lambda should sort in alphabetical order ('A' -> 'Z') on the `String` field
+  - **You may find it useful to ensure that this field is always capitalized. The builtin `replaceFirstChar` method (see [Kotlin Docs](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/replace-first-char.html) for an example) is pretty handy here.**
+- BST 2: Lambda should sort in increasing (smallest first) order on the `Int` field. **In the case of a tie, sort in alphabetical order on the `String` field i.e. via BST 1 rules**
+- BST 3: Lambda should sort in **decreasing** (largest first) size-of-String order on the `String` field. **In the case of a tie, sort using in increasing order on the `Int` field i.e. via BST 2 rules**
+
+## Clarifications
+
+### Version 2 (Sep 4)
+
+You may have noticed that the deadline has been extended, given that our lab machines weren't for Kotlin development for the first couple weeks of the semester. Hope this helps!
+
+In addition, I think the following clarifications to the requirements will be useful to you: 
+
+#### General
+
+- I have modified some of the requirements listed in the previous section, these changes are **highlighted in bold**.
+- The requirements stated in the previous section have some inherent flexibility, meaning there is more than one correct way for your program to behave. **As long as your program meets the requirements stated above, the implementation details do not matter**. For e.g., you **must have** `toList()` and `insert()` functions, but the interface (parameters/return type) and implementation (actual behavior, how they makes use of the required lambdas) for each has not been specified. There are multiple ways to solve that problem and it is up to you to determine a working solution.
+- You may also consider the following additional requirements (they extend the requirements, they do not modify them)
+  - Your three `BinarySearchTree` objects may be a separate class that contains `Node` objects, or may just be an instantiation of the `Node` class -- either solution would be fine.
+  - That is, if you find it more natural to just use the `Node` class and give it `insert()` and `toList()` methods, rather than create a `BinarySearchTree` containing a list of `Node` objects, that is fine with me.
+
+#### Deliverable
+
+- The `.zip` that you hand-in to Moodle should contain:
+  - One or more `.kt` (Kotlin) files containing your source code and your runtime environment
+    - Whether your source code contains one `main.kt` file containing all of your source code, or several `.kt` files separating the logic of your source code, is entirely up to you.
+  - A README.md or README.txt (NOT .docx, .pdf, or any other format) containing instructions for building and running your code.
+    - see the [Using Kotlin](/lectures/programming/04-using-kotlin) lecture notes for more details about how to compile/run/build Kotlin in various editors/platforms.
+  - DO NOT INCLUDE any other files (`.jar`, gradle files, github files, etc. etc.) -- I only need your source code and your README, i.e. the files that you have written yourself.
+
+#### Documentation
+
+- I did not include any documentation requirements in the original assignment, but it is a part of the marking scheme. Here are some more things I will be looking for:
+  - In your code, follow the [Kotlin Docs "Documentation comments"](https://kotlinlang.org/docs/coding-conventions.html#documentation-comments) guide. Your functions and classes should have a brief comment above them in this style. I mean **brief**: some people like comments for their own sake; I am of the opinion that code should be self-documenting. Aim to write clear code and keep comments to a minimum.
+  - Any code you adapt/use/modify/copy-directly from another source **MUST** have a comment providing the URL, date of retrieval, and a brief explanation of how the code is used/modified. [See the first three sections of this link](https://integrity.mit.edu/handbook/writing-code) for clarification.
+    - That rule should cover pretty much any case you can think of (the KotlinDocs, help from a classmate, random internet sources, ChatGPT, etc.) -- you are allowed to use any of these things PROVIDED you follow the rule about citing your source/explaining your usage of the code.
+  - the README.md or README.txt you write (see [Deliverable](#deliverable)) is included in the documentation part of the marking scheme. This will help me run your code :)
+
 
 ## Marking Scheme
 
 - 80% functionality (works, meets requirements)
 - 20% documentation (all classes and functions should have reasonable documentation describing their purpose and any assumptions)
+  - See [above](#documentation)
+

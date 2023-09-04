@@ -64,3 +64,9 @@ a[aria-current]:focus {
   font-weight: 600;
   color: var(--sl-color-white);
 }
+
+/* Misc overrides */
+
+.content ul ul {
+  margin-top: 0;
+}
