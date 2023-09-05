@@ -1,23 +1,15 @@
 ---
-title: "Building with Gradle"
-description: "So you've written some code -- how does it become a program? In this course we will create android applications using Gradle, the JVM-based build system."
-sidebar: 
-  hidden: true
-created: 2023-08-12
-tags: [ "tag1", "tag2" ]
-hero:
-  figure:
-    caption: "Powder-coated aluminum sculpture on a stainless steel frame."
-    credit:
-      name: "Philip Jama"
-      title: "Digital Orca"
-      link: "https://commons.wikimedia.org/w/index.php?curid=32329006"
-      license: "CC BY-SA 3.0"
+title: Using Kotlin
+description: The various ways to compile, build, and run Kotlin programs, libraries, and scripts
 ---
 
-## Gradle
+## The fundamentals
 
-Notes adapted from: [Gradle for Android](https://www.programming-books.io/essential/android/gradle-for-android-2694b2c563ee48aca9d4c559da1523f6#d3224021-c724-4525-a3cc-9ec2a35986fa), [Creative Commons Attribution-ShareAlike 3.0](https://creativecommons.org/licenses/by-sa/3.0)
+### Source code: `.kt`, `.kts`
+
+### Compilers: `kotlinc`
+
+### Gradle
 
 Gradle is a JVM-based build system that enables developers to write **high-level** **scripts** that can be used to automate the process of compilation and application production. It is a flexible plugin-based system, which allows you to automate various aspects of the build process; including compiling and signing an .apk, downloading and managing external dependencies, or utilising specific SDK versions. 
 
@@ -29,6 +21,42 @@ If you aren't using Android Studio, you can learn how to build and run your app 
 [Configure your build](https://developer.android.com/build), Android Developer docs.
 ```
 
-## Additional resources
+## Kotlin Editors
 
+### Android Studio**
+
+### IntelliJ
+
+### VSCode or Others
+
+### vim/nvim/emacs/etc.
+
+## Building Kotlin
+
+### Editor
+
+### Command line
+
+```bash
+$ kotlinc main.kt -include-runtime -d main.jar
+$ java -jar main.jar
+```
+
+The Kotlin docs: [Kotlin command-line compiler](https://kotlinlang.org/docs/command-line.html#homebrew)
+
+### Cloud
+
+## Interactive Kotlin
+
+### kotlinc
+
+### ki
+
+I particularly liked [this tutorial](https://www.youtube.com/watch?v=t28RY1aOGJs)
+
+## Scripting Kotlin
+
+## Additional resources
 - [Official Gradle Docs](https://gradle.org/)
+
+
