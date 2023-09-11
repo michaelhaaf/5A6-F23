@@ -140,6 +140,88 @@ These terms are examples of [programming paradigms](https://en.wikipedia.org/wik
 - How to create an array, list, etc.
   - Use `arrayOf()` `listOf()` `arrayListOf()` etc.
 
+## Variables
+
+One of the major [differences from Java](#differences-from-java) mentioned above is that Kotlin does not have primitive types -- all types are defined objects. This causes Kotlin to have variable behavior that looks more like Javascript than Java, which is a handy way to remember the following:
+
+- The `var` keyword is used to declare a variable that may change in value (similar to `let` in Javascript)
+- The `val` keyword is used to declare a constant (similar to `const` in Java)
+
+```kotlin
+var name = "Joe"
+val birthyear = 1985
+
+name = "Bobson" // this is fine
+birthyear = 1984 // Compiler error!
+```
+
+- Use of `val` is recommended where possible. 
+- Cool feature: we don't have to specify a type – Kotlin will figure it out based on the first assignment.
+  - Once a type is assigned, it can't be changed.
+- But, we can still specify a type if we wish. Unlike Java, the type is written after the variable name and preceded by a colon
+- Let's see another example:
+
+```kotlin
+var height = 55
+var name: String = "Joe"
+val birthyear: Int = 1985
+
+height = "fifty-five" // error!
+name = 55 // error!
+```
+
+## Types
+
+- Main types are:
+  - Int
+  - Double
+  - Char
+  - Boolean
+  - String
+  - Also: Float, Long, Short
+  - Note: All capitalized (no primitive types!)
+- Conversion: every type class has built-in conversion methods
+  - You can convert one type to another using a toXXX() method on the object
+
+```kotlin
+value1.toInt() // throws an error only if value1 cannot be converted to an int
+value2.toString() // doesn't matter what value2 is, this should always work
+```
+
+- All of the familiar Java built-ins are in Kotlin as well: `Double.MIN_VALUE`, `Integer.MAX_VALUE`, etc.
+
+### (Almost) Everything is an expression
+
+In programming languages you are more familiar with (Java, C#, even Javascript), there is a distinction between **expressions** and **statements**, that is:
+  - **expression**: code that is a value
+  - **statement**: code that is not a value
+
+Some examples in Java (pretty much the same in C#):
+
+```java
+const int price = 300;
+```
+
+In Kotlin, **almost everything is an expression** and therefore has a value.
+
+```kotlin
+val temperature = 20
+val isHot = if temperature > 40 true else false
+println(isHot) // result: False
+```
+
+There is one notable exception: loops. There's no sensible value for for loops or while loops, so they do not have values. If you try to assign a loop's value to something, the compiler gives an error.
+
+### Expression values
+
+```kotlin
+val isUnit = println("This is an expression") // "This is an expression" printed to console
+println(isUnit) // "kotlin.Unit" printed to console
+```
+
+The first `println()` prints the string "This is an expression"; the second `println()` prints the value of the first `println()` statement.
+
+Some other languages have statements, which are lines of code that don't have a value. In Kotlin, almost everything is an expression and has a value, even if that value is `kotlin.Unit` (Kotlin's Unit is equivalent to Java's void.)
 ## Functions
 
 The `fun` keyword is used to declare a function.
@@ -210,23 +292,130 @@ If a function returns something, you must specify the return type.
   </TabItem>
 </Tabs>
 
+A function is a discrete block of code that performs an operation, and can return a value. In Kotlin, functions are declared using the `fun` keyword, and can take arguments with either named or default values. A function that is associated with a particular class is called a **method**.
 
-### Try it as we go 
+### About functions
 
-[Clone this project to your directory for some exercises to do in class](https://github.com/tshussain/KotlinWithCompose.git)
+- A block of code that performs a specific task
+- Breaks a large program into smaller modular chunks
+- Declared using the `fun` keyword
+- Can take arguments with either **named** or **default** values
 
+You define functions using the fun keyword, followed by the name of the function. As with other programming languages, the parentheses `()` are for function arguments, if any. Curly braces `{}` frame the code for the function. 
 
-In `App.kt`, replace "Hello World" with a call to `greeting()` with an appropriate argument
+```kotlin
+fun printHello() {
+  println("Hello")
+}
+```
 
-In the `App.kt` file, define a function called greeting.
+### Unit returning functions
 
-As we learn more about functions and variables, play around with the function definition and the function call to try variations out.
+If a function does not return any useful value, its return type is `Unit`. The Unit return type declaration is optional. This code fragement is equivalent to the one immediately preceeding it:
 
-To see the results of a println in Android Studio, select `View > Tool Windows > Logcat`
+```kotlin
+fun printHello(): Unit {
+  println("Hello")
+}
+```
+
+### Function arguments
+
+Functions may have:
+
+- Default parameters
+- Required parameters
+- Named arguments
+
+### Default parameters
+
+Default values provide a fallback if no parameter value is passed. Use `=` after the parameter type to define default values:
+
+```kotlin
+fun drive(speed: String = "fast") {
+  println("driving $speed")
+}
+
+drive() // driving fast
+drive("slow") // driving slow
+drive(speed="as fast as i like") // driving as fast as i like
+```
+
+Here's another example:
+
+```kotlin
+fun greeting(name: String = "Unknown", age: Int = 10) {
+  println ("Hello $name, you are now $age old")
+}
+```
+
+Some, all or none of the parameters may have default values.
+
+When calling a function, **a parameter with a default argument may be omitted**. In that case, the default value will be used.
+
+As long as the omitted arguments are **last** in the parameter list, you can use positional arguments as well. The following are all valid:
+
+- `greeting (age=5)`
+- `greeting(name="Joe")`
+- `greeting("Jane")`
+
+These are not valid:
+
+- `greeting(5)`
+- `greeting(age=5, "Juan")`
+
+Why aren't these valid? Positional arguments cannot be ambiguous -- it needs to be clear which parameter each positional argument is being assigned to. Don't worry about memorizing this -- it should make logical sense.
+
+### Required parameters
+
+If no default is specified for a parameter, the corresponding argument is **required**.
+
+```kotlin
+fun tempToday(day: String, temp: Int) {
+  println("Today is $day and it's $temp degrees")
+} 
+tempToday("Monday", 22)
+tempToday("Monday") // error
+```
+
+The `tempToday()` function takes two parameters, day and temp, both of which are required.
+
+### Default and required parameters combined
+
+Functions can have a mix of default and required parameters.
+
+```kotlin
+fun reformat(str: String, 
+             divideByCamelHumps: Boolean, 
+             wordSeparator: Char, 
+             normalizeCase: Boolean = true) {
+  // code body goes here
+}
+
+reformat("Today is the shadow of tomorrow", false, ", ") // required args passed in
+reformat("Today is the present future of yesterday", false, ", ", false) // default args can be replaced
+```
+
+:::tip[Recommendation]
+It's considered good style to put **default arguments __after__ positional arguments**. That way, the function call can specify just the required arguments in positional order without ambiguity.
+:::
 
 ### Named arguments
 
 One neat feature of Kotlin (that requires a bunch of [extra code to replicate in Java](https://www.digitalocean.com/community/tutorials/builder-design-pattern-in-java)) is that functions can be called using [named arguments](https://www.baeldung.com/kotlin/default-named-arguments).
+
+Arguments can be passed to a function with their name specified explicitly. Using named arguments is convenient when a function has a large number of parameters -- you no longer have to rely on remembering the positional order of parameters when using argument names.
+
+```kotlin
+reformat("Yesterday is the shadow of today", 
+         divideByCamelHumps=false,
+         wordSeparator=", ",
+         normalizeCase=false) 
+```
+
+:::tip[Recommendation]
+To improve readability, use named arguments for **required arguments**.
+:::
 
 Normally, functions depend on being provided arguments in the order they are defined. This makes a function with many arguments difficult to interpret: imagine a function called `createShape` with four size parameters. When calling the function, that would look like `createShape(10, 20, 0.3, 123)` -- what does each parameter mean? What if you get the order wrong? 
 
@@ -268,34 +457,7 @@ Named arguments allow the function caller to **explicitly** specify the paramete
 
 Notice how much easier [string interpolation](https://www.baeldung.com/java-string-interpolation) is in Kotlin – cool.
 
-### Default arguments
-
-Another feature impossible in Java without [a bunch of extra code](https://www.digitalocean.com/community/tutorials/builder-design-pattern-in-java), A parameter in a function can be specified with a default value using the assignment operator:
-
-```kotlin
-fun greeting(name: String = "Unknown", age: Int = 10) {
-  println ("Hello $name, you are now $age old")
-}
-```
-
-Some, all or none of the parameters may have default values.
-
-When calling a function, **a parameter with a default argument may be omitted**. In that case, the default value will be used.
-
-As long as the omitted arguments are **last** in the parameter list, you can use positional arguments as well. The following are all valid:
-
-- `greeting (age=5)`
-- `greeting(name="Joe")`
-- `greeting("Jane")`
-
-These are not valid:
-
-- `greeting(5)`
-- `greeting(age=5, "Juan")`
-
-Why aren't these valid? Positional arguments cannot be ambiguous -- it needs to be clear which parameter each positional argument is being assigned to. Don't worry about memorizing this -- it should make logical sense.
-
-### Single expression / "One-Line" Functions
+### Compact functions
 
 Just like in Java, for a function that has a single expression, the curly braces are optional. The following code snippets are equivalent:
 
@@ -307,55 +469,25 @@ fun convertToFahrenheit(degree : Float) : Float {
 fun convertToFahrenheit(degree : Float) = (degree * 9 / 5) + 32
 ```
 
-## Variables
+Here's another example, compared with Java: 
 
-One of the major [differences from Java](#differences-from-java) mentioned above is that Kotlin does not have primitive types -- all types are defined objects. This causes Kotlin to have variable behavior that looks more like Javascript than Java, which is a handy way to remember the following:
+<Tabs>
+  <TabItem label="Normal function">
+    ```kotlin
+      fun double(x: Int): Int {
+        x * 2
+      }
+    ```
+  </TabItem>
+  <TabItem label="Single-Expression function">
+    ```kotlin
+      fun double(x: Int): Int = x * 2
+    ```
+  </TabItem>
+</Tabs>
 
-- The `var` keyword is used to declare a variable that may change in value (similar to `let` in Javascript)
-- The `val` keyword is used to declare a constant (similar to `const` in Java)
+When a function returns a single expression, the curly braces can be omitted and the body is specified after a "=" symbol. 
 
-```kotlin
-var name = "Joe"
-val birthyear = 1985
-
-name = "Bobson" // this is fine
-birthyear = 1984 // Compiler error!
-```
-
-- Use of `val` is recommended where possible. 
-- Cool feature: we don't have to specify a type – Kotlin will figure it out based on the first assignment.
-  - Once a type is assigned, it can't be changed.
-- But, we can still specify a type if we wish. Unlike Java, the type is written after the variable name and preceded by a colon
-- Let's see another example:
-
-```kotlin
-var height = 55
-var name: String = "Joe"
-val birthyear: Int = 1985
-
-height = "fifty-five" // error!
-name = 55 // error!
-```
-
-## Types
-
-- Main types are:
-  - Int
-  - Double
-  - Char
-  - Boolean
-  - String
-  - Also: Float, Long, Short
-  - Note: All capitalized (no primitive types!)
-- Conversion: every type class has built-in conversion methods
-  - You can convert one type to another using a toXXX() method on the object
-
-```kotlin
-value1.toInt() // throws an error only if value1 cannot be converted to an int
-value2.toString() // doesn't matter what value2 is, this should always work
-```
-
-- All of the familiar Java built-ins are in Kotlin as well: `Double.MIN_VALUE`, `Integer.MAX_VALUE`, etc.
 
 ## Additional Resources
 

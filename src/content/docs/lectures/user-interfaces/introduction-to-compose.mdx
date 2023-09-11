@@ -5,19 +5,101 @@ sidebar:
   hidden: false
 ---
 
-*These notes are adapted from slides by Talib Hussain. There may be some mistakes — let me know if there is something here that doesn’t make sense.*
+[Jetpack Compose](https://developer.android.com/jetpack/compose/mental-model) is the user interface framework we will use in this class to develop applications in Android. 
 
-Jetpack Compose is a toolkit for writing Android User Interfaces in Kotlin.
+If you read the link embedded above, you will see Jetpack Compose described as "modern" and "declarative" -- after a few lectures about Kotlin, these words should start to sound familiar. In fact, the goals with languages like Kotlin and frameworks like Jetpack Compose (Compose for short) are similar: make it so that complicated application behavior can be written in code that directly expresses the requirements of that application. 
 
-[Official documentation](https://developer.android.com/jetpack/compose/documentation)
-[Official tutorial](https://developer.android.com/jetpack/compose/tutorial)
+We've seen a few examples of this in the functional programming of Kotlin: modifying and extending the behavior of objects in Kotlin is much more direct since functions are "first class citizens". 
 
-The "Compose" approach to user interfaces is based in part on the programming principle: ["favour composition over inheritance"](https://en.wikipedia.org/wiki/Composition_over_inheritance). 
+In the next few lessons, we'll see how the Compose framework (using Kotlin) enables a similar set of outcomes in designing user interfaces.
 
-A compositional approach takes advantage of the [functional programming paradigm](#) we have been learning in Kotlin. The main goal is for application code to describe **how the user interface should look/behave** rather than **how the user interface is contructed**
-  - i.e., rather than (imperatively) focusing on the process of the UI's construction
-  - In Web Dev II, you learned a very similar framework: [React](https://react.dev/)
-  - For those of you who did not learn React, or need a refresher on the basics of Declarative UI, [this link gives useful information](https://developer.android.com/jetpack/compose/mental-model).
+The main goal is for application code to define **what the user interface requirements are** (declarative) rather than **how the user interface is contructed** (imperative). 
+
+A final note: in Web Dev II, you learned a very similar framework: [React](https://react.dev/). Frameworks like React, Kotlin+Compose, and even the trend for traditionally OOP languages like Python, Java, C# to take on functional coding styles is a part of a broader industry trend towards declarative programming concepts.
+
+### (Brief) History of Android UI
+
+Since 2008 when Android launched, the architecture of Android applications worked (approximately) as follows:
+  - The view (the visible interfaced) organized as a tree of widgets (layouts, buttons, images, text, etc.)
+    - [View.java](#)
+  - User interactions and dynamic behavior require updates to in the face of changing data. This was implemented by Java API that could "walk" the UI view tree. Here is a (simple, fake) example of the code needed to have something happen when a button is pressed:
+
+  ```java
+  ```
+
+  import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+  <Tabs>
+    <TabItem label="Java">
+      ```java
+      TextView button = 
+      ```
+    </TabItem>
+    <TabItem label="XML">
+      ```xml
+
+      ```
+    </TabItem>
+  </Tabs>
+  
+
+    - Java API: `TextView button = findViewById("someButtonId)` to get reference to button element (defined in XML in a separate file)
+    - `button.setText("Updated Button Text")`, `container.addChild(SomeOtherViewObject)`, or img.setImageBitmap(Bitmap). These methods change the internal state of the widget.
+
+- Java (Model and Controller) + XML (View markup)
+  - Big picture: View elements "decoupled" from application logic in separate files/code
+- Official Kotlin support in 2017. Compiles to Java, interoperable with Java, runs on JVM
+  - Same big picture: Kotlin model and controller + XML interface markup
+- Pretty standard stuff for application development in the 2000s:
+  - Web:
+    - HTML markup/display logic + Javascript client logic + Backend server logic (increasingly, CSS has removed the display logic from HTML over the past couple decades)
+  - Desktop:
+    - .NET also uses XML markup
+    - 
+
+What are some problems?
+
+- Android UI toolkit versioning
+  - Similar to the problem in Web Dev where some features are not supported by all browsers
+  - However, Android updates on a 6-12month basis -- a long time to wait for features unrelated to the operating system!
+- Android View API defined in 2008, 30k lines long (link)
+- Is keeping views in XML really "decoupling" the user interface from the application logic?
+  - XML creep into Java/Kotlin source code to select/modify XML views
+    - E.g. the "state" of the application tied to the "state" of the user interface (error -> red, success -> green -- the display state and the application state need to match. What is the source of truth?)
+  - Some user interface logic IS inherently coupled to business logic -- there is such thing as "good" coupling! Artificially separating two intertwined concepts introduces different code instabilities
+    - examples: bike gears? What are other good examples of coupling.
+
+
+
+- 2019: [Jetpack Compose begins development]()
+- 2021: [Jetpack Compose 1.0 released]
+- August 2023: 
+
+## Fundamentals
+
+To get to know Jetpack Compose, let's start with the basic example provided for us by creating an "Empty Activity" in Android Studio:
+
+```kotlin
+import ... 
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+          ...
+        }
+    }
+}
+```
+
+Before we dive into the `import` statements and the code inside of `setContent`, look into the following questions:
+
+- What type of class is `MainActivity`?
+- What type of parameter is used by the `onCreate` method?
+- 
+
+
+
 
 ## Composable Functions
 
@@ -143,6 +225,8 @@ Or, CTRL-click on the name of the component to load the associated .kt file,whic
   * [https://developer.android.com/codelabs/basic-android-kotlin-compose-composables-practice-problems](https://developer.android.com/codelabs/basic-android-kotlin-compose-composables-practice-problems)
 
 ## Additional resources
+
+[practical-intro-jc]: https://www.codemag.com/Article/2105061/A-Practical-Introduction-to-Jetpack-Compose-Android-Apps
 
 [compose-vs-xml-podast]: https://fragmentedpodcast.com/episodes/237/, Fragmented android podcast.
 [compare-declarative-frameworks]: https://www.jetpackcompose.app/compare-declarative-frameworks/JetpackCompose-vs-React-vs-Flutter

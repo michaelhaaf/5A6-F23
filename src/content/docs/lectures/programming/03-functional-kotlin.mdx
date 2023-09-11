@@ -1,0 +1,343 @@
+---
+title: Functional Programming in Kotlin
+description: How does Functional Programming work in Kotlin?
+---
+
+*These notes are, in part, adapted from [Lesson 2: Functions](https://developer.android.com/courses/pathways/android-development-with-kotlin-2) by [Google Developers](https://developer.android.com/). There may be some mistakes -- let me know if there is something here that doesn't make sense.*
+
+## Lambdas and higher-order functions
+
+### Functions are "first-class citizens"
+
+One of the major differences between Kotlin and Java/C# is that Kotlin is a **functional programming** language. This has major consequences for how functions are internally represented by the compiler, and how they can be used by developers:
+
+- Functions can be stored in variables and data structures
+- Functions can be passed as arguments to, and returned from, other higher-order functions 
+- Higher-order functions can create new "built-in" functions
+
+This set of notes introduces **lambdas**, **higher-order functions**, and a **variety of applications** for those concepts. It might seem a bit abstract at first, but pretty soon you'll find that the code you write feels *elegant* and expresses the solution to your problems quite well.
+
+### Lambda functions
+
+In addition to traditional named functions, Kotlin supports [lambdas]():
+
+```kotlin
+var dirtLevel = 20
+val waterFilter = {level: Int -> level / 2}
+println(waterFilter(dirtLevel)) // result: 10
+```
+
+A lambda is an expression that creates a function. Instead of declaring a named function, a lambda declares a function that has no name -- in a profound sense, this is just like how [literals]() are declarations of values that have no name!
+
+Part of what makes this useful is that lambda expressions can be **treated like any other data**: stored in variables, passed as function parameters, etc. 
+
+:::tip[A lambda by another name smells as sweet?]
+Lambda expressions are sometimes called anonymous functions, function literals, or similar names.
+
+Note: in JavaScript you probably remember the [arrow function]() notation -- this is actually just the name for a [syntactic sugar]() that allows you to create anonymus functions (lambda expressions) more easily.
+:::
+
+### Lambda syntax
+
+The basic lambda syntax in Kotlin is quite similar to other languages that support lambdas (including Java, since Java 8). In general, lambdas are written in the following way:
+
+```kotlin
+// Complete (all optional statements included)
+val varName: (Parameter1Type, ..., ParameterNType) -> ReturnType = 
+  { p1: P1Type, ..., pN: PNType -> function body }
+
+// Concise (optional statements redacted)
+val varName = { p1: P1Type, ..., pN: PNType -> function body }
+```
+
+Let's see a concrete example, similar to the [calculator example I gave in class](https://pl.kotl.in/CYJmoZj7o?theme=darcula):
+
+```kotlin
+// Complete (all optional statements included)
+val sum: (Int, Int) -> Int = { x: Int, y: Int -> return x + y }
+
+// Concise (optional statements redacted)
+val sum = { x: Int, y: Int -> x + y }
+
+// Even More Concise (changes the meaning, though, be careful about types!)
+val sum = { x, y -> x + y }
+```
+
+According to the [Kotlin Docs](https://kotlinlang.org/docs/lambdas.html#lambda-expression-syntax):
+- A lambda expression is always surrounded by curly braces.
+- Parameter declarations in the full syntactic form go inside curly braces and have optional type annotations.
+- The body goes after the ->.
+- If the [inferred](#lambda-parameters) return type of the lambda is not `Unit`, the **last expression inside the lambda body is treated as the return value**. 
+  - This is why we don't need a `return` statement in the example above: `x+y` is the last statement in the body, so the result of that expression is returned.
+  - if the inferred type IS unit, there is no need for a return statement anyway (review the [Unit](/5A6-F23/lectures/01-intro-to-kotlin) type if that confuses you)
+
+
+
+
+### Lambda parameters
+
+Like named functions, lambdas can have parameters. For lambdas, the parameters (and their types, if needed) go on the left of what is called a function arrow `->`. The code to execute goes to the right of the function arrow. Once the lambda is assigned to a variable, you can call it just like a function.
+
+```kotlin
+val waterFilter: (Int) -> Int = {level -> level / 2}
+
+println(waterFilter(200)) // result: 100
+```
+
+Here's what the code says:
+
+- Make a variable called `waterFilter`.
+- `waterFilter` can be any function that takes an `Int` and returns an `Int`.
+- Assign a lambda to `waterFilter`.
+- The lambda returns the value of the argument `level` divided by 2.
+
+:::tip[Type inference]
+Note that this example does not specify the type of the argument for the lambda (`level`). The parameter type is **inferred** from the function type declaration `(Int) -> Int`. This is known as [Type inference]() and is a core concept of functional programming.
+:::
+
+### Higher-order functions
+
+The real power of lambdas is using them to create **higher-order functions**, where the argument to one function is another function.
+
+Higher-order functions take functions as parameters, or return a function:
+
+```kotlin
+fun encodeMsg(msg: String, encode: (String) -> String): String {
+    return encode(msg)
+}
+```
+
+The body of the code calls the function that was passed as the second argument, and passes the first argument along to that function. Using functions as parameters **separates the implementation of a function from its usage**. 
+
+That is, in this example, we can "encode" a message with ANY function that obeys the `(String) -> String` contract specified by the `encode` parameter type, allowing us great flexibility to change the behavior of the `encodeMsg` function when we use it, without having to rewrite the function.
+
+To call this function, pass it a string and a function as arguments:
+
+```kotlin
+val enc1: (String) -> String = { input -> input.toUpperCase() }
+val engToFr: (String) -> String = { 
+  // implementation redacted...
+}
+println(encodeMsg("Here is a message", enc1)) // result: "HERE IS A MESSAGE"
+println(encodeMsg("Here is a message", engToFr)) // result: "Voici un message"
+```
+
+Here, allowing the encoder to be passed as a function means you can use better or different encoding algorithms when things change without having to hardcode one into the app. It also provides abstraction by allowing one receiver to be used in different places without specialized code.
+
+### Passing a function reference
+
+The examples above used lambdas, stored in variables, to pass function behavior from one function into another. The **same syntax does not work for named functions**, even when the parameter/return type is specified correctly.
+
+All is not lost: we can use the `::` operator to pass a named function an argument to another function:
+
+```kotlin
+fun someEncodeFun(input: String): String {
+  return input.reversed()
+}
+encodeMsg("Here is a message", someEncodeFun) // error!
+encodeMsg("Here is a message", ::someEncodeFun) // result: "egassem a si ereH"
+```
+
+The  `::` makes it clear to the compiler that you are passing the function reference as an argument, not trying to call the function.
+
+### "Last parameter call" syntax
+
+Kotlin prefers that any parameter that takes a function is the **last parameter**. This allows us a neat syntactic sugar, where the final parameter of a function call can be placed outside of the round brackets of the function, leaving room for multi-line functions without crowding up the argument list:
+
+The following four lines of code are equivalent:
+
+```kotlin
+// normal parameter specification
+encodeMessage("acronym", { input -> input.toUpperCase() })
+// "last parameter call" lambda outside of the round brackets
+encodeMessage("acronym") { input -> input.toUpperCase() }
+
+/* 
+  These two examples are the same as above but with extra whitespace,
+  to make clear how this stuff works when lambdas span multiple lines
+*/
+encodeMessage("acronym", { 
+  input -> input.toUpperCase() 
+})
+encodeMessage("acronym") { 
+  input -> input.toUpperCase() 
+}
+```
+
+### Using higher-order functions
+
+Many Kotlin built-in functions are defined using last parameter call syntax:
+
+```kotlin
+inline fun repeat(times: Int, action: (Int) -> Unit)
+repeat(3) {
+  println("Hello")
+}
+```
+
+## Applications
+
+### List filters
+
+One of the best ways to see the utility of functional programming paradigms like higher-order functions is how they allow us to manipulate collections of data.
+
+Consider the following problem:
+```kotlin
+val colours = listOf("red", "red-orange", "dark red", "orange", "bright orange", "saffron")
+
+// Requirement: print out all colours in the list above that contain "red" 
+val redColours = // ??
+println(redColours) // red, red-orange, dark red
+```
+
+In Kotlin, the built-in function `[filter()](https://kotlinlang.org/docs/collection-filtering.html#filter-by-predicate)` excels at such tasks:
+
+```kotlin
+val redcolours = colours.filter { 
+  colour: String -> colour.contains("red")
+}
+println(redColours) // try it yourself and see if it works!
+```
+
+How does this work? Here's what you need to know:
+
+  - `filter()` is [defined](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter.html) for all basic collection types (Int Arrays, String Lists, Float Sets, etc.) 
+  - `filter()` takes one parameter: a lambda function with the collection type (Int for Int Arrays, String for String Lists, Float for Float Sets, etc.) as a parameter, and returns a boolean indicating if each value in the collection "passes" the filter or not. This lambda parameter is called a **predicate**
+
+Remember the **Last call parameter** syntax we just learned! The round brackets can be omitted from the `filter` call since the only relevant parameter is the predicate lambda (contained in the `{}` brackets), and as the "last call parameter", it can sit outside of the round parameters as discussed.
+
+### Iterating through collections with `it`
+
+Here's another example: filtering out positive numbers from a collection:
+
+```kotlin
+val ints = listOf( -1 ,  2 ,  -3 )
+ints.filter { n: Int -> n > 0 } // returns 2
+// equivalent to the line above (type inference: the type of n is inferred because ints is a list of Ints)
+ints.filter { n -> n > 0 } 
+```
+
+Another way to write the same filter:
+
+```kotlin
+val ints = listOf( -1 ,  2 ,  -3 )
+ints.filter { it > 0 } // returns 2
+```
+
+Wow! Let's break that down:
+
+  - What is `it`? The [it keyword](https://kotlinlang.org/docs/lambdas.html#it-implicit-name-of-a-single-parameter) is built-in to Kotlin for lambdas that have only one parameter -- the type and name of the parameter can be automatically inferred.
+  - `it` is short for "iterator", since these kind of expressions are very common when iterating through a collection of data.
+
+Basically, if a function literal has only one parameter, you can omit its declaration and the `->`. The parameter is implicitly declared under the name `it`. Function literals with exactly one parameter don’t require you to define the parameter explicitly; you can just use it. This makes a lot of the language constructs like filter easier to use as you don't have to specify the name of the parameter.
+
+### List filter summary
+
+The filter condition in curly braces `{}` tests each item in the collection as the filter loops through. If the expression returns `true`, the item is included.
+
+Let's use a filter to print only the decorations that start with the letter "b". The output captured by the filter is shown in the result.
+
+```kotlin
+val books = listOf("nature", "biology", "birds")
+println(books.filter { it[0] == 'b' })
+```
+
+Remember: [Strings](https://kotlinlang.org/docs/strings.html) are lists of Char in Kotlin, and can be indexed like an array. Also remember: Kotlin is similar to C# in that String literals use double quotes `"`, while [Char literals](https://kotlinlang.org/docs/characters.html) use single quotes `'`
+
+## Eager and lazy filters
+
+In Kotlin, when a list is filtered, the resulting list can either be created immediately, *or* when the list is accessed. That is, it can be either **eager** or **lazy** depending on which way you need it to be. By default, filter is eager, and each time you use the filter, a list is created.
+
+### Eager filters
+
+Filters are **eager by default**. A new list is created each time you use a filter.
+
+```kotlin
+val instruments = listOf("viola", "cello", "violin")
+val eager = instruments.filter { it[0] == 'v' }
+println("eager: " + eager) // returns eager: [viola, violin]
+```
+
+### Lazy filters
+
+To make the filter lazy, you can use a [Sequence](https://kotlinlang.org/docs/sequences.html), which is a collection that can only look at one item at a time, starting at the beginning, and going to the end. 
+
+Sequences let you process elements one by one until a filtering condition is satisfied, reducing unnecessary processing. Conveniently, this is exactly the API that a lazy filter needs.
+
+```kotlin
+val instruments = listOf( "viola", "cello", "violin" )
+val filtered = instruments.asSequence().filter { it[ 0 ] == 'v' }
+println( "filtered: " + filtered) // filtered: kotlin.sequences.FilteringSequence@386cc1c4
+```
+
+Here we evaluate the filter using a Sequence with `asSequence()`, assign the sequence to a variable called `filtered`, and print it. The result is strange.
+
+When you return the filter results as a sequence, the filtered variable won't hold a new list: it will hold a sequence of the list elements and **knowledge of the filter to apply to those elements**. 
+
+Here's the useful part -- until we access some given element, **the list will not be iterated**. Whenever you access some given elements of the sequence, the filter is applied, and the result is returned to you. This allows us to **separate expensive operations on large lists from the declaration of the filter**. This example is poor -- lazy evaluation is very useful only when the collections in question are large enough to be "expensive" to iterate.
+
+
+### Sequences -> lists
+
+Sequences themselves are sort of an intermediate product -- in order to reap the rewards of being lazy, we do need to eventually turn the sequence back into a list using `toList()`.
+
+```kotlin
+val instruments = listOf( "viola", "cello", "violin" )
+val filtered = instruments.asSequence().filter { it[0] ==  'v' } // the list has not been iterated yet
+/* ... any amount of code can go here ... */
+val newList = filtered.toList() // NOW the list is iterated
+println( "new list: " + newList) // ⇒ new list: [viola, violin]
+```
+
+The `toList()` built-in function forces evaluation of the sequence by converting it to a list. This lets us actually print a result at the end.
+
+### Eager vs Lazy summary
+
+Evaluation of expressions in lists:
+
+- Eager: occurs regardless of whether the result is ever used
+- Lazy: occurs only if necessary at runtime
+
+Lazy evaluation of lists is useful if you don't need the entire result, or if the list is exceptionally large and multiple copies wouldn't wouldn't fit into RAM.
+
+Lazy operations are more expensive individually (due to an increase in small allocations and branches) than eager ones, and they should be limited to when there is a known benefit. Using lazy evaluation is especially helpful when working with large collections where you want to avoid performing expensive operations when you only need part of the results.
+
+## List transformations 
+
+Filtering a collection is all well and good, and the `filter()` function gives us a powerful and flexible API for specifying an infinite number of ways of doing so. There's quite a bit more we can do with collections -- most of which have to do with **transforming** collection data.
+
+### `map`
+
+To iterate through a collection and apply a function to each item in the collection, **transforming** each item in a collection, we use the built-in [`map()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/) function. 
+
+`map()` performs the same transform on every item and returns a new list corresponding to each result:
+
+```kotlin
+val numbers = setOf(1, 2 , 3) 
+println(numbers.map { it *  3 }) // => [3, 6, 9]
+```
+
+### `flatten`
+
+Given a [nested]() collection, the built-in [`flatten()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/flatten.html) function returns a **single list** of all the elements of nested collections.
+
+```kotlin
+val numberSets = listOf(setOf(1 , 2 , 3), setOf(4, 5), setOf(1 ,2 ))
+println(numberSets.flatten()) // => [1, 2, 3, 4, 5, 1, 2]
+```
+
+## Summary
+
+In this lesson, you learned how to:
+
+- Use the returned value of an expression
+- Use default arguments to replace multiple versions of a function
+- Use compact functions, to make code more readable
+- Use lambdas and higher-order functions
+- Use eager and lazy list filters
+
+Practice what you’ve learned by completing the pathway:
+
+[Lesson 2: Functions](http://developer.android.com/courses/pathways/android-development-with-kotlin-2)_
+
+
