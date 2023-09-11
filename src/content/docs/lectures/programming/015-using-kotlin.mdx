@@ -3,11 +3,53 @@ title: Using Kotlin
 description: The various ways to compile, build, and run Kotlin programs, libraries, and scripts
 ---
 
-## The fundamentals
+## Getting started
 
-### Source code: `.kt`, `.kts`
+### Create a main() function
 
-### Compilers: `kotlinc`
+`main()`, or optionally `main(args: Array<String>)`, is the entry point for execution for a Kotlin program.
+
+As with other languages, the Kotlin main() function specifies the entry point for execution. Any command line arguments are passed as an array of strings.
+
+```kotlin
+fun main(args: Array<String>) {
+  println(  "Hello, world!"  )
+}
+```
+
+The main function has no return statement. [Every function in Kotlin returns something](/lectures/01-intro-to-kotlin), even when no return type is explicitly specified. 
+
+Note: When a function returns `kotlin.Unit` you don't have to specify it explicitly. This is different from some other languages, where you have to explicitly say that you are returning nothing.
+
+## Android Studio** and IntelliJ
+
+### Run your Kotlin program
+
+To run your program, click the Run icon to the left of the `main()` function. Android Studio runs the program, and displays the results in the console.
+
+### Pass arguments to main()
+
+In the top menu, select `Run > Edit Configurations` to open the Run/Debug Configurations window.
+
+You can enter a set of command line arguments to be passed to your `main` function in the **Program arguments field**. Each argument is separated by a space; so arguments that have spaces inside of them should be "wrapped in quotation marks".
+
+### Access arguments in `main()`
+
+The `args` parameter is a String array: you can use array indices to access the arguments. E.g. `args[0]` to access the first input argument passed to main(), `args[1]` to access the second, etc.
+### IntelliJ
+
+## Command line
+
+```bash
+$ kotlinc main.kt -include-runtime -d main.jar
+$ java -jar main.jar
+```
+
+The Kotlin docs: [Kotlin command-line compiler](https://kotlinlang.org/docs/command-line.html#homebrew)
+
+### ki
+
+I particularly liked [this tutorial](https://www.youtube.com/watch?v=t28RY1aOGJs)
 
 ### Gradle
 
@@ -21,128 +63,6 @@ If you aren't using Android Studio, you can learn how to build and run your app 
 [Configure your build](https://developer.android.com/build), Android Developer docs.
 ```
 
-## Kotlin Editors
-
-### Android Studio**
-
-### IntelliJ
-
-### VSCode or Others
-
-### vim/nvim/emacs/etc.
-
-## Building Kotlin
-
-### Editor
-
-### Command line
-
-```bash
-$ kotlinc main.kt -include-runtime -d main.jar
-$ java -jar main.jar
-```
-
-The Kotlin docs: [Kotlin command-line compiler](https://kotlinlang.org/docs/command-line.html#homebrew)
-
-### Cloud
-
-## Interactive Kotlin
-
-### kotlinc
-
-### ki
-
-I particularly liked [this tutorial](https://www.youtube.com/watch?v=t28RY1aOGJs)
-
-## Scripting Kotlin
-
-
-# Setting up
-
-Before you can write code and run programs, you need to:
-
-Create a file in your project
-Create a main() function
-Pass arguments to main()( Optional  )
-Use any  passed  arguments in function calls  (  Optional  )
-Run your program
-
-# Create a new Kotlin file
-
-In  IntelliJ IDEA's  Project pane,  under   Hello World  ,    right-click the src folder.
-
-Select  New > Kotlin File/Class .
-
-Select  File , name the file Hello, and press  Enter .
-
-![](img/Lesson%202%20Functions1.png)
-
-# Create a Kotlin file
-
-You should now see a file in the src folder called Hello.kt.
-
-![](img/Lesson%202%20Functions2.png)
-
-# Create a main() function
-
-main() is the entry point for execution for a Kotlin program.
-
-In the Hello.kt file:
-
-<span style="color:#3F51B5">fun</span>  <span style="color:#37474F"> main(args: Array<String>) {</span>
-
-<span style="color:#37474F">    println(</span>  <span style="color:#388E3C">"Hello, world!"</span>  <span style="color:#37474F">)</span>
-
-<span style="color:#37474F">}</span>
-
-<span style="color:#3C4043">The </span>  <span style="color:#3C4043">args</span>  <span style="color:#3C4043"> in the </span>  <span style="color:#3C4043">main()</span>  <span style="color:#3C4043"> function are optional.</span>
-
----
-
-As with other languages, the Kotlin main() function specifies the entry point for execution. Any command line arguments are passed as an array of strings.
-
-Like your earlier printHello() function, this function has no return statement. Every function in Kotlin returns something, even when nothing is explicitly specified. So a function like this main() function returns a type kotlin.Unit, which is Kotlin's way of saying no value.
-
-Note: When a function returns kotlin.Unit, you don't have to specify it explicitly. This is different from some other languages, where you have to explicitly say that you are returning nothing.
-
-
-
-# Run your Kotlin program
-
-To run your program, click the Run icon (  ) to the left of the main() function.
-
-IntelliJ IDEA runs  the program , and displays the results in the console.
-
-![](img/Lesson%202%20Functions3.png)
-
-![](img/Lesson%202%20Functions4.png)
-
-# Pass arguments to main()
-
-Select  Run > Edit Configurations  to open the  Run/Debug Configurations  window.
-
-![](img/Lesson%202%20Functions5.png)
-
----
-
-Enter Kotlin! in the Program arguments field, and click OK.
-
-Because you are running your program from IntelliJ IDEA and not from the command line, you need to specify any arguments to the program a little differently.
-
-# Use arguments in main()
-
-Use args[0] to access the first input argument passed to main().
-
----
-
-In the previous slide, we passed "Kotlin!" as an argument to main.
-
-In Hello.kt, change the greeting message to use the first argument passed into the program (via the Run/Debug Configurations window on the previous slide), args[0], instead of "world".
-
-This example uses a string template. String templates let you reference variables inside string declarations.
-
 
 ## Additional resources
 - [Official Gradle Docs](https://gradle.org/)
-
-

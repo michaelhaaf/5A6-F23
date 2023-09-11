@@ -24,25 +24,6 @@ Since 2008 when Android launched, the architecture of Android applications worke
     - [View.java](#)
   - User interactions and dynamic behavior require updates to in the face of changing data. This was implemented by Java API that could "walk" the UI view tree. Here is a (simple, fake) example of the code needed to have something happen when a button is pressed:
 
-  ```java
-  ```
-
-  import { Tabs, TabItem } from '@astrojs/starlight/components';
-
-  <Tabs>
-    <TabItem label="Java">
-      ```java
-      TextView button = 
-      ```
-    </TabItem>
-    <TabItem label="XML">
-      ```xml
-
-      ```
-    </TabItem>
-  </Tabs>
-  
-
     - Java API: `TextView button = findViewById("someButtonId)` to get reference to button element (defined in XML in a separate file)
     - `button.setText("Updated Button Text")`, `container.addChild(SomeOtherViewObject)`, or img.setImageBitmap(Bitmap). These methods change the internal state of the widget.
 
