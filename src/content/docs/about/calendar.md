@@ -35,10 +35,10 @@ You can compare this calendar with the calendar from the [Course Outline][course
 
 ### Lectures & Activities
 
-- **Aug 21-25**: 
+- **Week 1** (Aug 21-25)
     - [Syllabus][syllabus], [Course outline][course-outline], and [Introduction to Kotlin][kotlin]
     - Kotlin bootcamp for Programmers, [Lesson 1: Getting Started][kt-bootcamp-1]
-- **Aug 28-Sep 1**: 
+- **Week 2** (Aug 28-Sep 1)
     - [Topics to Review][review], [OOP in Kotlin][oop-kotlin]
     - Kotlin bootcamp for Programmers, [Lesson 2: Kotlin basics][kt-bootcamp-2]
     - Kotlin bootcamp for Programmers, [Lesson 4: Classes and objects][kt-bootcamp-4]
@@ -49,10 +49,10 @@ You can compare this calendar with the calendar from the [Course Outline][course
 
 ### Lectures & Activities
 
-- **Sep 4-8**: 
+- **Week 3** (Sep 4-8)
     - [Functional Programming in Kotlin][functional-kotlin], [Using Kotlin][using-kotlin]
     - Kotlin bootcamp for Programmers, [Lesson 3: Functions][kt-bootcamp-3]
-- **Sep 11-15**: 
+- **Week 4** (Sep 11-15)
     - [Intro to Jetpack Compose][intro-compose]
     - Jetpack Compose Codelab: [Basics of Compose][compose-codelab-1]
 
