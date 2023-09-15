@@ -1,21 +1,67 @@
 ---
 title: "Module 2: Application UI"
-description: "Now that we have Kotlin under our belt, we are more than prepared to tackle creating User Interfaces with JetPack Compose"
-created: 2023-08-11
-tags: [ "tag1", "tag2" ]
+description: "In this assignment, create a single screen, interactive Compose application."
 sidebar:
-  hidden: true
+  hidden: false
 ---
 
 <div class="first-col-header">
 | A2 | Overview |
 | --- | --- |
-| Worth: | 10% |
-| Due: | Some time in October |
+| Worth: | 7% |
+| Due: | October 3, 11:59pm |
 | Hand-in: | `.zip` containing project files to [Moodle](https://moodle.johnabbott.qc.ca/). See [Submitting your work](#submitting-your-work) for more information. |
 | Notes: | [Course late penalty](/about/syllabus) applies. |
 </div>
 
-## Setup
+For this assignment, you will create a single screen mobile app that runs on an emulated Android, interacts with the user, and uses state.
 
-## Submitting your work
+The topic of the app is of your choice.
+- Recommendation: Choose a screen/subject that may align with your eventual project.  Try to focus on something different than your teammates.
+
+This is an individual assignment. You may assist other classmates but:
+
+> Your submitted work must be clear, complete, and YOUR OWN. You must be prepared to explain any part of your work to me in person. Failure to do so can/will void any grade you get on this assignment.
+
+## Prequisites
+
+- This assignment will assume you've been following along with the Kotlin content we've covered so far in this course. Check the [course calendar](/5A6-F23/about/calendar) to review exercises/lectures/examples we have covered so far. Aim to improve your style and clarity in this new programming language with each assignment.
+- The [Jetpack Compose codelabs](https://developer.android.com/courses/pathways/jetpack-compose-for-android-developers-1) we have been covering in class will be directly helpful for this assignment -- you're basically taking what you've learned from these, and making your own version of it.
+
+## Requirements
+
+### Code
+
+  - Programmed in Kotlin, using Jetpack Compose for UI
+  - Use Material design for theming
+  - Contain multiple components and show good attention to layout
+  - Show reasonable attention to styling/theming
+  - Get user input (button and/or text input)
+  - Update what is on the screen based on user input (using mutableState)
+  - Display at least one list of information that the user has entered
+  - Be robust to rotating the device
+  - The code must compile and run.
+    - If you submit something with compile errors or that shows no meaningful output, a high penalty will be assessed, as appropriate.
+  - Usable interface: understandable layout, clear wording/instructions
+
+### Documentation
+
+  - In your code, follow the [Kotlin Docs "Documentation comments"](https://kotlinlang.org/docs/coding-conventions.html#documentation-comments) guide. Your functions and classes should have a brief comment above them in this style. I mean **brief**: some people like comments for their own sake; I am of the opinion that code should be self-documenting. Aim to write clear code and keep comments to a minimum.
+  - Any code you adapt/use/modify/copy-directly from another source **MUST** have a comment providing the URL, date of retrieval, and a brief explanation of how the code is used/modified. [See the first three sections of this link](https://integrity.mit.edu/handbook/writing-code) for clarification.
+    - That rule should cover pretty much any case you can think of (the KotlinDocs, help from a classmate, random internet sources, ChatGPT, etc.) -- you are allowed to use any of these things PROVIDED you follow the rule about citing your source/explaining your usage of the code.
+  - the README.md or README.txt included at the root level of your app
+    - The Readme should give a high-level indication of what the app is and how to use it. If there are any known issues, they should be described/explained in the Readme.
+
+### Deliverable
+
+- The `.zip` that you hand-in to Moodle should contain:
+  - One or more `.kt` (Kotlin) files containing your source code and your runtime environment
+    - Whether your source code contains one `main.kt` file containing all of your source code, or several `.kt` files separating the logic of your source code, is entirely up to you.
+  - A README.md or README.txt (NOT .docx, .pdf, or any other format) at the rool level of your project
+  - DO NOT INCLUDE any other files (`.jar`, gradle files, github files, etc. etc.) -- I only need your source code and your README, i.e. the files that you have written yourself.
+
+
+## Marking Scheme
+
+- 80% [functionality](#code) 
+- 20% [documentation](#documentation)
