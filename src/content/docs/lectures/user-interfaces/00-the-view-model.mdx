@@ -1,0 +1,243 @@
+---
+title: "The Android View Model"
+description: "A brief overview of Android app user interface architecture before Jetpack Compose."
+sidebar:
+  hidden: false
+---
+
+*These notes are, in part, adapted from [Lesson 4: Your First App](https://developer.android.com/courses/pathways/android-development-with-kotlin-4) by [Google Developers](https://developer.android.com/). There may be some mistakes -- let me know if there is something here that doesn't make sense.*
+
+While this course will focus on using Jetpack Compose, it is worthwhile to compare what came before Compose to understand the bigger picture of Android development.
+
+You shouldn't need to memorize anything here -- I will refer to these notes in subsequent lessons if we need to compare these concepts with modern Compose methods.
+
+## The View Model
+
+* Views are the user interface building blocks in Android
+  * Bounded by a rectangular area on the screen
+  * Responsible for drawing and event handling
+  * Examples: `TextView`, `ImageView`, `Button`
+* Can be grouped to form more complex user interfaces
+
+Android comes with a large set of built-in classes for views (sometimes called widgets). For example, `TextView`, `ImageView`, and `Button` are commonly used views. Each View has different attributes depending on the type of View it is. Example attributes include `width`, `height`, whether it is visible, and more. For a `TextView`, example attributes include font size, font family, and the text to display.  
+
+### XML for View Content
+
+```xml
+<TextView
+    android:layoutwidth= "wrapcontent"
+    android:layoutheight= "wrapcontent"
+    android:text= "Hello World!"/>
+```
+
+Here’s the XML for displaying a `TextView` in the layout. We see three attributes on the `TextView`: `width`, `height`, and `text`. These attributes are provided by either the base View class (width and height) or by the specific TextView class.
+
+### XML for View Layout
+
+The View Model makes use of XML to specify the layout of user interfaces (including View attributes). Each View in XML corresponds to a class in Kotlin that controls how that View functions.
+
+Android has several ways to specify the width and height of a View. These examples are for the `layout_width` of a View, but the same applies for the `layout_height` attribute of a View.
+
+```xml
+android:layoutwidth= "wrapcontent"
+android:layoutwidth= "matchparent"
+android:layoutwidth= "48dp"
+```
+
+Use `wrapcontent` to use only as much space as needed to display the content within the View. For example, if you want the View to be as wide as the text within the TextView, use wrapcontent.
+
+Use `matchparent` to use the dimension of the parent (such as matching the width of the parent View). For example, if you want the `ImageView` to take up the full size of the parent, set `matchparent` for its `width` and `height`. 
+
+Lastly, if you want a fixed size for the View, then set a specific `dp` (density-independent pixels) value.
+
+### ViewGroups
+
+A ViewGroup is a container that determines how views are displayed. A ViewGroup is a container for views, and controls how views are organized and laid out on screen.
+
+- Use a `FrameLayout` if you have only one child View. 
+- Use a `LinearLayout` to display views in a row or column. 
+- Use a `ConstraintLayout` for more complex layouts. 
+
+In general, choose the ViewGroup that meets your needs without being overly complex. For example, if you can get the job done with a `LinearLayout`, then there is no need to use a `ConstraintLayout`.
+
+Let’s look at the XML for some of these ViewGroups:
+
+#### FrameLayout example
+
+A FrameLayout generally holds a single child View:
+
+```xml
+<FrameLayout
+  android:layoutwidth=   "matchparent" 
+  android:layoutheight=   "matchparent">
+  <TextView
+    android:layoutwidth= "matchparent"
+    android:layoutheight= "matchparent"
+    android:text= "Hello World!" />
+</FrameLayout>
+```
+
+In this example, the `FrameLayout` holds a single `TextView`. Note that the closing tag of the `FrameLayout` comes after the child `TextView`.
+
+You can think of `FrameLayout` as a picture frame. It’s only meant to show one thing, so use it to hold a single child View. If you add more than one child within it, the views would overlap, which may be the desired behavior in some cases. 
+
+#### LinearLayout example
+
+`LinearLayout` aligns child views in a row or column using the property `android:orientation`, which can be set to horizontal or vertical.
+
+Here’s an XML example for the `LinearLayout` ViewGroup. `LinearLayout` is the parent for the three child views (two `TextViews` and a `Button`).
+
+```xml
+<LinearLayout
+  android:layoutwidth="matchparent" 
+  android:layoutheight="matchparent" 
+  android:orientation="vertical">
+  <TextView ... />
+  <TextView ... />
+  <Button ... />
+</LinearLayout>
+```
+
+A `LinearLayout` lays out child views in a row or column. The layout direction is determined by the orientation attribute on the `LinearLayout`. In this case, the `LinearLayout` has a “vertical”  orientation, so the layout will look like this diagram. Change the orientation to “horizontal” to have the views grouped in a horizontal row.
+
+### View hierarchy
+
+We’ve talked about how views can have parent - child relationships if they’re placed within a ViewGroup. ViewGroups can also contain other ViewGroups. This creates a hierarchy of views that represent the layout of what’s displayed on the screen.
+
+## App resources
+
+Static content or additional files that your code uses
+
+- Layout files
+- Images
+- Audio files
+- User interface strings
+- App icon
+
+In addition to defining your own layouts, you can also add your own images, audio files, strings, app icon, and other resources to the app.
+
+### Common resource directories
+
+Add resources to your app by including them in the appropriate resource directory under the parent res folder.
+
+- The drawable directory stores all files related to drawing images and related assets.
+- The layout directory contains all the layout XML files for your application. There may be more than one if your app needs to handle different orientations or densities.
+- The mipmap directory contains files for your app icon (known as your launcher icon) at different screen densities.
+- The values directory contains files related to simple collections of strings, colors, integers, and styles. If you are localizing your app, you might have more than one values directory.
+
+There are more subdirectories that may appear in the resources directory, but these are the ones that will be present in almost every Android project. 
+
+### Resource IDs
+
+Each resource has a resource ID to access it. When naming resources, the convention is to use all lowercase with underscores (for example, `activitymain.xml`).
+
+Android autogenerates a class file named `R.java` with references to all resources in the app. Individual items are referenced with: `R.<resourcetype>.<resourcename>`
+
+Examples:
+- `R.drawable.iclauncher` (`res/drawable/iclauncher.xml`)
+- `R.layout.activitymain` (`res/layout/activitymain.xml`)
+
+### Resource IDs for views
+
+Individual views can also have resource IDs.
+
+Add the `android:id` attribute to the View in XML. Use `@+id/name` syntax.
+
+```xml
+<TextView
+  android:id="@+id/helloTextView" 
+  android:layoutwidth="wrapcontent"
+  android:layoutheight="wrapcontent"
+  android:text="Hello World!"/>
+```
+
+If you assign IDs to the views in your layout, you can access them using `R.id.<resourcename>`. For example, this `TextView` has the resource ID name “helloTextView” and you can refer to it in your app using `R.id.helloTextView.` Be sure to use unique resource names so it is clear which element you want to refer to.
+
+## What’s an Activity?
+
+An **Activity** is a means for the user to accomplish one main goal. **All Android apps are composed of one or more activities**.
+
+Examples of activities: 
+- Displaying a list of emails
+- Displaying details of one specific item
+- Taking a photo using the camera 
+
+### MainActivity.kt
+
+Here's a comparison of the the code generated for the View Model and for Jetpack Compose projects in `MainActivity.kt`. They are similar, with some small differences:
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs>
+  <TabItem label="View Model">
+    ```kotlin
+    class MainActivity : AppCompatActivity() {
+      override fun onCreate(savedInstanceState: Bundle?) {
+        super .onCreate(savedInstanceState)
+        setContentView(R.layout.activitymain) /* a View, linking to XML "ActivityMain" */
+      }
+    }
+    ```
+  </TabItem>
+  <TabItem label="Jetpack Compose">
+    ```kotlin
+    class MainActivity : AppCompatActivity() {
+      override fun onCreate(savedInstanceState: Bundle?) {
+        super .onCreate(savedInstanceState)
+        setContent {
+          /* a @Composable function, which contains other @Composable functions. */ 
+        }
+      }
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+`MainActivity` extends a base class, inheriting behavior from the Android framework about how an Activity works. AppCompat for app compatibility ensures that newer features are available to legacy versions of Android.
+
+Within the class, we have one function that is overriding the onCreate function that was defined in the superclass. 
+
+### How an Activity runs
+
+Instead of launching a program through the `main()` function as in a normal Kotlin program, Android starts your app through an Activity instance.
+
+- Activity launched
+- Activity shut down
+
+Once the user taps your app icon on the device, Android opens your app by launching the main Activity of your app. Specifically, the `onCreate()` method is called when your Activity is created. The `onCreate()` method is just one of the Activity **callback methods** that is invoked from the system at certain stages of the Activity lifecycle. We’ll talk more about the lifecycle in a future lesson. For now, know that your Activity continues to run until the user or system takes action to shut it down. 
+
+## Gradle: Building an Android app 
+
+Building an app is complex, and there are specific tasks that have a sequence they must run in. Android uses Gradle to manage these tasks and build your app. 
+
+This is a pretty brief introduction -- we'll visit Gradle more thoroughly later this semester.
+
+### What is Gradle?
+
+- Build automation system
+- Manages the build cycle via a series of tasks (for example, compiles Kotlin sources, runs tests, installs app to device)
+- Determines the proper order of tasks to run
+- Manages dependencies between projects and third-party libraries
+
+Gradle uses a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph) to determine which tasks are required for the intended tasks, what order to run them in, and then runs them.
+
+### Gradle build file
+
+- Declare plugins
+- Define Android properties
+- Handle dependencies
+- Connect to repositories
+
+### Repositories
+
+Out on the web, there are collections of libraries organized in repositories. Use the repositories block to specify where to look for them. Gradle will start at the first listed repository and fall through to each subsequent one if it doesn’t find the resource.
+
+```kotlin
+repositories {
+  google()
+  jcenter()
+  maven {
+    url  "https://maven.example.com"
+  }
+}
+```

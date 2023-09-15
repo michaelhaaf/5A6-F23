@@ -1,0 +1,18 @@
+---
+title: "State"
+description: ""
+sidebar:
+  hidden: true
+---
+
+### Lifecycle of Composables
+
+[https://developer.android.com/jetpack/compose/lifecycle](https://developer.android.com/jetpack/compose/lifecycle)
+
+![](./img/AppDev2_Day_06_after2.png)
+
+* Compose has 3 main phases
+  * Composition: What UI to show. Compose runs composable functions and creates a description of your UI.
+  * Layout: Where to place UI. This phase consists of two steps: measurement and placement. Layout elements measure and place themselves and any child elements in 2D coordinates, for each node in the layout tree.
+  * Drawing: How it renders. UI elements draw into a Canvas, usually a device screen.
+* Unidirectional Data Flow: Order of these phases is generally the same, allowing data to flow in one direction from composition to layout to drawing.
