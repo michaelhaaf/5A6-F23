@@ -19,7 +19,7 @@ This set of notes introduces **lambdas**, **higher-order functions**, and a **va
 
 ### Lambda functions
 
-In addition to traditional named functions, Kotlin supports [lambdas]():
+In addition to traditional named functions, Kotlin supports [lambdas](https://kotlinlang.org/docs/lambdas.html#lambda-expressions-and-anonymous-functions):
 
 ```kotlin
 var dirtLevel = 20
@@ -27,14 +27,14 @@ val waterFilter = {level: Int -> level / 2}
 println(waterFilter(dirtLevel)) // result: 10
 ```
 
-A lambda is an expression that creates a function. Instead of declaring a named function, a lambda declares a function that has no name -- in a profound sense, this is just like how [literals]() are declarations of values that have no name!
+A lambda is an expression that creates a function. Instead of declaring a named function, a lambda declares a function that has no name -- in a profound sense, this is just like how [literals](https://en.wikipedia.org/wiki/Literal_(computer_programming)) are declarations of values that have no name!
 
 Part of what makes this useful is that lambda expressions can be **treated like any other data**: stored in variables, passed as function parameters, etc. 
 
 :::tip[A lambda by another name smells as sweet?]
 Lambda expressions are sometimes called anonymous functions, function literals, or similar names.
 
-Note: in JavaScript you probably remember the [arrow function]() notation -- this is actually just the name for a [syntactic sugar]() that allows you to create anonymus functions (lambda expressions) more easily.
+Note: in JavaScript you probably remember the [arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) notation -- this is actually just the name for a [syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar) that allows you to create anonymus functions / function literals / lambda expressions in Javascript more easily.
 :::
 
 ### Lambda syntax
@@ -69,10 +69,7 @@ According to the [Kotlin Docs](https://kotlinlang.org/docs/lambdas.html#lambda-e
 - The body goes after the ->.
 - If the [inferred](#lambda-parameters) return type of the lambda is not `Unit`, the **last expression inside the lambda body is treated as the return value**. 
   - This is why we don't need a `return` statement in the example above: `x+y` is the last statement in the body, so the result of that expression is returned.
-  - if the inferred type IS unit, there is no need for a return statement anyway (review the [Unit](/5A6-F23/lectures/01-intro-to-kotlin) type if that confuses you)
-
-
-
+  - if the inferred type IS unit, there is no need for a return statement anyway (review the [Unit](/5A6-F23/lectures/programming/01-intro-to-kotlin#almost-everything-is-an-expression) type if that confuses you)
 
 ### Lambda parameters
 
@@ -92,7 +89,7 @@ Here's what the code says:
 - The lambda returns the value of the argument `level` divided by 2.
 
 :::tip[Type inference]
-Note that this example does not specify the type of the argument for the lambda (`level`). The parameter type is **inferred** from the function type declaration `(Int) -> Int`. This is known as [Type inference]() and is a core concept of functional programming.
+Note that this example does not specify the type of the argument for the lambda (`level`). The parameter type is **inferred** from the function type declaration `(Int) -> Int`. This is known as [Type inference](https://en.wikipedia.org/wiki/Type_inference) and is a core concept of functional programming.
 :::
 
 ### Higher-order functions
@@ -190,7 +187,7 @@ val redColours = // ??
 println(redColours) // red, red-orange, dark red
 ```
 
-In Kotlin, the built-in function `[filter()](https://kotlinlang.org/docs/collection-filtering.html#filter-by-predicate)` excels at such tasks:
+In Kotlin, the built-in function [`filter()`](https://kotlinlang.org/docs/collection-filtering.html#filter-by-predicate) excels at such tasks:
 
 ```kotlin
 val redcolours = colours.filter { 
