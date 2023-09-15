@@ -23,6 +23,102 @@ Note: When a function returns `kotlin.Unit` you don't have to specify it explici
 
 ## Android Studio** and IntelliJ
 
+### Project Metadata
+
+- **Name**: Enter a name for your application.
+- **Package name**: 
+  - A globally unique name that represents your app, similar to a web address. This often is the company web domain plus the name of the app. If you are not planning to publish your app, you can use the default. You can change this later, but it's extra work. 
+  - This will also be the default Java and Kotlin package for your source code.
+- **Save location**: This is where your app is stored on your computer.
+- **Language**: Kotlin and the Java programming language are both supported. In general, you can mix and match Kotlin and Java. For our course, we will focus on Kotlin.
+- **Minimum SDK**: Usually the default selection is sensible here. Try selecting a few different choices here. You can see that the percentage of supported devices will change as you do.
+
+When you create an Android project, you'll need to define three API levels: The minimum required for a user to install your app, the user version you are targeting, and the version to use to compile your app:
+
+- **Minimum SDK**: Device needs at least this API level to install
+- **Target SDK**: API version and highest Android version tested
+- **Compile SDK**: Android OS library version  compiled such that `minSdkVersion <= targetSdkVersion <= compileSdkVersion`
+
+Note that the minimum SDK version has to be less than or equal to the target SDK version, which has to be less than or equal to the compile SDK version. 
+
+As new releases of Android come out, it is good practice to compile and test your app against the latest version of the platform, and increment the compileSdk and targetSdk levels.
+
+### Tour of Android Studio
+
+![](./img/as-tour.png)
+
+In this view of Android Studio, you can see the Project window and the Layout Editor. The Layout Editor includes a Palette, a Component Tree, a Design Editor, and an Attributes window.
+
+- Project window shows the files and folders for your project.
+- Palette shows the components and layouts that you can drag into your project, such as TextViews, ImageViews, and Buttons.
+- Component Tree shows the view hierarchy for your layout. Click a component or layout to show it in the Design Editor.
+- Design Editor displays a Design view and a Blueprint view to give you a visual representation of your layout. 
+- Attributes window contains a list of properties you can set for your component. 
+
+### Android Virtual Device (AVD) Manager
+
+In addition to running your app on a physical device, you can use the emulator to emulate many different Android form factors with the help of the Android Virtual Device (AVD) Manager. 
+
+![](./img/avd-manager.png)
+
+Note that you’ll need to download each system image that you want to emulate, since there are many possible options.
+
+## Anatomy of a basic Android app 
+
+- Activity (the source code)
+- Resources (layout files, images, audio files, themes, and colors)
+- Gradle files
+
+In a basic app project, the main parts to know about are the Activity, the app’s resources, and the gradle files. We’ll cover each topic in more depth in this lesson, but briefly: 
+
+An Activity handles user input and creates a window on the screen to display your user interface. 
+Resources are additional files that your code uses, such as layout files, images, audio files, themes, colors, and more. 
+Gradle files are scripts that control how your app is built, so that it can be installed on a device. 
+
+### Project structure
+
+```bash
+MyApplication
+├── app
+│   ├── libs
+│   └── src
+│       ├── androidTest
+│       ├── main
+│       │   ├── java
+│       │   ├── res
+│       │   │   ├── drawable
+│       │   │   ├── layout
+│       │   │   ├── mipmap
+│       │   │   └── values
+│       │   └── AndroidManifest.xml
+│       └── test
+├── build.gradle
+└── gradlew
+```
+
+When you create your first app from a project template, Android Studio generates a project structure similar to this. 
+
+Here’s what each file or directory does: 
+- `app`: stores source code, tests, and resources for your app 
+- `libs`: stores local libraries your app depends on 
+- `androidTest`: test code that’s specific to Android 
+- `main`: Source code files
+  - `java`: Java and Kotlin source code
+  - `res`: Resources directory containing user interface files
+- `test`: local unit tests that will execute on your computer
+- `AndroidManifest.xml`: declares essential information for your app 
+- `build.gradle`: controls how your application builds, tests, and deploys itself 
+- `gradlew`: an executable to run gradle, even if it is not already installed
+
+Recommended reading: [App resources in Android](https://developer.android.com/guide/topics/resources/providing-resources)
+
+## File browsing 
+
+![](./img/as-project-view.png)
+
+![](./img/as-file-view.png)
+
+Using Android Studio’s Project window, you can browse project files for your app. The Android view, which shows by default (image on the left), is structured for easy access to the files you need for app development. However, the Android view doesn’t reflect the actual file structure of your app (what you would see using the file explorer on your computer). To see how the folders and files actually look on your computer, switch to the Project view in the drop down menu (shown on the right). Feel free to use whichever view you prefer. 
 ### Run your Kotlin program
 
 To run your program, click the Run icon to the left of the `main()` function. Android Studio runs the program, and displays the results in the console.
