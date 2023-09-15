@@ -9,21 +9,9 @@ sidebar:
 
 Course content, both for lectures and assignments, has been adapted by me from a variety of sources. This section serves the purpose of both acknowledging these references as well as pointing the way for curious students to begin investigating further into course material than we had time to cover.
 
-### Previous offerings of this course
-
-- [5A6-S23 as taught by Talib Hussain](/resources/archive-s23/lectures/01-intro-to-kotlin/): Covers very similar material to this course. This is a great reference point for any concept we cover in class. 
-
-### Primary external resources
-
-- [Android Developer Courses (Google)](https://developer.android.com/courses) Our course primarily based off of content produced by Google itself in support of the Android software developer "community".
-
-- [Excerpts from Head-first Kotlin](#):
-
-- [Excerpts from Head-first Android](#):
-
 ### Copyright
 
-All course content was either written by [Michael Haaf](https://github.com/michaelhaaf), or explicitly adapted from one or more of the above resources. This course content retains the licenses of the original works where relevant, and is otherwise licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+All course content was either written by [Michael Haaf](https://github.com/michaelhaaf), or explicitly adapted from external resources with attributions made clear. This course content retains the licenses of the original works where relevant, and is otherwise licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 
 > **Terms of use**
 >
@@ -44,8 +32,8 @@ Details about how this website was built follow.
 
 ### Colophon
 
-- Markup: [Markdown](#)
-- Framework: [Astro](#)
+- Markup: [Markdown](https://daringfireball.net/projects/markdown/)
+- Framework: [Astro](https://astro.build/), with the [Starlight](https://starlight.astro.build/) template
 - Deployment: [GitHub Pages](https://pages.github.com/)
 
 You can follow along directly with course updates at the [course repository](https://github.com/michaelhaaf/2W6-W23).

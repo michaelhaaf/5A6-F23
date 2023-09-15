@@ -70,3 +70,7 @@ a[aria-current]:focus {
 .content ul ul {
   margin-top: 0;
 }
+
+.content li:last-child {
+  margin-bottom: 1.25rem;
+}

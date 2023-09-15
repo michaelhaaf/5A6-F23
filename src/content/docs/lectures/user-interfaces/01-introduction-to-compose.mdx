@@ -5,41 +5,33 @@ sidebar:
   hidden: false
 ---
 
-*These notes have been adapted from [Thinking in Compose](https://developer.android.com/jetpack/compose/mental-model)*
+*These notes have been adapted from [Thinking in Compose](https://developer.android.com/jetpack/compose/mental-model).*
 
 Jetpack Compose is the user interface framework we will use in this class to develop applications in Android. 
+
+In class, we will focus on **learning by doing**, going through the Android [Jetpack Compose Codelabs][compose-codelab-1] and seeing how Compose works in action.
+
+This set of lectures notes should provide **theoretical background information** on how Compose works, providing engineering motivation for why Compose is written the way it is. These lecture notes should provide understanding for how Compose works under the hood, whenever you feel you would like to understand more about what we are doing.
+
+[compose-codelab-1]: https://developer.android.com/codelabs/jetpack-compose-basics#0
+
+### Before Compose: the View Model
 
 You will often see Jetpack Compose described as "modern" and "declarative" -- after a few lectures about Kotlin, these words should start to sound familiar. 
 
 In fact, the goals with languages like Kotlin and frameworks like Jetpack Compose (Compose for short) are similar: improve upon existing frameworks (modern) such that complicated application behavior can be written in code that directly expresses the requirements of that application (declarative). 
 
-### Before Compose: the View Model
+So what can we compare Compose against? Since 2008 when Android launched, the architecture of Android applications was based on the [View Model](/5A6-F23/lectures/user-interfaces/00-the-view-model).
 
-Since 2008 when Android launched, the architecture of Android applications was based on the [View Model](/5A6-F23/lectures/user-interfaces/00-the-view-model).
-
-The [View](https://developer.android.com/reference/android/view/View) (the visible interface) organized as a tree of widgets: layouts, buttons, images, text, etc. were all **leaves/branches** of a great user interface **tree**, where each branch could contain other branches and leaves.
+In the View Model, [Views](https://developer.android.com/reference/android/view/View) (visible interface components) are organized as trees of widgets: layouts, buttons, images, text, etc. were all **leaves/branches** of a great user interface **tree**, where each branch could contain other branches and leaves.
   
 Dynamic interface behavior that can respond to user interfactions requires updates in the face of changing data. As the state of the app changes, the UI hierarchy needs to be updated accordingly:  that is, to "walk" the tree (visiting each branch/leaf along the way) using functions like `findViewById()`, and changing nodes with methods like `button.setText(String)`, `container.addChild(View),` or `img.setImageBitmap(Bitmap)`. These methods change the internal state of the widget. 
 
-Everything was based on the incredibly large and ancient [View.java](https://android.googlesource.com/platform/frameworks/base/+/a175a5b/core/java/android/view/View.java). You can see a brief example of how that works below:
+Everything was based on the incredibly large and ancient [View.java](https://android.googlesource.com/platform/frameworks/base/+/a175a5b/core/java/android/view/View.java). You can see a brief example I made up of how that works below:
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 <Tabs>
-  <TabItem label="Java">
-    ```java
-    TextView text = (TextView) findViewById(R.id.someText)
-    Button button = (Button) findViewById(R.id.someButton)
-    ViewGroup container = (ViewGroup) findViewById(R.id.someColumn)
-    button.setOnClickListener(new View.OnClickListener() {
-        public void onClick(View v) {
-          Log.d("BUTTONS", "The button has been pressed.");
-          container.addChild(text)
-          text.setText("Goodbye, World!")
-        }
-    });
-    ```
-  </TabItem>
   <TabItem label="XML">
     ```xml
     <TextView
@@ -61,7 +53,29 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
     </LinearLayout>
     ```
   </TabItem>
+  <TabItem label="Java">
+    ```java
+    // Referencing XML objects in Java
+    TextView text = (TextView) findViewById(R.id.someText)
+    Button button = (Button) findViewById(R.id.someButton)
+    ViewGroup container = (ViewGroup) findViewById(R.id.someColumn)
+
+
+    // Handling events and manipulating objects (button press -> add text to container)
+    button.setOnClickListener(new View.OnClickListener() {
+        public void onClick(View v) {
+          Log.d("BUTTONS", "The button has been pressed.");
+          container.addChild(text)
+          text.setText("Goodbye, World!")
+        }
+    });
+    ```
+  </TabItem>
 </Tabs>
+
+You might find the above syntax pretty similar to frameworkless Javascript/HTML and the Document Object Model (DOM). 
+
+It is pretty similar -- XML is a markup language like HTML, and though Javascript is quite different from Java/Kotlin, it is also the vessel for dynamic programming logic and computation in user interfaces. Finally, you can think of the `View.java` as akin to the DOM in Javascript, providing an API for interacting with interface elements.
 
 ### What are some problems?
 
@@ -69,8 +83,7 @@ Manipulating views manually increases the likelihood of errors:
   - If a piece of data is rendered in multiple places, it’s easy to forget to update one of the views that shows it. 
   - It’s also easy to create illegal states, when two updates conflict in an unexpected way. For example, an update might try to set a value of a node that was just removed from the UI. In general, the software maintenance complexity grows proportionally to the number of views that require updating.
 
-
-Android UI toolkit versioning
+Android UI toolkit versioning:
   - Similar to the problem in Web Dev where some features are not supported by all browsers
   - However, Android updates on a 6-12 month basis -- a long time to wait for features unrelated to the operating system!
 
@@ -81,26 +94,32 @@ Is keeping views in XML really "decoupling" the user interface from the applicat
 
 ## Fundamentals of Compose
 
-Over the last several years, the entire industry has started shifting to a declarative UI model, which greatly simplifies the engineering associated with building and updating user interfaces. The technique works by conceptually regenerating the entire screen from scratch, then applying only the necessary changes -- avoiding the traditional "walk" of the View model, and avoids the complexity of manually updating a stateful view hierarchy.
+Over the last several years, the entire industry -- mobile, web, desktop, server, etc. -- has started shifting to a declarative UI model, which greatly simplifies the engineering associated with building and updating user interfaces. 
+
+In Jetpack Compose, the technique works by conceptually regenerating the entire screen from scratch, then applying only the necessary changes -- avoiding the computational "walk" of the View model, and avoiding the engineering complexity of manually updating a stateful view hierarchy.
 
 To get to know Jetpack Compose, let's start with the basic example provided for us by creating an "Empty Activity" in Android Studio:
 
 ### Composable Functions
 
-Compose is built around composable functions. These are the "lego bricks" of a user interface: complicated layouts are built up with indepedent and "composable" parts.
+Compose is built around composable functions. These are the "lego bricks" of a user interface: complicated layouts are built up with indepedent and "composable" parts. Using Compose, you can build your user interface by defining a set of *composable* functions that take in data and emit UI elements. 
 
-Using Compose, you can build your user interface by defining a set of *composable* functions that take in data and emit UI elements. A simple example is a Greeting widget, which takes in a `String` and emits a `Text` widget which displays a greeting message.
-
-To make a function composable, just add the `@Composable` annotation to it.
+A simple example is a Greeting widget, which takes in a `String` and emits a `Text` widget which displays a greeting message. To make a function composable, just add the `@Composable` annotation to it:
 
 ```kotlin
+// Question: what are the parameters and return types of this function?
 @Composable
 fun Greeting(name: String) {
   Text("Hello $name.")
 }
+// Answer: (String) -> Unit
 ```
 
-A few noteworthy things about this function:
+This function takes in a string as data, and returns nothing but a kotlin `Unit` -- its effect is to create a `Greeting` component, which itself contains a `Text` component, to be rendered on the user interface. That is the core purpose of all `@Composable` functions.
+
+### Key Properties of Composables
+
+There are a few noteworthy things about the `Greeting` function, which demonstrate principles of `@Composable` functions in general:
 
   - The function is annotated with the `@Composable` annotation. All Composable functions must have this annotation; this annotation informs the Compose compiler that this function is intended to convert data into UI.
 
@@ -108,27 +127,16 @@ A few noteworthy things about this function:
 
   - The function displays text in the UI. It does so by calling the `Text()` composable function, which actually creates the text UI element. Composable functions emit UI hierarchy by calling other composable functions.
 
-  - The function doesn't return anything. Compose functions that emit UI do not need to return anything, because they describe the desired screen state instead of constructing UI widgets.
+  - The function doesn't return anything (i.e. returns a kotlin `Unit`). Compose functions that emit UI do not need to return anything, because they *describe* the desired screen state instead of *constructing* UI widgets.
 
   - This function is fast, [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning), and free of side-effects.
-    - The function behaves the same way when called multiple times with the same argument, and it does not use other values such as global variables or calls to `random()`
-    - The function describes the UI without any **side-effects**, such as modifying properties or global variables.
+    - Idempotent (fancy latin: idem + potent, "same" "power"): this term is used to describe operations in math/programming that give the same result even when applied to the same input multiple times. E.g. the operation `* 0` is idempotent: you can multiply a number by 0 repeatedly and the result will not change.
+    - In User Interfaces, this means "adding the same Composable will only create an effect once" -- similar to pressing the "Off" button on a calculator multiple times (it will remain "off")
+    - The function behaves the same way when called multiple times with the same argument; it is not affected by other values such as global variables or the state of the application/runtime environment.
+    - The function describes the UI without any **side-effects** -- it does not modify any global variables or the state of the runtime environment.
 
-### Key Properties of Composables
-
-Composables in Kotlin have properties similar to those of components in React
-
-Composables are [immutable](https://en.wikipedia.org/wiki/Immutable_object):
-  - Like the [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) class in Java: once a Composable is created, its state cannot be altered (you can **transform** it into a **new** composable to change its behavior)
-  - You need to pass any and all information as parameters (or state)
-
-Composables are [idempotent](https://en.wikipedia.org/wiki/Idempotence):
-  - Idempotent (fancy latin: idem + potent, "same" "power"): this term is used to describe operations in math/programming that give the same result even when applied to the same input multiple times. E.g. the operation `* 0` is idempotent: you can multiply a number by 0 repeatedly and the result will not change.
-  - In User Interfaces, this means "adding the same Composable will only create an effect once"
-    - Similar to pressing the "Off" button on a calculator multiple times (it will remain "off")
-
-Composables are written in Kotlin!
-  - Because composable functions are written in Kotlin instead of XML, they can be as dynamic as any other Kotlin code. For example, suppose you want to build a UI that greets a list of users:
+  - This function is written in Kotlin, and completely describes both the interface and the behavior of this component.
+    - Because composable functions are written in Kotlin instead of XML, they can be as dynamic as any other Kotlin code. For example, suppose you to alter the `Greeting` UI to greet a list of users. This is a pretty easy modification:
 
 ```kotlin
 @Composable
@@ -139,16 +147,23 @@ fun Greeting(names: List<String>) {
 }
 ```
 
-  - This function takes in a list of names and generates a greeting for each user. Composable functions can be quite sophisticated. You can use if statements to decide if you want to show a particular UI element. You can use loops. You can call helper functions. You have the full flexibility of the underlying language. This power and flexibility is one of the key advantages of Jetpack Compose.
+Composable functions can be quite sophisticated. You can use if statements to decide if you want to show a particular UI element. You can use loops. You can call helper functions. You have the full flexibility of the underlying language. This power and flexibility is one of the key advantages of Jetpack Compose.
 
-Composables can be [recomposed](#recomposition)
-  - When parameters/state of the Composable function changes, the UI for that composable is regenerated
-  - This process is called **recomposition**
-  - As in React, every time the state of the UI changes, Compose recreates the parts of the UI tree that have changed.
+
+  - This function is [immutable](https://en.wikipedia.org/wiki/Immutable_object):
+    - Like the [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) class in Java: once a Composable is created, its state cannot be altered (you can provide different parameters to **transform** it into a **new** composable that replaces the old one)
+    - You need to pass any and all information as parameters (or state)
+    - When parameters/state of the Composable function changes, the UI for that composable is regenerated. This process is called **recomposition**
+
+
+
+As in React, every time the state of the UI changes, Compose recreates the parts of the UI tree that have changed. Taking advantage of the above properties of @Composables allows developers to succinctly describe complicated user interfaces that can react to any change in state -- though there is a bit more to learn about how that works under the surface to understand why this is possible.
 
 ## Recomposition
 
-In an imperative UI model, to change a widget, you call a setter on the widget to change its internal state. In Compose, you call the composable function again with new data. Doing so causes the function to be recomposed--the widgets emitted by the function are redrawn, if necessary, with new data. The Compose framework can intelligently recompose only the components that changed.
+In an imperative UI model like the View model: to change a widget, you call a setter on the widget to change its internal state. 
+
+In Compose, you call the composable function again with new data. Doing so causes the function to be recomposed--the widgets emitted by the function are redrawn, if necessary, with new data. The Compose framework can intelligently recompose only the components that changed rather than changing or even "walking" the entire interface every time.
 
 For example, consider this composable function which displays a button:
 
@@ -163,49 +178,32 @@ fun ClickCounter(clicks: Int, onClick: () -> Unit) {
 
 Every time the button is clicked, the caller updates the value of clicks. Compose calls the lambda with the Text function again to show the new value; this process is called **recomposition**. Other functions that don't depend on the value are not recomposed.
 
-Recomposition is the process of calling your composable functions again when inputs change. This happens when the function's inputs change. When Compose recomposes based on new inputs, it only calls the functions or lambdas that might have changed, and skips the rest. 
+By skipping all `@Composables` that don't have changed parameters, Compose can recompose efficiently. Recomposing the entire UI tree can be computationally expensive, draining computing resources and battery life -- "lazy" recomposition is necessary to keep applications performant, and to allow developers to be ambitious in the interfaces they generate.
 
-By skipping all functions or lambdas that don't have changed parameters, Compose can recompose efficiently. Recomposing the entire UI tree can be computationally expensive, draining computing resources and battery life. Intelligent recomposition solves this problem.
+In order to facilitate lazy recomposition, **Jetpack Compose depends upon [the key properties](#key-properties-of-composables) described in the previous section**. Since Kotlin is a programming language like any other, it is possible and sometimes necessary to write **mutable**, **side-effect-driven**, **non-idempotent** code -- this is a frequent source of bugs in other programming languages, and Jetpack Compose is no exception. 
 
-### Avoiding side-effects
+The following sections will explain in further detail what effects these properties can have on application behavior, namely:
 
-Never depend on side-effects from executing composable functions, since a function's recomposition may be skipped. If you do, users may experience strange and unpredictable behavior in your app. A side-effect is any change that is visible to the rest of your app. For example, these actions are all dangerous side-effects:
-
-  - Writing to a property of a shared object
-  - Updating an observable in ViewModel
-  - Updating shared preferences
-
-Composable functions might be re-executed as often as every frame, such as when an animation is being rendered. Composable functions should be fast to avoid jank during animations. If you need to do expensive operations, such as reading from shared preferences, do it in a background coroutine and pass the value result to the composable function as a parameter.
-
-As an example, this code creates a composable to update a value in SharedPreferences. The composable shouldn't read or write from shared preferences itself. Instead, this code moves the read and write to a ViewModel in a background coroutine. The app logic passes the current value with a callback to trigger an update.
-
-```kotlin
-@Composable
-fun SharedPrefsToggle(
-    text: String,
-    value: Boolean,
-    onValueChanged: (Boolean) -> Unit
-) {
-    Row {
-        Text(text)
-        Checkbox(checked = value, onCheckedChange = onValueChanged)
-    }
-}
-```
-
-This document discusses a number of things to be aware of when you use Compose:
-
+  - Composable functions cannot depend on side-effects
   - Composable functions can execute in any order.
   - Composable functions can execute in parallel.
   - Recomposition skips as many composable functions and lambdas as possible.
   - Recomposition is optimistic and may be canceled.
   - A composable function might be run quite frequently, as often as every frame of an animation.
 
-The following sections will cover how to build composable functions to support recomposition. In every case, the best practice is to keep your composable functions fast, idempotent, and side-effect free.
+### Avoiding side-effects
+
+A side-effect is any change of state that is global to the rest of your app. For example, these actions are all dangerous side-effects:
+
+  - Writing to a property of a shared object (e.g. a `List` of messages that is used by more than one object)
+  - Updating an [observable](https://developer.android.com/topic/libraries/data-binding/observability) in `ViewModel`
+  - Updating [shared preferences](https://developer.android.com/training/data-storage#pref)
+
+Because Compose skips recomposition for functions that have not had their parameters changed, **functions that depend on side-effects will not be recomposed, which will cause bugs/errors** in the form of strange and unpredictable behavior in your app interface. 
 
 ### Execution order does not matter
 
-If you look at the code for a composable function, you might assume that the code is run in the order it appears. But this isn't necessarily true. If a composable function contains calls to other composable functions, those functions might run in any order. Compose has the option of recognizing that some UI elements are higher priority than others, and drawing them first.
+If you look at the code for a composable function, you might assume that the code is run in the order it appears. But this isn't necessarily true. **If a composable function contains calls to other composable functions, those functions might run in any order.** Compose has the option of recognizing that some UI elements are higher priority than others, and drawing them first.
 
 For example, suppose you have code like this to draw three screens in a tab layout:
 
@@ -220,17 +218,15 @@ fun ButtonRow() {
 }
 ```
 
-The calls to StartScreen, MiddleScreen, and EndScreen might happen in any order. This means you can't, for example, have StartScreen() set some global variable (a side-effect) and have MiddleScreen() take advantage of that change. Instead, each of those functions needs to be self-contained.
+The calls to `StartScreen`, `MiddleScreen`, and `EndScreen` might happen in any order. This means you can't, for example, have `StartScreen()` set some global variable (a side-effect) and have `MiddleScreen()` take advantage of that change. Instead, each of those functions **needs to be self-contained**.
 
 ### Parallel execution
 
-Compose can optimize recomposition by running composable functions in parallel. This lets Compose take advantage of multiple cores, and run composable functions not on the screen at a lower priority.
+Compose can optimize recomposition by running composable functions in parallel. This lets Compose take advantage of multiple CPU cores, and run composable functions not on the screen lazily or at a lower priority.
 
-This optimization means a composable function might execute within a pool of background threads. If a composable function calls a function on a ViewModel, Compose might call that function from several threads at the same time.
+This optimization means a composable function might execute within a pool of background threads. If a composable function calls a function on a `ViewModel`, Compose might call that function from several threads at the same time.
 
-To ensure your application behaves correctly, all composable functions should have no side-effects. Instead, trigger side-effects from callbacks such as onClick that always execute on the UI thread.
-
-When a composable function is invoked, the invocation might occur on a different thread from the caller. That means code that modifies variables in a composable lambda should be avoided–both because such code is not thread-safe, and because it is an impermissible side-effect of the composable lambda.
+When a composable function is invoked, the invocation might occur on a different thread from the caller. That means code that modifies variables in a composable lambda should be avoided: both because such code is not thread-safe, and because it is an impermissible side-effect of the composable lambda.
 
 Here's an example showing a composable that displays a list and its count:
 
@@ -268,7 +264,7 @@ fun ListWithBug(myList: List<String>) {
 }
 ```
 
-In this example, items is modified with every recomposition. That could be every frame of an animation, or when the list updates. Either way, the UI will display the wrong count. Because of this, writes like this are not supported in Compose; by prohibiting those writes, we allow the framework to change threads to execute composable lambdas.
+In this example, `items` is modified with every recomposition. That could be every frame of an animation, or when the list updates. Either way, the UI will display the wrong count. Because of this, writes like this are not supported in Compose; by prohibiting those writes, we allow the framework to change threads to execute composable lambdas.
 
 ### Recomposition is "lazy"
 
@@ -312,13 +308,13 @@ private fun NamePickerItem(name: String, onClicked: (String) -> Unit) {
 }
 ```
 
-Each of these scopes might be the only thing to execute during a recomposition. Compose might skip to the Column lambda without executing any of its parents when the header changes. And when executing Column, Compose might choose to skip the LazyColumn's items if names didn't change.
+Each of these scopes might be the only thing to execute during a recomposition. Compose might skip to the `Column` lambda without executing any of its parents when the header changes. And when executing `Column`, Compose might choose to skip the `LazyColumn`'s items if names didn't change.
 
 Again, executing all composable functions or lambdas should be side-effect free. When you need to perform a side-effect, trigger it from a callback.
 
 ### Recomposition is "optimistic"
 
-Recomposition starts whenever Compose thinks that the parameters of a composable might have changed. Recomposition is optimistic, which means Compose expects to finish recomposition before the parameters change again. If a parameter does change before recomposition finishes, Compose might cancel the recomposition and restart it with the new parameter.
+Recomposition starts whenever Compose thinks that the parameters of a composable might have changed. Recomposition is **optimistic, which means Compose expects to finish recomposition before the parameters change again**. If a parameter does change before recomposition finishes, Compose might cancel the recomposition and restart it with the new parameter.
 
 When recomposition is canceled, Compose discards the UI tree from the recomposition. If you have any side-effects that depend on the UI being displayed, the side-effect will be applied even if composition is canceled. This can lead to inconsistent app state.
 
@@ -334,6 +330,6 @@ If your composable function needs data, it should define parameters for the data
 
 ## Additional resources
 
-### Exercises
-
-### Readings
+- Understanding Jetpack Compose: [Part 1](https://medium.com/androiddevelopers/understanding-jetpack-compose-part-1-of-2-ca316fe39050) and [Part 2](https://medium.com/androiddevelopers/under-the-hood-of-jetpack-compose-part-2-of-2-37b2c20c6cdd) by Leland Richardson are execellent early articles explaining the technical motivation behind Jetpack Compose.
+- [Thinking in Compose](https://www.youtube.com/watch?v=4zf30a34OOA): Short video lecture explaining the basic principles of Compose.
+- [Composable functions](https://www.youtube.com/watch?v=fFLBCgoHHys): Short video lecture demonstrating how Composable functions work.
