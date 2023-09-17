@@ -52,7 +52,4 @@ export default defineConfig({
   }), markdoc()],
   site: "https://michaelhaaf.github.io",
   base: "5A6-F23",
-  experimental: {
-    assets: true
-  }
 });
