@@ -23,7 +23,7 @@ Android comes with a large set of built-in classes for views (sometimes called w
 
 ### XML for View Content
 
-```xml
+```xml title="XML"
 <TextView
     android:layoutwidth= "wrapcontent"
     android:layoutheight= "wrapcontent"
@@ -38,7 +38,7 @@ The View Model makes use of XML to specify the layout of user interfaces (includ
 
 Android has several ways to specify the width and height of a View. These examples are for the `layout_width` of a View, but the same applies for the `layout_height` attribute of a View.
 
-```xml
+```xml title="XML"
 android:layoutwidth= "wrapcontent"
 android:layoutwidth= "matchparent"
 android:layoutwidth= "48dp"
@@ -66,7 +66,7 @@ Let’s look at the XML for some of these ViewGroups:
 
 A FrameLayout generally holds a single child View:
 
-```xml
+```xml title="XML"
 <FrameLayout
   android:layoutwidth=   "matchparent" 
   android:layoutheight=   "matchparent">
@@ -87,7 +87,7 @@ You can think of `FrameLayout` as a picture frame. It’s only meant to show one
 
 Here’s an XML example for the `LinearLayout` ViewGroup. `LinearLayout` is the parent for the three child views (two `TextViews` and a `Button`).
 
-```xml
+```xml title="XML"
 <LinearLayout
   android:layoutwidth="matchparent" 
   android:layoutheight="matchparent" 
@@ -143,7 +143,7 @@ Individual views can also have resource IDs.
 
 Add the `android:id` attribute to the View in XML. Use `@+id/name` syntax.
 
-```xml
+```xml title="XML"
 <TextView
   android:id="@+id/helloTextView" 
   android:layoutwidth="wrapcontent"
@@ -170,7 +170,7 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 <Tabs>
   <TabItem label="View Model">
-    ```kotlin
+    ```kotlin title="Kotlin"
     class MainActivity : AppCompatActivity() {
       override fun onCreate(savedInstanceState: Bundle?) {
         super .onCreate(savedInstanceState)
@@ -180,7 +180,7 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
     ```
   </TabItem>
   <TabItem label="Jetpack Compose">
-    ```kotlin
+    ```kotlin title="Kotlin"
     class MainActivity : AppCompatActivity() {
       override fun onCreate(savedInstanceState: Bundle?) {
         super .onCreate(savedInstanceState)
@@ -232,7 +232,7 @@ Gradle uses a [directed acyclic graph](https://en.wikipedia.org/wiki/Directed_ac
 
 Out on the web, there are collections of libraries organized in repositories. Use the repositories block to specify where to look for them. Gradle will start at the first listed repository and fall through to each subsequent one if it doesn’t find the resource.
 
-```kotlin
+```kotlin title="Kotlin"
 repositories {
   google()
   jcenter()

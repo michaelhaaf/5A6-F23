@@ -147,7 +147,7 @@ One of the major [differences from Java](#differences-from-java) mentioned above
 - The `var` keyword is used to declare a variable that may change in value (similar to `let` in Javascript)
 - The `val` keyword is used to declare a constant (similar to `const` in Java)
 
-```kotlin
+```kotlin title="Kotlin"
 var name = "Joe"
 val birthyear = 1985
 
@@ -161,7 +161,7 @@ birthyear = 1984 // Compiler error!
 - But, we can still specify a type if we wish. Unlike Java, the type is written after the variable name and preceded by a colon
 - Let's see another example:
 
-```kotlin
+```kotlin title="Kotlin"
 var height = 55
 var name: String = "Joe"
 val birthyear: Int = 1985
@@ -204,7 +204,7 @@ const int price = 300;
 
 In Kotlin, **almost everything is an expression** and therefore has a value.
 
-```kotlin
+```kotlin title="Kotlin"
 val temperature = 20
 val isHot = if temperature > 40 true else false
 println(isHot) // result: False
@@ -214,7 +214,7 @@ There is one notable exception: loops. There's no sensible value for for loops o
 
 ### Expression values
 
-```kotlin
+```kotlin title="Kotlin"
 val isUnit = println("This is an expression") // "This is an expression" printed to console
 println(isUnit) // "kotlin.Unit" printed to console
 ```
@@ -222,6 +222,7 @@ println(isUnit) // "kotlin.Unit" printed to console
 The first `println()` prints the string "This is an expression"; the second `println()` prints the value of the first `println()` statement.
 
 Some other languages have statements, which are lines of code that don't have a value. In Kotlin, almost everything is an expression and has a value, even if that value is `kotlin.Unit` (Kotlin's Unit is equivalent to Java's void.)
+
 ## Functions
 
 The `fun` keyword is used to declare a function.
@@ -303,7 +304,7 @@ A function is a discrete block of code that performs an operation, and can retur
 
 You define functions using the fun keyword, followed by the name of the function. As with other programming languages, the parentheses `()` are for function arguments, if any. Curly braces `{}` frame the code for the function. 
 
-```kotlin
+```kotlin title="Kotlin"
 fun printHello() {
   println("Hello")
 }
@@ -313,7 +314,7 @@ fun printHello() {
 
 If a function does not return any useful value, its return type is `Unit`. The Unit return type declaration is optional. This code fragement is equivalent to the one immediately preceeding it:
 
-```kotlin
+```kotlin title="Kotlin"
 fun printHello(): Unit {
   println("Hello")
 }
@@ -331,7 +332,7 @@ Functions may have:
 
 Default values provide a fallback if no parameter value is passed. Use `=` after the parameter type to define default values:
 
-```kotlin
+```kotlin title="Kotlin"
 fun drive(speed: String = "fast") {
   println("driving $speed")
 }
@@ -343,7 +344,7 @@ drive(speed="as fast as i like") // driving as fast as i like
 
 Here's another example:
 
-```kotlin
+```kotlin title="Kotlin"
 fun greeting(name: String = "Unknown", age: Int = 10) {
   println ("Hello $name, you are now $age old")
 }
@@ -370,7 +371,7 @@ Why aren't these valid? Positional arguments cannot be ambiguous -- it needs to 
 
 If no default is specified for a parameter, the corresponding argument is **required**.
 
-```kotlin
+```kotlin title="Kotlin"
 fun tempToday(day: String, temp: Int) {
   println("Today is $day and it's $temp degrees")
 } 
@@ -384,7 +385,7 @@ The `tempToday()` function takes two parameters, day and temp, both of which are
 
 Functions can have a mix of default and required parameters.
 
-```kotlin
+```kotlin title="Kotlin"
 fun reformat(str: String, 
              divideByCamelHumps: Boolean, 
              wordSeparator: Char, 
@@ -406,7 +407,7 @@ One neat feature of Kotlin (that requires a bunch of [extra code to replicate in
 
 Arguments can be passed to a function with their name specified explicitly. Using named arguments is convenient when a function has a large number of parameters -- you no longer have to rely on remembering the positional order of parameters when using argument names.
 
-```kotlin
+```kotlin title="Kotlin"
 reformat("Yesterday is the shadow of today", 
          divideByCamelHumps=false,
          wordSeparator=", ",
@@ -461,7 +462,7 @@ Notice how much easier [string interpolation](https://www.baeldung.com/java-stri
 
 Just like in Java, for a function that has a single expression, the curly braces are optional. The following code snippets are equivalent:
 
-```kotlin
+```kotlin title="Kotlin"
 fun convertToFahrenheit(degree : Float) : Float {
   return (degree * 9 / 5) + 32
 }
@@ -473,14 +474,14 @@ Here's another example, compared with Java:
 
 <Tabs>
   <TabItem label="Normal function">
-    ```kotlin
+    ```kotlin title="Kotlin"
       fun double(x: Int): Int {
         x * 2
       }
     ```
   </TabItem>
   <TabItem label="Single-Expression function">
-    ```kotlin
+    ```kotlin title="Kotlin"
       fun double(x: Int): Int = x * 2
     ```
   </TabItem>

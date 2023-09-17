@@ -11,7 +11,7 @@ description: The various ways to compile, build, and run Kotlin programs, librar
 
 As with other languages, the Kotlin main() function specifies the entry point for execution. Any command line arguments are passed as an array of strings.
 
-```kotlin
+```kotlin title="Kotlin"
 fun main(args: Array<String>) {
   println(  "Hello, world!"  )
 }
@@ -151,13 +151,13 @@ I particularly liked [this tutorial](https://www.youtube.com/watch?v=t28RY1aOGJs
 
 Gradle is a JVM-based build system that enables developers to write **high-level** **scripts** that can be used to automate the process of compilation and application production. It is a flexible plugin-based system, which allows you to automate various aspects of the build process; including compiling and signing an .apk, downloading and managing external dependencies, or utilising specific SDK versions. 
 
-```Note
+:::tip[Note]
 Gradle and the Android Gradle plugin run independent of Android Studio. This means that you can build your Android apps from within Android Studio, the command line on your machine, or on machines where Android Studio is not installed, such as continuous integration servers.
 
 If you aren't using Android Studio, you can learn how to build and run your app from the command line. The output of the build is the same whether you are building a project from the command line, on a remote machine, or using Android Studio. 
 
 [Configure your build](https://developer.android.com/build), Android Developer docs.
-```
+:::
 
 
 ## Additional resources

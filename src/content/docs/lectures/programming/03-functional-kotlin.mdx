@@ -21,7 +21,7 @@ This set of notes introduces **lambdas**, **higher-order functions**, and a **va
 
 In addition to traditional named functions, Kotlin supports [lambdas](https://kotlinlang.org/docs/lambdas.html#lambda-expressions-and-anonymous-functions):
 
-```kotlin
+```kotlin title="Kotlin"
 var dirtLevel = 20
 val waterFilter = {level: Int -> level / 2}
 println(waterFilter(dirtLevel)) // result: 10
@@ -41,7 +41,7 @@ Note: in JavaScript you probably remember the [arrow function](https://developer
 
 The basic lambda syntax in Kotlin is quite similar to other languages that support lambdas (including Java, since Java 8). In general, lambdas are written in the following way:
 
-```kotlin
+```kotlin title="Kotlin"
 // Complete (all optional statements included)
 val varName: (Parameter1Type, ..., ParameterNType) -> ReturnType = 
   { p1: P1Type, ..., pN: PNType -> function body }
@@ -52,7 +52,7 @@ val varName = { p1: P1Type, ..., pN: PNType -> function body }
 
 Let's see a concrete example, similar to the [calculator example I gave in class](https://pl.kotl.in/CYJmoZj7o?theme=darcula):
 
-```kotlin
+```kotlin title="Kotlin"
 // Complete (all optional statements included)
 val sum: (Int, Int) -> Int = { x: Int, y: Int -> return x + y }
 
@@ -75,7 +75,7 @@ According to the [Kotlin Docs](https://kotlinlang.org/docs/lambdas.html#lambda-e
 
 Like named functions, lambdas can have parameters. For lambdas, the parameters (and their types, if needed) go on the left of what is called a function arrow `->`. The code to execute goes to the right of the function arrow. Once the lambda is assigned to a variable, you can call it just like a function.
 
-```kotlin
+```kotlin title="Kotlin"
 val waterFilter: (Int) -> Int = {level -> level / 2}
 
 println(waterFilter(200)) // result: 100
@@ -98,7 +98,7 @@ The real power of lambdas is using them to create **higher-order functions**, wh
 
 Higher-order functions take functions as parameters, or return a function:
 
-```kotlin
+```kotlin title="Kotlin"
 fun encodeMsg(msg: String, encode: (String) -> String): String {
     return encode(msg)
 }
@@ -110,7 +110,7 @@ That is, in this example, we can "encode" a message with ANY function that obeys
 
 To call this function, pass it a string and a function as arguments:
 
-```kotlin
+```kotlin title="Kotlin"
 val enc1: (String) -> String = { input -> input.toUpperCase() }
 val engToFr: (String) -> String = { 
   // implementation redacted...
@@ -127,7 +127,7 @@ The examples above used lambdas, stored in variables, to pass function behavior 
 
 All is not lost: we can use the `::` operator to pass a named function an argument to another function:
 
-```kotlin
+```kotlin title="Kotlin"
 fun someEncodeFun(input: String): String {
   return input.reversed()
 }
@@ -143,7 +143,7 @@ Kotlin prefers that any parameter that takes a function is the **last parameter*
 
 The following four lines of code are equivalent:
 
-```kotlin
+```kotlin title="Kotlin"
 // normal parameter specification
 encodeMessage("acronym", { input -> input.toUpperCase() })
 // "last parameter call" lambda outside of the round brackets
@@ -165,7 +165,7 @@ encodeMessage("acronym") {
 
 Many Kotlin built-in functions are defined using last parameter call syntax:
 
-```kotlin
+```kotlin title="Kotlin"
 inline fun repeat(times: Int, action: (Int) -> Unit)
 repeat(3) {
   println("Hello")
@@ -179,7 +179,7 @@ repeat(3) {
 One of the best ways to see the utility of functional programming paradigms like higher-order functions is how they allow us to manipulate collections of data.
 
 Consider the following problem:
-```kotlin
+```kotlin title="Kotlin"
 val colours = listOf("red", "red-orange", "dark red", "orange", "bright orange", "saffron")
 
 // Requirement: print out all colours in the list above that contain "red" 
@@ -189,7 +189,7 @@ println(redColours) // red, red-orange, dark red
 
 In Kotlin, the built-in function [`filter()`](https://kotlinlang.org/docs/collection-filtering.html#filter-by-predicate) excels at such tasks:
 
-```kotlin
+```kotlin title="Kotlin"
 val redcolours = colours.filter { 
   colour: String -> colour.contains("red")
 }
@@ -207,7 +207,7 @@ Remember the **Last call parameter** syntax we just learned! The round brackets 
 
 Here's another example: filtering out positive numbers from a collection:
 
-```kotlin
+```kotlin title="Kotlin"
 val ints = listOf( -1 ,  2 ,  -3 )
 ints.filter { n: Int -> n > 0 } // returns 2
 // equivalent to the line above (type inference: the type of n is inferred because ints is a list of Ints)
@@ -216,7 +216,7 @@ ints.filter { n -> n > 0 }
 
 Another way to write the same filter:
 
-```kotlin
+```kotlin title="Kotlin"
 val ints = listOf( -1 ,  2 ,  -3 )
 ints.filter { it > 0 } // returns 2
 ```
@@ -234,7 +234,7 @@ The filter condition in curly braces `{}` tests each item in the collection as t
 
 Let's use a filter to print only the decorations that start with the letter "b". The output captured by the filter is shown in the result.
 
-```kotlin
+```kotlin title="Kotlin"
 val books = listOf("nature", "biology", "birds")
 println(books.filter { it[0] == 'b' })
 ```
@@ -249,7 +249,7 @@ In Kotlin, when a list is filtered, the resulting list can either be created imm
 
 Filters are **eager by default**. A new list is created each time you use a filter.
 
-```kotlin
+```kotlin title="Kotlin"
 val instruments = listOf("viola", "cello", "violin")
 val eager = instruments.filter { it[0] == 'v' }
 println("eager: " + eager) // returns eager: [viola, violin]
@@ -261,7 +261,7 @@ To make the filter lazy, you can use a [Sequence](https://kotlinlang.org/docs/se
 
 Sequences let you process elements one by one until a filtering condition is satisfied, reducing unnecessary processing. Conveniently, this is exactly the API that a lazy filter needs.
 
-```kotlin
+```kotlin title="Kotlin"
 val instruments = listOf( "viola", "cello", "violin" )
 val filtered = instruments.asSequence().filter { it[ 0 ] == 'v' }
 println( "filtered: " + filtered) // filtered: kotlin.sequences.FilteringSequence@386cc1c4
@@ -278,7 +278,7 @@ Here's the useful part -- until we access some given element, **the list will no
 
 Sequences themselves are sort of an intermediate product -- in order to reap the rewards of being lazy, we do need to eventually turn the sequence back into a list using `toList()`.
 
-```kotlin
+```kotlin title="Kotlin"
 val instruments = listOf( "viola", "cello", "violin" )
 val filtered = instruments.asSequence().filter { it[0] ==  'v' } // the list has not been iterated yet
 /* ... any amount of code can go here ... */
@@ -309,7 +309,7 @@ To iterate through a collection and apply a function to each item in the collect
 
 `map()` performs the same transform on every item and returns a new list corresponding to each result:
 
-```kotlin
+```kotlin title="Kotlin"
 val numbers = setOf(1, 2 , 3) 
 println(numbers.map { it *  3 }) // => [3, 6, 9]
 ```
@@ -318,7 +318,7 @@ println(numbers.map { it *  3 }) // => [3, 6, 9]
 
 Given a [nested]() collection, the built-in [`flatten()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/flatten.html) function returns a **single list** of all the elements of nested collections.
 
-```kotlin
+```kotlin title="Kotlin"
 val numberSets = listOf(setOf(1 , 2 , 3), setOf(4, 5), setOf(1 ,2 ))
 println(numberSets.flatten()) // => [1, 2, 3, 4, 5, 1, 2]
 ```

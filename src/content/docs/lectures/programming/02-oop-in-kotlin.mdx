@@ -72,13 +72,13 @@ In the following sections, we'll deconstruct how this is achieved in Kotlin.
 
 For a simple class, we can just define a constructor. Unlike Java, we don't have to explicitly define all the fields, etc.
 
-```kotlin
+```kotlin title="Kotlin"
 class Car(var brand: String, var model: String, var year: Int)
 ```
 
 Constructor arguments can have default values:
 
-```kotlin
+```kotlin title="Kotlin"
 class Car(var brand: String,
           var model: String = "Unknown",
           var year:Int = 2022)
@@ -86,7 +86,7 @@ class Car(var brand: String,
 
 When calling a constructor in Kotlin, we don't use the 'new' keyword:
 
-```kotlin
+```kotlin title="Kotlin"
 val c1 = Car("Ford", "Mustang", 1969)
 ```
 
@@ -94,7 +94,7 @@ Multiple constructors are possible (self-study).
 
 #### Sample class with constructor & functions
 
-```kotlin
+```kotlin title="Kotlin"
 class Car(var brand: String, var model: String, var year: Int) {
     // Class function
     fun drive() {
@@ -111,7 +111,7 @@ class Car(var brand: String, var model: String, var year: Int) {
 
 Unlike java the getter and setter for a property of a class simply uses the name of the property; i.e. not `getX()` `setX()` etc..
 
-```kotlin
+```kotlin title="Kotlin"
 val car = Car("Honda", "Camry", 2023)
 println(car.brand)      // Access with .<property name>
 car.model = "Civic"     // Set with .<property name>
@@ -128,7 +128,7 @@ Companion objects are the singleton objects whose properties and functions are t
 
 Note that only one companion class is allowed per class. More than one companion object per class will lead to a runtime error in Kotlin.
 
-```kotlin
+```kotlin title="Kotlin"
 class MyClass {
     companion object{
         fun myStaticMethod(): String{
@@ -148,7 +148,7 @@ More information: [Kotlin: static member fields and singletons](https://medium.c
 
 To allow a class to be subclassed, it must be defined with the keyword `open`. A class extends another using the colon syntax below:
 
-```kotlin
+```kotlin title="Kotlin"
 // Superclass
 open class MyParentClass {
     val x = 5
@@ -163,7 +163,7 @@ class MyChildClass: MyParentClass() {
 
 If the parent has constructor values, must also pass the appropriate constructor values when subclassing.
 
-```kotlin
+```kotlin title="Kotlin"
 // Superclass
 open class MyClass(var value:Int)
 
@@ -176,7 +176,7 @@ class SubClass(var value:Int, var otherValue:String): MyClass(value)
 A function of a parent class cannot be overridden in a subclass unless the function in the parent is declared open.
 The override keyword must also be used when defining the overridden function.
 
-```kotlin
+```kotlin title="Kotlin"
 open class MyClass(var value:String) {
     open fun myFunction() {
         println(value)
@@ -192,7 +192,7 @@ class SubClass(var value:String, var otherValue:String): MyClass(value) {
 
 Elsewhere:
 
-```kotlin
+```kotlin title="Kotlin"
 val x = MyClass("Hi")
 val y = SubClass("Hi", "Bye")
 x.myFunction()
@@ -219,21 +219,21 @@ Instead, there is a [special nullable type](https://medium.com/mobile-app-develo
 
 ### `null` assignment rules
 
-```kotlin
+```kotlin title="Kotlin"
 var str: String = "xyz"
 str = null // Compile-time error
 ```
 
 vs.
 
-```kotlin
+```kotlin title="Kotlin"
 var str: String? = "xyz"
 str = null // OK
 ```
 
 ### Nullable parameter handling
 
-```kotlin
+```kotlin title="Kotlin"
 fun getLength(str: String?): Int? {
     return str.length // Compile-time error
 }
@@ -241,7 +241,7 @@ fun getLength(str: String?): Int? {
 
 Since str could be `null`, checking its length opens you up to the possibility of a null pointer error. Instead:
 
-```kotlin
+```kotlin title="Kotlin"
 fun getLength(str: String): Int? {
     return str.length // OK
 }
@@ -249,7 +249,7 @@ fun getLength(str: String): Int? {
 
 We can also **explicitly** check for null ("old-school" way)
 
-```kotlin
+```kotlin title="Kotlin"
 fun getLength(str: String?): Int? {
     if (str != null) {
         return str.length // OK
@@ -260,7 +260,7 @@ fun getLength(str: String?): Int? {
 
 Or can use the [safe call operator](#) `?`.
 
-```kotlin
+```kotlin title="Kotlin"
 fun getLength(str: String?): Int? {
     return str?.length // OK
 }

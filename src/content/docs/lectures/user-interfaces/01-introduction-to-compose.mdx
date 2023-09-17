@@ -106,7 +106,7 @@ Compose is built around composable functions. These are the "lego bricks" of a u
 
 A simple example is a Greeting widget, which takes in a `String` and emits a `Text` widget which displays a greeting message. To make a function composable, just add the `@Composable` annotation to it:
 
-```kotlin
+```kotlin title="Kotlin"
 // Question: what are the parameters and return types of this function?
 @Composable
 fun Greeting(name: String) {
@@ -138,7 +138,7 @@ There are a few noteworthy things about the `Greeting` function, which demonstra
   - This function is written in Kotlin, and completely describes both the interface and the behavior of this component.
     - Because composable functions are written in Kotlin instead of XML, they can be as dynamic as any other Kotlin code. For example, suppose you to alter the `Greeting` UI to greet a list of users. This is a pretty easy modification:
 
-```kotlin
+```kotlin title="Kotlin"
 @Composable
 fun Greeting(names: List<String>) {
     for (name in names) {
@@ -167,7 +167,7 @@ In Compose, you call the composable function again with new data. Doing so cause
 
 For example, consider this composable function which displays a button:
 
-```kotlin
+```kotlin title="Kotlin"
 @Composable
 fun ClickCounter(clicks: Int, onClick: () -> Unit) {
     Button(onClick = onClick) {
@@ -207,7 +207,7 @@ If you look at the code for a composable function, you might assume that the cod
 
 For example, suppose you have code like this to draw three screens in a tab layout:
 
-```kotlin
+```kotlin title="Kotlin"
 @Composable
 fun ButtonRow() {
     MyFancyNavigation {
@@ -230,7 +230,7 @@ When a composable function is invoked, the invocation might occur on a different
 
 Here's an example showing a composable that displays a list and its count:
 
-```kotlin
+```kotlin title="Kotlin"
 @Composable
 fun ListComposable(myList: List<String>) {
     Row(horizontalArrangement = Arrangement.SpaceBetween) {
@@ -246,7 +246,7 @@ fun ListComposable(myList: List<String>) {
 
 This code is side-effect free, and transforms the input list to UI. This is great code for displaying a small list. However, if the function writes to a local variable, this code will not be thread-safe or correct:
 
-```kotlin
+```kotlin title="Kotlin"
 @Composable
 @Deprecated("Example with bug")
 fun ListWithBug(myList: List<String>) {
@@ -272,7 +272,7 @@ When portions of your UI are invalid, Compose does its best to recompose just th
 
 Every composable function and lambda might recompose by itself. Here's an example that demonstrates how recomposition can skip some elements when rendering a list:
 
-```kotlin
+```kotlin title="Kotlin"
 /**
  * Display a list of names the user can click with a header
  */
