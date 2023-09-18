@@ -47,7 +47,11 @@ a[aria-current]:focus {
   color: var(--sl-color-text-invert);
 }
 
-/* Header override */
+/* Content-panel override */
+
+.content-panel {
+  padding-left: 2rem;
+}
 
 /* Custom components */
 
@@ -63,6 +67,33 @@ a[aria-current]:focus {
   line-height: var(--sl-line-height-headings);
   font-weight: 600;
   color: var(--sl-color-white);
+}
+
+/* heading-link */
+
+h1 .heading-link,
+h2 .heading-link,
+h3 .heading-link,
+h4 .heading-link {
+  position: relative;
+}
+
+a.heading-link {
+  color: var(--sl-color-heading);
+}
+
+a.heading-link:hover {
+  text-decoration: none;
+}
+
+a.heading-link:hover::before {
+  position: absolute;
+  left: -0.75em;
+  content: "#";
+  color: var(--sl-color-text);
+  text-decoration-line: underline;
+  text-decoration-thickness: max(0.08em, 1px);
+  text-underline-offset: 0.15em;
 }
 
 /* Misc overrides */

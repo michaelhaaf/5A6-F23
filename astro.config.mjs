@@ -2,6 +2,8 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import overrideIntegration from "./src/overrideIntegration.mjs";
 import markdoc from "@astrojs/markdoc";
+import { rehypeHeadingIds } from '@astrojs/markdown-remark';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 import expressiveCode from "astro-expressive-code";
 const expressiveCodeOpts = {
@@ -52,4 +54,7 @@ export default defineConfig({
   }), markdoc()],
   site: "https://michaelhaaf.github.io",
   base: "5A6-F23",
+  markdown: {
+    rehypePlugins: [rehypeHeadingIds, [rehypeAutolinkHeadings, { behavior: 'wrap', properties: { ariaHidden: true, tabIndex: -1, class: 'heading-link' } }],],
+  },
 });
