@@ -157,13 +157,175 @@ Composable functions can be quite sophisticated. You can use if statements to de
 
 
 
-As in React, every time the state of the UI changes, Compose recreates the parts of the UI tree that have changed. Taking advantage of the above properties of @Composables allows developers to succinctly describe complicated user interfaces that can react to any change in state -- though there is a bit more to learn about how that works under the surface to understand why this is possible.
+As in React, every time the state of the UI changes, Compose recreates the parts of the UI tree that have changed. Taking advantage of the above properties of @Composables allows developers to succinctly describe complicated user interfaces that can react to any change in state -- though there is a bit more to learn about how that works under the surface to understand why this is possible, which we will see in the [recomposition](#recomposition) section.
+
+## Conventions
+
+*This section is adapted from [API Guidelines for Jetpack Compose](https://android.googlesource.com/platform/frameworks/support/+/androidx-main/compose/docs/compose-api-guidelines.md#elements-accept-and-respect-a-modifier-parameter)*.
+
+One way to get used to the idea of using functions to generate UI elements is to learn the *conventions* for writing `@Composable` functions. 
+
+This might seem trite -- of course, following code conventions doesn't change the behavior of the code. It does, however, change the way that you **think** about the code you are writing and reading -- following conventions allows code to have obvious **meaning** that developers can share and understanding of.
+
+We'll see some examples in the following sections. Make sure you click on the **Do** and **Don't** tabs for each, and read all the comments.
+
+### @Composable function names
+
+`@Composable` functions that return `Unit` emit UI elements; that is, they represent **things** that will be rendered in your UI. Unlike normal functions, `@Composables` that return `Unit` are more like **objects** than **actions**! They follow the following conventions:
+
+  - named using `PascalCase` (not `camelCase`)
+  - named by **nouns**, not verb or verb phrases, prepositions, adjectives or adverbs. (e.g., `fun Button`, not `fun CreateButton`)
+  - MAY be named by **nouns** prefixed by descriptive adjectives. (e.g. `fun RedButton`)
+
+Composable functions that return Unit are considered declarative entities that can be either present or absent in a composition and therefore follow the naming rules that we are used to using for **classes**. Naming `@Composables` as though they are things/objects/entities promotes a **declarative** mental model for thinking about the persistent identity of our UI elements.
+
+<Tabs>
+  <TabItem label="Do">
+    
+    ```kotlin title="Kotlin"
+    // This function is a descriptive PascalCased noun as a visual UI element
+    @Composable
+    fun FancyButton(text: String, onclick: () -> Unit) { /*...*/ }
+
+    // This function is a descriptive PascalCased noun as a non-visual element
+    // with presence in the composition
+    @Composable
+    fun BackButtonHandler(onBackPressed: () -> Unit) { /*...*/ }
+    ```
+
+  </TabItem>
+  <TabItem label="Don't">
+    
+    ```kotlin title="Kotlin"
+    // This function is a noun but is not PascalCased!
+    @Composable
+    fun fancyButton(text: String, onClick: () -> Unit) { /*...*/ }
+
+    // This function is PascalCased but is not a noun!
+    @Composable
+    fun RenderFancyButton(text: String, onClick: () -> Unit) { /*...*/ }
+    ```
+
+  </TabItem>
+</Tabs>
+
+This naming rule will cover all of our use cases for now -- remember that it only applies to `@Composable` functions, NOT to normal Kotlin helper/class/global functions, which you can write using normal `camelCase` and verb-based conventions as is usual in Java/C#/Kotlin.
+
+There are [more conventions](https://android.googlesource.com/platform/frameworks/support/+/androidx-main/compose/docs/compose-api-guidelines.md#naming-composable-functions-that-return-values) for different types of `@Composable` functions` -- we will review those conventions once we have learned more advanced Jetpack Compose concepts and techniques.
+
+### @Composable function parameters
+
+You may have noticed from the [codelabs](/5A6-F23/about/calendar#lectures--activities-1) we have done so far, as well as from the [sample projects](https://github.com/android/compose-samples/tree/main) we saw in project Milestone 1, that most `@Composable` functions follow some common parameter conventions: there is usually a `Modifier` parameter, and sometimes there is a lambda `content` parameter.
+
+There are, in fact, **two main types** of `@Composables`: **Elements** and **Layouts**. We will learn more about these in the next lecture [on layouts](/5A6-F23/lectures/programming/user-interfaces/02-layout). For now, we can see the main difference is defined by the parameters they take.
+
+#### @Composable Elements
+
+A `@Composable` function that emits exactly one Compose UI tree node (one Kotlin `Unit`) is called an *element*. Element functions have two main properties:
+
+- **Elements return Unit**: `@Composable` elements emit UI node by calling one or more Compose UI element functions inside their function body. They **do not** return a value -- that means, all behavior of the element is provided by parameters passed to the element function, allowing the `@Composable` to remain [idempotent](#key-properties-of-composables).
+- **Elements accept a Modifier parameter**: `@Composable` elements accept a parameter of type `Modifier`, used to make common modifications to the appearance/behavior of the element -- we will learn more about this parameter in the next lecture. This parameter is named `modifier` and appears as **the first optional parameter** in the element function's parameter list.
+
+<Tabs>
+  <TabItem label="Do">
+    
+    ```kotlin {3, 9-10} title="Kotlin"
+    /* normally I'll leave this import out, but you can see Modifier
+       is the default value provided in the highlighted line below. */
+    import androidx.compose.ui.Modifier 
+
+    @Composable
+    fun FancyButton(
+        text: String,
+        onClick: () -> Unit,
+        modifier: Modifier = Modifier // Modifier parameter named modifier
+    ) { /* ... */ } // No return type
+    ```
+
+  </TabItem>
+  <TabItem label="Don't">
+    
+    ```kotlin {4-5} title="Kotlin"
+    @Composable
+    fun FancyButton(
+        text: String,
+        modifier: Modifier // no default value provided, so not optional -- BAD
+    ): ButtonState { /* ... */ } // A return type! BAD
+
+    /* The "ButtonState" interface is arbitrary, it represents 
+       some behavior we might be interested in knowing about our button. */
+    interface ButtonState {
+        val clicks: Flow<ClickEvent>
+        val measuredSize: Size
+    }
+
+    ```
+
+  </TabItem>
+</Tabs>
+
+Remember, elements are **entities** in a Compose UI composition, the `Unit` they return represents the fact that they have been generated in the Composable User Interface. Returning a value is not necessary; any means of controlling the emitted element should be provided as a parameter to the element function, not returned by calling the element function. 
+
+#### @Composable Layouts
+
+You may have wondered: why are `@Composables` that may *call* multiple `@Composables` called elements? What is the difference then between *elements* and *layouts*? 
+
+Here is the answer: A Compose UI element that accepts one or more `@Composable` **function parameters** (i.e., lambdas) is called a *layout*. 
+
+You probably saw *tons* of these in your [milestone 1](/5A6-F23/project/milestone-1) work -- every `@Composable` with a `content` parameter was an example:
+
+<Tabs>
+  <TabItem label="Do">
+    
+
+  ```kotlin title="Kotlin"
+  @Composable
+  fun SimpleRow(
+      modifier: Modifier = Modifier,
+      content: @Composable () -> Unit
+  ) { /* ... */ }
+  ```
+
+  </TabItem>
+  <TabItem label="Don't">
+    
+
+  ```kotlin {3,10} title="Kotlin"
+  @Composable
+  fun SimpleRow(
+      content: @Composable () -> Unit, // the parameter should be last, to permit "last parameter call" syntax
+      modifier: Modifier = Modifier
+  ) { /* ... */ }
+
+  @Composable
+  fun SimpleRow(
+      modifier: Modifier = Modifier,
+      lambda: @Composable () -> Unit // the parameter should be called "content"
+  ) { /* ... */ }
+  ```
+
+  </TabItem>
+</Tabs>
+
+Layout functions use the name `content` for a `@Composable` function parameter if they accept only one `@Composable` function parameter.
+
+If they accept more than one `@Composable` function parameter, Layout functions use the name `content` for their *primary* -- or most common -- `@Composable` function parameter. 
+
+Finally, Layout functions place their primary or most common @Composable function parameter in the last parameter position to permit the use of Kotlin's [trailing lambda / "last parameter call" syntax](/5A6-F23/lectures/programming/03-functional-kotlin#last-parameter-call-syntax) for that parameter.
+
+### Summary 
+
+I'll make sure to include more conventions and explanations for those conventions as we learn more techniques in Jetpack Compose -- for now, these [naming](#composable-function-names) and [parameter](#composable-function-parameters) conventions should be a good start for reading the code of others and writing your own in a consistent way.
 
 ## Recomposition
 
-In an imperative UI model like the View model: to change a widget, you call a setter on the widget to change its internal state. 
+One last major concept to cover to understand the "basics"[^1] of Jetpack Compose is called **Recomposition**. Since all UI elements are "functions", how do we go about changing anything about them? 
 
-In Compose, you call the composable function again with new data. Doing so causes the function to be recomposed--the widgets emitted by the function are redrawn, if necessary, with new data. The Compose framework can intelligently recompose only the components that changed rather than changing or even "walking" the entire interface every time.
+[^1]: Don't worry if you feel this is all a bit complicated! There is a lot of background information to digest, but once we get it, things will come easier, and you'll feel the sense for *why* we learn all of these mechanics.
+
+In imperative UI models, to change a widget, you call a **setter** on the widget to change its internal state. 
+
+In Compose, you call the composable function again **with new data**. Doing so causes the function to be recomposed--the widgets emitted by the function are redrawn, if necessary, with new data. The Compose framework can intelligently recompose only the components that changed rather than changing or even "walking" the entire interface every time.
 
 For example, consider this composable function which displays a button:
 
@@ -198,6 +360,44 @@ A side-effect is any change of state that is global to the rest of your app. For
   - Writing to a property of a shared object (e.g. a `List` of messages that is used by more than one object)
   - Updating an [observable](https://developer.android.com/topic/libraries/data-binding/observability) in `ViewModel`
   - Updating [shared preferences](https://developer.android.com/training/data-storage#pref)
+
+<Tabs>
+  <TabItem label="Do">
+    
+    ```kotlin title="Kotlin"
+    @Composable
+    fun Checkbox(
+        isChecked: Boolean,
+        onToggle: () -> Unit
+    ) {
+    // ...
+
+    // Usage: (caller mutates optIn and owns the source of truth)
+    Checkbox(
+        myState.optIn,
+        onToggle = { myState.optIn = !myState.optIn }
+    )
+    ```
+
+  </TabItem>
+  <TabItem label="Don't">
+    
+    ```kotlin title="Kotlin"
+    @Composable
+    fun Checkbox(
+        initialValue: Boolean,
+        onChecked: (Boolean) -> Unit
+    ) {
+        var checkedState by remember { mutableStateOf(initialValue) }
+    // ...
+
+    // Usage: (Checkbox owns the checked state, caller notified of changes)
+    // Caller cannot easily implement a validation policy.
+    Checkbox(false, onToggled = { callerCheckedState = it })
+    ```
+
+  </TabItem>
+</Tabs>
 
 Because Compose skips recomposition for functions that have not had their parameters changed, **functions that depend on side-effects will not be recomposed, which will cause bugs/errors** in the form of strange and unpredictable behavior in your app interface. 
 
