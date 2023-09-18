@@ -268,3 +268,281 @@ In the code above, notice different modifier functions used together.
   - `fillMaxWidth` makes the composable fill the maximum width given to it from its parent.
 
 It's a best practice to have all of your `@Composables` accept a `modifier` parameter, and **pass that modifier to its first child that emits UI**. Doing so makes your code more reusable and makes its behavior more predictable and intuitive. For more information, see the Compose API guidelines, [Elements accept and respect a Modifier parameter](https://android.googlesource.com/platform/frameworks/support/+/androidx-main/compose/docs/compose-api-guidelines.md#elements-accept-and-respect-a-modifier-parameter).
+
+### Order of modifiers matters
+
+The order of modifier functions in a chain of calls is significant. Since each function makes changes to the `Modifier` returned by the previous function, **the sequence order affects the final result**. Let's see an example of this:
+
+<Tabs>
+  <TabItem label="Kotlin">
+
+  ```kotlin
+  @Composable
+  fun ArtistCard(/*...*/) {
+      val padding = 16.dp
+      Column(
+          Modifier
+              .clickable(onClick = onClick)
+              .padding(padding)
+              .fillMaxWidth()
+      ) {
+          // rest of the implementation
+      }
+  }
+  ```
+
+  </TabItem>
+  <TabItem label="Result">
+
+  ![A clickable, padded, max-width artist card (in that order). The padded area is clickable.](./img/layout-padding-clickable.gif)
+
+  </TabItem>
+</Tabs>
+
+In the code above the whole area is clickable, including the surrounding padding, because the `padding` modifier has been applied *after* the `clickable` modifier. If the modifiers order is reversed, the space added by padding does not react to user input:
+
+<Tabs>
+  <TabItem label="Kotlin">
+
+  ```kotlin {6-7}
+  @Composable
+  fun ArtistCard(/*...*/) {
+      val padding = 16.dp
+      Column(
+          Modifier
+              .padding(padding)
+              .clickable(onClick = onClick)
+              .fillMaxWidth()
+      ) {
+          // rest of the implementation
+      }
+  }
+  ```
+
+  </TabItem>
+  <TabItem label="Result">
+
+  ![A padded, clickable, max-width artist card (in that order). The padded area is not clickable.](./img/layout-padding-not-clickable.gif)
+
+  </TabItem>
+</Tabs>
+
+:::tip[Note]
+The explicit order helps developers reason about how different modifiers will interact. The modifier design makes differing behavior "outside" and "inside" an element explicit and predictable. It also explains why there is not a `margin` modifier but only a `padding` one.
+:::
+
+## Built-in modifiers
+
+Jetpack Compose provides a list of built-in modifiers to help you decorate or augment a composable. Here are some common modifiers you'll use to adjust your layouts.
+
+### padding & size
+
+By default, layouts provided in Compose wrap their children. However, you can set a size by using the size modifier:
+
+```kotlin title="Kotlin"
+@Composable
+fun ArtistCard(/*...*/) {
+    Row(
+        modifier = Modifier.size(width = 400.dp, height = 100.dp)
+    ) {
+        Image(/*...*/)
+        Column { /*...*/ }
+    }
+}
+```
+
+Note that the size you specified might not be respected if it does not satisfy the constraints coming from the layout's parent (see [the layout model](#the-layout-model). If you require the composable size to be fixed regardless of the incoming constraints, use the `requiredSize` modifier:
+
+```kotlin {8} title="Kotlin"
+@Composable
+fun ArtistCard(/*...*/) {
+    Row(
+        modifier = Modifier.size(width = 400.dp, height = 100.dp)
+    ) {
+        Image(
+            /*...*/
+            modifier = Modifier.requiredSize(150.dp)
+        )
+        Column { /*...*/ }
+    }
+}
+```
+
+In this example, even with the parent `height` set to `100.dp`, the `height` of the `Image` will be `150.dp`, as the `requiredSize` modifier takes precedence.
+
+:::tip[Note]
+When a child element does not respect the size constraints set by its parent, the layout system will hide this from the parent. The parent will see the child's `width` and `height` values as if they were coerced in the constraints provided by the parent. The layout system will then center the child within the space allocated by the parent under the assumption that the child respected the constraints. Developers can override this centering behaviour by applying `wrapContentSize` modifiers to the child.
+:::
+
+If you want a child layout to fill all the available height allowed by the parent, add the `fillMaxHeight` modifier (Compose also provides `fillMaxSize` and `fillMaxWidth`):
+
+```kotlin {8} title="Kotlin"
+@Composable
+fun ArtistCard(/*...*/) {
+    Row(
+        modifier = Modifier.size(width = 400.dp, height = 100.dp)
+    ) {
+        Image(
+            /*...*/
+            modifier = Modifier.fillMaxHeight()
+        )
+        Column { /*...*/ }
+    }
+}
+```
+
+To add padding all around an element, set a `padding` modifier.
+
+If you want to add padding above a text baseline such that you achieve a specific distance from the top of the layout to the baseline, use the `paddingFromBaseline` modifier:
+
+```kotlin {7} title="Kotlin"
+@Composable
+fun ArtistCard(artist: Artist) {
+    Row(/*...*/) {
+        Column {
+            Text(
+                text = artist.name,
+                modifier = Modifier.paddingFromBaseline(top = 50.dp)
+            )
+            Text(artist.lastSeenOnline)
+        }
+    }
+}
+```
+
+### Offset
+
+To position a layout *relative* to its original position, add the `offset` modifier and set the offset in the x and y axis. Offsets can be positive as well as non-positive. The difference between `padding` and `offset` is that adding an `offset` to a composable does not change its measurements:
+
+```kotlin {8} title="Kotlin"
+@Composable
+fun ArtistCard(artist: Artist) {
+    Row(/*...*/) {
+        Column {
+            Text(artist.name)
+            Text(
+                text = artist.lastSeenOnline,
+                modifier = Modifier.offset(x = 4.dp)
+            )
+        }
+    }
+}
+```
+
+The `offset` modifier is applied horizontally according to the layout direction -- by default, shifting an element to the right; but shifting an element to the left in a [right-to-left]() context (see link for more detail). 
+
+## Scope safety in Compose
+
+In Compose, there are modifiers that can only be used when applied to children of certain composables. Compose enforces this by means of custom scopes.
+
+For example, if you want to make a child as big as the parent `Box` without affecting the `Box` size, use the [`matchParentSize`](https://developer.android.com/reference/kotlin/androidx/compose/foundation/layout/BoxScope#(androidx.compose.ui.Modifier).matchParentSize()) modifier. `matchParentSize` is only available in [`BoxScope`](https://developer.android.com/reference/kotlin/androidx/compose/foundation/layout/BoxScope). Therefore, it can only be used on a child within a `Box` parent.
+
+### `matchParentSize` in `Box`
+
+As mentioned above, if you want a child layout to be the same size as a parent `Box` without affecting the `Box` size, use the `matchParentSize` modifier.
+
+Note that `matchParentSize` is only available within a `Box` scope, meaning that it only applies to direct children of `Box` composables.
+
+In the example below, the child `Spacer` takes its size from its parent `Box`, which in turn takes its size from the biggest children, `ArtistCard` in this case.
+
+<Tabs>
+  <TabItem label="Kotlin">
+
+  ```kotlin {5}
+  fun MatchParentSizeComposable() {
+      Box {
+          Spacer(
+              Modifier
+                  .matchParentSize() // .fillMaxSize()
+                  .background(Color.LightGray)
+          )
+          ArtistCard()
+      }
+  }
+  ```
+
+  </TabItem>
+  <TabItem label="matchParentSize">
+
+  ![Gray background filling its container](./img/layout-matchparentsize-new.png)
+
+  </TabItem>
+  <TabItem label="fillMaxSize">
+
+  ![Gray background filling the screen](./img/layout-fillmaxsize.png)
+
+  </TabItem>
+</Tabs>
+
+
+### `weight` in `Row` and `Column`
+
+As you have seen in the previous section, by default, a composable size is defined by the content it is wrapping (i.e. by the size of its children). You can set a composable size to be flexible within its parent using the `weight` Modifier that is only available in `RowScope` and `ColumnScope`.
+
+Let’s take a `Row` that contains two `Box` composables. The first box is given twice the `weight` of the second, so it's given twice the width. Since the `Row` is 210.dp wide, the first `Box` is `140.dp` wide, and the second is `70.dp`:
+
+<Tabs>
+  <TabItem label="Kotlin">
+
+  ```kotlin {8, 11}
+  @Composable
+  fun ArtistCard(/*...*/) {
+    Row(
+      modifier = Modifier.fillMaxWidth()
+    ) {
+        Image(
+            /*...*/
+            modifier = Modifier.weight(2f)
+        )
+        Column(
+            modifier = Modifier.weight(1f)
+        ) {
+            /*...*/
+        }
+    }
+  }
+  ```
+
+  </TabItem>
+  <TabItem label="Result">
+
+  ![The image width is twice the text width](./img/layout-weight.png)
+
+  </TabItem>
+</Tabs>
+
+:::tip[Note]
+The `weight` property is pretty similar to the [`flex`](https://developer.mozilla.org/en-US/docs/Web/CSS/flex) property in CSS Flexbox (that is -- you can set the proportion a child element takes of a parent flexbox's space using this property).
+:::
+
+## Reusing modifiers
+
+Multiple modifiers can be chained together to decorate or augment a composable. This chain is created via the [`Modifier`](https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier) interface which represents an ordered, immutable list of single [`Modifier.Elements`](https://developer.android.com/reference/kotlin/androidx/compose/ui/Modifier.Element)
+
+Create your own Modifier chains and extract them to reuse them on multiple composable components. It is completely fine to just save a modifier, as they are data-like objects:
+
+```kotlin title="Kotlin"
+val reusableModifier = Modifier
+    .fillMaxWidth()
+    .background(Color.Red)
+    .padding(12.dp)
+```
+
+Each `Modifier.Element` represents an individual behavior, like layout, drawing and graphics behaviors, all gesture-related, focus and semantics behaviors, as well as device input events. Their ordering matters: modifier elements that are added first will be applied first.
+
+Sometimes it can be beneficial to reuse the same modifier chain instances in multiple composables, by extracting them into variables and hoisting them into higher scopes. It can improve code readability or help improve your app's performance for a few reasons:
+
+  - The re-allocation of the modifiers won’t be repeated when recomposition occurs for composables that use them
+  - Modifier chains could potentially be very long and complex, so reusing the same instance of a chain can alleviate the workload Compose runtime needs to do when comparing them
+  - This extraction promotes code cleanliness, consistency and maintainability across the codebase
+
+You can see a complete set of [best practises](https://developer.android.com/jetpack/compose/modifiers#best_practices_for_reusing_modifiers) for reusing modifiers by following the link.
+
+## Additional resources
+
+- A [full list of all modifiers](https://developer.android.com/jetpack/compose/modifiers-list)
+- How to [define custom modifiers](https://developer.android.com/jetpack/compose/layouts/custom#layout-modifier)
+
+## Exercises 
+
+- [Basic layouts in Compose codelab](https://developer.android.com/codelabs/jetpack-compose-layouts#0) (see [Course Calendar](/5A6-F23/about/calendar))
