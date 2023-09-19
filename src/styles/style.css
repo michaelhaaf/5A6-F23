@@ -69,6 +69,14 @@ a[aria-current]:focus {
   color: var(--sl-color-white);
 }
 
+:root[data-theme="light"] .ec-theme-rose-pine-moon {
+  display: none; 
+}
+
+:root[data-theme="dark"] .ec-theme-rose-pine-dawn {
+  display: none; 
+}
+
 /* heading-link */
 
 h1 .heading-link,

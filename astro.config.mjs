@@ -7,7 +7,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 import expressiveCode from "astro-expressive-code";
 const expressiveCodeOpts = {
-  theme: ["rose-pine-moon"],
+  theme: ["rose-pine-moon", "rose-pine-dawn"],
 }
 
 
