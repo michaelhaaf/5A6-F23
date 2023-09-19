@@ -1,6 +1,9 @@
 ---
-title: "Milestone 2: Proposing a project and setting up a shared dev environment"
+title: "Milestone 2: Project Proposal and Dev Environment"
 description: "We will begin the semester project by familiarizing ourselves with how Kotlin applications are built and deployed for Android applications. In this milestone, you will build on GitHub skills learned last semester to automatically build and version a basic Android application."
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 4
 sidebar:
   hidden: true
 ---
@@ -8,10 +11,11 @@ sidebar:
 <div class="first-col-header">
 | | |
 | --- | --- |
-| Worth: | 10% |
-| Due: | Oct 20 |
+| Worth: | 15% |
+| Due: | Sprint 1 (7.5%): **Oct 6** | 
+| | Sprint 2 (7.5%): **Oct 20** |
 | Hand-in: | A link to your group GitHub repository handed in on Moodle, as well as slides for your presentation. See [Requirements](#requirements) for more information. |
-| Notes: | Late submissions will not be accepted -- the presentation deadline is firm | 
+| Notes: | Late submissions will not be accepted for either part of this milestone | 
 </div>
 
 The course project will see your groups collectively scope, define, implement, and deliver a complete Android application over the course of the semester. In this milestone, you will set up a group repository and draft a technical proposal for your Android project.
@@ -20,75 +24,52 @@ The course project will see your groups collectively scope, define, implement, a
 
 ## Goals
 
-The goal of this milestone isn't to plan your a perfect project proposal, but rather to set up your teams on the best footing possible for adapting to changing requirements and making continuous progress throughout the semester.
+The goal of this milestone isn't to craft a perfect plan that fortells exactly what your app will become from the outset. Rather, this milestone is about setting your team on the **best footing possible** for **accomodating changing requirements** and **collaborating on a polished final project** as you create your application and make continuous progress throughout the semester.
 
 By the end of this milestone, you will have done the following:
 
-  - Determine what to build (requirements analysis).
-  - Determine what features to implement and how they interact (design).
-  - Implement a skeleton CI/CD procedure
-  - Apply sane repository management practises so that your project can maintain throughout the semester:
-    - clean main branch
-    - numbered versions with each release
-    - each release proven to build run and compile into a usable android project
+  - Apply repository management practises to maintain your project throughout the semester:
+    - branch management for features/developers/testing branches; enforced pull requests to main branch with clean linear history (continuous integration)
+    - numbered versions with each push to main, i.e. release (semantic versioning)
+    - each release proven to build, run, and compile (continuous depoyment)
+  - Propose and scope your project:
+    - Determine what your project is (requirements analysis).
+    - Determine what features to implement, publish a road map for implement them, and plan for contingencies and how they interact (roadmap, risk analysis).
 
 ## Requirements
 
-This milestone kicks off your project by having you complete the following tasks:
+This milestone kicks off your project by having you complete two discrete tasks:
 
-  - Create a group repository to track contributions, store documentation, and marshall required project infrastructure for automated CI/CD throughout the semester
-  - Create a project README that documents the major goals of the project, the technical roadmap for attaining those goals, and associated risk analysis/mitigation strategies.
-  - Implement an initial landing page for your application to prove that your repository infrastructure works, released as version `0.1`
+  - **(Due Oct 6)** Create a group repository to track contributions, store documentation, and marshall required project infrastructure for automated CI/CD throughout the semester
+  - **(Due Oct 20)** Prepare a proposal presentation explaining the major goals of the project, the technical roadmap for attaining those goals, and associated risk analysis/mitigation strategies.
 
-### Repository
+### (Oct 6) Repository, CI/CD
 
 This milestone starts things off by having you set up an automated development environment on GitHub -- we will build on this repository as the semester progresses with more sophisticated features.
 
 The basic development environment requirements for Milestone 2 build on skills you learned last semester: 
 
 - Create a repository shared amongst your teammembers 
-- Write a GitHub actions `.yml` file to automate CI/CD of your source code
-- Maintain a clean repository history with your teammembers
+- Enforce and maintain a clean repository history with your teammembers
+- Write a GitHub actions `.yml` file to automate compiling and building your project source code
+- Implement an initial landing page for your application to prove that your repository infrastructure works, released as version `0.1`
 
 You can find more details about each of these requirements below.
 
-#### GitHub repository management
+#### Repository & README
 
 - Give the project a meaningful name
 - Make the repository **private**. You will add yourself your team members and myself (michaelhaaf) to this project later.
 - Initialize with a README.md file, and see below for suggestions on formatting and contents.
-- [Choose a license](https://choosealicense.com/)
+- [Choose a license](https://choosealicense.com/). See [lecture notes on software licensing TODO]() for more details.
 
-Once the repository is created:
-
-- Create a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for the default `main` branch. Read through the document linked and make sure you udnerstand all of the options listed.
-  - Ensure that "Require status checks to pass before merging" is enabled.
-  - Ensure that "Require pull request reviews before merging" is enabled. 
-
-These steps will allow all group members to freely develop on their own branches, test deployments on their own branches, and then REQUIRE that merges to the main branch are reviewed by team members and pass the CI/CD pipeline steps.
-
-Your commits in general should be **atomic**, that is:
-
-> An **atomic commit** is a commit that includes changes related to only one feature or task of your program. There are two main reasons for doing this: first, if something you change turns out to cause some problems, it is easy to revert the specific change without losing other changes; and second, it enables you to write better commit messages. ([The Odin Project](https://www.theodinproject.com/lessons/foundations-git-basics))
-
-#### CI/CD
-
-- [Android CI-CD using Github Actions](https://blog.logrocket.com/android-ci-cd-using-github-actions/)
-- [Securely create android release using Github Actions](https://proandroiddev.com/create-android-release-using-github-actions-c052006f6b0b)
-- [Github Actions and Gradle](https://docs.gradle.org/current/userguide/github-actions.html)
-
-### README
-
-You should have a markdown file in the root of your source code repository named `README.md`. This will serve as a landing-page for your project (i.e. its the first thing that users will see when visiting your project page). It should contain the following sections.
+Your README should adhere to the following template:
 
 ```markdown title="README.md"
 # PROJECT NAME
 
 ## Goal
 A brief description of your product. What is it? What does it do?
-
-## Team members
-List each person's name and email address.
 
 ## Quick-start
 How to install and launch your application. 
@@ -99,52 +80,173 @@ Optional, but often helpful to have a screenshot or demo-video for new users.
 ## Releases
 Each push to your main branch should produce a software release that is built and compiled. The README should list of releases, including links to release notes. For this milestone, your versioning should be in the form 0.X, like so
 
-version 0.1: released [Oct 20th, 2023]
-	* release-notes (txt or md)
+version 0.1: released Oct 6th, 2023
+	* [link to release-notes (txt or md)]
 	
-version 0.2: released [subsequently]
-	* release-notes (txt or md)
+version 0.2: released Oct 20th, 2023
+	* [link to release-notes (txt or md)]
 
-...
-
-version 1.0: final project milestone
+(future releases will be documented here!)
 
 ## Roadmap
 Issue tracking: each issue represents a requirement that you wish to implement or a task/issue that needs to be resolved. You should document your progress in the issue, and close it when the work is complete.
 
-
+## Team members
+List each person's name and email address.
 ```
+
+#### Enforce branch management
+
+Once the repository is created:
+
+- Create a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for the default `main` branch. Read through the document linked and make sure you understand all of the options listed.
+  - Ensure that "Require status checks to pass before merging" is enabled.
+  - Ensure that "Require pull request reviews before merging" is enabled. 
+
+These steps will allow all group members to freely develop on their own branches, test deployments on their own branches, and then REQUIRE that merges to the main branch are reviewed by team members and pass the CI/CD pipeline steps.
+
+Your commits in general (even on development branches) should be **atomic**, that is:
+
+> An **atomic commit** is a commit that includes changes related to only one feature or task of your program. There are two main reasons for doing this: first, if something you change turns out to cause some problems, it is easy to revert the specific change without losing other changes; and second, it enables you to write better commit messages. ([The Odin Project](https://www.theodinproject.com/lessons/foundations-git-basics))
+
+One of the largest contributers to non-atomic commits is distinguishing between **content** and **style** changes. You should adhere to the following rules:
+  - Commits that change code style DO NOT change code behavior
+  - Commits that change code behavior DO NOT change code style
+  - Commits that refactor code DO NOT change code behavior
+
+Adhering to these requirements will force you to practise good habits in choosing the changes you include in each commit carefully and practising `git` techniques for amending/resetting/cleaning locals commits before pushing to a shared repository. These are *incredibly* important skills in both industry and open-source development -- your pull requests will not be accepted until you learn how to do them!
+
+Your grade for this section will be determined based on the following criteria:
+- commit message and content quality
+- branches used appropriately
+- all pull requests to main are reviewed by team members, pass basic build tests, and use automatic versioning
+- development branches
+
+#### GitHub actions
+
+As mentioned in the previous section, the expectation for this project is that your **main** branch maintains a linear history while contributions are made by all project members, and that **each commit in the main branch is a valid release of your project that can be built and compiled**, allowing your project to support rollbacks and version pinning.
+
+You might wonder -- with such strict requirements about your main branch and CI/CD, what happens if you accidentally push code to main that does not build?
+
+The answer: **DON'T DO IT**. As shown in the [instructions above (not written yet)](), you should **stage** your source code changes so that your commits are tested on the CI/CD pipeline as an essential part of your pull request procedure.
+
+You will find the following resources helpful in this task:
+
+- [Android CI-CD using Github Actions](https://blog.logrocket.com/android-ci-cd-using-github-actions/)
+- [Securely create android release using Github Actions](https://proandroiddev.com/create-android-release-using-github-actions-c052006f6b0b)
+- [Github Actions and Gradle](https://docs.gradle.org/current/userguide/github-actions.html)
+
+Your grade for this section will be determined based on the following criteria:
+- working github workflow
+- appropriate JDK, SDK, Gradle, and other configurations for building Jetpack Compose applications
+- incorporating GitHub actions in both review (push to staging branch for testing/review) and release (push to main branch)
+
+#### Initial implementation and release
+
+This part of the milestone should be the easiest -- you are welcome (in fact, encouraged) to adapt code from [Assignment 2][a2] work for your initial landing page.
+
+The requirements for this follow:
+
+- Your code passes the Grade Build defined in your GitHub Actions (you should NOT accept a pull request that fails this build!)
+- One different "screens" per developer on the project (2 or 3). The requirements for these are loose, but should be something you actually anticipate being a part of your project; some suggestions:
+  - a landing page
+  - a help page
+  - a contact page
+  - etc.
+
+### (Oct 20) Project Design & Risk Analysis
+
+#### Design Proposal
+
+For this part of the milestone, you will **prepare a presentation for the rest of class** introducing your application idea and your plan for implementing it over the course of the semester. 
+
+Your presentation should be shareable as a **PDF** and should cover the following topics in less than ~15 minutes:
+
+**Part A:** Determine and document the requirements for the business logic of your web application for the group project.
+  - **Introduction and Motivation:** Give the motivations for your project -- what inspired it and what you hope to achieve. This should be in-line with the [README](#) you created in the previous part of the milestone.
+    - e.g., what kind of problem are you trying to solve, what kind of capability to you want to provide the user, what kind of experience do you want to give the user.
+  - **Business Logic Requirements:** identify your data needs, user interface requirements, key required operations and any data dependencies. Highlight any validity constraints on data, user interface, and operations. Describe any "rules" that will apply:
+    - e.g., all entries must have a name and title, but optionally an image
+    - e.g., all users must have a profile indicating their name, age and seating preference
+    - e.g., all spells must have a type, title and area of effect, but may belong to multiple schools
+    - e.g. all artist names must be unique; no two items may be placed in the same location
+    - etc.
+
+Note: This is not a set of "features". This is a description of your **acceptance critera**, that is, what your application needs to be able to do in order to be considered a success.
+
+**Part B:** Design and document a coherent, consistent application that will meet those business logic requirements as well as the technical, functional and soft requirements of the project.
+  - **Interface Design:** Describe the inspiration for your interface design. Provide detailed mock-ups of the interface, sufficient to identify the aesthetics and key functionality. This section should clearly inform front-end development.
+    - A mock-up should be given for each key feature.
+    - Mockups may be created with computer software or hand-drawn.
+  - **Application Features:** Describe the features of the application. A feature should be discussed in terms of the UI elements, user actions, the
+back-end functionality and the requirement(s) it is in service of. A feature should be indicated as a "Must-Have" or as a "Nice-to-Have".
+  - **Coding Techniques/technologies:** The core coding techniques and technologies that will be used should be documented. Document these even if they are largely in line with what we have done in class. If you are planning to use methods not covered in class, document them in
+sufficient detail to inform development. Take a look at the [sample compose apps](https://github.com/android/compose-samples/tree/main) we saw in Milestone 1 for inspiration.
+
+The goal of this design section is to be as comprehensive as possible in specifying what you will implement and how. But, you are allowed to adapt things as appropriate as development proceeds. E.g., a technique turns out to be too hard, a 3rd party tool doesn't meet the need the way you thought it would, you identify a new technique that could add some interesting functionality, etc.
+
+**Part C:** Create a development plan for successfully completing the project. The plan must include a **timeline**, a **tasking plan** and a **coordination plan**
+
+  - **Timeline:** Indicate the key milestones of the project. You will find the [course calendar][calendar] useful. Some key milestones to include in your timeline are:
+    - [Milestone 3][m3]: Nov 17
+    - [Milestone 4][m4]: Dec 7
+    - Take into account Assignment deadlines from the calendar as well. Note: assignments 2-4 are designed to be complementary with project work -- you will be honing skills that you can re-use/adapt for your project naturally throughout the semester.
+    - Most classes in late October and throughout November will be available for lab time, as we will have covered most course concepts.
+    - Take into account the [Academic Calendar](https://johnabbott.qc.ca/wp-content/uploads/2023/05/DAY_Academic-Calendar_2023-2024_Final_March_2023.pdf) in your planning.
+
+  - **Tasking plan:** Indicate, as much as possible, all the tasks involved in the project and who those tasks are assigned to. You should break tasks up into subtasks as appropriate.
+    - Each task should be detailed with a short prose description at least one sentence long. More complex tasks should be given m ore detailed descriptions.
+    - As much as possible, indicate any dependencies between tasks,
+    - All tasks should be assigned their own anticipated deadline. This is not a hard deadline, but should reflect dependencies and should guide your team's priorities. For instance, "nice-to-Haves" should generally not be given priority over "must-haves".
+
+  - **Coordination plan:** Indicate how your team will work together on this project, including coding coordination (e.g., git), document coordination (e.g., git, google
+doc, sharepoint, etc) and communication coordination (e.g., discord, in-person meetings, etc.). 
+    - The coordination plan should include a schedule of planned meetings or shared coding sessions for ensuring the team stays on track. 
+    - Note: If the coordination plan does not feel like it will work for you (e.g., teammates want to work on the weekend but you have a part-time job), then this is the time to be up-front and tell them what you can commit to and what you can't (e.g., willing to stay after class twice a week to meet since you can't make weekends).
+
+#### Risk assessment
 
 #### Roadmap
 
-The Roadmap section of your documentation should answer the following questions:
+The final part of this milestone is to convert the goals, requirements, and risk analysis you've performed in the previous sections into a [GitHub Roadmap](). 
 
-  - What is the goal of the project?
-  - Can you break down the large goal into smaller requirements?
-  - How will you delegate these tasks?
-  - What risks have you identified in your requirements? Do you have strategies to mitigate those risks?
+Roadmaps are common features in open-source projects for keeping-in-the-loop your community of developers, contributers, and users of your software. You can see some excellent example roadmaps (some are not Android applications) [here (TO-DO)].
 
-See the links below for setting up a roadmap in a GitHub project:
+To adapt your proposal to a GitHub roadmap, see the links below for documentation and tutorials:
 
 - [Roadmap layout in Github](https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/customizing-the-roadmap-layout)
 - [Project planning in Github (back when it was a beta)](https://github.blog/2022-02-11-getting-started-with-project-planning-on-github/)
 - [Another blog about roadmap for open source projects in Github](https://pavlenex.com/a-quick-guide-to-creating-a-roadmap-for-an-open-source-project-in-github)
 
+## Summary
+
+This may seem like a lot of work! In fact, we are covering quite a bit of ground but the actual effort required for each component of this milestone should be light (and you can delegate these tasks amongst your group members).
+
+The big picture is: As the project continues beyond this milestone, you will have:
+  - a plan for what features you are going to implement
+  - defined acceptance requirements for considering those features completed
+  - a structure to accomodate changes to those requirements and to budget time/risk associated with those changes
+  - **automated** communication of feature implementations among your contributers developers and those who can view the repository
+  - **automated** versioning and releases associated with each feature implementation
+  - **automated** history tracking so that all contributers can clearly understand the course of the development of the software, and rollback changes as required.
+
+These efforts will make the final efforts of releasing a testable beta application [Milestone 3][m4] and a polished final release [Milestone 4][m4] that much easier and lighten you load in the later semester, allowing you to focus on code and making cool things without hassling about infrastructure, plans, and communication.
 
 ## Marking Scheme
 
-- 30%: Proposal
-- 30%: GitHub Actions 
-- 30%: Roadmap
-- 10%: GitHub repository best practises (commit messages, branch management)
+**Repository and CI/CD**
+- 30%: README 
+- 30%: GitHub Actions
+- 30%: Branch management
+- 10%: Initial implementation
+
+**Project Design & Risk Analysis**
+- 30%: Proposal 
+- 30%: Risk assessment
+- 30%: Presentation
+- 10%: GitHub Roadmap
 
 ## Tips and Resources
-
-### Testing your Deployments
-
-You might wonder -- with such strict requirements about your main branch and CI/CD, what happens if you accidentally push code to main that does not build?
-
-The answer: **DON'T DO IT**. As shown in the [instructions above (not written yet)](), you should **stage** your source code changes so that your commits are tested on the CI/CD pipeline as an essential part of your pull request procedure.
 
 ### Reference
 
@@ -153,4 +255,12 @@ The answer: **DON'T DO IT**. As shown in the [instructions above (not written ye
 - [git documentation](https://git-scm.com/docs)
 
 
-
+[a1]: /5A6-F23/assignments/assignment-1
+[a2]: /5A6-F23/assignments/assignment-2
+[a3]: /5A6-F23/assignments/assignment-3
+[a4]: /5A6-F23/assignments/assignment-4
+[m1]: /5A6-F23/project/milestone-1
+[m2]: /5A6-F23/project/milestone-2
+[m3]: /5A6-F23/project/milestone-3
+[m4]: /5A6-F23/project/milestone-4
+[calendar]: /5A6-F23/about/calendar
