@@ -1,78 +1,156 @@
 ---
-title: "Milestone 2: Setting up the Android development environment"
+title: "Milestone 2: Proposing a project and setting up a shared dev environment"
 description: "We will begin the semester project by familiarizing ourselves with how Kotlin applications are built and deployed for Android applications. In this milestone, you will build on GitHub skills learned last semester to automatically build and version a basic Android application."
 sidebar:
-  hidden: true
+  hidden: false
 ---
 
 <div class="first-col-header">
 | | |
 | --- | --- |
-| Worth: | 5% |
-| Due: | Some time in September |
-| Hand-in: | A link to your group GitHub repository handed in on Moodle. See [Requirements](#requirements) for more information. |
-| Notes: | [Course late penalty](/about/syllabus) applies. |
+| Worth: | 10% |
+| Due: | Oct 20 |
+| Hand-in: | A link to your group GitHub repository handed in on Moodle, as well as slides for your presentation. See [Requirements](#requirements) for more information. |
+| Notes: | Late submissions will not be accepted -- the presentation deadline is firm | 
 </div>
 
-This milestone (and all following milestones) will be a group project, completed in teams of 2-3.
+The course project will see your groups collectively scope, define, implement, and deliver a complete Android application over the course of the semester. In this milestone, you will set up a group repository and draft a technical proposal for your Android project.
+
+*Major portions of this assignment were adapted from [CS 346](https://student.cs.uwaterloo.ca/~cs346/1231/index.html), a similar course at UWaterloo.* 
 
 ## Goals
 
-- Review basic mechanics of application deployment using GitHub
-- Understand how Kotlin projects are built into applications using Gradle
-- Understand the Android development stack
+The goal of this milestone isn't to plan your a perfect project proposal, but rather to set up your teams on the best footing possible for adapting to changing requirements and making continuous progress throughout the semester.
+
+By the end of this milestone, you will have done the following:
+
+  - Determine what to build (requirements analysis).
+  - Determine what features to implement and how they interact (design).
+  - Implement a skeleton CI/CD procedure
+  - Apply sane repository management practises so that your project can maintain throughout the semester:
+    - clean main branch
+    - numbered versions with each release
+    - each release proven to build run and compile into a usable android project
 
 ## Requirements
 
-The course project will see your groups create a complete Android application over the course of the semester. 
+This milestone kicks off your project by having you complete the following tasks:
+
+  - Create a group repository to track contributions, store documentation, and marshall required project infrastructure for automated CI/CD throughout the semester
+  - Create a project README that documents the major goals of the project, the technical roadmap for attaining those goals, and associated risk analysis/mitigation strategies.
+  - Implement an initial landing page for your application to prove that your repository infrastructure works, released as version `0.1`
+
+### Repository
 
 This milestone starts things off by having you set up an automated development environment on GitHub -- we will build on this repository as the semester progresses with more sophisticated features.
 
-The basic requirements for Milestone 1 build on skills you learned last semester: 
+The basic development environment requirements for Milestone 2 build on skills you learned last semester: 
 
-- create a repository shared amongst your teammembers 
-- write a GitHub actions `.yml` file to automate building your source code
-- maintain the a clean repository history with appropriate usage of [branch protection](), [pull requests](), [commit messages](), and the [merge](), [rebase](), and [squash]() commands
-- document the usage of your project using a repository README
+- Create a repository shared amongst your teammembers 
+- Write a GitHub actions `.yml` file to automate CI/CD of your source code
+- Maintain a clean repository history with your teammembers
 
-You will also be expected to:
+You can find more details about each of these requirements below.
 
-- 
-- make use of Gradle in your GitHub action workflow to build your Kotlin project
-- manage dependencies (JDK version)
+#### GitHub repository management
 
-Each of these requirements is explained in more detail in the subsections below.
+- Give the project a meaningful name
+- Make the repository **private**. You will add yourself your team members and myself (michaelhaaf) to this project later.
+- Initialize with a README.md file, and see below for suggestions on formatting and contents.
+- [Choose a license](https://choosealicense.com/)
 
-### Code
+Once the repository is created:
 
-Requirement TBD
+- Create a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for the default `main` branch. Read through the document linked and make sure you udnerstand all of the options listed.
+  - Ensure that "Require status checks to pass before merging" is enabled.
+  - Ensure that "Require pull request reviews before merging" is enabled. 
 
-### git best practices
+These steps will allow all group members to freely develop on their own branches, test deployments on their own branches, and then REQUIRE that merges to the main branch are reviewed by team members and pass the CI/CD pipeline steps.
 
-> An **atomic commit** is a commit that includes changes related to only one feature or task of your program. There are two main reasons for doing this: first, if something you change turns out to cause some problems, it is easy to revert the specific change without losing other changes; and second, it enables you to write better commit messages. 
->
-> [The Odin Project](https://www.theodinproject.com/lessons/foundations-git-basics)
+Your commits in general should be **atomic**, that is:
+
+> An **atomic commit** is a commit that includes changes related to only one feature or task of your program. There are two main reasons for doing this: first, if something you change turns out to cause some problems, it is easy to revert the specific change without losing other changes; and second, it enables you to write better commit messages. ([The Odin Project](https://www.theodinproject.com/lessons/foundations-git-basics))
+
+#### CI/CD
+
+- [Android CI-CD using Github Actions](https://blog.logrocket.com/android-ci-cd-using-github-actions/)
+- [Securely create android release using Github Actions](https://proandroiddev.com/create-android-release-using-github-actions-c052006f6b0b)
+- [Github Actions and Gradle](https://docs.gradle.org/current/userguide/github-actions.html)
 
 ### README
 
-- Group name and members
-- 
+You should have a markdown file in the root of your source code repository named `README.md`. This will serve as a landing-page for your project (i.e. its the first thing that users will see when visiting your project page). It should contain the following sections.
 
-### Create shared repository
+```markdown title="README.md"
+# PROJECT NAME
 
-### Automated build using GitHub action 
+## Goal
+A brief description of your product. What is it? What does it do?
 
-- `.github/workflow` yaml: just a build step for now, we will make it more sohpisticated thruought semester
-`
-- https://docs.gradle.org/current/userguide/github-actions.html
+## Team members
+List each person's name and email address.
+
+## Quick-start
+How to install and launch your application. 
+
+## Screenshots/videos
+Optional, but often helpful to have a screenshot or demo-video for new users.
+
+## Releases
+Each push to your main branch should produce a software release that is built and compiled. The README should list of releases, including links to release notes. For this milestone, your versioning should be in the form 0.X, like so
+
+version 0.1: released [Oct 20th, 2023]
+	* release-notes (txt or md)
+	
+version 0.2: released [subsequently]
+	* release-notes (txt or md)
+
+...
+
+version 1.0: final project milestone
+
+## Roadmap
+Issue tracking: each issue represents a requirement that you wish to implement or a task/issue that needs to be resolved. You should document your progress in the issue, and close it when the work is complete.
+
+
+```
+
+#### Roadmap
+
+The Roadmap section of your documentation should answer the following questions:
+
+  - What is the goal of the project?
+  - Can you break down the large goal into smaller requirements?
+  - How will you delegate these tasks?
+  - What risks have you identified in your requirements? Do you have strategies to mitigate those risks?
+
+See the links below for setting up a roadmap in a GitHub project:
+
+- [Roadmap layout in Github](https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/customizing-the-roadmap-layout)
+- [Project planning in Github (back when it was a beta)](https://github.blog/2022-02-11-getting-started-with-project-planning-on-github/)
+- [Another blog about roadmap for open source projects in Github](https://pavlenex.com/a-quick-guide-to-creating-a-roadmap-for-an-open-source-project-in-github)
+
 
 ## Marking Scheme
 
-- 25%: Functionality (succesful automated build) 
-- 25%: README (meets requirements)
-- 25%: git commit messages (meet requirement)
-- 25%: GitHub repository setup (meets requirements)
+- 30%: Proposal
+- 30%: GitHub Actions 
+- 30%: Roadmap
+- 10%: GitHub repository best practises (commit messages, branch management)
 
-## Additional Resources
+## Tips and Resources
 
+### Testing your Deployments
+
+You might wonder -- with such strict requirements about your main branch and CI/CD, what happens if you accidentally push code to main that does not build?
+
+The answer: **DON'T DO IT**. As shown in the [instructions above (not written yet)](), you should **stage** your source code changes so that your commits are tested on the CI/CD pipeline as an essential part of your pull request procedure.
+
+### Reference
+
+- [Gradle User Manual](https://docs.gradle.org/current/userguide/userguide.html)
+- [Gradle tutorial](https://www.youtube.com/watch?v=gKPMKRnnbXU)
 - [git documentation](https://git-scm.com/docs)
+
+
+
