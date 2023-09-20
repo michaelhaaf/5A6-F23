@@ -96,6 +96,8 @@ While using the `Row` element alone would unravel the stack, it's not as interes
 
   ![The text content remains in a column, but that column is now in a row next to an image.](./img/layout-text-with-picture.png)
 
+  *Note: this example, and many following examples, make use of the [`Image`](https://developer.android.com/reference/kotlin/androidx/compose/foundation/package-summary#Image(androidx.compose.ui.graphics.painter.Painter,kotlin.String,androidx.compose.ui.Modifier,androidx.compose.ui.Alignment,androidx.compose.ui.layout.ContentScale,kotlin.Float,androidx.compose.ui.graphics.ColorFilter)) builtin `@Composable`. Like other `@Composable` elements, `Image` returns a Kotlin `Unit` and takes an optional `Modifier` parameter, as well a non-optional [`Painter`](https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/painter/Painter#Painter()) which specifies *what* image/thing to draw in the `Image` element. See [Working with Images](https://developer.android.com/jetpack/compose/graphics/images) for more information and examples.*
+
   </TabItem>
 </Tabs>
 
@@ -118,6 +120,8 @@ Finally, the [`Box`](https://developer.android.com/reference/kotlin/androidx/com
   <TabItem label="Result">
 
   ![An icon overlayed on top of an Image](./img/layout-box-with-picture.png)
+
+  *Note: In this result, the "Artist Image" seems to be centered, while the "Check mark" `Icon` seems to be bottom-right aligned. I'm not really sure if the example code I've provided will have this exact behavior, I didn't try it myself. The [next section](alignment-and-arragnment) makes alignment customizations more clear.*
 
   </TabItem>
 </Tabs>
@@ -200,7 +204,7 @@ Below follow some of the possible arguments for each, and their effects. You can
 
 ### The layout model
 
-*These notes have been adapted from [Compose layout basics](https://developer.android.com/jetpack/compose/layouts/custom).*
+*These notes have been adapted from [Custom layouts in Compose](https://developer.android.com/jetpack/compose/layouts/custom).*
 
 As we have seen, UI elements in Compose are represented by the `@Composable` functions that emit a piece of UI when invoked. Since composables are functions, each composable can call other composable functions within their function body, allowing us to define nested UI structres. Behind the scenes, these composable UI elements are added to a UI tree that gets rendered on the screen. How is this "tree" modeled?
 
@@ -217,6 +221,7 @@ Laying out each node in the UI tree is therefore a three step process. Each node
 
 Since UI is a tree structure, an initial render of the UI recursively performs this three-step process on all nodes. Afterwards, nodes are [lazily recomposed](/5A6-F23/lectures/user-interfaces/01-introduction-to-compose) whenever there are UI changes, ensuring that only nodes which require updates are rerendered.
 
+We'll see in the [Layout modifiers](#layout-modifiers) section how you can use the layout model to customize these behaviors in Compose.
 
 ## Modifiers
 
@@ -274,9 +279,29 @@ In the code above, notice different modifier functions used together.
   - `padding` puts space around an element.
   - `fillMaxWidth` makes the composable fill the maximum width given to it from its parent.
 
-It's a best practice to have all of your `@Composables` accept a `modifier` parameter, and **pass that modifier to its first child that emits UI**. Doing so makes your code more reusable and makes its behavior more predictable and intuitive. For more information, see the Compose API guidelines, [Elements accept and respect a Modifier parameter](https://android.googlesource.com/platform/frameworks/support/+/androidx-main/compose/docs/compose-api-guidelines.md#elements-accept-and-respect-a-modifier-parameter).
+**All the `@Composables` your write should accept an optional `modifier` parameter**, and **pass that modifier to its first child that emits UI**. Doing so makes your code more reusable and makes its behavior more predictable and intuitive:
 
-### Order of modifiers matters
+```kotlin {5, 8} title="(Kotlin)"
+@Composable
+fun FancyButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier // Optional parameter (has a default argument)
+) = Text(
+    text = text,
+    modifier = modifier.surface(elevation = 4.dp) // modifier passed to child (with customizations)
+        .clickable(onClick)
+        .padding(horizontal = 32.dp, vertical = 16.dp)
+)
+```
+
+Modifiers are the standard means of adding external behavior and customizations to an element in Compose. Through the `Modifier` parameter, we don't have to worry about defining common behavior/customizations for each `@Composable` we create. This allows element APIs to be *smaller and more focused*, as `Modifiers` are used to decorate those elements with standard behavior.
+
+A best practise is for the `Modifier` to occupy the **first optional parameter slot** in a `@Composable`. This sets a consistent expectation for developers: they can always provide a modifier as the **final positional parameter** to an element call for any given element's common case.
+
+For more information, see the Compose API guidelines, [Elements accept and respect a Modifier parameter](https://android.googlesource.com/platform/frameworks/support/+/androidx-main/compose/docs/compose-api-guidelines.md#elements-accept-and-respect-a-modifier-parameter).
+
+### Modifier chain order matters
 
 The order of modifier functions in a chain of calls is significant. Since each function makes changes to the `Modifier` returned by the previous function, **the sequence order affects the final result**. Let's see an example of this:
 
@@ -303,6 +328,7 @@ The order of modifier functions in a chain of calls is significant. Since each f
 
   ![A clickable, padded, max-width artist card (in that order). The padded area is clickable.](./img/layout-padding-clickable.gif)
 
+  *Note: the "padding" here is the small white band that encompasses the entire `@Composable` (above the title, below the image, etc.)*
   </TabItem>
 </Tabs>
 
@@ -334,8 +360,10 @@ In the code above the whole area is clickable, including the surrounding padding
   </TabItem>
 </Tabs>
 
+The explicit ordering of `Modifier` chains helps developers create predictable and controllable outcomes from a variety of `Modifier` combinations.
+
 :::tip[Note]
-The explicit order helps developers reason about how different modifiers will interact. The modifier design makes differing behavior "outside" and "inside" an element explicit and predictable. It also explains why there is not a `margin` modifier but only a `padding` one.
+The modifier design makes differing behavior "outside" and "inside" an element explicit and predictable. It also explains why there is not a `margin` modifier but only a `padding` one, since changing the order of modifications can produce both results.
 :::
 
 ## Built-in modifiers
@@ -437,6 +465,10 @@ fun ArtistCard(artist: Artist) {
 ```
 
 The `offset` modifier is applied horizontally according to the layout direction -- by default, shifting an element to the right; but shifting an element to the left in a [right-to-left]() context (see link for more detail). 
+
+### layout modifiers
+
+See ["Use the layout modifier"](https://developer.android.com/jetpack/compose/layouts/custom) on the Developer Android docs. (notes to be updated soon.)
 
 ## Scope safety in Compose
 

@@ -29,9 +29,11 @@ You can compare this calendar with the calendar from the [Course Outline][course
 
 [intro-compose]: /5A6-F23/lectures/user-interfaces/01-intro-to-compose
 [layout-compose]: /5A6-F23/lectures/user-interfaces/02-layout
+[state-compose]: /5A6-F23/lectures/user-interfaces/03-state
 
 [compose-codelab-1]: https://developer.android.com/codelabs/jetpack-compose-basics#0
 [compose-codelab-2]: https://developer.android.com/codelabs/jetpack-compose-layouts#0
+[compose-codelab-3]: https://developer.android.com/codelabs/jetpack-compose-state#0
 
 ## August
 
@@ -59,7 +61,9 @@ You can compare this calendar with the calendar from the [Course Outline][course
     - Jetpack Compose Codelab: [Basics of Compose][compose-codelab-1]
 - **Week 5** (Sep 18-22)
     - [Layouts in Compose][layout-compose]
-    - Layout Codelab: [Layouts in Compose][compose-codelab-2]
+    - Layout Codelab: [Layouts in Compose Codelab][compose-codelab-2]
+    - [State in Compose (to be released by Sep 22)][state-compose]
+    - State Codelab: [State in Compose Codelab][compose-codelab-3]
 
 ### Deliverables
 
