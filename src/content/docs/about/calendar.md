@@ -34,6 +34,7 @@ You can compare this calendar with the calendar from the [Course Outline][course
 [compose-codelab-1]: https://developer.android.com/codelabs/jetpack-compose-basics#0
 [compose-codelab-2]: https://developer.android.com/codelabs/jetpack-compose-layouts#0
 [compose-codelab-3]: https://developer.android.com/codelabs/jetpack-compose-state#0
+[compose-codelab-4]: https://developer.android.com/codelabs/basic-android-kotlin-compose-material-theming
 
 ## August
 
@@ -64,12 +65,17 @@ You can compare this calendar with the calendar from the [Course Outline][course
     - Layout Codelab: [Layouts in Compose Codelab][compose-codelab-2]
     - [State in Compose (to be released by Sep 22)][state-compose]
     - State Codelab: [State in Compose Codelab][compose-codelab-3]
+- **Week 6** (Sep 25-29)
+    - Themeing codelab: [Theme in Compose Codelab][compose-codelab-4]
+    - Contine [Layouts in Compose Codelab][compose-codelab-2] and State Codelab: [State in Compose Codelab][compose-codelab-3]
+    -  
 
 ### Deliverables
 
 - **Sep 12:** [Assignment #1][a1] due at midnight.
 - **Sep 15:** [Project Milestone #1][m1] presented in-class
 - **Sep 22:** Quiz Kahoot #1 on Kotlin
+- **Sep 25:** [Project Milestone #2][m1] released (Part 1 due Oct 6/Part 2 Oct 20)
 - **Sep 29:** Quiz Kahoot #2 on Compose
 
 ## October
