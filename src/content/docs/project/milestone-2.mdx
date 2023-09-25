@@ -5,8 +5,10 @@ tableOfContents:
   minHeadingLevel: 2
   maxHeadingLevel: 4
 sidebar:
-  hidden: true
+  hidden: false
 ---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 <div class="first-col-header">
 | | |
@@ -41,13 +43,14 @@ By the end of this milestone, you will have done the following:
     - **Create releases** from passing, approved and reviewed pull requests pushes to main *(semantic versioning)*
   - **Sprint 2:** Propose and scope your project:
     - Determine what exactly your project is for and what it will be *(requirements analysis)*.
-    - Determine what features to implement, publish a road map for implementing them, and plan for contingencies and how they interact *(roadmap, risk analysis)*.
+    - Determine what features to implement, publish a road map for implementing them, and plan for contingencies and how they interact *(risk analysis)*.
+    - **Document and present the above in a technical presentation**. 
 
 ## Requirements
 
 This milestone kicks off your project by having you complete two discrete tasks. Instructions and specific requirements are given in the sections below.
 
-  - **(Oct 6)** Create a group repository to track contributions, store documentation, and marshall required project infrastructure for automated CI/CD throughout the semester
+  - **(Oct 6)** Create a group repository to track contributions, store documentation, and marshal required project infrastructure for automated CI/CD throughout the semester
   - **(Oct 20)** Prepare a proposal presentation explaining the major goals of the project, the technical roadmap for attaining those goals, and associated risk analysis/mitigation strategies.
 
 ### (Oct 6) Repository, CI/CD
@@ -59,41 +62,41 @@ The basic development environment requirements for Milestone 2 build on skills y
 - Create a repository shared amongst your teammembers 
 - Enforce and maintain a clean repository history with your teammembers
 - Write a GitHub actions workflow file to automate compiling and building your project source code
-- Implement an initial landing page for your application to prove that your repository infrastructure works, released as version `0.1`
+- Implement and release an initial landing page for your application to prove that your repository infrastructure works.
 
-You can find more details about each of these requirements below.
+Marks for this sprint are determined by meeting the above requirements, defined in the sections below.
 
 #### Repository & README
 
-- Give the project a meaningful name
-- Make the repository **private**. **Add yourself your team members and myself (michaelhaaf) as collaborators** to this project.
-- Initialize with a `README.md` file, and see below for suggestions on formatting and contents.
-- [Choose a license](https://choosealicense.com/). **Instructions will be clarified in a future version of this milestone**
+The first step is to create a github repository. I've created a GitHub **repository template** for you to use: [Link to template repository](https://github.com/michaelhaaf/5A6-F23-project-template).
 
-Your README can and will be updated throughout the semester. By Sprint 1, it should adhere to the following template:
+
+- Click **Use this template** in the top right corner of the project template screen. (linked in the paragraph above.) Then fill out the following information:
+- **Repository name**: Either the *name of your application* (if you have one decided), or *5A6-group-project*, or something else similarly descriptive of your project.
+- Make the repository **private**.
+  - After making the repository, **add yourself your team members and myself (michaelhaaf) as collaborators** to this project.
+  - To be clear, you will have just **one** shared repository in the group.
+
+#### README
+
+Project READMEs are the most visible public information about your project. They introduce the purpose of the project, how it is used, and how it is developed. You can read more about the purpose of READMEs in the [GitHub Docs](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes).
+
+In [GitHub, project READMEs support Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) which allows you to use images and advanced formatting such as links, lists, and headers -- that way, your README can be quite expressive.
+
+Your README can and will be updated throughout the semester. **By the Sprint 1 deadline**, it should adhere to the following template and the content should be written:
 
 ```markdown title="README.md"
 # PROJECT NAME
 
 ## Goal
-A brief description of your application. Should answer, as concisely as you can: what is it? what is it's purpose?
+A brief description of your application. Should answer, as concisely as you can: what is it? what is its purpose?
 
 ## Quick-start
-How to install and launch your application from source code
+How to install and launch your application. These should include instructions for:
+- (by Sprint 1) building and running your release from source code (i.e. your github repo)
 
-## Screenshot of home screen
-Optional, but often helpful to have a screenshot or demo-video for new users.
-
-## Releases
-Each push to your main branch should produce a software release that is built and compiled. The README should list of releases, including links to release notes. For this milestone, your versioning should be in the form 0.X, like so
-
-version 0.1.0: released Oct 6th, 2023
-	* [link to release-notes (txt or md)]
-
-(future releases will follow below, using sematic versioning conventions: version X.Y.Z) 
-	
-## Roadmap
-Issue tracking: each issue represents a requirement that you wish to implement or a task/issue that needs to be resolved. You should document your progress in the issue, and close it when the work is complete.
+## Screenshots of application
+- (by Sprint 1): Screenshots from each of the main screens of your application.
 
 ## Team members
 List each person's name and email address.
@@ -104,48 +107,54 @@ List each person's name and email address.
 Once the repository is created:
 
 - Create a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for the default `main` branch. Read through the document linked and make sure you understand all of the options listed.
-  - Ensure that "Require status checks to pass before merging" is enabled.
-  - Ensure that "Require pull request reviews before merging" is enabled. 
+
+**Ensure that the following branch protection rules are enabled:**
+  - "Require deployments to succeed before merging". We will set up a deployment environment later.
+  - "Require status checks to pass before merging". We will set up status checks later.
+  - "Require pull request reviews before merging"
+  - "Require linear history" 
 
 These steps will allow all group members to freely develop on their own branches, test deployments on their own branches, and then REQUIRE that merges to the main branch are reviewed by team members and pass the CI/CD pipeline steps.
 
-Your commits in general (even on development branches) should be **atomic**, that is:
+#### Commit quality
 
-> An **atomic commit** is a commit that includes changes related to only one feature or task of your program. There are two main reasons for doing this: first, if something you change turns out to cause some problems, it is easy to revert the specific change without losing other changes; and second, it enables you to write better commit messages. ([The Odin Project](https://www.theodinproject.com/lessons/foundations-git-basics))
+One of the main positive outcomes of managing branch history intentionally is producing **readable and maintainable code history**. You can read more detailed about that in [future lecture notes].
 
-One of the largest contributers to non-atomic commits is distinguishing between **content** and **style** changes. You should adhere to the following rules:
-  - Commits that change code style DO NOT change code behavior
-  - Commits that change code behavior DO NOT change code style
-  - Commits that refactor code DO NOT change code behavior
+For now, please follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) commit message format -- not only does this format follow good practises, but it will also leave the door open for us to automate git history analysis usince tools compatible with Conventional Commit format.
 
-Adhering to these requirements will force you to practise good habits in choosing the changes you include in each commit carefully and practising `git` techniques for amending/resetting/cleaning locals commits before pushing to a shared repository. These are *incredibly* important skills in both industry and open-source development -- your pull requests will not be accepted until you learn how to do them!
+You can also read more here: [recommended article on git commit meesages](https://www.theodinproject.com/lessons/foundations-commit-messages), which links to [another recommended article](https://cbea.ms/git-commit/) on git.
 
 Your grade for this section will be determined based on the following criteria:
 - commit message and content quality
 - branches used appropriately
 - all pull requests to main are reviewed by team members, pass basic build tests, and use automatic versioning
-- development branches
 
-#### GitHub actions
+#### GitHub Workflows
 
-As mentioned in the previous section, the expectation for this project is that your **main** branch maintains a linear history while contributions are made by all project members, and that **each commit in the main branch is a valid release of your project that can be built and compiled**, allowing your project to support rollbacks and version pinning.
+As mentioned in the previous section, the expectation for this project is that your **main** branch maintains a linear history while contributions are made by all project members, and that **each commit in the main branch corresponds to valid release of your project that can be built and compiled**, allowing your project to support rollbacks and version pinning.
 
 You might wonder -- with such strict requirements about your main branch and CI/CD, what happens if you accidentally push code to main that does not build?
 
-The answer: **DON'T DO IT**. As shown in the [instructions above (not written yet)](), you should **stage** your source code changes so that your commits are tested on the CI/CD pipeline as an essential part of your pull request procedure.
+The answer: we are building repositories that do not allow you to do this. See the [enforce branch management](#enforce-branch-management) requirements above.
+
+Some of the branch management abilities we enabled allow us to enforce certain building steps, or test results have taken place before accepting the pull request.
+
+We'll use these abilities to define **two distinct GitHub workflows** that you can improve upon throughout the semester:
+
+**Workflow Requirements**:
+
+1. (Sprint 1) A **pull request** workflow that **lints** Kotlin and Android code for style -- this **pull request** workflow should be incorporated in every pull request. 
+2. (Sprint 1) A **release** workflow that ensures Gradle can build your source code and create . The **release** workflow should **trigger** AFTER a pull request from `main` has been accepted.
 
 You will find the following resources helpful in this task:
-
-- [Android CI-CD using Github Actions](https://blog.logrocket.com/android-ci-cd-using-github-actions/)
-- [Securely create android release using Github Actions](https://proandroiddev.com/create-android-release-using-github-actions-c052006f6b0b)
+- [Android GitHub Actions Setup](https://medium.com/coletiv-stories/android-github-actions-setup-21ba37cf5a4f)
 - [Github Actions and Gradle](https://docs.gradle.org/current/userguide/github-actions.html)
+- [Workflow file syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
+- Useful articles: [Choosing the right JDK](https://developer.android.com/build/jdks), [Understanding Android build system](https://developer.android.com/build)
+- Installing [ktlint](https://github.com/pinterest/ktlint): it's recommended you use the ktlint plugin available from the mavenCentral repository -- meaning, let Gradle automatically find and install ktlint for you, per-project. See [simple-setup](https://github.com/jlleitschuh/ktlint-gradle#simple-setup) for instructions.
+  - Using ktlint in your project gradle: [sample build.gradle.kts](https://github.com/JLLeitschuh/ktlint-gradle/blob/main/samples/kotlin-ks/build.gradle.kts)
 
-Your grade for this section will be determined based on the following criteria:
-- working github workflow
-- appropriate JDK, SDK, Gradle, and other configurations for building Jetpack Compose applications
-- incorporating GitHub actions in both review (push to staging branch for testing/review) and release (push to main branch)
-- INSTRUCTIONS TODO: ensure that any pull-request enforces not only a sucessful build, but also [Kotlin coding conventions TODO](#) using a [linting tool TODO](#)
-- INSTRUCTIONS TODO: ensure that releases on main branch are automatically associated with semantic versions of the format X.Y.Z (X=major, Y=minor, Z=patch). Some starting points: [automated versioning using GitHub Actions and semantic-release](https://dev.to/kouts/automated-versioning-and-package-publishing-using-github-actions-and-semantic-release-1kce), [automatic semantic-versioning on any Github project](https://hodgkins.io/automating-semantic-versioning), a [similar blog to the previous two links](https://apisero.com/devops-automating-semantic-versioning-using-github-actions/)
+Your grade will be based on having **two**- working github workflows: appropriate JDK, SDK, Gradle, and other configurations for both the **pull request** and **release** workflows.
 
 #### Initial implementation and release
 
@@ -159,6 +168,25 @@ The requirements for this follow:
   - a help page
   - a contact page
   - etc.
+
+
+##### Release
+
+When your initial implementation is ready (i.e., all 2 or 3 screens have been reviewed and merged into main), you will **published your first release of the application**.
+
+The following information will be helpful for this task:
+
+- [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
+- [git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
+
+For the version number, choose **v0.1.0**. Subsequent releases should be defined as follows (from [semvar.org](https://semver.org/)):
+> Given a version number MAJOR.MINOR.PATCH, increment the:
+> 
+>   - MAJOR version when you make incompatible API changes
+>   - MINOR version when you add functionality in a backward compatible manner
+>   - PATCH version when you make backward compatible bug fixes
+> 
+> Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
 
 ### (Oct 20) Project Design & Risk Analysis
 
@@ -212,17 +240,44 @@ doc, sharepoint, etc) and communication coordination (e.g., discord, in-person m
 
 #### Risk assessment
 
-#### Roadmap
+To document risk assessment for your project requirements on GitHub, there are two important tools to learn:
 
-The final part of this milestone is to convert the goals, requirements, and risk analysis you've performed in the previous sections into a [GitHub Roadmap](). 
+- [Milestones](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/about-milestones)
+- [Issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/quickstart)
 
-Roadmaps are common features in open-source projects for keeping-in-the-loop your community of developers, contributers, and users of your software. You can see some excellent example roadmaps (some are not Android applications) [here (TO-DO)].
+These are the public-facing requirement trackers for your project that are kept up to date while you maintain the project. 
+
+The [repository template](https://github.com/michaelhaaf/5A6-F23-project-template/) I have provided you comes with two Issue types to use for writing risk assessments for each of your tickets:
+
+- [Requirement](https://github.com/michaelhaaf/5A6-F23-project-template/blob/main/.github/ISSUE_TEMPLATE/requirement.md): used to define high-level project requirements that are broken up into tasks using **Work Breakdown Structure WBS**
+- [Task](https://github.com/michaelhaaf/5A6-F23-project-template/blob/main/.github/ISSUE_TEMPLATE/task.md): used to define Requirement subtasks using **Level of Effort (LOE)** estimations
+
+Your mark for this portion of the assessment will be determined on:
+- how well you document your requirements and subtasks
+- how much your requirements and substask analysis actually makes sense.
+
+You will find the following resources helpful:
+
+- [GitHub Task list overview](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists)
+- [Creating a Task List](https://docs.github.com/en/issues/managing-your-tasks-with-tasklists/creating-a-tasklist#creating-tasklists-with-markdown)
+
+#### (Optional) Roadmap
+
+*NOTE: this part of the project is currently optional*
+
+Part of this milestone is to convert the goals, requirements, and risk analysis you've performed in the previous sections into a [GitHub Roadmap](https://github.com/github/roadmap). 
+
+Roadmaps are relatively common features in open-source projects for keeping-in-the-loop your community of developers, contributers, and users of your software -- the "roadmap" project is a recent attempt by GitHub to provide a GUI for automating some of this effort.
 
 To adapt your proposal to a GitHub roadmap, see the links below for documentation and tutorials:
 
-- [Roadmap layout in Github](https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/customizing-the-roadmap-layout)
-- [Project planning in Github (back when it was a beta)](https://github.blog/2022-02-11-getting-started-with-project-planning-on-github/)
-- [Another blog about roadmap for open source projects in Github](https://pavlenex.com/a-quick-guide-to-creating-a-roadmap-for-an-open-source-project-in-github)
+- [Quickstart for GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/quickstart-for-projects)
+- [Project planning in Github using Roadmap](https://docs.github.com/en/issues/tracking-your-work-with-issues/planning-and-tracking-work-for-your-team-or-project)
+
+You will also find the following helpful:
+
+- [Github Project overview](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)
+- [Best practises for GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/best-practices-for-projects)
 
 ## Summary
 
@@ -232,21 +287,22 @@ The big picture is: As the project continues beyond this milestone, you will hav
   - a plan for what features you are going to implement
   - defined acceptance requirements for considering those features completed
   - a structure to accomodate changes to those requirements and to budget time/risk associated with those changes
+  - semantic versioning and releases associated with each feature implementation
   - **automated** communication of feature implementations among your contributers developers and those who can view the repository
-  - **automated** versioning and releases associated with each feature implementation
   - **automated** history tracking so that all contributers can clearly understand the course of the development of the software, and rollback changes as required.
 
 These efforts will make the final efforts of releasing a testable beta application [Milestone 3][m4] and a polished final release [Milestone 4][m4] that much easier and lighten you load in the later semester, allowing you to focus on code and making cool things without hassling about infrastructure, plans, and communication.
 
 ## Marking Scheme
 
-**Repository and CI/CD**
-- 30%: README 
-- 30%: GitHub Actions
-- 30%: Branch management
-- 10%: Initial implementation
+The marks for each sprint will be assessed based on meeting the requirements outlined in each section.
 
-**Project Design & Risk Analysis**
+**Sprint 1: Repository and CI/CD**
+- 30%: README and repository setup requirements
+- 30%: Repository branch management best practises
+- 40%: Working GitHub Actions, initial release requirements met 
+
+**Sprint 2: Project Design & Risk Analysis**
 - 30%: Proposal 
 - 30%: Risk assessment
 - 30%: Presentation
@@ -257,9 +313,13 @@ These efforts will make the final efforts of releasing a testable beta applicati
 ### Reference
 
 - [Gradle User Manual](https://docs.gradle.org/current/userguide/userguide.html)
-- [Gradle tutorial](https://www.youtube.com/watch?v=gKPMKRnnbXU)
+- [Gradle tutorial](https://www.youtube.com/watch?v=gKPMKRnnbXU) -- step by step for "90%" of the Gradle knowledge you need to build "any Gradle project". Good conceptual overview with examples/step-by-step.
 - [git documentation](https://git-scm.com/docs)
-- [Semantic versioning on Github tutorial](https://www.youtube.com/watch?v=4wPjo5C-v8Y)
+- [Creating and editing milestones](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/creating-and-editing-milestones-for-issues-and-pull-requests)
+You can also see more examples (that go beyond our needs for now) here:
+- [Android CI-CD using Github Actions](https://blog.logrocket.com/android-ci-cd-using-github-actions/)
+- [Securely create android release using Github Actions](https://proandroiddev.com/create-android-release-using-github-actions-c052006f6b0b)
+
 
 
 [a1]: /5A6-F23/assignments/assignment-1
@@ -271,3 +331,5 @@ These efforts will make the final efforts of releasing a testable beta applicati
 [m3]: /5A6-F23/project/milestone-3
 [m4]: /5A6-F23/project/milestone-4
 [calendar]: /5A6-F23/about/calendar
+
+[lecture-commit-notes]: /5A6-F23/lectures/development/git
