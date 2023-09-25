@@ -11,16 +11,22 @@ sidebar:
 <div class="first-col-header">
 | | |
 | --- | --- |
-| Worth: | 15% |
-| Due: | Sprint 1 (7.5%): **Oct 6** | 
-| | Sprint 2 (7.5%): **Oct 20** |
+| Worth: | 10% |
+| Due: | Sprint 1 (3%): **Oct 6** | 
+| | Sprint 2 (7%): **Oct 20** |
 | Hand-in: | A link to your group GitHub repository handed in on Moodle, as well as slides for your presentation. See [Requirements](#requirements) for more information. |
 | Notes: | Late submissions will not be accepted for either part of this milestone | 
 </div>
 
-The course project will see your groups collectively scope, define, implement, and deliver a complete Android application over the course of the semester. In this milestone, you will set up a group repository and draft a technical proposal for your Android project.
+The course project will see your groups collectively scope, define, implement, and deliver a complete Android application over the course of the semester. 
 
-*Major portions of this assignment were adapted from [CS 346](https://student.cs.uwaterloo.ca/~cs346/1231/index.html), a similar course at UWaterloo.* 
+This milestone has two parts: 
+
+> **Sprint 1** (3%, Oct 6): Set up a group repository for developing and releasing Android software
+> 
+> **Sprint 2** (7%, Oct 20): Write a technical proposal presenting your Android project.
+
+This repository and proposal will be the foundation of the rest of your project -- you will continue to use and update both as your project develops throughout the semester, and along the way, learn and practise important application development and delivery best practises.
 
 ## Goals
 
@@ -28,20 +34,21 @@ The goal of this milestone isn't to craft a perfect plan that fortells exactly w
 
 By the end of this milestone, you will have done the following:
 
-  - Apply repository management practises to maintain your project throughout the semester:
-    - branch management for features/developers/testing branches; enforced pull requests to main branch with clean linear history (continuous integration)
-    - numbered versions with each push to main, i.e. release (semantic versioning)
-    - each release proven to build, run, and compile (continuous depoyment)
-  - Propose and scope your project:
-    - Determine what your project is (requirements analysis).
-    - Determine what features to implement, publish a road map for implement them, and plan for contingencies and how they interact (roadmap, risk analysis).
+  - **Sprint 1:** Apply repository management practises to maintain throughout the semester:
+    - **Use branch management techniques** to *separate developer efforts* and *separate requirement tasks*
+    - **Enforce pull requests to main branch** to enforce clean, linear history *(continuous integration)*
+    - **Use Android linting/building tools** to enforce each release proven to meet defined build requirements *(continuous depoyment)*
+    - **Create releases** from passing, approved and reviewed pull requests pushes to main *(semantic versioning)*
+  - **Sprint 2:** Propose and scope your project:
+    - Determine what exactly your project is for and what it will be *(requirements analysis)*.
+    - Determine what features to implement, publish a road map for implementing them, and plan for contingencies and how they interact *(roadmap, risk analysis)*.
 
 ## Requirements
 
-This milestone kicks off your project by having you complete two discrete tasks:
+This milestone kicks off your project by having you complete two discrete tasks. Instructions and specific requirements are given in the sections below.
 
-  - **(Due Oct 6)** Create a group repository to track contributions, store documentation, and marshall required project infrastructure for automated CI/CD throughout the semester
-  - **(Due Oct 20)** Prepare a proposal presentation explaining the major goals of the project, the technical roadmap for attaining those goals, and associated risk analysis/mitigation strategies.
+  - **(Oct 6)** Create a group repository to track contributions, store documentation, and marshall required project infrastructure for automated CI/CD throughout the semester
+  - **(Oct 20)** Prepare a proposal presentation explaining the major goals of the project, the technical roadmap for attaining those goals, and associated risk analysis/mitigation strategies.
 
 ### (Oct 6) Repository, CI/CD
 
@@ -51,7 +58,7 @@ The basic development environment requirements for Milestone 2 build on skills y
 
 - Create a repository shared amongst your teammembers 
 - Enforce and maintain a clean repository history with your teammembers
-- Write a GitHub actions `.yml` file to automate compiling and building your project source code
+- Write a GitHub actions workflow file to automate compiling and building your project source code
 - Implement an initial landing page for your application to prove that your repository infrastructure works, released as version `0.1`
 
 You can find more details about each of these requirements below.
@@ -59,35 +66,32 @@ You can find more details about each of these requirements below.
 #### Repository & README
 
 - Give the project a meaningful name
-- Make the repository **private**. You will add yourself your team members and myself (michaelhaaf) to this project later.
-- Initialize with a README.md file, and see below for suggestions on formatting and contents.
-- [Choose a license](https://choosealicense.com/). See [lecture notes on software licensing TODO]() for more details.
+- Make the repository **private**. **Add yourself your team members and myself (michaelhaaf) as collaborators** to this project.
+- Initialize with a `README.md` file, and see below for suggestions on formatting and contents.
+- [Choose a license](https://choosealicense.com/). **Instructions will be clarified in a future version of this milestone**
 
-Your README should adhere to the following template:
+Your README can and will be updated throughout the semester. By Sprint 1, it should adhere to the following template:
 
 ```markdown title="README.md"
 # PROJECT NAME
 
 ## Goal
-A brief description of your product. What is it? What does it do?
+A brief description of your application. Should answer, as concisely as you can: what is it? what is it's purpose?
 
 ## Quick-start
-How to install and launch your application. 
+How to install and launch your application from source code
 
-## Screenshots/videos
+## Screenshot of home screen
 Optional, but often helpful to have a screenshot or demo-video for new users.
 
 ## Releases
 Each push to your main branch should produce a software release that is built and compiled. The README should list of releases, including links to release notes. For this milestone, your versioning should be in the form 0.X, like so
 
-version 0.1: released Oct 6th, 2023
+version 0.1.0: released Oct 6th, 2023
 	* [link to release-notes (txt or md)]
+
+(future releases will follow below, using sematic versioning conventions: version X.Y.Z) 
 	
-version 0.2: released Oct 20th, 2023
-	* [link to release-notes (txt or md)]
-
-(future releases will be documented here!)
-
 ## Roadmap
 Issue tracking: each issue represents a requirement that you wish to implement or a task/issue that needs to be resolved. You should document your progress in the issue, and close it when the work is complete.
 
