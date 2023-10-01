@@ -80,7 +80,10 @@ You can compare this calendar with the calendar from the [Course Outline][course
     - Lecture: [Intro to Jetpack Compose][intro-compose]
     - Codelab: [Basics of Jetpack Compose Compose][compose-codelab-1]
 - **Week 5** (Sep 18-22)
-    - Lecture: [(TO BE RELEASED BY OCT 2) State in Compose][state-compose]
+    - Lecture: State in Compose
+        - [Talib's slides: Part 1](https://moodle.johnabbott.qc.ca/mod/resource/view.php?id=23898) 
+        - [Talib's slides: Part 2](https://moodle.johnabbott.qc.ca/mod/resource/view.php?id=23899)
+        - [(TO BE RELEASED BY OCT 2) State in Compose][state-compose]
     - State Codelab: [State in Compose Codelab][compose-codelab-3]
 - **Week 6** (Sep 25-29)
     - Lecture: [Layouts in Compose][layout-compose]
