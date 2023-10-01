@@ -36,18 +36,30 @@ You can compare this calendar with the calendar from the [Course Outline][course
 [compose-codelab-3]: https://developer.android.com/codelabs/jetpack-compose-state#0
 [compose-codelab-4]: https://developer.android.com/codelabs/basic-android-kotlin-compose-material-theming
 
+[q1]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=23368
+[q2]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24008
+[q3]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24009
+[q4]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24009
+[q5]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24009
+[q6]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24009
+[q7]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24009
+
+
 ## August
 
 ### Lectures & Activities
 
 - **Week 1** (Aug 21-25)
-    - [Syllabus][syllabus], [Course outline][course-outline], and [Introduction to Kotlin][kotlin]
-    - Kotlin bootcamp for Programmers, [Lesson 1: Getting Started][kt-bootcamp-1]
+    - Lecture: [Syllabus][syllabus]
+    - Lecture: [Course outline][course-outline]
+    - Lecture: [Introduction to Kotlin][kotlin]
+    - Codelab: Kotlin bootcamp for Programmers, [Lesson 1: Getting Started][kt-bootcamp-1]
 - **Week 2** (Aug 28-Sep 1)
-    - [Topics to Review][review], [OOP in Kotlin][oop-kotlin]
-    - Kotlin bootcamp for Programmers, [Lesson 2: Kotlin basics][kt-bootcamp-2]
-    - Kotlin bootcamp for Programmers, [Lesson 4: Classes and objects][kt-bootcamp-4]
-    - Lambdas in Kotlin: [REPL](https://pl.kotl.in/CYJmoZj7o?theme=darcula), [direct link (.kt file)](/5A6-F23/code/sep1-lambda-eg/calculator.kt)
+    - Lecture: [Topics to Review][review]
+    - Lecture: [OOP in Kotlin][oop-kotlin]
+    - Codelab: Kotlin bootcamp for Programmers, [Lesson 2: Kotlin basics][kt-bootcamp-2]
+    - Codelab: Kotlin bootcamp for Programmers, [Lesson 4: Classes and objects][kt-bootcamp-4]
+    - Example: [Lambdas in Kotlin REPL](https://pl.kotl.in/CYJmoZj7o?theme=darcula), [direct link (.kt file)](/5A6-F23/code/sep1-lambda-eg/calculator.kt)
 
 
 ## September
@@ -55,39 +67,42 @@ You can compare this calendar with the calendar from the [Course Outline][course
 ### Lectures & Activities
 
 - **Week 3** (Sep 4-8)
-    - [Functional Programming in Kotlin][functional-kotlin], [Using Kotlin][using-kotlin]
-    - Kotlin bootcamp for Programmers, [Lesson 3: Functions][kt-bootcamp-3]
+    - Lecture: [Functional Programming in Kotlin][functional-kotlin]
+    - Lecture: [Using Kotlin][using-kotlin]
+    - Codelab: Kotlin bootcamp for Programmers, [Lesson 3: Functions][kt-bootcamp-3]
 - **Week 4** (Sep 11-15)
-    - [Intro to Jetpack Compose][intro-compose]
-    - Jetpack Compose Codelab: [Basics of Compose][compose-codelab-1]
+    - Lecture: [Intro to Jetpack Compose][intro-compose]
+    - Codelab: [Basics of Jetpack Compose Compose][compose-codelab-1]
 - **Week 5** (Sep 18-22)
-    - [Layouts in Compose][layout-compose]
-    - Layout Codelab: [Layouts in Compose Codelab][compose-codelab-2]
-    - [State in Compose (to be released by Sep 22)][state-compose]
+    - Lecture: [(TO BE RELEASED BY OCT 2) State in Compose][state-compose]
     - State Codelab: [State in Compose Codelab][compose-codelab-3]
 - **Week 6** (Sep 25-29)
-    - Themeing codelab: [Theme in Compose Codelab][compose-codelab-4]
-    - Contine [Layouts in Compose Codelab][compose-codelab-2] and State Codelab: [State in Compose Codelab][compose-codelab-3]
-    -  
+    - Lecture: [Layouts in Compose][layout-compose]
+    - Codelab: [Layouts in Compose Codelab][compose-codelab-2]
+    - Codelab: [Material Themes in Compose Codelab][compose-codelab-4]
 
 ### Deliverables
 
 - **Sep 12:** [Assignment #1][a1] due at midnight.
 - **Sep 15:** [Project Milestone #1][m1] presented in-class
-- **Sep 22:** Quiz Kahoot #1 on Kotlin
+- **Sep 22:** [Quiz Kahoot #1 on Kotlin][q1]
 - **Sep 25:** [Project Milestone #2][m1] released (Part 1 due Oct 6/Part 2 Oct 20)
-- **Sep 29:** Quiz Kahoot #2 on Compose
+- **Sep 29:** [Quiz Kahoot #2 on Compose][q2]
 
 ## October
 
 ### Lectures & Activities
 
-TBD
+- **Week 7** (Oct 2-6)
+    - Lecture: [(TO BE RELEASED BY OCT 2) Navigation in Compose][nav-compose]
+    - Lecture: [(TO BE RELEASED BY OCT 2) Repository management for shared projects][repo-management]
+    - Codelab: [Navigation in Compose][compose-codelab-5]
+
 
 ### Deliverables
 
 - **Oct 3:** [Assignment #2][a2] due midnight
-- **Oct 6:** Quiz Kahoot #3 on State/Event Handling
+- **Oct 11:** [Quiz Kahoot #3 on State/Layouts/Themeing][q3]
 - **Oct 17:** [Assignment #3][a3] due midnight
 - **Oct 20:** [Milestone #2][m2] due (Project design and Initial setup).  Presentations in class.
 - **Oct 27:** Quiz Kahoot #4 on Navigation/Routing
