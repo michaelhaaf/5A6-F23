@@ -40,7 +40,7 @@ You can compare this calendar with the calendar from the [Course Outline][course
 [compose-codelab-2]: https://developer.android.com/codelabs/jetpack-compose-layouts#0
 [compose-codelab-3]: https://developer.android.com/codelabs/jetpack-compose-state#0
 [compose-codelab-4]: https://developer.android.com/codelabs/basic-android-kotlin-compose-material-theming
-[compsoe-codelab-5]: https://developer.android.com/codelabs/jetpack-compose-navigation#0
+[compose-codelab-5]: https://developer.android.com/codelabs/jetpack-compose-navigation#0
 
 [q1]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=23368
 [q2]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24008
