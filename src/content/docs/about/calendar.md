@@ -26,15 +26,21 @@ You can compare this calendar with the calendar from the [Course Outline][course
 [oop-kotlin]: /5A6-F23/lectures/programming/02-oop-in-kotlin
 [functional-kotlin]: /5A6-F23/lectures/programming/03-functional-kotlin
 [using-kotlin]: /5A6-F23/lectures/programming/015-using-kotlin
+[extensions-kotlin]: /5A6-F23/lectures/programming/04-extensions-kotlin
 
 [intro-compose]: /5A6-F23/lectures/user-interfaces/01-intro-to-compose
 [layout-compose]: /5A6-F23/lectures/user-interfaces/02-layout
 [state-compose]: /5A6-F23/lectures/user-interfaces/03-state
+[theming-compose]: /5A6-F23/lectures/user-interfaces/04-theming
+[nav-compose]: /5A6-F23/lectures/user-interfaces/05-theming
+
+[repo-management]: /5A6-F23/lectures/development/01-repo-management
 
 [compose-codelab-1]: https://developer.android.com/codelabs/jetpack-compose-basics#0
 [compose-codelab-2]: https://developer.android.com/codelabs/jetpack-compose-layouts#0
 [compose-codelab-3]: https://developer.android.com/codelabs/jetpack-compose-state#0
 [compose-codelab-4]: https://developer.android.com/codelabs/basic-android-kotlin-compose-material-theming
+[compsoe-codelab-5]: https://developer.android.com/codelabs/jetpack-compose-navigation#0
 
 [q1]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=23368
 [q2]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24008
