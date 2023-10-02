@@ -55,11 +55,29 @@ This is an individual assignment. You may assist other classmates but:
 
 ### Deliverable
 
-- The `.zip` that you hand-in to Moodle should contain:
-  - One or more `.kt` (Kotlin) files containing your source code and your runtime environment
-    - Whether your source code contains one `main.kt` file containing all of your source code, or several `.kt` files separating the logic of your source code, is entirely up to you.
-  - A README.md or README.txt (NOT .docx, .pdf, or any other format) at the rool level of your project
-  - DO NOT INCLUDE any other files (`.jar`, gradle files, github files, etc. etc.) -- I only need your source code and your README, i.e. the files that you have written yourself.
+- **UPDATED OCT 2**: The `.zip` that you hand-in to Moodle should contain your *entire project*. Your project directory (called `project_root` in the example below) should look something like this:
+
+```bash
+project_root
+├── app/
+│   ├── build.gradle.kts
+│   └── src/
+│       ├── main/
+│       │   ├── java/ 
+│       │   └── res/
+├── build.gradle.kts
+├── gradle/
+├── gradle.properties
+├── gradlew
+├── gradlew.bat
+├── README.md
+└── settings.gradle.kts
+```
+
+In the above example, your kotlin source code is `src`, your image/string resources are in `res`, your README is README.md, etc.
+
+Zip up and hand in the entire folder `project_root` (or whatever you have named it).
+
 
 
 ## Marking Scheme
