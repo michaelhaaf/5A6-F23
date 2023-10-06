@@ -113,8 +113,108 @@ Once the repository is created:
   - "Require status checks to pass before merging". We will set up status checks later.
   - "Require pull request reviews before merging"
   - "Require linear history" 
+  - **"Do not allow bypassing the above settings"** This setting is important, since the creator of the repository will, by-default, bypass the above settings. We want to prevent accidental merges to main.
 
 These steps will allow all group members to freely develop on their own branches, test deployments on their own branches, and then REQUIRE that merges to the main branch are reviewed by team members and pass the CI/CD pipeline steps.
+
+#### Developer workflow
+
+Once the above rules are enforced, *you will no longer be able to directly push your commits to the repository from `main` branch*. Instead, you will create branches as needed, and when the work on those branches is complete, you will create **pull requests** -- that is, a request to pull your changes from one branch to the `main` branch.
+
+How does this work? It does depend on the tools you use. Here are some examples:
+
+<Tabs>
+  <TabItem label="Command Line">
+    1. Create a new branch (named myname-dev) within a repository
+
+    ```bash
+    git switch -c myname-dev   
+    ```
+
+    2. Make code changes
+
+    3. Verify your code changes (before staging your changes)
+
+    ```bash
+    # 'git status' may be the git command I use most
+    # provides an overview of the repository at current moment in time
+    git status
+
+    # by default, `git diff` shows the line-by-line additions/removals/changes to all unstaged changes in your repository
+    git diff
+    ```
+
+    4. Stage your code changes
+
+    ```bash
+
+    # Use `git add` to "stage" (prepare) your changes for committing
+    git add <filenamePattern>
+
+    # E.g.: '.' to stage all changes in the repo
+    git add .
+
+    # E.g.: 'app' to stage all changes in the app/ directory
+    git add app
+
+    # E.g.: '*.md' to stage all changes to markdown files in the root directory
+    git add *.md
+    ```
+
+    5. Verify your code changes (after staging)
+    ```bash
+    # Remember how I was saying `git status` is the most common command I use?
+    # After every git operation, a `git status` command will show what has taken place.
+    git status
+
+    # The --staged argument shows only the line-by-line differences that have been staged for committing.
+    git diff --staged
+    ```
+    6. Create a commit from staged changed
+
+    ```bash
+    # Changes that can be summarized in a single sentence:
+    git commit -m "Inline commit message"
+
+    # Changes that require further detail (opens your default text editor)
+    git commit
+    ```
+
+    7.  Verify your code changes (after committing)
+
+    ```bash
+      git diff HEAD~1 
+      git diff HEAD~n 
+      git log
+    ```
+
+    8. Push your changes
+
+    ```bash
+    # Create a branch on the remote repository with the same name as your local repository
+    git push origin myname-dev 
+
+    # NOTE: you will need to read the output from git to follow subsequent steps for making this command work.
+    ```
+
+  </TabItem>
+  <TabItem label="Android Studio GUI">
+
+    More detail coming soon. For now: [this link starting from step 4 is very useful](https://code.tutsplus.com/working-with-git-in-android-studio--cms-30514t)
+
+  </TabItem>
+  <TabItem label="GitHub GUI">
+  
+    More detail coming soon. For now, [this link is very useful](https://docs.github.com/en/desktop/making-changes-in-a-branch/pushing-changes-to-github-from-github-desktop)
+
+  </TabItem>
+</Tabs>
+
+:::tip
+Why make **pull requests** instead of **pushes** to a shared repository? Once the repository is shared with more than once person, the code in it no longer belongs to a single developer. It is easy to accidentally push to a branch you own -- when it is your own branch, that is no problem, but when the branch is shared, that can introduce bugs and overwrite the work of colleagues.
+:::
+
+
 
 #### Commit quality
 
