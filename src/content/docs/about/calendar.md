@@ -32,7 +32,7 @@ You can compare this calendar with the calendar from the [Course Outline][course
 [layout-compose]: /5A6-F23/lectures/user-interfaces/02-layout
 [state-compose]: /5A6-F23/lectures/user-interfaces/03-state
 [theming-compose]: /5A6-F23/lectures/user-interfaces/04-theming
-[nav-compose]: /5A6-F23/lectures/user-interfaces/05-theming
+[nav-compose]: /5A6-F23/lectures/user-interfaces/05-navigation
 
 [repo-management]: /5A6-F23/lectures/development/01-repo-management
 
@@ -41,6 +41,7 @@ You can compare this calendar with the calendar from the [Course Outline][course
 [compose-codelab-3]: https://developer.android.com/codelabs/jetpack-compose-state#0
 [compose-codelab-4]: https://developer.android.com/codelabs/basic-android-kotlin-compose-material-theming
 [compose-codelab-5]: https://developer.android.com/codelabs/jetpack-compose-navigation#0
+[compose-codelab-6]: https://developer.android.com/codelabs/jetpack-compose-advanced-state-side-effects#0
 
 [q1]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=23368
 [q2]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24008
@@ -107,14 +108,18 @@ You can compare this calendar with the calendar from the [Course Outline][course
     - Lecture: [(TO BE RELEASED BY OCT 2) Repository management for shared projects][repo-management]
     - Codelab: [Navigation in Compose][compose-codelab-5]
 
+- **Week 7** (Oct 11)
+    - Codelab: [Advanced state and side effects][compose-codelab-6]
+    - Lecture: [TBD](#)
 
 ### Deliverables
 
 - **Oct 3:** [Assignment #2][a2] due midnight
+- **Oct 6:** [Milestone #2a][m2a] due (Repository setup).
 - **Oct 11:** [Quiz Kahoot #3 on State/Layouts/Themeing][q3]
-- **Oct 17:** [Assignment #3][a3] due midnight
-- **Oct 20:** [Milestone #2][m2] due (Project design and Initial setup).  Presentations in class.
+- **Oct 20:** [Milestone #2b][m2b] due (Project plan and proposal).  **Presentations in class**.
 - **Oct 27:** Quiz Kahoot #4 on Navigation/Routing
+- **Oct 27:** [Assignment #3][a3] due midnight
 
 ## November
 
@@ -147,6 +152,10 @@ TBD
 [a4]: /5A6-F23/assignments/assignment-4
 
 [m1]: /5A6-F23/project/milestone-1
-[m2]: /5A6-F23/project/milestone-2
-[m3]: /5A6-F23/project/milestone-3
-[m4]: /5A6-F23/project/milestone-4
+[m2a]: /5A6-F23/project/milestone-2#oct-6-repository-cicd
+[m2b]: /5A6-F23/project/milestone-2#oct-20-project-design--risk-analysis
+[m3a]: /5A6-F23/project/milestone-3#sprint-1
+[m3b]: /5A6-F23/project/milestone-3#sprint-2
+[m4a]: /5A6-F23/project/milestone-4#sprint-1
+[m4b]: /5A6-F23/project/milestone-4#sprint-2
+
