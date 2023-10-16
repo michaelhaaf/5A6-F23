@@ -121,108 +121,13 @@ These steps will allow all group members to freely develop on their own branches
 
 Once the above rules are enforced, *you will no longer be able to directly push your commits to the repository from `main` branch*. Instead, you will create branches as needed, and when the work on those branches is complete, you will create **pull requests** -- that is, a request to pull your changes from one branch to the `main` branch.
 
-How does this work? It does depend on the tools you use. Here are some examples:
+The [Git and GitHub][git-lecture] lecture notes show example workflows in `git` and GitHub for making changes in git and creating pull requests from feature branches when finished -- review those notes for best practises to do in your milestone.
 
-<Tabs>
-  <TabItem label="Command Line">
-    1. Create a new branch (named myname-dev) within a repository
-
-    ```bash
-    git switch -c myname-dev   
-    ```
-
-    2. Make code changes
-
-    3. Verify your code changes (before staging your changes)
-
-    ```bash
-    # 'git status' may be the git command I use most
-    # provides an overview of the repository at current moment in time
-    git status
-
-    # by default, `git diff` shows the line-by-line additions/removals/changes to all unstaged changes in your repository
-    git diff
-    ```
-
-    4. Stage your code changes
-
-    ```bash
-
-    # Use `git add` to "stage" (prepare) your changes for committing
-    git add <filenamePattern>
-
-    # E.g.: '.' to stage all changes in the repo
-    git add .
-
-    # E.g.: 'app' to stage all changes in the app/ directory
-    git add app
-
-    # E.g.: '*.md' to stage all changes to markdown files in the root directory
-    git add *.md
-    ```
-
-    5. Verify your code changes (after staging)
-    ```bash
-    # Remember how I was saying `git status` is the most common command I use?
-    # After every git operation, a `git status` command will show what has taken place.
-    git status
-
-    # The --staged argument shows only the line-by-line differences that have been staged for committing.
-    git diff --staged
-    ```
-    6. Create a commit from staged changed
-
-    ```bash
-    # Changes that can be summarized in a single sentence:
-    git commit -m "Inline commit message"
-
-    # Changes that require further detail (opens your default text editor)
-    git commit
-    ```
-
-    7.  Verify your code changes (after committing)
-
-    ```bash
-      git diff HEAD~1 
-      git diff HEAD~n 
-      git log
-    ```
-
-    8. Push your changes
-
-    ```bash
-    # Create a branch on the remote repository with the same name as your local repository
-    git push origin myname-dev 
-
-    # NOTE: you will need to read the output from git to follow subsequent steps for making this command work.
-    ```
-
-  </TabItem>
-  <TabItem label="Android Studio GUI">
-
-    More detail coming soon. For now: [this link starting from step 4 is very useful](https://code.tutsplus.com/working-with-git-in-android-studio--cms-30514t)
-
-  </TabItem>
-  <TabItem label="GitHub GUI">
-  
-    More detail coming soon. For now, [this link is very useful](https://docs.github.com/en/desktop/making-changes-in-a-branch/pushing-changes-to-github-from-github-desktop)
-
-  </TabItem>
-</Tabs>
-
-:::tip
-Why make **pull requests** instead of **pushes** to a shared repository? Once the repository is shared with more than once person, the code in it no longer belongs to a single developer. It is easy to accidentally push to a branch you own -- when it is your own branch, that is no problem, but when the branch is shared, that can introduce bugs and overwrite the work of colleagues.
-:::
-
-
+[git-lecture]: /lectures/development/01-git
 
 #### Commit quality
 
-One of the main positive outcomes of managing branch history intentionally is producing **readable and maintainable code history**. You can read more detailed about that in [future lecture notes].
-
-For now, please follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) commit message format -- not only does this format follow good practises, but it will also leave the door open for us to automate git history analysis usince tools compatible with Conventional Commit format.
-
-You can also read more here: [recommended article on git commit meesages](https://www.theodinproject.com/lessons/foundations-commit-messages), which links to [another recommended article](https://cbea.ms/git-commit/) on git.
+One of the main positive outcomes of managing branch history intentionally is producing **readable and maintainable code history**. You can read more detailed about that in the [Git and GitHub][git-lecture].
 
 Your grade for this section will be determined based on the following criteria:
 - commit message and content quality
@@ -244,7 +149,7 @@ We'll use these abilities to define **two distinct GitHub workflows** that you c
 **Workflow Requirements**:
 
 1. (Sprint 1) A **pull request** workflow that **lints** Kotlin and Android code for style -- this **pull request** workflow should be incorporated in every pull request. 
-2. (Sprint 1) A **release** workflow that ensures Gradle can build your source code and create . The **release** workflow should **trigger** AFTER a pull request from `main` has been accepted.
+2. **(Sprint 2)** A **release** workflow that ensures Gradle can build your source code and create . The **release** workflow should **trigger** AFTER a pull request from `main` has been accepted.
 
 You will find the following resources helpful in this task:
 - [Android GitHub Actions Setup](https://medium.com/coletiv-stories/android-github-actions-setup-21ba37cf5a4f)
@@ -256,8 +161,6 @@ You will find the following resources helpful in this task:
   - Here is another helpful example: [geeksForGeeks](https://www.geeksforgeeks.org/code-formatting-in-kotlin-using-ktlint/)
 
 Your grade will be based on **finishing a pull_request workflow that builds your code and checks for kotlin/android style or code issues automatically with each pull request**.
-
-We will add more workflows in future milestones.
 
 #### Initial implementation and release
 
@@ -273,29 +176,13 @@ The requirements for this follow:
   - etc.
 
 
-##### Release
-
-When your initial implementation is ready (i.e., all 2 or 3 screens have been reviewed and merged into main), you will **published your first release of the application**.
-
-The following information will be helpful for this task:
-
-- [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
-- [git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
-
-For the version number, choose **v0.1.0**. Subsequent releases should be defined as follows (from [semvar.org](https://semver.org/)):
-> Given a version number MAJOR.MINOR.PATCH, increment the:
-> 
->   - MAJOR version when you make incompatible API changes
->   - MINOR version when you add functionality in a backward compatible manner
->   - PATCH version when you make backward compatible bug fixes
-> 
-> Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
-
-### (Oct 20) Project Design & Risk Analysis
+### (Oct 20) Project Proposal and Initial Release
 
 For this part of the project, you will be using [GitHub Projects]() to set up a self-documenting GitHub repository that tracks your changes for the rest of the semester, and contains your project proposal documentation.
 
-[See this table here](https://student.cs.uwaterloo.ca/~cs346/1231/getting-started/gitlab/index.html#project-tracking) for an overview of how you will use GitHub to create you project proposal. More detail to come.
+[See this table here](https://student.cs.uwaterloo.ca/~cs346/1231/getting-started/gitlab/index.html#project-tracking) for an overview of how you will use GitHub to create your project proposal. 
+
+The [lecture notes on Application Development](/5A6-F23/lectures/development/02-software-process/) contain slides that specify the requirements for this part of the milestone.
 
 #### Design Proposal
 
@@ -368,9 +255,7 @@ You will find the following resources helpful:
 - [GitHub Task list overview](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists)
 - [Creating a Task List](https://docs.github.com/en/issues/managing-your-tasks-with-tasklists/creating-a-tasklist#creating-tasklists-with-markdown)
 
-#### (Optional) Roadmap
-
-*NOTE: this part of the project is currently optional*
+#### Roadmap
 
 Part of this milestone is to convert the goals, requirements, and risk analysis you've performed in the previous sections into a [GitHub Roadmap](https://github.com/github/roadmap). 
 
@@ -385,6 +270,33 @@ You will also find the following helpful:
 
 - [Github Project overview](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)
 - [Best practises for GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/best-practices-for-projects)
+
+#### Release
+
+When your initial implementation is ready (i.e., all 2 or 3 screens have been reviewed and merged into main), you will **published your first release of the application**.
+
+The following information will be helpful for this task:
+
+- [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
+- [git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
+
+For the version number, choose **v0.1.0**. Subsequent releases should be defined as follows (from [semvar.org](https://semver.org/)):
+> Given a version number MAJOR.MINOR.PATCH, increment the:
+> 
+>   - MAJOR version when you make incompatible API changes
+>   - MINOR version when you add functionality in a backward compatible manner
+>   - PATCH version when you make backward compatible bug fixes
+> 
+> Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
+
+You should aim to complete this initial release for the Sprint 2 deadline -- Oct 20. This release should be accompanied by a **release workflow** that produces an [Android App Bundle](https://developer.android.com/guide/app-bundle) using `gradlew`.
+
+You can find tutorials which demonstrate this process online; here are some examples:
+- https://github.com/marketplace/actions/build-android-app 
+- https://www.freecodecamp.org/news/use-github-actions-to-automate-android-development/
+- https://blog.logrocket.com/android-ci-cd-using-github-actions/
+
+You will **not need to have your bundle signed or published on Google Apps yet**, we are just preparing the stage to do that eventually. That means, **you can stop before the steps that require signing an app/generating secrets/publishing to Firebase/etc**. What is desired at this stage is to produce an `.aab` (Android Bundle) that bundles your project source code into an artefact that can eventually be installed on Android devices.
 
 ## Summary
 
