@@ -1,0 +1,43 @@
+---
+title: "Milestone 3a: TBD"
+description: "TBD"
+sidebar:
+  hidden: false
+---
+
+<div class="first-col-header">
+| Milestone 3 | Overview |
+| --- | --- |
+| Worth: | 3% |
+| Due: | Nov 3 |
+| Hand-in: | Link to GitHub repository |
+| Notes: | [Course late penalty](/about/syllabus) applies. |
+</div>
+
+## Automating releases
+
+When your initial implementation is ready, you will **publish your first release of the application**.
+
+The following information will be helpful for this task:
+
+- [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
+- [git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
+
+For the version number, choose **v0.1.0**. Subsequent releases should be defined as follows (from [semvar.org](https://semver.org/)):
+> Given a version number MAJOR.MINOR.PATCH, increment the:
+> 
+>   - MAJOR version when you make incompatible API changes
+>   - MINOR version when you add functionality in a backward compatible manner
+>   - PATCH version when you make backward compatible bug fixes
+> 
+> Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
+
+You should aim to complete this initial release for the Sprint 2 deadline -- Oct 20. This release should be accompanied by a **release workflow** that produces an [Android App Bundle](https://developer.android.com/guide/app-bundle) using `gradlew`.
+
+You can find tutorials which demonstrate this process online; here are some examples:
+- https://github.com/marketplace/actions/build-android-app 
+- https://www.freecodecamp.org/news/use-github-actions-to-automate-android-development/
+- https://blog.logrocket.com/android-ci-cd-using-github-actions/
+
+You will **not need to have your bundle signed or published on Google Apps yet**, we are just preparing the stage to do that eventually. That means, **you can stop before the steps that require signing an app/generating secrets/publishing to Firebase/etc**. What is desired at this stage is to produce an `.aab` (Android Bundle) that bundles your project source code into an artefact that can eventually be installed on Android devices.
+

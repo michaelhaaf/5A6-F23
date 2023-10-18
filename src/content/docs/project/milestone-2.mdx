@@ -159,6 +159,10 @@ You will find the following resources helpful in this task:
 - Installing [ktlint](https://github.com/pinterest/ktlint): it's recommended you use the ktlint plugin available from the mavenCentral repository -- meaning, let Gradle automatically find and install ktlint for you, per-project. See [simple-setup](https://github.com/jlleitschuh/ktlint-gradle#simple-setup) for instructions.
   - Using ktlint in your project gradle: [sample build.gradle.kts](https://github.com/JLLeitschuh/ktlint-gradle/blob/main/samples/kotlin-ks/build.gradle.kts)
   - Here is another helpful example: [geeksForGeeks](https://www.geeksforgeeks.org/code-formatting-in-kotlin-using-ktlint/)
+- [Gradle User Manual](https://docs.gradle.org/current/userguide/userguide.html)
+- [Gradle tutorial](https://www.youtube.com/watch?v=gKPMKRnnbXU) -- step by step for "90%" of the Gradle knowledge you need to build "any Gradle project". Good conceptual overview with examples/step-by-step.
+- [Android CI-CD using Github Actions](https://blog.logrocket.com/android-ci-cd-using-github-actions/)
+- [Securely create android release using Github Actions](https://proandroiddev.com/create-android-release-using-github-actions-c052006f6b0b)
 
 Your grade will be based on **finishing a pull_request workflow that builds your code and checks for kotlin/android style or code issues automatically with each pull request**.
 
@@ -178,65 +182,32 @@ The requirements for this follow:
 
 ### (Oct 20) Project Proposal and Initial Release
 
-For this part of the project, you will be using [GitHub Projects]() to set up a self-documenting GitHub repository that tracks your changes for the rest of the semester, and contains your project proposal documentation.
+For this part of the project, you will be using [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects) to set up a self-documenting GitHub repository that tracks your changes for the rest of the semester, and contains your project proposal documentation.
 
-[See this table here](https://student.cs.uwaterloo.ca/~cs346/1231/getting-started/gitlab/index.html#project-tracking) for an overview of how you will use GitHub to create your project proposal. 
+The [lecture notes on Application Development](/5A6-F23/lectures/development/02-software-process/) contain slides that will be a useful reference point for this part of the project -- particularly, how to turn **project requirements** into **user stories** and **trackable issues**.
 
-The [lecture notes on Application Development](/5A6-F23/lectures/development/02-software-process/) contain slides that specify the requirements for this part of the milestone.
+#### Tip for coming up with a Project
+
+If you are struggling to come up with an application idea, or if you want to see the how the documentation techniques we are using are applied in the real world, I recommend checking out existing open source Android projects:
+
+- [F-Droid: Free and Open Source Android project listing](https://f-droid.org/en/packages)
+- ["Awesome" Android Apps](https://github.com/LinuxCafeFederation/awesome-android)
+
+For these resources, it may not be obvious where to look -- generally, the **Issue Tracker** and the **Source Code** are helpful places to start looking when trying to learn things about someone else's project.
 
 #### Design Proposal
 
-For this part of the milestone, you will **prepare a presentation for the rest of class** introducing your application idea and your plan for implementing it over the course of the semester. 
+For this part of the milestone, you will use **prepare a presentation for the rest of class** introducing your application idea and your plan for implementing it over the course of the semester. 
 
-Your presentation should be shareable as a **PDF** and should cover the following topics in less than ~15 minutes:
+**Update Oct 18:** The requirements that were listed here before are now included in a GitHub Wiki that your team should use a template for their own GitHub wiki: [link to template wiki](https://github.com/michaelhaaf/5A6-F23-project/wiki/Project-Proposal)
 
-**Part A:** Determine and document the requirements for the business logic of your web application for the group project.
-  - **Introduction and Motivation:** Give the motivations for your project -- what inspired it and what you hope to achieve. This should be in-line with the [README](#) you created in the previous part of the milestone.
-    - e.g., what kind of problem are you trying to solve, what kind of capability to you want to provide the user, what kind of experience do you want to give the user.
-  - **Business Logic Requirements:** identify your data needs, user interface requirements, key required operations and any data dependencies. Highlight any validity constraints on data, user interface, and operations. Describe any "rules" that will apply:
-    - e.g., all entries must have a name and title, but optionally an image
-    - e.g., all users must have a profile indicating their name, age and seating preference
-    - e.g., all spells must have a type, title and area of effect, but may belong to multiple schools
-    - e.g. all artist names must be unique; no two items may be placed in the same location
-    - etc.
+Your group should aim to fill the above wiki for your own project. The presentation should be a summary of the content of the above wiki.
 
-Note: This is not a set of "features". This is a description of your **acceptance critera**, that is, what your application needs to be able to do in order to be considered a success.
+#### Task creation
 
-**Part B:** Design and document a coherent, consistent application that will meet those business logic requirements as well as the technical, functional and soft requirements of the project.
-  - **Interface Design:** Describe the inspiration for your interface design. Provide detailed mock-ups of the interface, sufficient to identify the aesthetics and key functionality. This section should clearly inform front-end development.
-    - A mock-up should be given for each key feature.
-    - Mockups may be created with computer software or hand-drawn.
-  - **Application Features:** Describe the features of the application. A feature should be discussed in terms of the UI elements, user actions, the
-back-end functionality and the requirement(s) it is in service of. A feature should be indicated as a "Must-Have" or as a "Nice-to-Have".
-  - **Coding Techniques/technologies:** The core coding techniques and technologies that will be used should be documented. Document these even if they are largely in line with what we have done in class. If you are planning to use methods not covered in class, document them in
-sufficient detail to inform development. Take a look at the [sample compose apps](https://github.com/android/compose-samples/tree/main) we saw in Milestone 1 for inspiration.
+To document the tasks needed to meet the requirements of your project proposal, there are two important tools to learn:
 
-The goal of this design section is to be as comprehensive as possible in specifying what you will implement and how. But, you are allowed to adapt things as appropriate as development proceeds. E.g., a technique turns out to be too hard, a 3rd party tool doesn't meet the need the way you thought it would, you identify a new technique that could add some interesting functionality, etc.
-
-**Part C:** Create a development plan for successfully completing the project. The plan must include a **timeline**, a **tasking plan** and a **coordination plan**
-
-  - **Timeline:** Indicate the key milestones of the project. You will find the [course calendar][calendar] useful. Some key milestones to include in your timeline are:
-    - [Milestone 3][m3]: Nov 17
-    - [Milestone 4][m4]: Dec 7
-    - Take into account Assignment deadlines from the calendar as well. Note: assignments 2-4 are designed to be complementary with project work -- you will be honing skills that you can re-use/adapt for your project naturally throughout the semester.
-    - Most classes in late October and throughout November will be available for lab time, as we will have covered most course concepts.
-    - Take into account the [Academic Calendar](https://johnabbott.qc.ca/wp-content/uploads/2023/05/DAY_Academic-Calendar_2023-2024_Final_March_2023.pdf) in your planning.
-
-  - **Tasking plan:** Indicate, as much as possible, all the tasks involved in the project and who those tasks are assigned to. You should break tasks up into subtasks as appropriate.
-    - Each task should be detailed with a short prose description at least one sentence long. More complex tasks should be given m ore detailed descriptions.
-    - As much as possible, indicate any dependencies between tasks,
-    - All tasks should be assigned their own anticipated deadline. This is not a hard deadline, but should reflect dependencies and should guide your team's priorities. For instance, "nice-to-Haves" should generally not be given priority over "must-haves".
-
-  - **Coordination plan:** Indicate how your team will work together on this project, including coding coordination (e.g., git), document coordination (e.g., git, google
-doc, sharepoint, etc) and communication coordination (e.g., discord, in-person meetings, etc.). 
-    - The coordination plan should include a schedule of planned meetings or shared coding sessions for ensuring the team stays on track. 
-    - Note: If the coordination plan does not feel like it will work for you (e.g., teammates want to work on the weekend but you have a part-time job), then this is the time to be up-front and tell them what you can commit to and what you can't (e.g., willing to stay after class twice a week to meet since you can't make weekends).
-
-#### Risk assessment
-
-To document risk assessment for your project requirements on GitHub, there are two important tools to learn:
-
-- [Milestones](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/about-milestones)
+- [Milestones](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/about-milestones) + [Creating and editing milestones](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/creating-and-editing-milestones-for-issues-and-pull-requests)
 - [Issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/quickstart)
 
 These are the public-facing requirement trackers for your project that are kept up to date while you maintain the project. 
@@ -245,6 +216,8 @@ The [repository template](https://github.com/michaelhaaf/5A6-F23-project-templat
 
 - [Requirement](https://github.com/michaelhaaf/5A6-F23-project-template/blob/main/.github/ISSUE_TEMPLATE/requirement.md): used to define high-level project requirements that are broken up into tasks using **Work Breakdown Structure WBS**
 - [Task](https://github.com/michaelhaaf/5A6-F23-project-template/blob/main/.github/ISSUE_TEMPLATE/task.md): used to define Requirement subtasks using **Level of Effort (LOE)** estimations
+
+**Part C of your proposal documentation is all about the Tasking Plan-- this Tasking plan should be completed with Issues and Milestones that you have defined using the GitHub Project interface**.
 
 Your mark for this portion of the assessment will be determined on:
 - how well you document your requirements and subtasks
@@ -271,32 +244,11 @@ You will also find the following helpful:
 - [Github Project overview](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)
 - [Best practises for GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/best-practices-for-projects)
 
-#### Release
+#### Release (PUSHED TO MILESTONE 3A)
 
-When your initial implementation is ready (i.e., all 2 or 3 screens have been reviewed and merged into main), you will **published your first release of the application**.
+**NOTE: we haven't had time to cover this in class -- I will not expect this to be completed by the end of Sprint 2b (Oct 20). We will cover this in the next milestone**
 
-The following information will be helpful for this task:
-
-- [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
-- [git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
-
-For the version number, choose **v0.1.0**. Subsequent releases should be defined as follows (from [semvar.org](https://semver.org/)):
-> Given a version number MAJOR.MINOR.PATCH, increment the:
-> 
->   - MAJOR version when you make incompatible API changes
->   - MINOR version when you add functionality in a backward compatible manner
->   - PATCH version when you make backward compatible bug fixes
-> 
-> Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
-
-You should aim to complete this initial release for the Sprint 2 deadline -- Oct 20. This release should be accompanied by a **release workflow** that produces an [Android App Bundle](https://developer.android.com/guide/app-bundle) using `gradlew`.
-
-You can find tutorials which demonstrate this process online; here are some examples:
-- https://github.com/marketplace/actions/build-android-app 
-- https://www.freecodecamp.org/news/use-github-actions-to-automate-android-development/
-- https://blog.logrocket.com/android-ci-cd-using-github-actions/
-
-You will **not need to have your bundle signed or published on Google Apps yet**, we are just preparing the stage to do that eventually. That means, **you can stop before the steps that require signing an app/generating secrets/publishing to Firebase/etc**. What is desired at this stage is to produce an `.aab` (Android Bundle) that bundles your project source code into an artefact that can eventually be installed on Android devices.
+See [Milestone 3a][m3a]
 
 ## Summary
 
@@ -322,24 +274,11 @@ The marks for each sprint will be assessed based on meeting the requirements out
 - 40%: Working GitHub Actions, initial release requirements met 
 
 **Sprint 2: Project Design & Risk Analysis**
-- 30%: Proposal 
-- 30%: Risk assessment
-- 30%: Presentation
-- 10%: GitHub Roadmap
-
-## Tips and Resources
-
-### Reference
-
-- [Gradle User Manual](https://docs.gradle.org/current/userguide/userguide.html)
-- [Gradle tutorial](https://www.youtube.com/watch?v=gKPMKRnnbXU) -- step by step for "90%" of the Gradle knowledge you need to build "any Gradle project". Good conceptual overview with examples/step-by-step.
-- [git documentation](https://git-scm.com/docs)
-- [Creating and editing milestones](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/creating-and-editing-milestones-for-issues-and-pull-requests)
-You can also see more examples (that go beyond our needs for now) here:
-- [Android CI-CD using Github Actions](https://blog.logrocket.com/android-ci-cd-using-github-actions/)
-- [Securely create android release using Github Actions](https://proandroiddev.com/create-android-release-using-github-actions-c052006f6b0b)
-
-
+- 80%: Proposal Documentation
+  - PDF and/or GitHub Wiki created answering all of the prompts from [the template proposal](https://github.com/michaelhaaf/5A6-F23-project/wiki/Project-Proposal)
+  - Github Issues created that track progress on **functional requirements** defined in proposal
+- 20%: Presentation
+  - all teammembers contribute and explain the above documentation in class on Oct 20
 
 [a1]: /5A6-F23/assignments/assignment-1
 [a2]: /5A6-F23/assignments/assignment-2
@@ -348,6 +287,7 @@ You can also see more examples (that go beyond our needs for now) here:
 [m1]: /5A6-F23/project/milestone-1
 [m2]: /5A6-F23/project/milestone-2
 [m3]: /5A6-F23/project/milestone-3
+[m3a]: /5A6-F23/project/milestone-3a
 [m4]: /5A6-F23/project/milestone-4
 [calendar]: /5A6-F23/about/calendar
 
