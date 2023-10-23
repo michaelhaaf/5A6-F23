@@ -33,8 +33,12 @@ You can compare this calendar with the calendar from the [Course Outline][course
 [state-compose]: /5A6-F23/lectures/user-interfaces/03-state
 [theming-compose]: /5A6-F23/lectures/user-interfaces/04-theming
 [nav-compose]: /5A6-F23/lectures/user-interfaces/05-navigation
+[adv-state-compose]: /5A6-F23/lectures/user-interfaces/05-navigation
 
-[repo-management]: /5A6-F23/lectures/development/01-repo-management
+[repo-management]: /5A6-F23/lectures/development/03-repo-management
+[git-github]: /5A6-F23/lectures/development/01-git
+[requirements-eng]: /5A6-F23/lectures/development/02-software-process
+[ci-cid]: /5A6-F23/lectures/development/015-ci-cid
 
 [compose-codelab-1]: https://developer.android.com/codelabs/jetpack-compose-basics#0
 [compose-codelab-2]: https://developer.android.com/codelabs/jetpack-compose-layouts#0
@@ -46,7 +50,7 @@ You can compare this calendar with the calendar from the [Course Outline][course
 [q1]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=23368
 [q2]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24008
 [q3]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24009
-[q4]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24009
+[q4]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24282
 [q5]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24009
 [q6]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24009
 [q7]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24009
@@ -84,7 +88,7 @@ You can compare this calendar with the calendar from the [Course Outline][course
     - Lecture: State in Compose
         - [Talib's slides: Part 1](https://moodle.johnabbott.qc.ca/mod/resource/view.php?id=23898) 
         - [Talib's slides: Part 2](https://moodle.johnabbott.qc.ca/mod/resource/view.php?id=23899)
-        - [(TO BE RELEASED BY OCT 2) State in Compose][state-compose]
+        - [(TO BE RELEASED BY OCT 24) State in Compose][state-compose]
     - State Codelab: [State in Compose Codelab][compose-codelab-3]
 - **Week 6** (Sep 25-29)
     - Lecture: [Layouts in Compose][layout-compose]
@@ -104,13 +108,27 @@ You can compare this calendar with the calendar from the [Course Outline][course
 ### Lectures & Activities
 
 - **Week 7** (Oct 2-6)
-    - Lecture: [(TO BE RELEASED BY OCT 2) Navigation in Compose][nav-compose]
-    - Lecture: [(TO BE RELEASED BY OCT 2) Repository management for shared projects][repo-management]
-    - Codelab: [Navigation in Compose][compose-codelab-5]
+    - Lecture: [(TO BE RELEASED BY OCT 24) Navigation in Compose][nav-compose]
+    - Codelab (Part of A3): [Navigation in Compose][compose-codelab-5]
 
-- **Week 7** (Oct 11)
-    - Codelab: [Advanced state and side effects][compose-codelab-6]
-    - Lecture: [TBD](#)
+- **Week 8** (Oct 11)
+    - Lecture: [(TO BE RELEASED BY OCT 24) Advanced State in Compose][adv-state-compose]
+    - Codelab (Part of A3): [Advanced state and side effects][compose-codelab-6]
+
+- **Week 9** (Oct 16-20)
+    - Lecture: [Requirements Engineering][requirements-eng]
+    - Lecture: [Git and GitHub][git-github]
+    - Lecture: [Continuous Integration/Deployment][ci-cid]
+    - Activity: [Project Overview][m0]
+
+- **Week 10** (Oct 23-27)
+    - Lecture: [(TO BE RELEASED BY OCT 24) Repository management for shared projects][repo-management]
+    - Lecture: [(TO BE RELEASED BY OCT 24) Advanced Kotlin: Extensions, Generics, Functional manipulation ][repo-management]
+    - Codelab (may be part of A4): Kotlin bootcamp for Programmers, [Lesson 5.1: Extensions][kt-bootcamp-51]
+    - Codelab (may be part of A4): Kotlin bootcamp for Programmers, [Lesson 5.2: Generics][kt-bootcamp-52]
+    - Codelab (may be part of A4): Kotlin bootcamp for Programmers, [Lesson 6: Functional Manipulation][kt-bootcamp-6]
+
+
 
 ### Deliverables
 
@@ -118,8 +136,7 @@ You can compare this calendar with the calendar from the [Course Outline][course
 - **Oct 6:** [Milestone #2a][m2a] due (Repository setup).
 - **Oct 11:** [Quiz Kahoot #3 on State/Layouts/Themeing][q3]
 - **Oct 20:** [Milestone #2b][m2b] due (Project plan and proposal).  **Presentations in class**.
-- **Oct 27:** Quiz Kahoot #4 on Navigation/Routing
-- **Oct 27:** [Assignment #3][a3] due midnight
+- **Oct 31:** [Assignment #3][a3] due midnight
 
 ## November
 
@@ -129,10 +146,11 @@ TBD
 
 ### Deliverables
 
-- **Nov 1:** [Assignment #4][a4] due midnight
-- **Nov 3:** Quiz Kahoot #5 on Coroutines/Flow/Storage
-- **Nov 10:** Quiz Kahoot #6 on Authentication/TBD
-- **Nov 17:** [Milestone #3][m3] due (Project design update, Preliminary code/demo)
+- **Nov 3:** [Quiz Kahoot #4 on Navigation/Routing/Kotlin Extensions][q4]
+- **Nov 17:** [Milestone #3a][m3a] 
+- **Nov 10:** Quiz Kahoot #5 on Coroutines/Flow/Storage
+- **Nov 17:** Quiz Kahoot #6 on Authentication/TBD
+- **Nov 17:** [Milestone #3b][m3b] 
 
 ## December
 
@@ -142,7 +160,8 @@ TBD
 
 ### Deliverables
 
-- **Dec 7 (Last class):** [Milestone 4][m4] Final project due and presentations.
+- **Dec 1:** [Milestone 4][m4a]
+- **Dec 7 (Last class):** [Milestone 4][m4b]
 
 [course-outline]: /5A6-F23/about/course-outline
 
@@ -151,6 +170,7 @@ TBD
 [a3]: /5A6-F23/assignments/assignment-3
 [a4]: /5A6-F23/assignments/assignment-4
 
+[m0]: /5A6-F23/project/01-outline/
 [m1]: /5A6-F23/project/milestone-1
 [m2a]: /5A6-F23/project/milestone-2#oct-6-repository-cicd
 [m2b]: /5A6-F23/project/milestone-2#oct-20-project-design--risk-analysis
