@@ -9,7 +9,7 @@ sidebar:
 | A3 | Overview |
 | --- | --- |
 | Worth: | 8% |
-| Due: | Oct 31 |
+| Due: | Nov 1 |
 | Hand-in: | A link to a private GitHub repository, with yourself and me (`@michaelhaaf`) as collaborators |
 | Notes: | [Course late penalty](/about/syllabus) applies. |
 </div>
@@ -20,8 +20,7 @@ Your main deliverable will be a repository containing two Pull Requests document
 
 The actual coding part of this assignment is explained in each codelab, so there are no other instructions as such. Many of the git and GitHub techniques needed for this lab are review for you, but some are not: the [Tips](#tips) section clarifies some of the requirements and gives more detailed instructions.
 
-A previous version of these instructions focused on git submodules -- this was more complicated than worthwhile, sorry about that. It may look like there's more ext. Depending on whether you already followed that instruction or not, there are a couple possible ways to easily use your existing progress in the codelabs rather than starting from scratch -- see [Getting Started](#getting-started) for more details about that.
-
+A previous version of these instructions focused on git submodules -- that turned out to be more complicated than worthwhile, sorry about that. Depending on whether you already followed that instruction or not, there are a couple possible ways to easily use your existing progress in the codelabs rather than starting from scratch -- see [Getting Started](#getting-started) for more details about that.
 
 ## Goals
 
@@ -58,8 +57,8 @@ There are a total of 70 marks available. The rubric details for each requirement
 
 - (1) Repository requirements met (private, @michaelhaaf collaborator, begins as bare repository with only default Initial commit)
 - (1) [Android template `.gitignore`][gitignore], either included in Initial commit, or added in a subsequent commit immediately after. **Don't forget this step** -- your subsequent commits will be affected by the presence of this file in an important way.
-- (1) One commit with message "NavigationCodelab init" containing ONLY the the addition of the NavigationCodelab stater code directory
-- (1) One commit with message "AdvancedStateAndSideEffectsCodelab init" containing ONLY the the addition of the AdvancedStateAndSideEffectsCodelab starter code directory
+- (1) One commit with message title "init NavigationCodelab" containing ONLY the the addition of the NavigationCodelab stater code directory
+- (1) One commit with message title "init AdvancedStateAndSideEffectsCodelab" containing ONLY the the addition of the AdvancedStateAndSideEffectsCodelab starter code directory
 
 Suggestion: This repo should begin as a **bare repository** with nothing and only yourself and me (@michaelhaaf) as collaborators. Do not fork another branch to begin this repository. See [Getting Started](#getting-started) for more details, whether you are starting from scratch or you have progress from the previous version of this assignment you want to adapt.
 
@@ -103,72 +102,235 @@ The Pull Request template you are using/adapting is explained in more detail in 
 
 ## Tips
 
-The tips provide below aren't comprehensie (e.g. there's no step-by-step instructions for creating the repository) or all strictly necessary (i.e. there's more than one way to meet the requirements of the assignment stated above) but should serve as a useful guideline. 
+The tips provide below aren't comprehensive (e.g. there's no step-by-step instructions for creating the repository) or all strictly necessary (i.e. there's more than one way to meet the requirements of the assignment stated above) but should serve as a useful guideline for the main tasks. 
 
 ### Getting started
 
-Both the [Navigation][navigation-codelab] and [Advanced State][adv-state-codelab] are derived from the same repository: [android codelabs](https://github.com/android/codelab-android-compose.git). 
+One of the [requirements for the main repository](#4-main-branch-requirements) is to create two initial commits adding *just* the starter code for each project. Both the [Navigation][navigation-codelab] and [Advanced State][adv-state-codelab] starter code comes from the same repository: [android codelabs](https://github.com/android/codelab-android-compose.git). 
 
-One of the requirements for the main repository is to Depending on how much progress you made on the codelabs before Version 2 of the instructions was published,
+There's a couple ways to go about adding this code to your assignment -- one way to do that is shown below.
 
-**Add the starter code for those codelabs to your Assignment 3 repository and create initial commits for each**.
+```bash
+## Acquire codelab code, either by downloading/extracting the .zip or cloning
+git clone https://github.com/android/codelab-android-compose.git
 
-Your first step will be to **commit the starter code**, so that your changes throughout the codelab can clearly be distinguished.
+## Copy codelab code to your Assignment3 repository
+cp -R codelab-android-compose/NavigationCodelab /path/to/your/a3repository
+cp -R codelab-android-compose/AdvancedStateAndSideEffectsCodelab /path/to/your/a3repository
+
+## Initialize your repository history.
+## Double check that your repository has a .gitignore committed already before proceeding!
+cd /path/to/your/a3repository/
+git add NavigationCodelab
+## See "Making precise commits" for more detail about the use of two "-m" arguments
+git commit -m "init NavigationCodelab" -m "Starter code for NavigationCodeLab from android/codelab-android-compose"
+
+git add AdvancedStateAndSideEffectsCodelab
+git commit -m "init AdvancedStateAndSideEffectsCodelab" -m "Starter code for AdvancedStateAndSideEffectsCodelab from android/codelab-android-compose"
+
+## Creating development branches after the starter code is present
+git switch -c nav-codelab
+## ... navigation codelab commits ready to push
+git push --set-upstream origin nav-codelab
+```
+
+At this point, you're ready to begin working on your labs! Remember to use your development branches to track your progress. If you accidentally commit to main instead, it's fixable -- as long as you don't push.
+
+:::tip[Android Studio Tip]
+To use independent projects located in the same directory with Android Studio correctly, make sure that you **open the project at the project root**, that is, the directory which contains all of the project files. E.g., for the **NavigationCodelab**, the project root is the **NavigationCodelab** directory.
+:::
+
+### Adapting existing progress
+
+Depending on how much progress you made on the codelabs before Version 2 of the instructions was published, you may also have existing progress on the codelabs you want to use.
+
+The two workflows below were covered in class on Wednesday, Oct 25. They assume you already have the initial repository set up with init commits on `main`.
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 <Tabs>
-  <TabItem label="Starting from scratch">
+  <TabItem label="(Recommended) Adapt code changes">
 
-    ```bash
-    ## Acquire codelab code
-    git clone https://github.com/android/codelab-android-compose.git
+The most straightforward way to preserve your existing changes is to simply copy them, overwriting the starter code. The interesting part is then creating *discrete commits* from the big blob of changes, depending on how much progress you made.
 
-    ## Copy codelab code to your Assignment3 repository
-    cp -R codelab-android-compose/NavigationCodelab /path/to/your/a3repository
-    cp -R codelab-android-compose/AdvancedStateAndSideEffectsCodelab /path/to/your/a3repository
+The main tools used:
+  - `git status / git diff`
+  - `git add --patch / git add -p`
+  - `git rebase --interactive / git rebase -i`
 
-    ## Initialize your repository history.
-    ## Double check that your .gitignore is committed already!
-    cd /path/to/your/a3repository/
-    git add NavigationCodelab
-    git commit -m "init NavigationCodelab"
+```bash
+## Ensure you are on the correct branch, nav-codelab for example
+## (same steps apply for other codelab)
+cd /path/to/your/a3repository
+git switch nav-codelab
 
-    git add AdvancedStateAndSideEffectsCodelab
-    git commit -m "init AdvancedStateAndSideEffectsCodelab"
-    ```
+## Copy your codelab code progress, overwriting starter code
+cp -R /path/to/your/codelabprogress/NavigationCodelab ./NavigationCodelab
+
+## Double check changes: ensure that ONLY your codelab progress is "unstaged"
+## I.e. you should not see a bunch of new files in the diff, just the modifications you made to the starter code
+git status
+git diff
+
+## *** Begin interactive add workflow: stage one "change" at a time ***
+## see "Making precise commits" for more detail
+git add /path/to/unstaged/file # if all changes to file are needed
+git add -p /path/to/unstaged/file # if only some changes to file are needed
+
+## Double check that only desired changes are staged 
+git status
+git diff --staged
+
+## Commit staged changes. "-m" not recommended, see "Making precise commits" for more detail
+git commit
+## *** Repeat interactive add workflow until all commits are made ***
+
+## At any time: modify commits using interactive rebase workflow
+git rebase -i HEAD~3 # interactive rewrite last 3 commits (4 including HEAD)
+```
 
   </TabItem>
-  <TabItem label="Starting from submodule (1)">
+  <TabItem label="(Fancy) Adapt commit history">
 
-  </TabItem>
-  <TabItem label="Starting from submodule (2)">
+If, like me, you had started making commits on a submodule due to the previous instructions of this assignment, you may be interested in keeping that commit history.
+
+The first thing to know: there's no reason to be so attached to your previous commits. I actually was happy to rewrite the commits and double check that they made sense by doing the manual (Recommended) workflow.
+
+That said, if you insist, there is a very cool old-fashioned `git` concept that is perfect for this problem: `git patch`. It comes from the days before ubiquitous GitHub/Gitlab/etc. availability, when developers would *email* code changes to eachother in large mailing lists -- there needed to be a repository-agnostic way to apply commit differences (with messages/history intact) from one developer's repo to another.
+
+The following is a rough outline to using git patch, adapted from https://www.devroom.io/2009/10/26/how-to-create-and-apply-a-patch-with-git/ . You will likely need to adapt it for your own codelab progress if the steps below aren't quite right.
+
+```bash
+## Create a git patch file where you have codelab progress
+## i.e. a file that records all of the commits difference data on your branch against main 
+cd /path/to/your/codelabprogress
+git switch name-of-dev-branch-you-used # if you did not make a branch, checkout the first commit of your changes, and create a branch from that
+git format-patch main --stdout > ~/codelab_progress.patch # the location of this file doesn't matter
+
+## Prepare A3 repository
+cd /path/to/your/a3repository
+git switch nav-codelab # ensure you are on correct branch, e.g. nav-codelab
+
+## Take a look at changes in patch
+git apply --stat ~/codelab_progress.patch
+
+## Check if there wil be conflicts/errors in patch
+git apply --check ~/codelab_progress.patch
+
+## Apply the patch
+git apply ~/codelab_progress.patch
+
+## Double check changes
+git status
+
+## At any time: modify commits using interactive rebase workflow
+git rebase -i HEAD~3 # interactive rewrite last 3 commits (4 including HEAD)
+```
 
   </TabItem>
 </Tabs>
 
-:::tip
-To use independent projects located in the same directory with Android Studio correctly, make sure that you open the project at the **project root**, that is, the directory which contains all of the project files. E.g., for the **NavigationCodelab**, the project root is the **NavigationCodelab** directory.
-:::
-
 [navigation-codelab]: https://developer.android.com/codelabs/jetpack-compose-navigation#0
 [adv-state-codelab]: https://developer.android.com/codelabs/jetpack-compose-advanced-state-side-effects#0
 
+### Using developer branches
+
+Some handy commands: 
+
+```bash
+## Keeping your developer branch (e.g. nav-codelab) in sync with main
+## Useful for e.g. you added the PR template to main after starting development work
+git switch nav-codelab
+git pull --rebase
+```
 
 ### Making precise commits
 
-Given that the codelabs are guided (i.e. solutions usually provided at each step, and the whole solution code is also provided at the beginning), most of the marks are based on **commit quality** -- I'm trying to get a sense of how well you can do the following:
+In order to make [good commits][git-lec-notes], we need to be able to be **precise** about what code we choose to stage before we commit. 
 
-- demonstrate understanding each step of the codelab in your own words
-- make decisions about which code belongs in which commit
-  - i.e. there are many sound ways to split the functional changes of the codelabs into commits -- you should be looking to make *good commits*, not try to reverse-engineer a specific answer I'm looking for. For instance, you will sometimes need zero, one, or more than one commit per codelab-step in the codelab. Remember it is one commit per **functional change** as determined by you.
-- practise the habit of creating sensible git commit messages
-- tailor your local history before pushing code
-  - i.e. make good commits while you develop if you can, but know that you can `reset`/`rebase` your history afterwards to edit commit messages, tweak commit content, squash/merge commits, or even to recreate your commit history from scratch (without losing your changes)
+That doesn't mean being perfect about always making commits each time you make a code change -- rather, this is about being able to review your code after making changes and being able to group those changes together sensibly.
+
+For instance, after completing a few steps of the codelab, you may realize that only some of those steps make up a given functional requirement. In addition, you might have made some unrelated formatting changes to different lines of code. 
+
+What if all these changes were in the same file? If you use `git add <filename_with_changes>`, that stages all of your changes, including your unrelated change. 
+
+This section will show how to use `git add --patch` to create some sample commits that demonstrate these main points
+
+Will go over example on Wednesday Oct 25 in class, and update these notes after
+
+### Writing commit messages
+
+Will go over example on Wednesday Oct 25 in class, and update these notes after
 
 ### Editing commit history
 
+Will go over example on Wednesday Oct 25 in class, and update these notes after
+
 ### Creating a Pull Request template
+
+Pull request templates are `.github` directory Markdown files that allow you to specify a template for Pull Requests. You may already be using one for your project milestone.
+
+- Follow the [GitHub instructions for creating Pull Request templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository) to create 
+  - You can commit this **directly to your main branch** -- your local developer branches can be rebased on top of this commit. See (#using-developer-branches) for an example..
+- [Sample template you can use for this assignment]()
 
 ### Updating Pull Requests
 
+Pull requests give developer teams they give us the opportunity to review, then discard/rework/edit, proposed changes to branch history in a shared draft environment. Pull requests are essentially a **draft** of the *future history* (whoa!) of your `main` branch. More clearly, they are *requests to pull (merge/rebase) the commit history of one branch onto another*, and most typically are used to *pull* developer changes onto a shared branch (typically called `main`). 
+
+In GitHub, Pull Requests (PRs) are based on a pulling a *source* branch onto a *target* branch. They are updated automatically when the source branch they are based on is updated (i.e., when changes pushed are pushed).
+
+This is all review so far -- however, there are slightly different workflows depending on whether or not the changes that are pushed have had their history altered or produce change conflicts. 
+
+It is impossible to `git push` a branch that has history/content-conflicts -- those conflicts have to be "merged" -- but then, what happens to the nice linear history you spent time creating? In those cases, we can use `git push --force` to **overwrite** the remote developer branch with your proposed changes, thereby updating the pull request without any fuss.
+
+#### No changes to history: just push
+
+You can incrementally update a pull request by simply `git push` when you have new commits. As long as the new commits are linear additions to the existing pull request branch, and no modification of branch history took place, the pull request can update automatically along with the branch update.
+
+```bash
+## Ensure you are on your developer branch,
+## and ensure the upstream branch you are pushing to is your developer branch
+git push
+```
+
+<Tabs>
+  <TabItem label="PR before git push">
+
+  Alt: GitHub pull request, linear set of commits
+
+  </TabItem>
+  <TabItem label="PR after git push">
+    
+  Alt: GitHub pull request, linear set of commits, one additional commit, no issues
+
+  </TabItem>
+</Tabs>
+
+You will see that the pull request automatically updates when the branch is pushed.
+
+#### Changes to history: force required
+
+It is more complicated to push a branch (and therefore update a pull request) when you have done "destructive" operations like `git rebase` -- the unique ID of historical commits, and relationships between them, are destroyed when github history is altered, therefore the pushed branch is no longer compatible. How can we update the pull request?
+
+Note well: **it is not necessary to create a new branch, nor to create a new pull request, when the local git history has changed**! Updating a developer branch that is under review is the perfect use case for a "dangerous" option like `git push --force`, which simply overrites the remote branch.
+
+```bash
+## Be careful to make sure you are on the right branch!
+git push --force
+```
+
+<Tabs>
+  <TabItem label="PR after git push (changed history)">
+
+  Alt: GitHub pull request, "pull request has conflicts that need to be resolved before merge" or similar.
+
+  </TabItem>
+  <TabItem label="PR after git push --force (changed history)">
+    
+  Alt: GitHub pull request, no issues, "@user force-pushed SHA-1 onto SHA-2" or similar and history is updated.
+
+  </TabItem>
+</Tabs>
+
+This is why using developer branches for code changes so useful: being able to manipulate your draft work history on the fly is **essential** for collaborating on code with other developers, in order to address feedback -- and are options are much more limited if we develop on `main` directly for that reason.

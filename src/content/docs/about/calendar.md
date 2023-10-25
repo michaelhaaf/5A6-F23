@@ -35,7 +35,8 @@ You can compare this calendar with the calendar from the [Course Outline][course
 [nav-compose]: /5A6-F23/lectures/user-interfaces/05-navigation
 [adv-state-compose]: /5A6-F23/lectures/user-interfaces/05-navigation
 
-[repo-management]: /5A6-F23/lectures/development/03-repo-management
+<!-- [repo-management]: /5A6-F23/lectures/development/03-repo-management -->
+[repo-management]: /5A6-F23/assignments/assignment-3#tips
 [git-github]: /5A6-F23/lectures/development/01-git
 [requirements-eng]: /5A6-F23/lectures/development/02-software-process
 [ci-cid]: /5A6-F23/lectures/development/015-ci-cid
@@ -88,7 +89,7 @@ You can compare this calendar with the calendar from the [Course Outline][course
     - Lecture: State in Compose
         - [Talib's slides: Part 1](https://moodle.johnabbott.qc.ca/mod/resource/view.php?id=23898) 
         - [Talib's slides: Part 2](https://moodle.johnabbott.qc.ca/mod/resource/view.php?id=23899)
-        - [(TO BE RELEASED BY OCT 24) State in Compose][state-compose]
+        - [(TO BE RELEASED BY OCT 27) State in Compose][state-compose]
     - State Codelab: [State in Compose Codelab][compose-codelab-3]
 - **Week 6** (Sep 25-29)
     - Lecture: [Layouts in Compose][layout-compose]
@@ -108,11 +109,11 @@ You can compare this calendar with the calendar from the [Course Outline][course
 ### Lectures & Activities
 
 - **Week 7** (Oct 2-6)
-    - Lecture: [(TO BE RELEASED BY OCT 24) Navigation in Compose][nav-compose]
+    - Lecture: [(TO BE RELEASED BY OCT 27) Navigation in Compose][nav-compose]
     - Codelab (Part of A3): [Navigation in Compose][compose-codelab-5]
 
 - **Week 8** (Oct 11)
-    - Lecture: [(TO BE RELEASED BY OCT 24) Advanced State in Compose][adv-state-compose]
+    - Lecture: [(TO BE RELEASED BY OCT 27) Advanced State in Compose][adv-state-compose]
     - Codelab (Part of A3): [Advanced state and side effects][compose-codelab-6]
 
 - **Week 9** (Oct 16-20)
@@ -122,8 +123,8 @@ You can compare this calendar with the calendar from the [Course Outline][course
     - Activity: [Project Overview][m0]
 
 - **Week 10** (Oct 23-27)
-    - Lecture: [(TO BE RELEASED BY OCT 24) Repository management for shared projects][repo-management]
-    - Lecture: [(TO BE RELEASED BY OCT 24) Advanced Kotlin: Extensions, Generics, Functional manipulation ][repo-management]
+    - Lecture: [Repository management for shared projects][repo-management]
+    - Lecture: [(TO BE RELEASED BY OCT 27) Advanced Kotlin: Extensions, Generics, Functional manipulation ][repo-management]
     - Codelab (may be part of A4): Kotlin bootcamp for Programmers, [Lesson 5.1: Extensions][kt-bootcamp-51]
     - Codelab (may be part of A4): Kotlin bootcamp for Programmers, [Lesson 5.2: Generics][kt-bootcamp-52]
     - Codelab (may be part of A4): Kotlin bootcamp for Programmers, [Lesson 6: Functional Manipulation][kt-bootcamp-6]
@@ -136,7 +137,7 @@ You can compare this calendar with the calendar from the [Course Outline][course
 - **Oct 6:** [Milestone #2a][m2a] due (Repository setup).
 - **Oct 11:** [Quiz Kahoot #3 on State/Layouts/Themeing][q3]
 - **Oct 20:** [Milestone #2b][m2b] due (Project plan and proposal).  **Presentations in class**.
-- **Oct 31:** [Assignment #3][a3] due midnight
+- **Nov 1:** [Assignment #3][a3] due midnight
 
 ## November
 
@@ -151,6 +152,7 @@ TBD
 - **Nov 10:** Quiz Kahoot #5 on Coroutines/Flow/Storage
 - **Nov 17:** Quiz Kahoot #6 on Authentication/TBD
 - **Nov 17:** [Milestone #3b][m3b] 
+- **Late Nov (tentative):** [Assignment #4][a4] 
 
 ## December
 

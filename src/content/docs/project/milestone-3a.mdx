@@ -1,6 +1,6 @@
 ---
-title: "Milestone 3a: TBD"
-description: "TBD"
+title: "Milestone 3a: Progress on your defined requirements"
+description: "This milestone adds no new requirements -- it instead tracks the progress you are making on your group project."
 sidebar:
   hidden: false
 ---
@@ -10,34 +10,22 @@ sidebar:
 | --- | --- |
 | Worth: | 3% |
 | Due: | Nov 3 |
-| Hand-in: | Link to GitHub repository |
+| Hand-in: | In-class (short) presentation |
 | Notes: | [Course late penalty](/about/syllabus) applies. |
 </div>
 
-## Automating releases
+As we already have links to your repository, there will be no discrete hand-in for this. The goal: make concrete progress on your project according to the proposals you created on GitHub, and give/get feedback on what you've found difficult/easy/worthwhile so far to share with other groups. 
 
-When your initial implementation is ready, you will **publish your first release of the application**.
+The presentation should not require preparation/slides/etc., it's more informal this time. That said, you should try to have made some progress on your project to share!
 
-The following information will be helpful for this task:
+**Marking scheme**
 
-- [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
-- [git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
+In class, I will hand out self/peer assessments. On Nov 3, teams will prepare (short, ~5min) presentations updating the class on their project so far.
 
-For the version number, choose **v0.1.0**. Subsequent releases should be defined as follows (from [semvar.org](https://semver.org/)):
-> Given a version number MAJOR.MINOR.PATCH, increment the:
-> 
->   - MAJOR version when you make incompatible API changes
->   - MINOR version when you add functionality in a backward compatible manner
->   - PATCH version when you make backward compatible bug fixes
-> 
-> Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
+The scheme will be something like, out of 30 marks total:
 
-You should aim to complete this initial release for the Sprint 2 deadline -- Oct 20. This release should be accompanied by a **release workflow** that produces an [Android App Bundle](https://developer.android.com/guide/app-bundle) using `gradlew`.
+- (10): Progress on defined requirements from Milestone 2b / updates to requirements
+- (10): Quality of repository management / issue-tracking / progress documentation
+- (10): Individual contribution to project
 
-You can find tutorials which demonstrate this process online; here are some examples:
-- https://github.com/marketplace/actions/build-android-app 
-- https://www.freecodecamp.org/news/use-github-actions-to-automate-android-development/
-- https://blog.logrocket.com/android-ci-cd-using-github-actions/
-
-You will **not need to have your bundle signed or published on Google Apps yet**, we are just preparing the stage to do that eventually. That means, **you can stop before the steps that require signing an app/generating secrets/publishing to Firebase/etc**. What is desired at this stage is to produce an `.aab` (Android Bundle) that bundles your project source code into an artefact that can eventually be installed on Android devices.
-
+I will also fill out these assements for everyone, and your final mark will be some combination self/peer/my evaluation.
