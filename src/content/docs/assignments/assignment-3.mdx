@@ -1,8 +1,6 @@
 ---
-title: "Module 3: Architecture"
-description: "We will continue learning more advanced techniques in application architecture for the Android stack."
-created: 2023-08-11
-tags: [ "tag1", "tag2" ]
+title: "Module 3: Android Development (Version 2)"
+description: "In this assignment we continue learning techniques in application architecture for the Android stack, in particular navigation and advanced state management. We will also document our progress through codelabs using git/GitHub best practises to keep track of the techiques learned and to practise useful repository management skills."
 sidebar:
   hidden: false
 ---
@@ -16,66 +14,161 @@ sidebar:
 | Notes: | [Course late penalty](/about/syllabus) applies. |
 </div>
 
-For this assignment, you practise intermediate Jetpack Compose techniques from the Android compose labs.
+For this assignment, you will pick up two important Jetpack Compose / Android Architecture techniques (Navigation and State/Side-effect management with ViewModel) from the Android compose labs. You will also practise maintaining legible development history using git and GitHub.
 
-You will also complete a series of exercises in git/GitHub at the same time.
+Your main deliverable will be a repository containing two Pull Requests documenting your progress on each codelabs. See [Requirements](#requirements).
 
-This will start due to the fact that **each codelab** requires you to *clone* an existing repository and to build on top of it.
+The actual coding part of this assignment is explained in each codelab, so there are no other instructions as such. Many of the git and GitHub techniques needed for this lab are review for you, but some are not: the [Tips](#tips) section clarifies some of the requirements and gives more detailed instructions.
 
-In this assignment, you will use [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to track your changes to each codelab as you make progress.
+A previous version of these instructions focused on git submodules -- this was more complicated than worthwhile, sorry about that. It may look like there's more ext. Depending on whether you already followed that instruction or not, there are a couple possible ways to easily use your existing progress in the codelabs rather than starting from scratch -- see [Getting Started](#getting-started) for more details about that.
+
 
 ## Goals
 
 1. Build on Jetpack Compose knowledge
-  - Learn Navigation
-  - Learn the View Model and Android App Architecture
+    - Learn **Navigation**
+    - Learn the **View Model** and **advanced state management in Android Architecture**
 
 2. Practise git/GitHub skills
+    - Identify and separate **functional** commits in development history
+    - Manage and manipulate git history to **generate pull requests with precise, intentional changes**
 
-## Tasks
+In essense: the main goals are **to learn the technical things about Navigation/ViewModel in Jetpack Compose the labs are trying to teach you**, and in documenting that you've done so, **to learn & practise repo management habits useful for your project milestones**-- that is, to learn to stop worrying and love `git` (if you don't already).
 
-1. Create a new, **private** GitHub repository called **Assignment 3**. This should be a **bare repository** with nothing in it. See [here]() for example instructions.
-
-1. Both the [Navigation][navigation-codelab] and [Advanced State][adv-state-codelab] are derived from the same repository: [android codelabs](https://github.com/android/codelab-android-compose.git). We will **add this repository to your Assignment 3 repository as a submodule**.
-
-```bash title="/path/to/your/repo/Assignment 3/
-$ git submodule add https://github.com/android/codelab-android-compose
-```
-
-:::Tip
-The compose-codelab repository is a **monorepository** -- that is, a repository that contains multiple independent projects in separate directories. This lab requires you to interact with just two of those projects -- the **NavigationCodelab** and the **AdvancedStateAndSideEffectsCodelab**.
-
-To use independent projects in Android Studio correctly, make sure that you open the project at the **project root**, that is, the directory which contains all of the project files. E.g., for the **NavigationCodelab**, the project root is the **NavigationCodelab** directory.
-:::
-
-Adding an external repository as a submodule is a convenient way to separately track changes to repositories you don't own, but nevertheless interact with directly in your own work.
-
-1. Complete the [Navigation codelab][navigation-codelab]
-
-Follow the steps in the Navigation codelab. Aside from the instructions given in the codelab itself, there are some additional requirements I will ask you to complete below.
-
-  - In your **Assignment 3** repository, create a new branch: `navigation-codelab`.
-
-Create a separate commit for each step in the code lab. Your commit message should summarize the changes made in that codelab step.
-
-- If you have already completed parts of this codelab from before, you can import all of your changes at once in one commit.
-
-1. Complete the [Advanced state and side effects][adv-state-codelab]
-
-  - In your **Assignment 3** repository, create a new branch: `advanced-state-codelab`.
-
-  - The commit instructions are the same for this codelab as the previous codelab.
-
-
-1. Add myself (`@michaelhaaf`) as a collaborator to your repository
 
 ## Requirements
 
-TBD, but the basic rubric will be:
+Your submission will be a **private** GitHub repository, with @michaelhaaf invited as a collaborator, called **Assignment 3** (or similar, the name isn't that important). The rest of the requirements in the marking scheme below are things that should be in that repository by the deadline.
 
-- Repository and submodule set up complete
-- Codelab progress -- complete both codelabs for full marks in this section, partial marks for partial progress.
-- Commit messages for each step, explaining all changes made and why.
+**Tentative Marking Scheme**
+
+The exact weights may change slightly, but should serve as a guide for the rough proportions for each part of the assignment.
+
+- (4) A main branch containing your initial code (the two codelab starting points)
+- (15) A development branch called `nav-codelab` (or similar) tracking your progress through the [Navigation Codelab][navigation-codelab]
+- (15) A development branch called `advstate-codelab` (or similar) tracking your progress through the [Advanced State Codelab][adv-state-codelab]
+- (18) An open pull request from the `nav-codelab` branch to `main`
+- (18) An open pull request from the `advstate-codelab` branch to `main`
+
+There are a total of 70 marks available. The rubric details for each requirement follow in the sections below.
+
+### (4) Main branch requirements
+
+[gitignore]: https://github.com/github/gitignore/blob/main/Android.gitignore
+
+- (1) Repository requirements met (private, @michaelhaaf collaborator, begins as bare repository with only default Initial commit)
+- (1) [Android template `.gitignore`][gitignore], either included in Initial commit, or added in a subsequent commit immediately after. **Don't forget this step** -- your subsequent commits will be affected by the presence of this file in an important way.
+- (1) One commit with message "NavigationCodelab init" containing ONLY the the addition of the NavigationCodelab stater code directory
+- (1) One commit with message "AdvancedStateAndSideEffectsCodelab init" containing ONLY the the addition of the AdvancedStateAndSideEffectsCodelab starter code directory
+
+Suggestion: This repo should begin as a **bare repository** with nothing and only yourself and me (@michaelhaaf) as collaborators. Do not fork another branch to begin this repository. See [Getting Started](#getting-started) for more details, whether you are starting from scratch or you have progress from the previous version of this assignment you want to adapt.
+
+### (30) Development branch requirements
+
+[git-lec-notes]: /5A6-F23/lectures/development/01-git
+
+The following requirements apply to both development branches (15 marks for each codelab)
+
+- (5) Marks for progress on the codelab itself
+  - If you finish the whole codelab, you get full marks -- partial marks for partial progress.
+  - Feel free to make use of the guided solutions provided in the tutorial -- **make sure you try the steps yourself and understand the accompanying tutorial**. Most of the marks are for your commit messages explaining the changes made, as you'll see below. 
+- (10) Marks for quality of commit messages tracking your progress
+  - Your commit history should document each **functional change** required by the labs into **separate commits**.
+  - **Commit messages** should demonstrate best practises outlined in the [git/github lecture notes][git-lec-notes].
+
+You can see more details/examples of what I'm looking for in the [Making precise commits](#making-precise-commits) section below.
+
+NOTE: The idea isn't to get it perfect the first time! One of the goals of this lab is to practise [Tailoring commit history](#tailoring-commit-history) so that you can [Update Pull Requests](#updating-pull-requests) with confidence (links go to Tips section below). That is, learning how to use `git` to rewrite/tweak/edit/squash/create local branch commits before pushing/updating a pull request.
+
+
+### (36) Pull request requirements
+
+[template-nav]: #
+[template-state]: #
+[template-pr]: #
+
+The following requirements apply to both development branches (18 marks for each codelab)
+
+- (8) Marks for pull request management
+  - should be a linear set of commits from the appropriate branch
+  - updates to the pull request done directly, rather than creating new pull requests
+  - pull request template used for entering codelab progress / answering codelab questions. This should be pushed to main branch after the previous initial commits. [Link to sample template][template-pr]
+- (10) Marks for progress on codelab documented/answers to questions about each codelab. See questions below.
+  - [Questions for NavigationCodelab][template-nav]
+  - [Questions for AdvancedStateAndSideEffectsCodelab][template-state]
+
+The questions are short and aren't intended to take you too much time -- they are there simply to make sure you noticed/understood some foundational concepts from each codelab.
+
+The Pull Request template you are using/adapting is explained in more detail in the [Creating a Pull Request template](#creating-a-pull-request-template) section.
+
+## Tips
+
+The tips provide below aren't comprehensie (e.g. there's no step-by-step instructions for creating the repository) or all strictly necessary (i.e. there's more than one way to meet the requirements of the assignment stated above) but should serve as a useful guideline. 
+
+### Getting started
+
+Both the [Navigation][navigation-codelab] and [Advanced State][adv-state-codelab] are derived from the same repository: [android codelabs](https://github.com/android/codelab-android-compose.git). 
+
+One of the requirements for the main repository is to Depending on how much progress you made on the codelabs before Version 2 of the instructions was published,
+
+**Add the starter code for those codelabs to your Assignment 3 repository and create initial commits for each**.
+
+Your first step will be to **commit the starter code**, so that your changes throughout the codelab can clearly be distinguished.
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs>
+  <TabItem label="Starting from scratch">
+
+    ```bash
+    ## Acquire codelab code
+    git clone https://github.com/android/codelab-android-compose.git
+
+    ## Copy codelab code to your Assignment3 repository
+    cp -R codelab-android-compose/NavigationCodelab /path/to/your/a3repository
+    cp -R codelab-android-compose/AdvancedStateAndSideEffectsCodelab /path/to/your/a3repository
+
+    ## Initialize your repository history.
+    ## Double check that your .gitignore is committed already!
+    cd /path/to/your/a3repository/
+    git add NavigationCodelab
+    git commit -m "init NavigationCodelab"
+
+    git add AdvancedStateAndSideEffectsCodelab
+    git commit -m "init AdvancedStateAndSideEffectsCodelab"
+    ```
+
+  </TabItem>
+  <TabItem label="Starting from submodule (1)">
+
+  </TabItem>
+  <TabItem label="Starting from submodule (2)">
+
+  </TabItem>
+</Tabs>
+
+:::tip
+To use independent projects located in the same directory with Android Studio correctly, make sure that you open the project at the **project root**, that is, the directory which contains all of the project files. E.g., for the **NavigationCodelab**, the project root is the **NavigationCodelab** directory.
+:::
 
 [navigation-codelab]: https://developer.android.com/codelabs/jetpack-compose-navigation#0
 [adv-state-codelab]: https://developer.android.com/codelabs/jetpack-compose-advanced-state-side-effects#0
+
+
+### Making precise commits
+
+Given that the codelabs are guided (i.e. solutions usually provided at each step, and the whole solution code is also provided at the beginning), most of the marks are based on **commit quality** -- I'm trying to get a sense of how well you can do the following:
+
+- demonstrate understanding each step of the codelab in your own words
+- make decisions about which code belongs in which commit
+  - i.e. there are many sound ways to split the functional changes of the codelabs into commits -- you should be looking to make *good commits*, not try to reverse-engineer a specific answer I'm looking for. For instance, you will sometimes need zero, one, or more than one commit per codelab-step in the codelab. Remember it is one commit per **functional change** as determined by you.
+- practise the habit of creating sensible git commit messages
+- tailor your local history before pushing code
+  - i.e. make good commits while you develop if you can, but know that you can `reset`/`rebase` your history afterwards to edit commit messages, tweak commit content, squash/merge commits, or even to recreate your commit history from scratch (without losing your changes)
+
+### Editing commit history
+
+### Creating a Pull Request template
+
+### Updating Pull Requests
+
