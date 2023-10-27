@@ -5,6 +5,8 @@ sidebar:
   hidden: false
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
 ## What is Git?
 
 *These notes were adapted from https://microsoft.github.io/code-with-engineering-playbook/source-control/git-guidance/*
@@ -12,10 +14,10 @@ sidebar:
 Git is a **distributed version control system**. Every participant has a local copy of the source-code, and the attached history that is kept in sync by comparing commit **hashes** ([SHA](https://en.wikipedia.org/wiki/Secure_Hash_Algorithm) hashes of changes between each git commit command) making up the latest version (called `HEAD`).
 
 ```bash
-    repo 1: A -> B -> C -> D -> HEAD
-    repo 2: A -> B -> HEAD
-    repo 3: X -> Y -> Z -> HEAD
-    repo 4: A -> J -> HEAD
+repo 1: A -> B -> C -> D -> HEAD
+repo 2: A -> B -> HEAD
+repo 3: X -> Y -> Z -> HEAD
+repo 4: A -> J -> HEAD
 ```
 
 Since they share a common history, repo 1 and repo 2 can be synchronized
@@ -34,39 +36,39 @@ sharing whatever comes after**.
 A basic Git workflow is as follows. 
 
 ```bash
-    # pull the latest changes
-    git pull
+# pull the latest changes
+git pull
 
-    # start a new feature branch based on the "develop" branch
-    git checkout -b feature/123-add-git-instructions develop
+# start a new feature branch based on the "develop" branch
+git checkout -b feature/123-add-git-instructions develop
 
-    # another way to do the same thing:
-    git switch -c feature/123-add-git-instructions develop
+# another way to do the same thing:
+git switch -c feature/123-add-git-instructions develop
 
-    # edit some files
+# edit some files
 
-    # add and commit the files
-    git add <file>
-    git commit -m "add basic instructions"
+# add and commit the files
+git add <file>
+git commit -m "add basic instructions"
 
-    # edit some files
+# edit some files
 
-    # add and commit the files
-    git add <file>
-    git commit
+# add and commit the files
+git add <file>
+git commit
 
-    # "git commit" will cause your $EDITOR will appear -- this is an environment variable that can be changed. Common CLI options are `nano`, `vim`, and `emacs`. In a git GUI, a built-in editor will appear at this point.
-    # This allows you to write multi-line commit messages, which is important for large changes.
+# "git commit" will cause your $EDITOR will appear -- this is an environment variable that can be changed. Common CLI options are `nano`, `vim`, and `emacs`. In a git GUI, a built-in editor will appear at this point.
+# This allows you to write multi-line commit messages, which is important for large changes.
 
-    # check your changes
-    # 'git status' may be the git command I use most
-    git status
+# check your changes
+# 'git status' may be the git command I use most
+git status
 
-    # by default, `git diff` shows the line-by-line additions/removals/changes to all unstaged changes in your repository
-    git diff
+# by default, `git diff` shows the line-by-line additions/removals/changes to all unstaged changes in your repository
+git diff
 
-    # push the branch to the remote repository (i.e. -- add the branch to the remote repo)
-    git push --set-upstream origin feature/123-add-git-instructions
+# push the branch to the remote repository (i.e. -- add the branch to the remote repo)
+git push --set-upstream origin feature/123-add-git-instructions
 ```
 
 
@@ -87,7 +89,7 @@ repository data, so that you can work on it locally. This copy includes
 all versions of every file and folder for the project.
 
 ```bash
-    git clone https://github.com/username/repo-name
+git clone https://github.com/username/repo-name
 ```
 
 You only need to clone the repository the first time. Before any
@@ -108,13 +110,13 @@ Pull the latest changes and create a new branch for your work based on
 the trunk (in this case `develop`).
 
 ```bash
-    git pull
+git pull
 
-    # checkout is used for commits, -b is a branch flag
-    git checkout -b feature/feature-name develop
+# checkout is used for commits, -b is a branch flag
+git checkout -b feature/feature-name develop
 
-    # an alternative that does the same thing, "-c" to create the branch:
-    git switch -c feature/feature-name develop
+# an alternative that does the same thing, "-c" to create the branch:
+git switch -c feature/feature-name develop
 ```
 
 At any point, you can move between the branches with
@@ -133,32 +135,32 @@ also neatly explains exactly what changes were made and why.
 2.  Check what files were changed
 
     ```bash
-        > git status
-        On branch feature/271-basic-commit-info
-        Changes not staged for commit:
-          (use "git add <file>..." to update what will be committed)
-          (use "git restore <file>..." to discard changes in working directory)
-                modified:   source-control/git-guidance/README.md
+    > git status
+    On branch feature/271-basic-commit-info
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git restore <file>..." to discard changes in working directory)
+            modified:   source-control/git-guidance/README.md
     ```
 
 3.  Track the files you wish to include in the commit. To track all
     modified files:
 
     ```bash
-        git add --all
+    git add --all
     ```
 
     Or to track only specific files:
 
     ```bash
-        git add source-control/git-guidance/README.md
+    git add source-control/git-guidance/README.md
     ```
 
 4.  Commit the changes to your local branch with a descriptive [commit
     message](#commit-best-practices)
 
     ```bash
-        git commit -m "add basic git instructions"
+    git commit -m "add basic git instructions"
     ```
 
 ### Pushing
@@ -167,7 +169,7 @@ When you are done working, push your changes to a branch in the remote
 repository using:
 
 ```bash
-    git push
+git push
 ```
 
 The first time you push, you first need to set an upstream branch as
@@ -175,7 +177,7 @@ follows. After the first push, the `--set-upstream` parameter and branch
 name are not needed anymore.
 
 ```bash
-    git push --set-upstream origin feature/feature-name
+git push --set-upstream origin feature/feature-name
 ```
 
 Once the feature branch is pushed to the remote repository, it is
@@ -192,26 +194,26 @@ See [Pull Requests in GitHub](https://docs.github.com/en/github/collaborating-wi
 Why make **pull requests** instead of **pushes** to a shared repository? Once the repository is shared with more than once person, the code in it no longer belongs to a single developer. It is easy to accidentally push to a branch you own -- when it is your own branch, that is no problem, but when the branch is shared, that can introduce bugs and overwrite the work of colleagues.
 :::
 
-#### Merge Conflicts
+### Conflicts
 
 If multiple people make changes to the same files, you may need to
 resolve any conflicts that have occurred before you can merge.
 
 ```bash
-    # check out the develop branch and get the latest changes
-    git checkout develop
-    git pull
+# check out the develop branch and get the latest changes
+git checkout develop
+git pull
 
-    # check out your branch
-    git checkout <your branch>
+# check out your branch
+git checkout <your branch>
 
-    # merge the develop branch into your branch
-    git merge develop
+# merge the develop branch into your branch
+git merge develop
 
-    # if merge conflicts occur, above command will fail with a message telling you that there are conflicts to be solved
+# if merge conflicts occur, above command will fail with a message telling you that there are conflicts to be solved
 
-    # find which files need to be resolved, and edit them to resolve the conflict
-    git status
+# find which files need to be resolved, and edit them to resolve the conflict
+git status
 ```
 
 Git conflicts produce a "diff", which can be resolved by selecting which parts of the conflict you want to accept or reject:
@@ -221,34 +223,97 @@ Git conflicts produce a "diff", which can be resolved by selecting which parts o
 -   Accept them both and fix the code (probably needed)
 
 ```bash
-    Here are lines that are either unchanged from the common
-    ancestor, or cleanly resolved because only one side changed.
-    <<<<<<< yours:sample.txt
-    Conflict resolution is hard;
-    let's go shopping.
-    =======
-    Git makes conflict resolution easy.
-    >>>>>>> theirs:sample.txt
-    And here is another line that is cleanly resolved or unmodified
+Here are lines that are either unchanged from the common
+ancestor, or cleanly resolved because only one side changed.
+<<<<<<< yours:sample.txt
+Conflict resolution is hard;
+let's go shopping.
+=======
+Git makes conflict resolution easy.
+>>>>>>> theirs:sample.txt
+And here is another line that is cleanly resolved or unmodified
 ```
 
 When this process is completed, make sure you test the result by
 executing build, checks, test to validate this merged result.
 
 ```bash
-    # conclude the merge
-    git merge --continue
+# conclude the merge
+git merge --continue
 
-    # verify that everything went ok
-    git log
+# verify that everything went ok
+git log
 
-    # push the changes to the remote branch
-    git push
+# push the changes to the remote branch
+git push
 ```
 
 If no other conflicts appear, the PR can now be merged, and your branch
 deleted. **Use `squash` to reduce your changes into a single commit, so
 the commit history can be within an acceptable size.**
+
+### Rebasing
+
+*The following notes were adapted from the MAN page of `git-rebase`.*
+
+In my mind, `git rebase` is the more useful cousin of `git merge`.
+
+`git-rebase`: Reapply commits from one branch on top of another branch. A short example follows.
+
+Assume you have a branch `topic` that you have been working on. In the time since you began work, other developers have completed pull requests to `main` branch, and so your `topic` branch has fallen behind.
+
+You can apply the following command (either one, same result):
+
+```bash
+git rebase main
+git rebase main topic
+```
+
+And see the following change to your branches (click the tabs):
+
+<Tabs>
+  <TabItem label="Branches before rebase">
+
+  ```bash
+       a---b---c topic
+      /
+  d---e---f---g main
+  ```
+
+  </TabItem>
+  <TabItem label="Branches after rebase">
+
+  ```bash
+               a*---b*---c* topic
+              /
+  d---e---f---g main
+  ```
+
+  </TabItem>
+</Tabs>
+
+A range of commits can also be removed with rebase. If we have the following situation:
+
+```bash
+E---F---G---H---I---J  topicA
+```
+then the command `git rebase --onto topicA~5 topicA~3 topicA` would result in the removal of commits F and G:
+
+```bash
+E---H*---I*---J*  topicA
+```
+
+This is useful if F and G were flawed in some way, or should not be
+part of topicA. Note that the argument to `--onto` and the `<upstream>`
+parameter can be any valid commit.
+
+In case of conflict, git rebase will stop at the first problematic commit and leave conflict markers in the tree. You can use git diff to locate the markers `<<<<<<` and make edits to resolve the conflict. 
+
+For each file you edit, you need to tell git that the conflict has been resolved, typically this would be done with `git add <filename>`
+
+After resolving the conflict manually and updating the index with the desired resolution, you can continue the rebasing process with `git rebase --continue`
+
+Alternatively, you can undo the git rebase with `git rebase --abort`
 
 ### Stashing changes
 
@@ -258,15 +323,15 @@ run `git stash`, save the un-committed work, and revert to the HEAD
 commit. You can retrieve the saved changes by running `git stash pop`:
 
 ```bash
-    git stash
-    …
-    git stash pop
+git stash
+…
+git stash pop
 ```
 
 Or you can move the current state into a new branch:
 
 ```bash
-    git stash branch <new_branch_to_save_changes>
+git stash branch <new_branch_to_save_changes>
 ```
 
 ### Recovering lost commits
@@ -276,14 +341,14 @@ revert a `git rebase` where your commits got squashed, you can use
 `git reflog` to find the commit:
 
 ```bash
-    git reflog
+git reflog
 ```
 
 Then you can use the reflog reference (`HEAD@{}`) to reset to a specific
 commit before the rebase:
 
 ```bash
-    git reset HEAD@{2}
+git reset HEAD@{2}
 ```
 
 ## Commit Best Practices
@@ -319,7 +384,7 @@ commit messages using your favorite editor. The following command makes
 Visual Studio Code your default git editor:
 
 ```bash
-    git config --global core.editor "code --wait"
+git config --global core.editor "code --wait"
 ```
 
 ### Commit Message Structure
@@ -354,6 +419,7 @@ For more information on commit message conventions, see:
     messages](https://wiki.openstack.org/wiki/GitCommitMessages#Information_in_commit_messages)
 -   [On commit
     messages](http://who-t.blogspot.com/2009/12/on-commit-messages.html)
+
 
 ## Managing remotes
 
@@ -396,50 +462,148 @@ remote
     origin  https://hostname/username/new-repository-name.git (push)
 ```
 
-### Working with submodules
+## Very useful git techniques
 
-Submodules can be useful in more complex deployment and/or development scenarios where you wish to track changes to a repository that you do not own, and incorporate those changes into your own codebase.
+When sharing code with others, it is often required to organize the developer history mores stringently than when working alone. Each git commit is a snapshot of the codebase, and it is important that each snapshot is sensible and recoverable.
 
-Adding a submodule to your repo:
+Before commits are pushed to a shared repository, they can be modified directly. This is a very useful tool for preparing a pull request: we can erase the commits that we have made previously and "request to pull" a brand new set of commits where necessary.
 
-```bash
-git submodule add <link_to_repository>
-```
+Whenever you have a code review that requests you fix things like commit messages/titles, or requests that you split an existing commit into smaller chunks, you will **need to reset or rebase those commits, recover the changes, and create new commits**. This is not so difficult, once you are used to it -- the two main commands you will need are `git rebase --interactive`, `git add --patch`, and `git reset --soft`. See below for more details.
 
-NOTE: A submodule will create a repository inside of your repository -- this means that there are two separate places to track changes and make commits.
+### Workflow for interactive git rebase
 
-## Rolling back changes
+*The following notes were adapted from the MAN page of `git-rebase`.*
 
-Before a set of commits are pushed to a shared repository, they can be modified directly. This is a very useful tool for preparing a pull request -- we can erase the commits that we have made previously and "request to pull" a brand new set of commits where necessary.
+Rebasing interactively means that you have a chance to edit the commits which are rebased. You can reorder the commits, you can change them, and you can remove them.
 
-Whenever you have a code review that requests you fix things like commit messages/titles, or requests that you split an existing commit into smaller chunks, you will **need to reset or rebase those commits, recover the changes, and create new commits**. This is not so difficult, once you are used to it -- the two main commands you will need are `git rebase` and `git reset`. See below for more details:
+The interactive mode is meant for this type of workflow:
 
-### Reverting and deleting commits
+1. make a series of changes on a codebase, something like:
+    <ol type="a">
+      <li>create a series of completed commits</li>
+      <li>make partial progress on some other work saved in a temporary commit</li>
+      <li>fixup of some previous mistakes in the codebase</li>
+    </ol>
+2. commit those changes and `git push` them to a shared repository
+3. your changes were not approved, repeat step 1 until they pass approval.
 
-To \"undo\" a commit, run the following two commands: `git revert` and
-`git reset`. `git revert` creates a new commit that undoes commits while
-`git reset` allows deleting commits entirely from the commit history.
+Sometimes the thing fixed in 1.c cannot be amended to the not-quite perfect commit it fixes, because that commit is buried deeply in your commit history. That is *exactly* what interactive rebase is for: use it after plenty of "1.a"s and "1.b"s, by rearranging and editing commits, and squashing multiple commits into one.
 
-To **delete** the latest commit use `HEAD~`:
+That is, after any normal day of development, `git rebase --interactive` lets you organize your work into a series of commits at will.
 
-```bash
-    git reset --hard HEAD~1
-```
-
-To delete commits back to a specific commit, use the respective commit
-id:
+Start `git rebase -i` with the last commit you want to retain as-is:
 
 ```bash
-    git reset --hard <sha1-commit-id>
+git rebase -i SHA-or-reference-to-commit
+
+## E.g. using reference to HEAD
+git rebase -i HEAD~2
+
+## E.g. SHA commit id (first 7 digits is enough)
+git rebase -i fa1afe1
 ```
 
-Interactive rebase for undoing commits:
+An editor will be fired up with all the commits in your current branch that come after the given commit. You can reorder the commits in this list to your heart’s content, and you can remove them. 
+
+Assume the commit BEFORE the one you selected has the id `9f36727`. The resulting `git rebase` TODO list will look more or less like this:
 
 ```bash
-    git rebase -i HEAD~N
+pick deadbee The oneline of this commit
+pick fa1afe1 The oneline of the next commit
+
+# Rebase 9f36727..fa1afe1 onto 9f36727 (2 commands)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit
+# e, edit <commit> = use commit
+# s, squash <commit> = use commit
+# ... more commands follow 
 ```
 
-The above command will open an interactive session in an editor with the last N commits sorted from oldest to newest. To undo a commit, delete the corresponding line of the commit and save the file. Git will rewrite the commits in the order listed in the file and because one (or many) commits were deleted, the commit will no longer be part of the history.
+The oneline descriptions are purely for your pleasure; `git rebase` will not look at them. The commit SHA-ids (`deadbee` and `fa1afe1` in this example) are the important part: do not delete or edit the ids.
+
+The TODO list that `git rebase --interactive` is showing you is the **default commands that take place when you run a normal `git rebase`**. By default, each commit in the range specified is `picked` i.e. **applied** to your current branch, starting from the top and working towards the bottom.
+
+What `git rebase --interactive` allows you to do is to *change* the `pick` instruction for each commit to **some other instruction**. This is where the real power of the command lies.
+
+By replacing the command `pick` with the command `edit`, you can tell `git rebase` to stop after applying that commit, so that you can edit the files and/or the commit message, amend the commit, and continue rebasing.
+
+To interrupt the rebase (just like an `edit` command would do, but without cherry-picking any commit first), use the `break` command.
+
+If you just want to edit the commit message for a commit, replace the
+command `pick` with the command `reword`.
+
+To drop a commit, replace the command `pick` with `drop`, or just
+delete the matching line.
+
+If you want to fold two or more commits into one, replace the command
+`pick` for the second and subsequent commits with `squash` or `fixup`.
+
+`git rebase` **will stop to give you the change to make changes** when `pick` has been replaced with `edit` or when a command fails due to merge errors. When you are done editing and/or resolving conflicts you can continue with `git rebase --continue`.
+
+Reordering and editing commits usually creates untested intermediate steps. You may want to check that your history editing did not break anything by running a test, or at least recompiling at intermediate points in history by using the `exec` command (shortcut "x"). You may do so by creating a todo list like this one:
+
+```bash
+pick deadbee Implement feature XXX
+fixup f1a5c00 Fix to feature XXX
+exec ./gradlew build # exec can run any shell command -- might as well rebuild the project!
+pick c0ffeee The oneline of the next commit
+edit deadbab The oneline of the commit after
+exec ./gradlew build
+...
+```
+
+The interactive rebase will stop when a command fails (i.e. exits with
+non-0 status) to give you an opportunity to fix the problem. You can
+continue with `git rebase --continue`.
+
+The `exec` command launches the command in a shell (the one specified
+in `$SHELL` or the default shell if `$SHELL` is not set), so you can use
+shell features (like `cd`, `>`, `;` ...). The command is run from the
+root of the working tree.
+
+### Splitting commits in interactive git rebase
+
+In interactive mode, you can mark commits with the action `edit`.
+However, this does not necessarily mean that git rebase expects the
+result of this edit to be exactly one commit. Indeed, you can undo the
+commit, or you can add other commits. This can be used to split a
+commit into two:
+
+-   Start an interactive rebase with `git rebase -i <commit>`, where
+`<commit>` is the commit you want to split. In fact, any commit range
+will do, as long as it contains that commit.
+
+-   Mark the commit you want to split with the action `edit`.
+
+-   When it comes to editing that commit, execute git reset HEAD^. The
+effect is that the HEAD is rewound by one, and the index follows
+suit. However, the working tree stays the same.
+
+-   Now add the changes to the index that you want to have in the first
+commit. You can use git add (possibly interactively) or git gui (or
+both) to do that.
+
+-   Commit the now-current index with whatever commit message is
+appropriate now.
+
+-   Repeat the last two steps until your working tree is clean.
+
+-   Continue the rebase with `git rebase --continue`.
+
+If you are not absolutely sure that the intermediate revisions are
+consistent (they compile, pass the testsuite, etc.) you should use git
+stash to stash away the not-yet-committed changes after each commit,
+test, and amend the commit if fixes are necessary.
 
 
 
+
+### `git add --patch`
+
+### `git reset --soft`
+
+### Updating pull requests with --force
+
+### `git pull --force`
