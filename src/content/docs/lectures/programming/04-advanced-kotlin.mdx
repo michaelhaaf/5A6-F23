@@ -1,0 +1,108 @@
+---
+title: Generics and Extensions in Kotlin
+description: Final Kotlin concepts we need to learn in this class.
+---
+
+*These notes are, in part, adapted from the Kotlinlang.org  docs on [Generics](https://kotlinlang.org/docs/generics.html) and [Extensions: Functions](https://kotlinlang.org/docs/extensions.html).* 
+
+There are two last very important concepts to learn in Kotlin which will help realize the full potential of the Jetpack Compose libary. 
+
+One is common to other languages, is very important for working with Collections, and you may have seen it before: Generics. 
+
+The other is unique to Kotlin and is a very neat technique that replaces the Decorator pattern: Extensions.
+
+## Generics
+
+Classes in Kotlin can have type parameters, just like in Java:
+
+```kotlin
+class Box<T>(t: T) {
+    var value = t
+}
+```
+
+To create an instance of such a class, simply provide the type arguments:
+
+```kotlin
+val box: Box<Int> = Box<Int>(1)
+```
+
+But if the parameters can be inferred, for example, from the constructor arguments, you can omit the type arguments:
+
+```kotlin
+val box = Box(1) // 1 has type Int, so the compiler figures out that it is Box<Int>
+```
+
+Classes aren't the only declarations that can have type parameters. Functions can, too. Type parameters are placed before the name of the function:
+
+```kotlin title=""
+fun <T> singletonList(item: T): List<T> {
+    // ...
+}
+
+fun <T> T.basicToString(): String { // extension function
+    // ...
+}
+```
+
+To call a generic function, specify the type arguments at the call site after the name of the function:
+
+```kotlin
+val l = singletonList<Int>(1)
+```
+
+Type arguments can be omitted if they can be inferred from the context, so the following example works as well:
+
+```kotlin
+val l = singletonList(1)
+```
+
+You can read more detail about the theory and usecases for generics at the [Generics documentation on Kotlinlang.org](https://kotlinlang.org/docs/generics.html)
+
+### Exercises (Assignment 4)
+
+I will include the following exercises in assignment 4 to help you get the hang of using generics in Kotlin. More details to come soon, but here are the exercises for now:
+
+- [Kotlin bootcamp 5.2: Generics](https://developer.android.com/codelabs/kotlin-bootcamp-generics#0)
+
+## Extensions
+
+Kotlin provides the ability to extend a class or an interface with new functionality without having to inherit from the class or use design patterns such as Decorator. This is done via special declarations called extensions.
+
+For example, you can write new functions for a class or an interface from a third-party library that you can't modify. Such functions can be called in the usual way, as if they were methods of the original class. This mechanism is called an extension function. There are also extension properties that let you define new properties for existing classes.
+
+To declare an extension function, prefix its name with a receiver type, which refers to the type being extended. The following adds a swap function to `MutableList<Int>`:
+
+```kotlin
+  fun MutableList<Int>.swap(index1: Int, index2: Int) {
+      val tmp = this[index1] // 'this' corresponds to the list
+      this[index1] = this[index2]
+      this[index2] = tmp
+  }
+```
+
+The `this` keyword inside an extension function corresponds to the receiver object (the one that is passed before the dot). Now, you can call such a function on any `MutableList<Int>`
+
+This function makes sense for any `MutableList<T>`, and you can make it generic:
+
+```kotlin
+val list = mutableListOf(1, 2, 3)
+list.swap(0, 2) // 'this' inside 'swap()' will hold the value of 'list'
+```
+
+```kotlin
+fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
+    val tmp = this[index1] // 'this' corresponds to the list
+    this[index1] = this[index2]
+    this[index2] = tmp
+}
+```
+
+You need to declare the [generic](#generics) type parameter before the function name to make it available in the receiver type expression. 
+
+### Exercises (Assignment 4)
+
+I will include the following exercises in assignment 4 to help you get the hang of using Extensions in Kotlin. More details to come soon, but here are the exercises for now:
+
+- [Kotlin bootcamp 5.1: Extensions](https://developer.android.com/codelabs/kotlin-bootcamp-extensions#0)
+- [Kotlin bootcamp 6.1: Functional manipulation](https://developer.android.com/codelabs/kotlin-bootcamp-sams#0)
