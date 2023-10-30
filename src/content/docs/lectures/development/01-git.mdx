@@ -117,12 +117,14 @@ git checkout -b feature/feature-name develop
 
 # an alternative that does the same thing, "-c" to create the branch:
 git switch -c feature/feature-name develop
+
+# deleting a branch you don't need/created by mistake
+git branch -d develop
 ```
 
 At any point, you can move between the branches with
 `git checkout <branch>` or `git switch <branch>` as long as you have committed or stashed your
-work. If you forget the name of your branch use `git branch --all` to
-list all branches.
+work. If you forget the name of your branch use `git branch -a` to list all branches (see [Using remote branches](#using-remote-branches)).
 
 ### Committing
 
@@ -222,20 +224,62 @@ Git conflicts produce a "diff", which can be resolved by selecting which parts o
 -   Accept the changes from dev branch (incoming)
 -   Accept them both and fix the code (probably needed)
 
-```bash
+```diff ins={4-5} del={7} title="sample.txt"
 Here are lines that are either unchanged from the common
 ancestor, or cleanly resolved because only one side changed.
-<<<<<<< yours:sample.txt
-Conflict resolution is hard;
-let's go shopping.
-=======
-Git makes conflict resolution easy.
->>>>>>> theirs:sample.txt
+<<<<<<< ours:sample.txt           # git resolution marker
+Conflict resolution is hard;       # changed in ours:sample.txt 
+let's go shopping.                 # changes in ours:sample.txt
+=======                            # git resolution divider
+Git makes conflict resolution easy.    # changed in theirs:sample.txt
+>>>>>>> theirs:sample.txt              # git resolution divider
 And here is another line that is cleanly resolved or unmodified
 ```
 
-When this process is completed, make sure you test the result by
-executing build, checks, test to validate this merged result.
+You can use `git checkout --ours/theirs` to resolve these conflicts automatically:
+
+<Tabs>
+  <TabItem label="git checkout --ours">
+
+After running `git checkout --ours`, `sample.txt` is automatically updated to only include the local changes:
+
+```diff title="sample.txt" {3}
+Here are lines that are either unchanged from the common
+ancestor, or cleanly resolved because only one side changed.
+Git makes conflict resolution easy.
+And here is another line that is cleanly resolved or unmodified
+```
+
+  </TabItem>
+  <TabItem label="git checkout --theirs">
+
+After running `git checkout --theirs`, `sample.txt` is automatically updated to only include the remote changes:
+
+```diff title="sample.txt" {3,4}
+Here are lines that are either unchanged from the common
+ancestor, or cleanly resolved because only one side changed.
+Conflict resolution is hard;
+let's go shopping.
+And here is another line that is cleanly resolved or unmodified
+```
+
+  </TabItem>
+  <TabItem label="Manual git resolution">
+
+You can always manually resolve conflicts using your favourite editor. This way you can combine the two versions and modify them as you see fit:
+
+```diff title="sample.txt" {3-4}
+Here are lines that are either unchanged from the common
+ancestor, or cleanly resolved because only one side changed.
+Git makes conflict resolution easy.
+Nevertheless, let's go shopping anyway.
+And here is another line that is cleanly resolved or unmodified
+```
+
+  </TabItem>
+</Tabs>
+
+The merge process is completed when **all git conflict markers `<<<<` and `====` and `>>>>` are removed from the file**. Make sure you test the result by building your project before continuing.
 
 ```bash
 # conclude the merge
@@ -353,72 +397,79 @@ git reset HEAD@{2}
 
 ## Commit Best Practices
 
+*These notes are adapted from a [neat blogpost from GitHub with actual examples](https://github.blog/2022-06-30-write-better-commits-build-better-projects/) that you can follow along with*.
+
 A commit combines changes into a logical unit. Adding a descriptive
 commit message can aid in comprehending the code changes and
-understanding the rationale behind the modifications. Consider the
-following when making your commits:
+understanding the rationale behind the modifications. 
 
-One of the is distinguishing between **content** and **style** changes. You should adhere to the following rules:
-  - Commits that change code style DO NOT change code behavior
-  - Commits that change code behavior DO NOT change code style
-  - Commits that refactor code DO NOT change code behavior
+Commits should minimize the effort needed to build a mental model of the changes they introduce. With effort tied to having a “just right” amount of information, the key to a good commit is fitting into quantified upper and lower bounds on that information.
 
-Your commits in general (even on development branches) should be **atomic**, that is:
+> A **small commit** is one with minimal scope; it does one “thing.” This often correlates to minimizing the modified lines of cone, but that isn’t a firm requirement. For example, changing the name of a commonly-used function may modify hundreds of lines of code, but its constrained scope makes it simple to both explain and review.
 
-> An **atomic commit** is a commit that includes changes related to only one feature or task of your program. There are two main reasons for doing this: first, if something you change turns out to cause some problems, it is easy to revert the specific change without losing other changes; and second, it enables you to write better commit messages. ([The Odin Project](https://www.theodinproject.com/lessons/foundations-git-basics))
+> A **commit is atomic** when it is a stable, independent unit of change. In concrete terms, a repository should still build, pass tests, and generally function if rolled back to that exact commit without needing other changes. In an atomic commit, your reader will have everything they need to evaluate the change in the commit itself.
 
-Follow these steps to build the habit around generating atomic commits:
-
-- Make small commits. This makes changes easier to review, and if we need to revert a commit, we lose less work. Consider splitting the commit into separate commits with `git add -p` if it includes more than one logical change or bug fix.
--   **Don't mix nonfunctional changes with functional code changes**. E.g., do not include whitespace changes or formatting refactors like that with code that changes the behavior of the application. This will make it easy to determine if a given commit has a functional change or only removes a whitespace, keeping your history coherent.
--   **Commit complete and well tested code. Never commit incomplete code,
-    get in the habit of testing your code before committing.**
--   Write good commit messages.
-    -   Why is it necessary? It may fix a bug, add a feature, improve
-        performance, or just be a change for the sake of correctness
-    -   What effects does this change have? In addition to the obvious
-        ones, this may include benchmarks, side effects etc.
-
-You can specify the default git editor, which allows you to write your
-commit messages using your favorite editor. The following command makes
-Visual Studio Code your default git editor:
-
-```bash
-git config --global core.editor "code --wait"
-```
+Commits can be split and combined to adjust their size and scope -- tools for doing so are covered in later sections of this document.
 
 ### Commit Message Structure
 
-The essential parts of a commit message are: \* subject line: a short
-description of the commit, maximum 50 characters long \* body
-(optional): a longer description of the commit, wrapped at 72
-characters, separated from the subject line by a blank line
+The essential parts of a commit message are: 
 
-You are free to structure commit messages; however, git commands like
-`git log` utilize above structure. Therefore, it can be helpful to
-follow a convention within your team and to utilize git best.
+- subject line: a short description of the commit, maximum 50 characters long
+- body: Describe **what you’re doing** and **why** you’re doing it in the commit message.
 
-For example, [Conventional
-Commits](https://www.conventionalcommits.org/) is a lightweight
-convention that complements [SemVer](https://semver.org/), by describing
-the features, fixes, and breaking changes made in commit messages. See
-[Component Versioning](../component-versioning/) for more information on
-versioning.
+Learn by example from famous open source developer [Tim Pope](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html):
 
-For more information on commit message conventions, see:
+```
+Capitalized, short (50 chars or less) summary
 
--   [A Note About Git Commit
-    Messages](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
+More detailed explanatory text, if necessary.  Wrap it to about 72
+characters or so.  In some contexts, the first line is treated as the
+subject of an email and the rest of the text as the body.  The blank
+line separating the summary from the body is critical (unless you omit
+the body entirely); tools like rebase can get confused if you run the
+two together.
+
+Write your commit message in the imperative: "Fix bug" and not "Fixed bug"
+or "Fixes bug."  This convention matches up with commit messages generated
+by commands like git merge and git revert.
+
+Further paragraphs come after blank lines.
+
+- Bullet points are okay, too
+
+- Typically a hyphen or asterisk is used for the bullet, followed by a
+  single space, with blank lines in between, but conventions vary here
+
+- Use a hanging indent
+```
+
+I personally like to do the following:
+
+```
+lowercase, (because it's nicer to look at) short summary
+
+Explanation (similar to Tim's note above, treat it like an email with a quick context paragraph)
+
+Requirements resolved:
+- One bullet point per discrete requirement (i.e. defined in an Issue, you could link it here)
+
+Changes made:
+- Each discrete code change is a separate bullet
+- You should be able to look at this commit message next to the commit diff and see each change represented in a bullet
+```
+
+You can see examples in action through in my [partially-solved Assignment 3 Pull Request](https://github.com/michaelhaaf/5A6-F23-assignment3/pull/2), in case you are having trouble visualising this.
+
+More resources if you are interested: 
+
+-   [A Note About Git Commit Messages](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
 -   [Conventional Commits](https://www.conventionalcommits.org)
--   [Git commit best
-    practices](https://medium.com/@nawarpianist/git-commit-best-practices-dab8d722de99)
+-   [Git commit best practices](https://medium.com/@nawarpianist/git-commit-best-practices-dab8d722de99)
 -   [How to Write a Git Commit Message](https://cbea.ms/git-commit)
--   [How to Write Better Git Commit
-    Messages](https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages)
--   [Information in commit
-    messages](https://wiki.openstack.org/wiki/GitCommitMessages#Information_in_commit_messages)
--   [On commit
-    messages](http://who-t.blogspot.com/2009/12/on-commit-messages.html)
+-   [How to Write Better Git Commit Messages](https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages)
+-   [Information in commit messages](https://wiki.openstack.org/wiki/GitCommitMessages#Information_in_commit_messages)
+-   [On commit messages](http://who-t.blogspot.com/2009/12/on-commit-messages.html)
 
 
 ## Managing remotes
@@ -431,6 +482,58 @@ the remote repository you cloned from will be called origin
     > git remote -v
     origin  https://github.com/microsoft/code-with-engineering-playbook.git (fetch)
     origin  https://github.com/microsoft/code-with-engineering-playbook.git (push)
+```
+
+### Using remote branches
+
+When you clone a repository with many branches (like my example [assignment 3 repository](https://github.com/michaelhaaf/5A6-F23-assignment3/)) it can appear like the only branch available is the default branch (here `main`):
+
+```
+$ git clone https://github.com/michaelhaaf/5A6-F23-assignment3/
+$ cd 5A6-F23-assignment3
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+# use git branch to view repository branches
+$ git branch
+* main
+```
+
+Using `git branch` alone only lists the currently existing local branches. We can see view remote branches using the following parameters:
+
+- `git branch -r` list **remote** branches
+- `git branch -a` list **all** branches (local and remote)
+
+```
+$ git branch -a
+* main  # the astertix indicates local branch we have checked out
+  origin/HEAD -> origin/main
+  origin/main
+  origin/nav-codelab
+  origin/state-codelab
+
+$ git branch -r
+  origin/HEAD -> origin/main
+  origin/main
+  origin/nav-codelab
+  origin/state-codelab
+```
+
+You can create and "switch" to a local copy of any existing remote with `git switch`:
+
+```
+$ git switch state-codelab
+branch 'state-codelab' set up to track 'origin/state-codelab'.
+Switched to a new branch 'state-codelab'
+
+$ git branch -a
+  main
+* state-codelab
+  origin/HEAD -> origin/main
+  origin/main
+  origin/nav-codelab
+  origin/state-codelab
 ```
 
 ### Working with forks
@@ -602,8 +705,113 @@ test, and amend the commit if fixes are necessary.
 
 ### `git add --patch`
 
+
+<Tabs>
+  <TabItem label="Rejecting a hunk">
+   
+```diff /.*Stage this hunk.*/
+$ git add -p AdvancedStateAndSideEffectsCodelab/
+diff --git a/AdvancedStateAndSideEffectsCodelab/app/build.gradle b/AdvancedStateAndSideEffectsCodelab/app/build.gradle
+index 726de7a..47e44f7 100644
+--- a/AdvancedStateAndSideEffectsCodelab/app/build.gradle
++++ b/AdvancedStateAndSideEffectsCodelab/app/build.gradle
+@@ -42,16 +42,6 @@ android {
+         manifestPlaceholders = [MAPS_API_KEY: properties.getProperty("MAPS_API_KEY", "")]
+     }
+ 
+-    signingConfigs {
+-        // We use a bundled debug keystore, to allow debug builds from CI to be upgradable
+-        debug {
+-            storeFile rootProject.file('debug.keystore')
+-            storePassword 'android'
+-            keyAlias 'androiddebugkey'
+-            keyPassword 'android'
+-        }
+-    }
+-
+     buildTypes {
+         debug {
+             signingConfig signingConfigs.debug
+(1/2) Stage this hunk [y,n,q,a,d,j,J,g,/,e,?]? n
+```
+
+  </TabItem>
+  <TabItem label="Accepting a hunk">
+
+```diff /.*Stage this hunk.*/
+@@ -126,6 +116,7 @@ dependencies {
+     def lifecycle_version = "2.6.2"
+     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
+     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
++    implementation "androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version"
+     implementation "com.google.dagger:hilt-android:2.48.1"
+     kapt "com.google.dagger:hilt-compiler:2.48.1"
+ 
+(2/2) Stage this hunk [y,n,q,a,d,K,g,/,e,?]? y
+```
+
+  </TabItem>
+  <TabItem label="Editing a hunk">
+
+```diff /.*Stage this hunk.*/
+diff --git a/AdvancedStateAndSideEffectsCodelab/app/src/main/java/androidx/compose/samples/crane/home/CraneHome.kt b/AdvancedStateAndSideEffectsCodelab/app/src/main/java/androidx/compose/samples/crane/home/CraneHome.kt
+index 5074428..4edde48 100644
+--- a/AdvancedStateAndSideEffectsCodelab/app/src/main/java/androidx/compose/samples/crane/home/CraneHome.kt
++++ b/AdvancedStateAndSideEffectsCodelab/app/src/main/java/androidx/compose/samples/crane/home/CraneHome.kt
+@@ -36,6 +36,7 @@ import androidx.compose.samples.crane.base.ExploreSection
+ import androidx.compose.samples.crane.data.ExploreModel
+ import androidx.compose.ui.Modifier
+ import androidx.compose.ui.graphics.Color
++import androidx.lifecycle.compose.collectAsStateWithLifecycle
+ import androidx.lifecycle.viewmodel.compose.viewModel
+ 
+ typealias OnExploreItemClicked = (ExploreModel) -> Unit
+(1/2) Stage this hunk [y,n,q,a,d,j,J,g,/,e,?]? y
+@@ -76,8 +77,8 @@ fun CraneHomeContent(
+     modifier: Modifier = Modifier,
+     viewModel: MainViewModel = viewModel(),
+ ) {
+-    // TODO Codelab: collectAsStateWithLifecycle step - consume stream of data from the ViewModel
+-    val suggestedDestinations: List<ExploreModel> = remember { emptyList() }
++    val suggestedDestinations by viewModel.suggestedDestinations.collectAsStateWithLifecycle()
++
+ 
+     val onPeopleChanged: (Int) -> Unit = { viewModel.updatePeople(it) }
+     var tabSelected by remember { mutableStateOf(CraneScreen.Fly) }
+(2/2) Stage this hunk [y,n,q,a,d,K,g,/,e,?]? y
+```
+
+  </TabItem>
+  <TabItem label="Difference after patching">
+
+```diff ins={7-8} del={13}
+$ git status
+On branch state-codelab
+Your branch is up to date with 'origin/state-codelab'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   AdvancedStateAndSideEffectsCodelab/app/build.gradle
+	modified:   AdvancedStateAndSideEffectsCodelab/app/src/main/java/androidx/compose/samples/crane/home/CraneHome.kt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   AdvancedStateAndSideEffectsCodelab/app/build.gradle
+```
+
+
+  </TabItem>
+</Tabs>
+
+
+
+
 ### `git reset --soft`
+
+### `git commit --amend`
 
 ### Updating pull requests with --force
 
 ### `git pull --force`
+

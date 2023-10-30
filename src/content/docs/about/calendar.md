@@ -137,7 +137,7 @@ You can compare this calendar with the calendar from the [Course Outline][course
 - **Oct 6:** [Milestone #2a][m2a] due (Repository setup).
 - **Oct 11:** [Quiz Kahoot #3 on State/Layouts/Themeing][q3]
 - **Oct 20:** [Milestone #2b][m2b] due (Project plan and proposal).  **Presentations in class**.
-- **Nov 1:** [Assignment #3][a3] due midnight
+- **Nov 6:** [Assignment #3][a3] due midnight
 
 ## November
 
