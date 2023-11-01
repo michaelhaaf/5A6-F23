@@ -7,9 +7,9 @@ sidebar:
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-When sharing code with others, it is often required to organize the developer history mores stringently than when working alone. Each git commit is a snapshot of the codebase, and it is important that each snapshot is sensible and recoverable.
+When sharing code with others, it is often required to organize the developer history mores carefully than when working alone. Each git commit is a snapshot of the codebase, and it is important that each snapshot is sensible and recoverable. 
 
-At the same time, adding too many rules and regulations to the way you code can be prohibitive to the creative development process. Is there a way to get the best of both worlds?
+At the same time, it can sometimes feel like adding too many rules to the way you code can be prohibitive to the creative development process. Is there a way to get the best of both worlds?
 
 The figure below from [Oliver Steele](https://blog.osteele.com/2008/05/commit-policies/) is a clear depiction of the kind of workflow common in shared development with repositories like GitHub:
 
@@ -32,6 +32,19 @@ Whenever you have a code review that requests you fix things like commit message
 
 ## Sharing code with others
 
+*The following notes are adapted from https://www.atlassian.com/git/tutorials/comparing-workflows and https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow*
+
+Before getting into detailed examples, it's worth going over the big picture of the problem we are trying to solve.
+
+There are many possible ways to organize how code should be shared among developers. This is one of the core problems of the [DevOps](https://en.wikipedia.org/wiki/DevOps) field.
+
+There are three main workflows worth knowing about for our purposes:
+
+1. the [Centralized workflow](https://www.atlassian.com/git/tutorials/comparing-workflows), where developer share a `main` branch and all changes are committed to this branch. Developers manage conflicts locally and either merge or rebase to update the `main` branch. This is the default `git` workflow and requires no branches.
+2. the [Git feature branch workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) is common, and is the main workflow we will be learning about this semester.
+3. The [Forking workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow) is very common in open source software projects where there are many developers who do not necessarily know eachother or work together, allowing their work to be more independent while stille facilitating collaboration. We will not cover this in detail in our class, but it is worth knowing about as you will see it in your travels.
+
+### Example
 
 ### Merging
 
