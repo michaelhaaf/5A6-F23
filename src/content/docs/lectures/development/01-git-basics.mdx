@@ -158,11 +158,12 @@ also neatly explains exactly what changes were made and why.
     git add source-control/git-guidance/README.md
     ```
 
-4.  Commit the changes to your local branch with a descriptive [commit
-    message](#commit-best-practices)
+4.  Commit the changes to your local branch with a descriptive commit message. See the [Commit Best Practises section](#commit-best-practices) for more detais and recommendations.
 
     ```bash
-    git commit -m "add basic git instructions"
+    git commit -m "add oneline comment for simple change/temporary commit"
+    git commit -m "Subject line of commit" -m "Each subsequent -m argument is separated by a new line"
+    git commit # Without the "-m" arugment, your $EDITOR is opened to write a multi-line commit message
     ```
 
 ### Pushing
@@ -183,7 +184,7 @@ git push --set-upstream origin feature/feature-name
 ```
 
 Once the feature branch is pushed to the remote repository, it is
-visible to anyone with access to the code.
+visible to anyone with access to the repository.
 
 ## Managing remotes
 
@@ -197,7 +198,7 @@ origin  https://github.com/microsoft/code-with-engineering-playbook.git (push)
 
 ### Fetching and Pulling
 
-*These notes adapted from https://www.atlassian.com/git/tutorials/syncing/git-fetch* 
+*These notes adapted from https://www.atlassian.com/git/tutorials/syncing/git-fetch and https://www.atlassian.com/git/tutorials/syncing/git-pull* 
 
 When downloading content from a remote repo, `git pull` and `git fetch` commands are available to accomplish the task. You can consider `git fetch` the 'safe' version of the two commands. It will download the remote content but not update your local repo's working state, leaving your current work intact. `git pull` is the more aggressive alternative; it will download the remote content for the active local branch and immediately execute `git merge` to create a merge commit for the new remote content. If you have pending changes in progress this will cause conflicts and kick-off the [merge conflict resolution flow](/5A6-F23/lectures/development/02-git-advanced).
 
@@ -219,7 +220,38 @@ The commits from these new remote branches are shown as squares instead of circl
 
 `git pull`, on the other hand, is actually a combination of `git fetch` and `git merge` by default.
 
+To better demonstrate the pull and merging process let us consider the following example. Assume we have a repository with a main branch and a remote origin.
 
+In this scenario, `git pull` will download all the changes from the point where the local and main diverged. 
+
+`git pull` will fetch the diverged remote commits which are A-B-C. The default pull process will then **create a new local merge commit** containing the content of the new diverged remote commits.
+
+A `--rebase` option can also be passed to `git pull` to use a rebase merging strategy instead of a merge commit. 
+
+See the first image in the tabs below: local and main diverge at commit **E**. The second and third tabs show what happens after `pull` and `pull --rebase` respectively.
+
+<Tabs>
+    
+    <TabItem label="Before git pull">
+        Click on the `git pull` and `git pull --rebase` tabs above to see how the history is updated by these two commands.
+        ![](./img/01-bubble-diagram-01.svg)
+    </TabItem>
+
+    <TabItem label="After git pull">
+        In this diagram, we can see the new merge commit H that results from `git pull`.
+
+        This commit is a new merge commit that contains the contents of remote A-B-C commits and has a combined log message. 
+
+        ![](./img/02-bubble-diagram-02.svg)
+    </TabItem>
+
+    <TabItem label="After git pull --rebase">
+        In this diagram, we can now see that a rebase pull does not create the new H commit. Instead, the rebase has copied the remote commits A--B--C and rewritten the local commits E--F--G to appear after them them in the local origin/main commit history.
+
+        ![](./img/03-bubble-diagram.png)
+    </TabItem>
+
+</Tabs>
 
 More discussion of the differences between merging and rebasing can be found in the [next lecture](#next).
 
