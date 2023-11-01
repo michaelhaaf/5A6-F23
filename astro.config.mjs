@@ -33,10 +33,19 @@ export default defineConfig({
       },
       collapsed: false
     }, {
-      label: "Lectures",
+      label: "Quizzes",
       autogenerate: {
-        directory: "lectures"
+        directory: "quizzes"
       },
+      collapsed: false
+    }, {
+      label: "Lectures",
+      items: [
+        { label: "Topics to Review", link: "lectures/topics-to-review" },
+        { label: "Kotlin", autogenerate: { directory: "lectures/programming" }, collapsed: true },
+        { label: "Jetpack Compose", autogenerate: { directory: "lectures/user-interfaces" }, collapsed: true },
+        { label: "Software Development", autogenerate: { directory: "lectures/development" }, collapsed: true },
+      ],
       collapsed: false
     }, {
       label: "Assignments",

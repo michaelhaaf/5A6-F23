@@ -52,9 +52,9 @@ You can compare this calendar with the calendar from the [Course Outline][course
 [q2]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24008
 [q3]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24009
 [q4]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24282
-[q5]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24009
-[q6]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24009
-[q7]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24009
+[q5]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24283
+[q6]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24284
+[q7]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24285
 
 
 ## August
@@ -147,18 +147,19 @@ TBD
 
 ### Deliverables
 
-- **Nov 3:** [Quiz Kahoot #4 on Navigation/Routing/Kotlin Extensions][q4]
+- **Nov 3:** [Quiz Kahoot #4 on Navigation][q4]
 - **Nov 17:** [Milestone #3a][m3a] 
-- **Nov 10:** Quiz Kahoot #5 on Coroutines/Flow/Storage
-- **Nov 17:** Quiz Kahoot #6 on Authentication/TBD
+- **Nov 10:** [Quiz Kahoot #5 on Coroutines][q5]
+- **Nov 17:** [Quiz Kahoot #6 on Flow/Storage][q6]
 - **Nov 17:** [Milestone #3b][m3b] 
 - **Late Nov (tentative):** [Assignment #4][a4] 
+- **Nov 24:** [Quiz Kahoot #7 on Accessibility/Authentication][q7]
 
 ## December
 
 ### Lectures & Activities
 
-TBD
+Lab time
 
 ### Deliverables
 
