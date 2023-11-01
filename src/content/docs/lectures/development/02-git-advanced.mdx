@@ -15,7 +15,14 @@ The figure below from [Oliver Steele](https://blog.osteele.com/2008/05/commit-po
 
 ![](./img/commit-policies.png)
 
-To paraphrase from the blog: by placing more restrictive "policies" to the left of the graph, you can update your own work frequently without worrying about affecting the work of others. By placing more restrictive "policies" on the right, you can maintain the stability of releases. And by incrementing the restrictiveness of these policies in small steps, you can reduce the backlog of code that is “trapped” towards the left.
+Terminology review:
+- **workspace:** the source code on your file system
+- **index:** the staged files in your local repository 
+- **local repository:** committed changes in your local repository
+- **remote repository:** pushed changes in your shared GitHub repository
+- **distribution:** published releases of your application
+
+To paraphrase from the blog: by placing less restrictive "policies" to the left of the graph, you can update your own work frequently without worrying about affecting the work of others. By placing more restrictive "policies" on the right, you can maintain the stability of releases. And by incrementing the restrictiveness of these policies in small steps, you can reduce the backlog of code that is “trapped” towards the left.
 
 Setting a "policy bar" like requiring that commit messages are "good" before pushing to a shared repository **requires that you can have a second chance at making commits**, that is, to be able to refactor not just your code, but your commit history, before pushing.
 

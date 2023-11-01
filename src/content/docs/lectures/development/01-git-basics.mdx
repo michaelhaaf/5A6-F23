@@ -195,6 +195,34 @@ origin  https://github.com/microsoft/code-with-engineering-playbook.git (fetch)
 origin  https://github.com/microsoft/code-with-engineering-playbook.git (push)
 ```
 
+### Fetching and Pulling
+
+*These notes adapted from https://www.atlassian.com/git/tutorials/syncing/git-fetch* 
+
+When downloading content from a remote repo, `git pull` and `git fetch` commands are available to accomplish the task. You can consider `git fetch` the 'safe' version of the two commands. It will download the remote content but not update your local repo's working state, leaving your current work intact. `git pull` is the more aggressive alternative; it will download the remote content for the active local branch and immediately execute `git merge` to create a merge commit for the new remote content. If you have pending changes in progress this will cause conflicts and kick-off the [merge conflict resolution flow](/5A6-F23/lectures/development/02-git-advanced).
+
+The following example walks through the typical workflow for synchronizing your local repository with the central repository's main branch.
+
+```
+git fetch origin
+```
+
+This will display the branches that were downloaded:
+
+```
+a1e8fb5..45e66a4 main -> origin/main
+a1e8fb5..9e8ab1c develop -> origin/develop
+* [new branch] some-feature -> origin/some-feature
+```
+
+The commits from these new remote branches are shown as squares instead of circles in the diagram below. As you can see, git fetch gives you access to the entire branch structure of another repository.
+
+`git pull`, on the other hand, is actually a combination of `git fetch` and `git merge` by default.
+
+
+
+More discussion of the differences between merging and rebasing can be found in the [next lecture](#next).
+
 ### Using remote branches
 
 When you clone a repository with many branches (like my example [assignment 3 repository](https://github.com/michaelhaaf/5A6-F23-assignment3/)) it can appear like the only branch available is the default branch (here `main`):
