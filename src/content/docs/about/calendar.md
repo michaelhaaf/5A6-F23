@@ -26,20 +26,22 @@ You can compare this calendar with the calendar from the [Course Outline][course
 [oop-kotlin]: /5A6-F23/lectures/programming/02-oop-in-kotlin
 [functional-kotlin]: /5A6-F23/lectures/programming/03-functional-kotlin
 [using-kotlin]: /5A6-F23/lectures/programming/015-using-kotlin
-[extensions-kotlin]: /5A6-F23/lectures/programming/04-extensions-kotlin
+[advanced-kotlin]: /5A6-F23/lectures/programming/04-advanced-kotlin
+[coroutines-kotlin]: /5A6-F23/lectures/programming/05-coroutines
 
 [intro-compose]: /5A6-F23/lectures/user-interfaces/01-intro-to-compose
+[theming-compose]: /5A6-F23/lectures/user-interfaces/015-theming
 [layout-compose]: /5A6-F23/lectures/user-interfaces/02-layout
 [state-compose]: /5A6-F23/lectures/user-interfaces/03-state
-[theming-compose]: /5A6-F23/lectures/user-interfaces/04-theming
-[nav-compose]: /5A6-F23/lectures/user-interfaces/05-navigation
-[adv-state-compose]: /5A6-F23/lectures/user-interfaces/05-navigation
+[nav-compose]: /5A6-F23/lectures/user-interfaces/04-navigation
+[data-flow-compose]: /5A6-F23/lectures/user-interfaces/05-data-flow
+[accessibility-compose]: /5A6-F23/lectures/user-interfaces/06-accessibility
 
 <!-- [repo-management]: /5A6-F23/lectures/development/03-repo-management -->
-[repo-management]: /5A6-F23/assignments/assignment-3#tips
 [git-github]: /5A6-F23/lectures/development/01-git
-[requirements-eng]: /5A6-F23/lectures/development/02-software-process
-[ci-cid]: /5A6-F23/lectures/development/015-ci-cid
+[advanced-git]: /5A6-F23/lectures/developement-02-git-advanced
+[ci-cid]: /5A6-F23/lectures/development/0333-ci-cid
+[requirements-eng]: /5A6-F23/lectures/development/04-software-process
 
 [compose-codelab-1]: https://developer.android.com/codelabs/jetpack-compose-basics#0
 [compose-codelab-2]: https://developer.android.com/codelabs/jetpack-compose-layouts#0
@@ -47,6 +49,7 @@ You can compare this calendar with the calendar from the [Course Outline][course
 [compose-codelab-4]: https://developer.android.com/codelabs/basic-android-kotlin-compose-material-theming
 [compose-codelab-5]: https://developer.android.com/codelabs/jetpack-compose-navigation#0
 [compose-codelab-6]: https://developer.android.com/codelabs/jetpack-compose-advanced-state-side-effects#0
+[compose-codelab-7]: https://developer.android.com/codelabs/jetpack-compose-accessibility#0
 
 [q1]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=23368
 [q2]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24008
@@ -89,7 +92,7 @@ You can compare this calendar with the calendar from the [Course Outline][course
     - Lecture: State in Compose
         - [Talib's slides: Part 1](https://moodle.johnabbott.qc.ca/mod/resource/view.php?id=23898) 
         - [Talib's slides: Part 2](https://moodle.johnabbott.qc.ca/mod/resource/view.php?id=23899)
-        - [(TO BE RELEASED BY OCT 27) State in Compose][state-compose]
+        - [State in Compose][state-compose]
     - State Codelab: [State in Compose Codelab][compose-codelab-3]
 - **Week 6** (Sep 25-29)
     - Lecture: [Layouts in Compose][layout-compose]
@@ -109,11 +112,11 @@ You can compare this calendar with the calendar from the [Course Outline][course
 ### Lectures & Activities
 
 - **Week 7** (Oct 2-6)
-    - Lecture: [(TO BE RELEASED BY OCT 27) Navigation in Compose][nav-compose]
+    - Lecture: [Navigation in Compose][nav-compose]
     - Codelab (Part of A3): [Navigation in Compose][compose-codelab-5]
 
 - **Week 8** (Oct 11)
-    - Lecture: [(TO BE RELEASED BY OCT 27) Advanced State in Compose][adv-state-compose]
+    - Lecture: [State in Compose][state-compose]
     - Codelab (Part of A3): [Advanced state and side effects][compose-codelab-6]
 
 - **Week 9** (Oct 16-20)
@@ -123,13 +126,11 @@ You can compare this calendar with the calendar from the [Course Outline][course
     - Activity: [Project Overview][m0]
 
 - **Week 10** (Oct 23-27)
-    - Lecture: [Repository management for shared projects][repo-management]
-    - Lecture: [(TO BE RELEASED BY OCT 27) Advanced Kotlin: Extensions, Generics, Functional manipulation ][repo-management]
+    - Lecture: [Repository management for shared projects][advanced-git]
+    - Lecture: [Advanced Kotlin: Extensions, Generics, Functional manipulation ][advanced-kotlin]
     - Codelab (may be part of A4): Kotlin bootcamp for Programmers, [Lesson 5.1: Extensions][kt-bootcamp-51]
     - Codelab (may be part of A4): Kotlin bootcamp for Programmers, [Lesson 5.2: Generics][kt-bootcamp-52]
     - Codelab (may be part of A4): Kotlin bootcamp for Programmers, [Lesson 6: Functional Manipulation][kt-bootcamp-6]
-
-
 
 ### Deliverables
 
@@ -148,7 +149,7 @@ TBD
 ### Deliverables
 
 - **Nov 3:** [Quiz Kahoot #4 on Navigation][q4]
-- **Nov 17:** [Milestone #3a][m3a] 
+- **Nov 3:** [Milestone #3a][m3a] 
 - **Nov 10:** [Quiz Kahoot #5 on Coroutines][q5]
 - **Nov 17:** [Quiz Kahoot #6 on Flow/Storage][q6]
 - **Nov 17:** [Milestone #3b][m3b] 
