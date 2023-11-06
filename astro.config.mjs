@@ -43,6 +43,7 @@ export default defineConfig({
       items: [
         { label: "Topics to Review", link: "lectures/topics-to-review" },
         { label: "Talib's lecture notes", link: "lectures/talib-index" },
+        { label: "Bonus Lecture: JAC on Strike!", link: "lectures/bonus-lecture" },
         { label: "Kotlin", autogenerate: { directory: "lectures/programming" }, collapsed: true },
         { label: "Jetpack Compose", autogenerate: { directory: "lectures/user-interfaces" }, collapsed: true },
         { label: "Software Development", autogenerate: { directory: "lectures/development" }, collapsed: true },
