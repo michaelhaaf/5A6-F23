@@ -255,6 +255,17 @@ See the first image in the tabs below: local and main diverge at commit **E**. T
 
 More discussion of the differences between merging and rebasing can be found in the [next lecture](#next).
 
+### Using developer branches
+
+Some handy commands: 
+
+```bash
+## Keeping your developer branch (e.g. nav-codelab) in sync with main
+## Useful for e.g. you added the PR template to main after starting development work
+git switch nav-codelab
+git pull --rebase
+```
+
 ### Using remote branches
 
 When you clone a repository with many branches (like my example [assignment 3 repository](https://github.com/michaelhaaf/5A6-F23-assignment3/)) it can appear like the only branch available is the default branch (here `main`):

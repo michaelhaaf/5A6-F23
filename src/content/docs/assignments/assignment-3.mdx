@@ -104,6 +104,23 @@ The Pull Request template you are using/adapting is explained in more detail in 
 
 The tips provide below aren't comprehensive (e.g. there's no step-by-step instructions for creating the repository) or all strictly necessary (i.e. there's more than one way to meet the requirements of the assignment stated above) but should serve as a useful guideline for the main tasks. 
 
+- For creating the initial repository and commits (make sure to adapt these steps to the A4 codelabs), see [Getting Started (Assignment 3)][init-commits]
+- Using developer branches: see [Using developer branches][using-dev-branches]
+- Writing good commit messages: see [Commit best practises][commit-best-practises]
+- Making precise commits: see [Making precise commits][making-precise-commits]
+- Tailoring commit history: see [Tailoring commit history][tailoring-commit-history]
+- Creating a pull request template: see [Creating a pull request template][creating-a-pull-request-template]
+- Updating pull requests: see [Updating pull requests][update-pull-requests]
+- Creating a pull request template: see [Creating a pull request template][template-pr]
+
+[init-commits]: /5A6-F23/assignments/assignment-3/#getting-started
+[using-dev-branches]: /5A6-F23/lectures/development/01-git-basics/#using-developer-branches
+[commit-best-practises]: /5A6-F23/lectures/development/01-git-basics/#commit-best-practices
+[making-precise-commits]: /5A6-F23/lectures/development/02-git-advanced/#precise-change-selection-with-git-add---patch
+[tailoring-commit-history]: /5A6-F23/lectures/development/02-git-advanced/#interactive-git-rebase
+[creating-a-pull-request-template]: /5A6-F23/lectures/development/03-ci-cd/#creating-a-pull-request-template
+[update-pull-requests]: /5A6-F23/lectures/development/03-ci-cd/#updating-pull-requests
+
 ### Getting started
 
 One of the [requirements for the main repository](#4-main-branch-requirements) is to create two initial commits adding *just* the starter code for each project. Both the [Navigation][navigation-codelab] and [Advanced State][adv-state-codelab] starter code comes from the same repository: [android codelabs](https://github.com/android/codelab-android-compose.git). 
@@ -233,104 +250,4 @@ git rebase -i HEAD~3 # interactive rewrite last 3 commits (4 including HEAD)
 [navigation-codelab]: https://developer.android.com/codelabs/jetpack-compose-navigation#0
 [adv-state-codelab]: https://developer.android.com/codelabs/jetpack-compose-advanced-state-side-effects#0
 
-### Using developer branches
 
-Some handy commands: 
-
-```bash
-## Keeping your developer branch (e.g. nav-codelab) in sync with main
-## Useful for e.g. you added the PR template to main after starting development work
-git switch nav-codelab
-git pull --rebase
-```
-
-### Making precise commits
-
-In order to make [good commits][git-lec-notes], we need to be able to be **precise** about what code we choose to stage before we commit. 
-
-That doesn't mean being perfect about always making commits each time you make a code change -- rather, this is about being able to review your code after making changes and being able to group those changes together sensibly.
-
-For instance, after completing a few steps of the codelab, you may realize that only some of those steps make up a given functional requirement. In addition, you might have made some unrelated formatting changes to different lines of code. 
-
-What if all these changes were in the same file? If you use `git add <filename_with_changes>`, that stages all of your changes, including your unrelated change. 
-
-This section will show how to use `git add --patch` to create some sample commits that demonstrate these main points
-
-Will go over example on Wednesday Oct 25 in class, and update these notes after
-
-### Writing commit messages
-
-Will go over example on Wednesday Oct 25 in class, and update these notes after
-
-### Editing commit history
-
-Will go over example on Wednesday Oct 25 in class, and update these notes after
-
-### Creating a Pull Request template
-
-Pull request templates are `.github` directory Markdown files that allow you to specify a template for Pull Requests. You may already be using one for your project milestone.
-- Follow the [GitHub instructions for creating Pull Request templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository) to create 
-  - You can either use the GitHub web GUI as demonstrated in the instructions, or push your markdown file from your computer using your Desktop GUI/terminal CLI 
-  - You can commit this **directly to your main branch** -- your local developer branches can be rebased on top of this commit. See (#using-developer-branches) to see how to use `git pull --rebase` for this.
-- [Sample template you can use for this assignment]()
-
-### Updating Pull Requests
-
-Pull requests give developer teams they give us the opportunity to review, then discard/rework/edit, proposed changes to branch history in a shared draft environment. Pull requests are essentially a **draft** of the *future history* (whoa!) of your `main` branch. More clearly, they are *requests to pull (merge/rebase) the commit history of one branch onto another*, and most typically are used to *pull* developer changes onto a shared branch (typically called `main`). 
-
-In GitHub, Pull Requests (PRs) are based on a pulling a *source* branch onto a *target* branch. They are updated automatically when the source branch they are based on is updated (i.e., when changes pushed are pushed).
-
-This is all review so far -- however, there are slightly different workflows depending on whether or not the changes that are pushed have had their history altered or produce change conflicts. 
-
-It is impossible to `git push` a branch that has history/content-conflicts -- those conflicts have to be "merged" -- but then, what happens to the nice linear history you spent time creating? In those cases, we can use `git push --force` to **overwrite** the remote developer branch with your proposed changes, thereby updating the pull request without any fuss.
-
-#### No changes to history: just push
-
-You can incrementally update a pull request by simply `git push` when you have new commits. As long as the new commits are linear additions to the existing pull request branch, and no modification of branch history took place, the pull request can update automatically along with the branch update.
-
-```bash
-## Ensure you are on your developer branch,
-## and ensure the upstream branch you are pushing to is your developer branch
-git push
-```
-
-<Tabs>
-  <TabItem label="PR before git push">
-
-  Alt: GitHub pull request, linear set of commits
-
-  </TabItem>
-  <TabItem label="PR after git push">
-    
-  Alt: GitHub pull request, linear set of commits, one additional commit, no issues
-
-  </TabItem>
-</Tabs>
-
-You will see that the pull request automatically updates when the branch is pushed.
-
-#### Changes to history: force required
-
-It is more complicated to push a branch (and therefore update a pull request) when you have done "destructive" operations like `git rebase` -- the unique ID of historical commits, and relationships between them, are destroyed when github history is altered, therefore the pushed branch is no longer compatible. How can we update the pull request?
-
-Note well: **it is not necessary to create a new branch, nor to create a new pull request, when the local git history has changed**! Updating a developer branch that is under review is the perfect use case for a "dangerous" option like `git push --force`, which simply overrites the remote branch.
-
-```bash
-## Be careful to make sure you are on the right branch!
-git push --force
-```
-
-<Tabs>
-  <TabItem label="PR after git push (changed history)">
-
-  Alt: GitHub pull request, "pull request has conflicts that need to be resolved before merge" or similar.
-
-  </TabItem>
-  <TabItem label="PR after git push --force (changed history)">
-    
-  Alt: GitHub pull request, no issues, "@user force-pushed SHA-1 onto SHA-2" or similar and history is updated.
-
-  </TabItem>
-</Tabs>
-
-This is why using developer branches for code changes so useful: being able to manipulate your draft work history on the fly is **essential** for collaborating on code with other developers, in order to address feedback -- and are options are much more limited if we develop on `main` directly for that reason.
