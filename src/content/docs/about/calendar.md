@@ -35,13 +35,15 @@ You can compare this calendar with the calendar from the [Course Outline][course
 [state-compose]: /5A6-F23/lectures/user-interfaces/03-state
 [nav-compose]: /5A6-F23/lectures/user-interfaces/04-navigation
 [data-flow-compose]: /5A6-F23/lectures/user-interfaces/05-data-flow
-[accessibility-compose]: /5A6-F23/lectures/user-interfaces/06-accessibility
+[data-persistence-compose]: /5A6-F23/lectures/user-interfaces/06-data-persistence
+[accessibility-compose]: /5A6-F23/lectures/user-interfaces/07-accessibility
 
 <!-- [repo-management]: /5A6-F23/lectures/development/03-repo-management -->
 [git-github]: /5A6-F23/lectures/development/01-git
 [advanced-git]: /5A6-F23/lectures/developement-02-git-advanced
-[ci-cid]: /5A6-F23/lectures/development/0333-ci-cid
+[ci-cid]: /5A6-F23/lectures/development/03-ci-cid
 [requirements-eng]: /5A6-F23/lectures/development/04-software-process
+[releases-versioning]: /5A6-F23/lectures/development/05-releases
 
 [compose-codelab-1]: https://developer.android.com/codelabs/jetpack-compose-basics#0
 [compose-codelab-2]: https://developer.android.com/codelabs/jetpack-compose-layouts#0
@@ -49,7 +51,8 @@ You can compare this calendar with the calendar from the [Course Outline][course
 [compose-codelab-4]: https://developer.android.com/codelabs/basic-android-kotlin-compose-material-theming
 [compose-codelab-5]: https://developer.android.com/codelabs/jetpack-compose-navigation#0
 [compose-codelab-6]: https://developer.android.com/codelabs/jetpack-compose-advanced-state-side-effects#0
-[compose-codelab-7]: https://developer.android.com/codelabs/jetpack-compose-accessibility#0
+[compose-codelab-7]: https://developer.android.com/codelabs/android-preferences-datastore#0
+[compose-codelab-8]: https://developer.android.com/codelabs/jetpack-compose-accessibility#0
 
 [q1]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=23368
 [q2]: https://moodle.johnabbott.qc.ca/mod/assign/view.php?id=24008
@@ -144,16 +147,34 @@ You can compare this calendar with the calendar from the [Course Outline][course
 
 ### Lectures & Activities
 
-TBD
+- **Week 11** (Oct 30 - Nov 3)
+    - Class time to work on Milestone 3a and Assignment 3
+
+
+- **Week 12** (Nov 6 - Nov 10)
+    - Lecture: [ViewModel, Stateflow, Coroutines, Sideeffects][data-flow-compose]
+    - Lecture: [Data persistence with Datastore/Firestore][data-persistence-compose]
+    - Codelab: [Data persistence][persistence-codelab]
+
+- **Week 13** (Nov 13 - Nov 17)
+    - Lecture: [Releases and versioning][releases-versioning]
+    - Lecture: [Accessibility][accessibility-compose]
+    - Codelab: [Accessibility][compose-codelab-7]
+
+- **Week 14** (Nov 20 - Nov 24)
+    - Lectures replaced with Lab time / demos 
+
+- **Week 15** (Nov 27 - Dec 1)
+    - Lectures replaced with Lab time / demos
 
 ### Deliverables
 
 - **Nov 3:** [Quiz Kahoot #4 on Navigation][q4]
 - **Nov 3:** [Milestone #3a][m3a] 
-- **Nov 10:** [Quiz Kahoot #5 on Coroutines][q5]
-- **Nov 17:** [Quiz Kahoot #6 on Flow/Storage][q6]
+- **Nov 10:** [Quiz Kahoot #5 on Coroutines/Flow/ViewModel][q5]
+- **Nov 17:** [Quiz Kahoot #6 on Data Persistence/TBD][q6]
 - **Nov 17:** [Milestone #3b][m3b] 
-- **Late Nov (tentative):** [Assignment #4][a4] 
+- **Nov 24:** [Assignment #4][a4] 
 - **Nov 24:** [Quiz Kahoot #7 on Accessibility/Authentication][q7]
 
 ## December

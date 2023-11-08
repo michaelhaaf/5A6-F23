@@ -17,16 +17,39 @@ sidebar:
 [git-notes]: /5A6-F23/lectures/development/01-git
 [git-adv-notes]: /5A6-F23/lectures/development/02-git-advanced
 
+[lecture-viewmodel]: /5A6-F23/lectures/user-interfaces/05-data-flow
+[lecture-datastore]: /5A6-F23/lectures/user-interfaces/06-data-persistence
+[lecture-accessibility]: /5A6-F23/lectures/user-interfaces/07-accessibility
+[lecture-advanced-kotlin]: /5A6-F23/lectures/programming/04-advanced-kotlin
+[lecture-coroutines]: /5A6-F23/lectures/programming/05-coroutines
+
+[codelab-datastore]: https://developer.android.com/codelabs/android-preferences-datastore#0
+[codelab-accessibility]: https://developer.android.com/codelabs/jetpack-compose-accessibility#0
+
+[kt-bootcamp-51]: https://codelabs.developers.google.com/codelabs/kotlin-bootcamp-extensions/#0
+[kt-bootcamp-52]: https://codelabs.developers.google.com/codelabs/kotlin-bootcamp-generics/#0
+[kt-bootcamp-6]: https://codelabs.developers.google.com/codelabs/kotlin-bootcamp-sams/#0
+
+[codelab-coroutines-1]: https://developer.android.com/codelabs/basic-android-kotlin-compose-coroutines-kotlin-playground#0
+[codelab-coroutines-2]: https://developer.android.com/codelabs/basic-android-kotlin-compose-coroutines-android-studio#0
+
 This assignment will be very similar to [Assignment 3](#prev): you will complete some codelabs and commit your progress as you go.
 
-This time, you will choose **two** of the following codelabs to complete. You should choose different (Optional) codelabs than your project teammates.
+This time, you will choose **three** of the following codelab sets to complete.
 
-- (Required): TBD
-- (Optional): TBD
-- (Optional): TBD
-- (Optional): TBD
+- (Required): [Using Datastore for data persistence][codelab-datastore] (~30mins)
+- (Required): [Accessibility in Jetpack Compose][codelab-accessibility] (~40mins)
+- (Option 1): Complete all three of the following (~45 mins total):
+  - [Kotlin bootcamp: Extensions][kt-bootcamp-51]
+  - [Kotlin bootcamp: Generics][kt-bootcamp-52]
+  - [Kotlin bootcamp: Functional Manipulation][kt-bootcamp-6]
+- (Option 2): Complete both of the following (~45 mins total):
+  - [Basic coroutines][codelab-coroutines-1]
+  - [Coroutines in Android Studio][codelab-coroutines-2]
 
-The actual coding part of this assignment is explained in each codelab, so there are no other instructions as such. The git and Github skills required for this lab are the same as [Assignment 3](#prev), and are documented in more detail in the [git][git-notes] and [advanced git][git-adv-notes] lectures.
+The actual coding part of this assignment is explained in each codelab, so there are no other instructions as such. 
+
+The git and Github skills required for this lab are the same as [Assignment 3](#prev), and are documented in more detail in the [git][git-notes] and [advanced git][git-adv-notes] lectures.
 
 ## Goals
 
@@ -41,23 +64,25 @@ Your submission will be a **private** GitHub repository, with @michaelhaaf invit
 
 The exact weights may change slightly, but should serve as a guide for the rough proportions for each part of the assignment.
 
-- (4) A main branch containing your initial code (the two codelab starting points)
-- (30) A development branch for each codelab tracking your progress through that codelab
-- (36) An open pull request from each development branch to `main`
+- (8) A main branch containing your initial code (the two codelab starting points)
+- (36, 12 per codelab) A development branch for each codelab tracking your progress through that codelab
+- (36, 12 per codelab) An **open pull request**[^1] from each development branch to `main`
 
-There are a total of 70 marks available. The rubric details for each requirement follow in the sections below.
+[^1]: Note: you shouldn't merge these pull requests into main. Keep them separate from main and open!
 
-### (4) Main branch requirements
+There are a total of 80 marks available. The rubric details for each requirement follow in the sections below.
+
+### (8) Main branch requirements
 
 [gitignore]: https://github.com/github/gitignore/blob/main/Android.gitignore
 
-- (1) Repository requirements met (private, @michaelhaaf collaborator, begins as bare repository with only default Initial commit)
-- (1) [Android template `.gitignore`][gitignore], either included in Initial commit, or added in a subsequent commit immediately after. **Don't forget this step** -- your subsequent commits will be affected by the presence of this file in an important way.
-- (2) Initial commits representing the addition of whatever relevant starter code is necessary for your codelabs
+- (2) Repository requirements met (private, @michaelhaaf collaborator, begins as bare repository with only default Initial commit)
+- (2) [Android template `.gitignore`][gitignore], either included in Initial commit, or added in a subsequent commit immediately after. **Don't forget this step** -- your subsequent commits will be affected by the presence of this file in an important way.
+- (4) Initial commits representing the addition of whatever relevant starter code is necessary for your codelabs
 
 Suggestion: This repo should begin as a **bare repository** with nothing and only yourself and me (@michaelhaaf) as collaborators. Do not fork another branch to begin this repository. See [Getting Started](#getting-started) for more details, whether you are starting from scratch or you have progress from the previous version of this assignment you want to adapt.
 
-### (30) Development branch requirements
+### (36) Development branch requirements
 
 The following requirements apply to both development branches (15 marks for each codelab)
 
@@ -76,23 +101,30 @@ NOTE: The idea isn't to get it perfect the first time! One of the goals of this 
 [template-state]: https://github.com/michaelhaaf/5A6-F23-assignment3/pull/2#issue-1958594678
 [template-pr]: https://github.com/michaelhaaf/5A6-F23-assignment4/blob/main/.github/pull_request_template.md
 
-The following requirements apply to both development branches (18 marks for each codelab)
+The following requirements apply to both development branches (12 marks for each codelab)
 
-- (8) Marks for pull request management
+- (6) Marks for pull request management
   - should be a linear set of commits from the appropriate branch
   - updates to the pull request done directly, rather than creating new pull requests
   - pull request template used for entering codelab progress / answering codelab questions. This should be pushed to main branch after the previous initial commits. [Link to sample template from Assignment 4][template-pr]
-- (10) Marks for progress on codelab documented/answers to questions about each codelab. These are included in the pull request template I linked above.
-
-The questions are short and aren't intended to take you too much time -- they are there simply to make sure you noticed/understood some foundational concepts from each codelab.
+- (6) Marks for progress on codelab documented. Rather than answering questions about the codelab, you should instead write a short (less than a few paragraphs) explanation of the main techniques learned in each codelab.
 
 The Pull Request template you are using/adapting is explained in more detail in the [Creating a Pull Request template][creating-a-pull-request-template] section.
+
+## Links to relevant lectures
+
+The codelabs are self documented and contain links to supplementary readings for any concepts you need clarification about. You can also see the following lecture notes for each codelab:
+
+- Datastore persistence: see [Data Persistence][lecture-datastore]
+- Accessibility: see [Accessibility][lecture-accessibility]
+- Kotlin functional manipulation / extensions / generics : see [Advanced Kotlin][lecture-advanced-kotlin]
+- Kotlin coroutines: see [Kotin coroutines][lecture-coroutines] and [ViewModel, StateFlow, and Sideeffects][lecture-viewmodel]
 
 ## Tips
 
 The tips provide below aren't comprehensive (e.g. there's no step-by-step instructions for creating the repository) or all strictly necessary (i.e. there's more than one way to meet the requirements of the assignment stated above) but should serve as a useful guideline for the main tasks. 
 
-
+- To see what your repository should look like (and to see how each codelab starts), you can see [My example, partially-complete, Assignment 4 repository](https://github.com/michaelhaaf/5A6-F23-assignment4)
 - For creating the initial repository and commits (make sure to adapt these steps to the A4 codelabs), see [Getting Started (Assignment 3)][init-commits]
 - Using developer branches: see [Using developer branches][using-dev-branches]
 - Writing good commit messages: see [Commit best practises][commit-best-practises]
