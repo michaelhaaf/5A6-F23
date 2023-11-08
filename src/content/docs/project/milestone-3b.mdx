@@ -9,7 +9,7 @@ sidebar:
 | Milestone 3b (Version 2) | Overview |
 | --- | --- |
 | Worth: | 7% |
-| Due: | Nov 17[^1] |
+| Due: | Nov 17 |
 | Hand-in: | In class (short) presentation |
 | Notes: | [Course late penalty](/about/syllabus) applies. |
 </div>
@@ -18,9 +18,7 @@ In addition to a short progress update (like Milestone 3a), your app will now ne
 
 **Marking scheme**
 
-In class, I will hand out self/peer assessments. On Nov 17[^1], teams will prepare (short, ~5min) presentations updating the class on their project so far.
-
-[^1]: Date subject to change, keep up to date at https://www.jacfa.ca/
+In class, I will hand out self/peer assessments. On Nov 17, teams will prepare (short, ~5min) presentations updating the class on their project so far.
 
 The scheme will be something like, out of 70 marks total:
 
@@ -28,35 +26,13 @@ The scheme will be something like, out of 70 marks total:
 - (10): Quality of repository management / issue-tracking / progress documentation
 - (10): Individual contribution to project
 - (20): Implementation of advanced Navigation in Compose for managing navigation in your application (see Assignment 3)
+  - Expectations:
+    - You should have a defined issue which tracks and shows the commits where these features were added that has been accepted by your team and pulled into your main branch.
+    - You should be prepared to demonstrate your progress on this on Nov 17.
 - (20): Implementation of state management (coroutines, landing screen, ViewModel) (see Assignment 3)
+  - Expectations:
+    - You should have a defined issue which tracks and shows the commits where these features were added that has been accepted by your team and pulled into your main branch.
+    - You should be prepared to demonstrate your progress on this on Nov 17.
 
 I will also fill out these assements for everyone, and your final mark will be some combination self/peer/my evaluation.
 
-## Tentative notes
-
-The instructions below are in draft form, and should be updated in early November.
-
-### Automating releases
-
-When your initial implementation is ready, you will **publish your first release of the application**.
-
-The following information will be helpful for this task:
-
-- [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
-- [git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
-
-For the version number, choose **v0.1.0**. Subsequent releases should be defined as follows (from [semvar.org](https://semver.org/)):
-> Given a version number MAJOR.MINOR.PATCH, increment the:
-> 
->   - MAJOR version when you make incompatible API changes
->   - MINOR version when you add functionality in a backward compatible manner
->   - PATCH version when you make backward compatible bug fixes
-> 
-> Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
-
-You should aim to complete this initial release for the Sprint 2 deadline -- Oct 20. This release should be accompanied by a **release workflow** that produces an [Android App Bundle](https://developer.android.com/guide/app-bundle) using `gradlew`.
-
-You can find tutorials which demonstrate this process online; here are some examples:
-- https://github.com/marketplace/actions/build-android-app 
-- https://www.freecodecamp.org/news/use-github-actions-to-automate-android-development/
-- https://blog.logrocket.com/android-ci-cd-using-github-actions/
