@@ -7,6 +7,10 @@ sidebar:
 
 *These notes have been adapted from [Navigation](https://developer.android.com/guide/navigation), which contains a complete overview of topics covered here along with links to further details.*
 
+**NOTE:** you can also find complete Navigation notes in Talib's slides:
+- [Navigation Part 1](/5A6-F23/slides/14-Navigation.pdf)
+- [Navigation Part 2](/5A6-F23/slides/17-Navigation-Part2.pdf)
+
 So far, we've had just a single "screen" in our apps. **Navigation** refers to the interactions that let users navigate across, into, and back out from the different pieces of content within your app.
 
 In a typical app, not unlike a website, we will often want to define multiple different screens to serve different purpose:
@@ -41,9 +45,7 @@ The most important Gradle file we will work with is `app/build.gradle.kts` (warn
 
 ```kotlin title="app/build.gradle.kts"
 android {
-
     /* ... other code ... */ 
-
     dependencies { 
         /* ... */
         implementation("androidx.navigation:navigation-compose:2.7.2")
@@ -78,7 +80,7 @@ To add a navigation graph to your project, do the following:
 
 When you add your first navigation graph, Android Studio creates a `navigation` resource directory within the `res` directory. This directory contains your navigation graph resource file (`nav_graph.xml`, for example).
 
-You can use Android Studio's **Navigation Editor** to view and edit your navigation graphs. [See this link for detailed instructions](https://developer.android.com/guide/navigation/get-started#nav-editor)
+You can use Android Studio's **Navigation Editor** to view and edit your navigation graphs. [See this link for detailed instructions](https://developer.android.com/guide/navigation/get-started#nav-editor).
 
 ### `NavHost`
 
@@ -117,9 +119,15 @@ As you navigate between composables, the content of the `NavHost` is automatical
 
 It also links the `NavController` with a navigation graph.
 
-### `NavContainer`
+### `NavController`
 
-TBD
+The [`NavController`](https://developer.android.com/reference/androidx/navigation/NavController) is the central API for the Navigation component. It is *stateful* and keeps track of the *back stack* of `@Composables` that make up the screens in your app and the state of each screen.
+
+You can create a `NavController` by using the `rememberNavController()` method in your composable: `val navController = rememberNavController()`
+
+You should create the NavController in the place in your composable hierarchy where all composables that need to reference it have access to it. This follows the principles of [state hoisting](https://developer.android.com/jetpack/compose/state-hoisting) and allows you to use the `NavController` and the state it provides via `currentBackStackEntryAsState()` to be used as the source of truth for updating composables outside of your screens. 
+
+See [Integration with the bottom navbar](https://developer.android.com/jetpack/compose/navigation#bottom-nav) for a detailed example of how to set this up in your application.
 
 ### Summary
 
