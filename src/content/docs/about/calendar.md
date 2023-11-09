@@ -44,7 +44,7 @@ You can compare this calendar with the calendar from the [Course Outline][course
 [advanced-git]: /5A6-F23/lectures/developement-02-git-advanced
 [ci-cid]: /5A6-F23/lectures/development/03-ci-cid
 [requirements-eng]: /5A6-F23/lectures/development/04-software-process
-[releases-versioning]: /5A6-F23/lectures/development/05-releases
+[releases-versioning]: /5A6-F23/lectures/development/05-software-distribution
 
 [compose-codelab-1]: https://developer.android.com/codelabs/jetpack-compose-basics#0
 [compose-codelab-2]: https://developer.android.com/codelabs/jetpack-compose-layouts#0
@@ -132,9 +132,9 @@ You can compare this calendar with the calendar from the [Course Outline][course
 - **Week 10** (Oct 23-27)
     - Lecture: [Repository management for shared projects][advanced-git]
     - Lecture: [Advanced Kotlin: Extensions, Generics, Functional manipulation ][advanced-kotlin]
-    - Codelab (may be part of A4): Kotlin bootcamp for Programmers, [Lesson 5.1: Extensions][kt-bootcamp-51]
-    - Codelab (may be part of A4): Kotlin bootcamp for Programmers, [Lesson 5.2: Generics][kt-bootcamp-52]
-    - Codelab (may be part of A4): Kotlin bootcamp for Programmers, [Lesson 6: Functional Manipulation][kt-bootcamp-6]
+    - Codelab (part of A4): Kotlin bootcamp for Programmers, [Lesson 5.1: Extensions][kt-bootcamp-51]
+    - Codelab (part of A4): Kotlin bootcamp for Programmers, [Lesson 5.2: Generics][kt-bootcamp-52]
+    - Codelab (part of A4): Kotlin bootcamp for Programmers, [Lesson 6: Functional Manipulation][kt-bootcamp-6]
 
 ### Deliverables
 
@@ -187,8 +187,8 @@ Lab time
 
 ### Deliverables
 
-- **Dec 1:** [Milestone 4][m4a]
-- **Dec 7 (Last class):** [Milestone 4][m4b]
+- **Dec 1:** [Milestone 4a: Preparing & testing your first release][m4a]
+- **Dec 7 (Last class):** [Milestone 4b: Final deliverable][m4b]
 
 [course-outline]: /5A6-F23/about/course-outline
 
