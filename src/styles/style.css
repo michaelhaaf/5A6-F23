@@ -117,3 +117,7 @@ a.heading-link:hover::before {
 .content blockquote {
   border-inline-start: 8px solid var(--sl-color-gray-5);
 }
+
+small, figcaption {
+  line-height: 1.2
+}
