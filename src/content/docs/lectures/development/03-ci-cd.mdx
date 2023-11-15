@@ -9,18 +9,24 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 ## What is GitHub?
 
-more to come soon...
+### git vs GitHub
+
+### Alternatives
 
 ## Pull Requests
 
-### Creating a Pull Request template
+### Creating Pull Request templates
 
 Pull request templates are `.github` directory Markdown files that allow you to specify a template for Pull Requests. You may already be using one for your project milestone.
-- Follow the [GitHub instructions for creating Pull Request templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository) to create 
-  - You can either use the GitHub web GUI as demonstrated in the instructions, or push your markdown file from your computer using your Desktop GUI/terminal CLI 
-  - You can commit this **directly to your main branch** -- your local developer branches can be rebased on top of this commit. See (#using-developer-branches) to see how to use `git pull --rebase` for this.
-- [Sample template you can use for this assignment](https://github.com/michaelhaaf/5A6-F23-assignment3/blob/main/.github/pull_request_template.md)
 
+When you add a pull request template to your repository, project contributors will automatically see the template's contents in the pull request body.
+
+- Follow the [GitHub instructions for creating Pull Request templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository) to create 
+  - You can either use the GitHub web GUI as demonstrated in the linked instructions, or push your markdown file from your computer using your Desktop GUI/terminal CLI 
+  - Typically, you can commit files like these **directly to your main branch** -- your local developer branches can be rebased with `git pull --rebase` to get the update. 
+- [Sample template you can use assignments 3 and 4, and adapt for your milsetnoes 3 and 4, and adapt for your milestones](https://github.com/michaelhaaf/5A6-F23-assignment3/blob/main/.github/pull_request_template.md)
+
+Note: templates must be created on the repository's default branch. Templates created in other branches are not available for collaborators to use. Pull request template filenames are not case sensitive, and can have an extension such as .md or .txt.
 
 ### Updating Pull Requests
 
@@ -151,3 +157,67 @@ git push --force
 </Tabs>
 
 This is why using developer branches for code changes so useful: being able to manipulate your draft work history on the fly is **essential** for collaborating on code with other developers, in order to address feedback -- and are options are much more limited if we develop on `main` directly for that reason.
+
+## GitHub Actions
+
+### Workflows
+
+### Action Marketplace
+
+### Example: build & lint every pull request
+
+### Example: package every merge to main
+
+### Example: update version with each release
+
+### Example: manage repository secrets for authentication
+
+### More resources
+
+## GitHub Project
+
+### Issues
+
+- [Requirement](https://github.com/michaelhaaf/5A6-F23-project-template/blob/main/.github/ISSUE_TEMPLATE/requirement.md): used to define high-level project requirements that are broken up into tasks using **Work Breakdown Structure WBS**
+- [Task](https://github.com/michaelhaaf/5A6-F23-project-template/blob/main/.github/ISSUE_TEMPLATE/task.md): used to define Requirement subtasks using **Level of Effort (LOE)** estimations
+
+### Tasks
+
+- [Issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/quickstart)
+
+### Milestones
+
+- [Milestones](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/about-milestones) + [Creating and editing milestones](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/creating-and-editing-milestones-for-issues-and-pull-requests)
+
+### Tasking chart
+
+- [GitHub Task list overview](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists)
+- [Creating a Task List](https://docs.github.com/en/issues/managing-your-tasks-with-tasklists/creating-a-tasklist#creating-tasklists-with-markdown)
+
+### Roadmap
+
+
+Roadmaps are relatively common features in open-source projects for keeping-in-the-loop your community of developers, contributers, and users of your software -- the "roadmap" project is a recent attempt by GitHub to provide a GUI for automating some of this effort.
+
+To adapt your proposal to a GitHub roadmap, see the links below for documentation and tutorials:
+
+- [GitHub Roadmap](https://github.com/github/roadmap). 
+- [Quickstart for GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/quickstart-for-projects)
+- [Project planning in Github using Roadmap](https://docs.github.com/en/issues/tracking-your-work-with-issues/planning-and-tracking-work-for-your-team-or-project)
+- [Github Project overview](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)
+- [Best practises for GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/best-practices-for-projects)
+
+
+
+- [Android GitHub Actions Setup](https://medium.com/coletiv-stories/android-github-actions-setup-21ba37cf5a4f)
+- [Github Actions and Gradle](https://docs.gradle.org/current/userguide/github-actions.html)
+- [Workflow file syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
+- Useful articles: [Choosing the right JDK](https://developer.android.com/build/jdks), [Understanding Android build system](https://developer.android.com/build)
+- Installing [ktlint](https://github.com/pinterest/ktlint): it's recommended you use the ktlint plugin available from the mavenCentral repository -- meaning, let Gradle automatically find and install ktlint for you, per-project. See [simple-setup](https://github.com/jlleitschuh/ktlint-gradle#simple-setup) for instructions.
+  - Using ktlint in your project gradle: [sample build.gradle.kts](https://github.com/JLLeitschuh/ktlint-gradle/blob/main/samples/kotlin-ks/build.gradle.kts)
+  - Here is another helpful example: [geeksForGeeks](https://www.geeksforgeeks.org/code-formatting-in-kotlin-using-ktlint/)
+- [Gradle User Manual](https://docs.gradle.org/current/userguide/userguide.html)
+- [Gradle tutorial](https://www.youtube.com/watch?v=gKPMKRnnbXU) -- step by step for "90%" of the Gradle knowledge you need to build "any Gradle project". Good conceptual overview with examples/step-by-step.
+- [Android CI-CD using Github Actions](https://blog.logrocket.com/android-ci-cd-using-github-actions/)
+- [Securely create android release using Github Actions](https://proandroiddev.com/create-android-release-using-github-actions-c052006f6b0b)
+
