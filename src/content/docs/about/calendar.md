@@ -174,10 +174,10 @@ You can compare this calendar with the calendar from the [Course Outline][course
 - **Nov 3:** [Quiz Kahoot #4 on Navigation][q4]
 - **Nov 3:** [Milestone #3a][m3a] 
 - **Nov 10:** [Quiz Kahoot #5 on Coroutines/Flow/ViewModel][q5]
-- **Nov 17:** [Quiz Kahoot #6 on Data Persistence/TBD][q6]
-- **Nov 17:** [Milestone #3b][m3b] 
-- **Nov 24:** [Assignment #4][a4] 
-- **Nov 24:** [Quiz Kahoot #7 on Accessibility/Authentication][q7]
+- **Nov 17:** [Quiz Kahoot #6 on Data Persistence/Accessibiilty][q6]
+- **Nov 24:** [Milestone #3b][m3b] 
+- **Nov 24:** [Quiz Kahoot #7 on git/GitHub/releases for Android][q7]
+- **Nov 27:** [Assignment #4][a4] 
 
 ## December
 
@@ -205,4 +205,3 @@ Lab time
 [m3b]: /5A6-F23/project/milestone-3#sprint-2
 [m4a]: /5A6-F23/project/milestone-4#sprint-1
 [m4b]: /5A6-F23/project/milestone-4#sprint-2
-

@@ -1,48 +1,41 @@
 ---
-title: "Milestone 4: Publishing your application"
-description: "We'll finish the semester by deploying a genuine first release for each of your projects.
-
-We will apply lessons learned in the previous milestones to ensure that our project is usable and comprehendable to other developers."
-created: 2023-08-11
-tags: [ "tag1", "tag2" ]
+title: "Milestone 4b: Setting up automated releases"
+description: "The pentultimate milestone will see you continue to improve the quality of your application, while also settting up automated versioning and releases to better communicate the status of your application to other developers (your classmates)."
 sidebar:
-  hidden: true
+  hidden: false
 ---
 
 <div class="first-col-header">
 | Milestone 4 | Overview |
 | --- | --- |
-| Worth: | 10% |
-| Due: | Some time in December |
-| Hand-in: | `.zip` containing project files to [Moodle](https://moodle.johnabbott.qc.ca/). See [Submitting your work](#submitting-your-work) for more information. |
+| Worth: | 7% |
+| Due: | December 1 |
+| Hand-in: | In-class (short) presentation |
 | Notes: | [Course late penalty](/about/syllabus) applies. |
 </div>
 
-## Tentative instructions
+In addition to a short progress update (like Milestone 3a/3b), your app will now need to include Accessibility and Data storage features learned from the Assignment 4 codelabs.
 
-The instructions below are in draft form, and should be updated in early November.
+Like Milestone 3b, a portion of your grade will be based on participation in lectures leading up to the Milestone (week of Nov 26-Dec 1).
 
-### Automating releases
+Finally, you will be required to mark your first release of the application and have a complete GitHub Action workflow for generating a release of the application. Instructions for this portion of the milestone will be covered in class starting **Friday, Nov 17**. Lecture notes (to be finalized by Nov 17) will appear in [the software distribution & versioning lecture notes](/5A6-F23/lectures/development/05-software-distribution) and [CI/CD with Github for Android lecture notes](/5A6-F23/lectures/developement/03-ci-cd).
 
-When your initial implementation is ready, you will **publish your first release of the application**.
+## Marking scheme
 
-The following information will be helpful for this task:
+In class, I will hand out self/peer assessments. On **Dec 1**, teams will prepare (short, ~5min) presentations updating the class on their project so far.
 
-- [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)
-- [git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
+The grade you/your teammates receive is schemed out of 70 marks total:
 
-For the version number, choose **v0.1.0**. Subsequent releases should be defined as follows (from [semvar.org](https://semver.org/)):
-> Given a version number MAJOR.MINOR.PATCH, increment the:
-> 
->   - MAJOR version when you make incompatible API changes
->   - MINOR version when you add functionality in a backward compatible manner
->   - PATCH version when you make backward compatible bug fixes
-> 
-> Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
-
-You should aim to complete this initial release for the Sprint 2 deadline -- Oct 20. This release should be accompanied by a **release workflow** that produces an [Android App Bundle](https://developer.android.com/guide/app-bundle) using `gradlew`.
-
-You can find tutorials which demonstrate this process online; here are some examples:
-- https://github.com/marketplace/actions/build-android-app 
-- https://www.freecodecamp.org/news/use-github-actions-to-automate-android-development/
-- https://blog.logrocket.com/android-ci-cd-using-github-actions/
+- (10): Participation in-class in all lectures (Nov 24 / 27 / 29) leading up to the milestone**
+- (10): Progress on defined requirements / updates to requirements
+- (10): Quality of repository management / issue-tracking / progress documentation
+- (10): Individual contribution to project
+- (10): Implementation of Accessibility best practises for Android in Compose for your application (see Assignment 4)
+  - Expectations:
+    - You should have a defined issue which tracks and shows the commits where these features were added that has been accepted by your team and pulled into your main branch.
+    - You should be prepared to demonstrate your progress on this on Dec 1.
+- (10): Implementation of Android Datastore for your application (see Assignment 4)
+  - Expectations:
+    - You should have a defined issue which tracks and shows the commits where these features were added that has been accepted by your team and pulled into your main branch.
+    - You should be prepared to demonstrate your progress on this on Dec 1.
+- (10): GitHub CI/CD for Android: publishing a versioned release that automatically updates when `main` branch is updated.
