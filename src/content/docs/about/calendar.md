@@ -158,13 +158,15 @@ You can compare this calendar with the calendar from the [Course Outline][course
     - Codelab: [Data persistence][compose-codelab-7]
 
 - **Week 13** (Nov 13 - Nov 17)
-    - Lecture: [Releases and versioning][releases-versioning]
     - Lecture: [Accessibility][accessibility-compose]
     - Codelab: [Accessibility][compose-codelab-8]
+    - Nov 17 particpation: starting the above codelabs.
 
 - **Week 14** (Nov 20 - Nov 24)
-    - Lecture: [Authenticating using Firebase][authentication-compose]
-    - Lecture: [Remote storage using Firestore][remote-storage-compose]
+    - Nov 20 participation: review issues/milestones, assign work for the week
+    - Nov 24 Lecture: [Releases and versioning][releases-versioning]
+    - Nov 24 Lecture: [Authenticating using Firebase][authentication-compose]
+    - Nov 24 Lecture: [Remote storage using Firestore][remote-storage-compose]
 
 - **Week 15** (Nov 27 - Dec 1)
     - Lectures replaced with Lab time / demos
@@ -176,7 +178,6 @@ You can compare this calendar with the calendar from the [Course Outline][course
 - **Nov 10:** [Quiz Kahoot #5 on Coroutines/Flow/ViewModel][q5]
 - **Nov 17:** [Quiz Kahoot #6 on Data Persistence/Accessibiilty][q6]
 - **Nov 24:** [Milestone #3b][m3b] 
-- **Nov 24:** [Quiz Kahoot #7 on git/GitHub/releases for Android][q7]
 - **Nov 27:** [Assignment #4][a4] 
 
 ## December
@@ -187,6 +188,7 @@ Lab time
 
 ### Deliverables
 
+- **Dec 1:** [Quiz Kahoot #7 on git/GitHub/releases/versioning for Android][q7]
 - **Dec 1:** [Milestone 4a: Preparing & testing your first release][m4a]
 - **Dec 7 (Last class):** [Milestone 4b: Final deliverable][m4b]
 
