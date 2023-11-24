@@ -164,12 +164,12 @@ You can compare this calendar with the calendar from the [Course Outline][course
 
 - **Week 14** (Nov 20 - Nov 24)
     - Nov 20 participation: review issues/milestones, assign work for the week
-    - Nov 24 Lecture: [Releases and versioning][releases-versioning]
     - Nov 24 Lecture: [Authenticating using Firebase][authentication-compose]
     - Nov 24 Lecture: [Remote storage using Firestore][remote-storage-compose]
 
 - **Week 15** (Nov 27 - Dec 1)
-    - Lectures replaced with Lab time / demos
+    - Nov 27 Lecture: [Releases and versioning][releases-versioning]
+    - Nov 29 Lecture: [Everything you need to know about GitHub CI/CD][ci-cid]
 
 ### Deliverables
 
@@ -190,7 +190,8 @@ Lab time
 
 - **Dec 1:** [Quiz Kahoot #7 on git/GitHub/releases/versioning for Android][q7]
 - **Dec 1:** [Milestone 4a: Preparing & testing your first release][m4a]
-- **Dec 7 (Last class):** [Milestone 4b: Final deliverable][m4b]
+- **Dec 8 (Update since Nov 24):** [Milestone 4b: Final deliverable][m4b]
+    - the updated Academic Calendar will be shared with students soon.
 
 [course-outline]: /5A6-F23/about/course-outline
 
