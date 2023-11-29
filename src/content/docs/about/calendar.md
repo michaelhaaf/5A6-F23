@@ -189,9 +189,9 @@ Lab time
 ### Deliverables
 
 - **Dec 1:** [Quiz Kahoot #7 on git/GitHub/releases/versioning for Android][q7]
-- **Dec 1:** [Milestone 4a: Preparing & testing your first release][m4a]
-- **Dec 8 (Update since Nov 24):** [Milestone 4b: Final deliverable][m4b]
-    - the updated Academic Calendar will be shared with students soon.
+- **Dec 1:** [Milestone 4a: Accessibility and Storage][m4a]
+- **AFTER THE DEC 8-14 Strike (Update since Nov 29):** [Milestone 4b: Final deliverable][m4b]
+    - I will keep you posted about submission instructions/dates as soon as we have new make up days.
 
 [course-outline]: /5A6-F23/about/course-outline
 
@@ -204,7 +204,7 @@ Lab time
 [m1]: /5A6-F23/project/milestone-1
 [m2a]: /5A6-F23/project/milestone-2#oct-6-repository-cicd
 [m2b]: /5A6-F23/project/milestone-2#oct-20-project-design--risk-analysis
-[m3a]: /5A6-F23/project/milestone-3#sprint-1
-[m3b]: /5A6-F23/project/milestone-3#sprint-2
-[m4a]: /5A6-F23/project/milestone-4#sprint-1
-[m4b]: /5A6-F23/project/milestone-4#sprint-2
+[m3a]: /5A6-F23/project/milestone-3a
+[m3b]: /5A6-F23/project/milestone-3b
+[m4a]: /5A6-F23/project/milestone-4a
+[m4b]: /5A6-F23/project/milestone-4b
