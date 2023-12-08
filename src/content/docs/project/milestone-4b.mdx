@@ -14,38 +14,105 @@ sidebar:
 | Notes: | No late work will be considered -- marks will be based on condition of repository at the deadline. |
 </div>
 
-Final project presentations and deliverables! This is in a bit of a draft state, will be finalized ASAP.
+Final project presentations and deliverables marking scheme/links to instructions follow below.
+
+Worth: 25% of overall grade.
+
+**Most of your instructions have already been added to your project GitHub as a set of issues**! This document just centralizes the information in one place.
 
 ## Marking scheme
 
-Whether the final presentation is in person or online depends on what makeup days we are given -- I will update this page as soon as we have more information.
+The grade you/your teammates receive is schemed out of 250 marks total:
 
-The grade you/your teammates receive is schemed out of 200 marks total:
+### (75) Project management
 
-### (75) Repository management
+#### (25) CI/CD Requirements
 
-- 20% CI/CD: pull_request.yml
-  - Resources: [git overview and review][git-basics], [Useful git techniques for developers][git-advanced]
-- 20% CI/CD: release.yml
-  - Resources: [][git]
-- 20% git commit/GitHub PR best practises
-  - Resources: [][]
-- 40% issue tracking, documentation
-  - Resources: [][]
+- Project code is built/linted before pulled into `main`
+    - **See the "Enforce build on pull request/push" issue I created in your repository for more information.**
+    - **See the "Enforce code quality and style" issue I created in your repository for more information.**
+- Project code uses appropriate grade/sdk versions 
+    - **See the "Update Gradle/SDK Versions" issue I created in your repository for more information.**
+- Application releases are published to Firebase using a GitHub workflow
+    - **See the "Implement Firebase App Distribution Workflow" issue I created in your repository for more information.**
+
+#### (20) git/GitHub Requirements
+
+- Coding contributions by each member will be made clear by strict branch management (pull requests into main for release-ready changes, separate branches for testing/development)
+- to best of ability, all changes are reviewed/tested before pull into `main`;
+- to best of ability, commits are **atomic** (see [course notes][atomic-git] on this subject); 
+- to best of ability, pull requests are linear series of commits, linear branch history is maintained
+
+#### (30) Documentation Requirements
+
+- Issues are used effectively, relevant, clearly written, and their statuses are up to date by project deadline.
+- Wiki+Readme+Project polished and up to date 
+    - **See the "README" and "Wiki" issues I created in your repository for more information.**
+- A developer release has been made available for your project code and is documented on your GitHub
+    - **See the "Dev Release" issue I created in your repository for more information.**
+- A production release has been made available for your project code and is documented on your GitHub
+    - **See the "Prod Release" issue I created in your repository for more information.**
+- You have chosen a license for your project code.
+    - **See the "Choose a license" issue I created in your repository for more information.**
+
+[m4b]: https://michaelhaaf.github.io/5A6-F23/project/milestone-4b
+[atomic-git]: https://michaelhaaf.github.io/5A6-F23/lectures/development/01-git-basics/#commit-best-practices
 
 ### (125) Overall Requirements
 
-- 50% Functionality: Did your project meet the technical and functional requirements set by the teacher? Did your code meet the business logic requirements as per your design?
-  - Resources:
-- 15% Aesthetic/Styling/Layout: How well did your app meet the soft requirements and your design aesthetics? Does it have a good aesthetic design? 
-  - Resources:
-- 15% Usability/Design: Is your app usable? How useful is the app? Are instructions to the user clear (where needed)? Does the app provide a cohesive experience?
-  - Resources: [Accessibility lecture][accessibility-lecture], [Assignment 4][a4]
-- 20% Code quality: Does your code use good separation of data and display?  Does code adhere to the general rule of 1 composable per file?  Does it use good variable and method naming, is it formatted well, etc.?
-  - Resources:
+#### (65) Functionality Requirements
+
+- Meet the business logic requirements as per your design proposal
+- Meet the technical and functional requirements set by the teacher (see below) 
+- Use a declarative UI approach (Compose) with separation of concerns between display and data (e.g., MVVM approach)
+- Apply the key techniques taught in class for state management (including ViewModel), user authentication, navigation, coroutines & flow, Material 3 design, layout, etc.
+- Persist data provided by the user (Local storage or remote database)
+- Include a user login/register capability with associated serverless authentication (e.g., Firebase)
+- Implement a navigation approach that allows user to move to different screens and that works with device back button (e.g., NavBar, but other approaches are possible)
+- Prevent access to some UI elements and associated access based on whether user is logged in or not.
+- Include an “About Us” screen that describes your team and the motivation for the app.
+- Include at least one information screen in addition to the About Us screen.
+- Include at least three functional screens (not including login/landing/about-us/info)
+- The user should be able to perform all interactions with the application by starting the app and then navigating appropriately within the app.
+- User inputs should be handled appropriately (e.g., hide password, some minimal form of validation)
+- The application should not hang or crash
+- Include 1 “advanced feature” suggested in class.
+    - **See the "Advanced Feature" issue I created in your repository for more information.**
+
+#### (20) Aesthetic/Styling/Layout
+
+- All screens use Material design and share a common look and feel.
+- How well did your app meet the soft requirements and your design aesthetics? Does it have a good aesthetic design? 
+    - **See the "Material Design & Style Refactor" issue I created in your repository for more information**
+
+#### (20) Usability/Design
+
+- Is your app usable? How useful is the app? Are instructions to the user clear (where needed)? Does the app provide a cohesive experience?
+- The principles learned in the Assignment 4 codelab have been applied to your project 
+    - **See the "Accessibility" issue I created in your repository for more information.**
+
+#### (20) Code quality
+
+- Kotlin/Compose best practises and uniform style are applied
+    - **See the "Enforce coding quality and style requirements using Spotless" issue I created in your repository for more information**
+- Important source code files must be appropriately documented meaningfully.
+    - **See the "Comments and Attributions" issue I created in your repository for more information**
+- Source code project name/package name is appropriate (not EmptyActivity or Assignment2 or similar)
+    - **See the "Project/Package name" issue I created in your repository for more information**
 
 ### (50) Individual contribution 
 
-Will be based on self-reports and teacher assessment
 
-Note: Poor participation on the project will result in penalties for that individual on other marking categories as appropriate based on their actual contributions.
+#### (10) Self evaluation
+
+See form distributed on Teams
+
+#### (10) Peer evaluation
+
+See form distributed on Teams
+
+#### (30) Teacher evaluation
+
+Informed by the above two evaluations, as well as my own evaluation of your contributions to this project. I will base my assessment off code and documentation changes that are visible to me on GitHub. Make sure all team members are contributing code and managing the project issues/documentation!
+
+[m4b]: https://michaelhaaf.github.io/5A6-F23/project/milestone-4b
