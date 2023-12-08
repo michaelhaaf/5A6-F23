@@ -9,9 +9,20 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 ## What is GitHub?
 
-### git vs GitHub
+Ran out of time to write this properly, but you should know the following things (loosely based on explanations I have given in-class)
 
-### Alternatives
+- `git` is the distributed repository technogy. It is a phenomenally powerful and ubiquitious open-source tool used for software collaboration for decades.
+- GitHub is a relatively modern/recent project that is essentially a web service that manages `git` servers for its clients.
+- Before GitHub, people ran their own `git` servers! Or, better yet, people [emailed git commit patches to update eachothers codebases](https://git-scm.com/docs/git-send-email). I'm not joking, emailing git commit patches remains the recommended method to [contribute to the Linux Kernel to this day](https://www.kernel.org/doc/html/latest/process/submitting-patches.html), and it actually makes a ton of sense.
+- Actually, the word *distributed* means something here: every local `git` repository can act as a remote `git` repository. Having a server that listens to HTTPS/SSH calls on `git` commands is all that elevates a local repository to a remote `git` "server"
+- After `git` but before GitHub, there were a wide variety of alternative technologies for this kind of thing. You may hear about SVN/Mercurial, that's what they are. They are still in use (I used Mercurial at work for a job in 2012) but I rarely run into them anymore. Similar idea but different.
+- Today, there are many alternatives to using GitHub for hosting your source repositories and managing things to do with that source code. We used it this semester out of convenience/familiarity, but you should know there are other options:
+  - self hosting a `git` server as discussed above (if you want to learn about [self hosting](https://en.wikipedia.org/wiki/Self-hosting_(web_services)), this is a great project!)
+  - similar SAAS to Github like [GitLab](https://about.gitlab.com/)
+  - commercial software like [Bitbucket](https://bitbucket.org/) 
+  - A variety of things that are somewhat similar to GitHub in what they provide. I would personally recommend checking out [sourcehut](https://sourcehut.org/), [Codeberg](https://codeberg.org/), and [foregjo](https://forgejo.org/) as my understanding of the most sophisticated, instructive, useful, and "free as in libre" source software distribution platforms.
+
+**Github makes use of Pull Requests and Actions to implement a CI/CD workflow, elaborated on in the sections below**.
 
 ## Pull Requests
 
@@ -162,19 +173,73 @@ This is why using developer branches for code changes so useful: being able to m
 
 ### Workflows
 
+Workflows are, in a nutshell, a way to get the GitHub Server virtual machine that your code is run on to execute a variety of actions related to your codebase. For Application Development, this typically means you can write instructions to prepare dependencies, build your app, run tests, deploy your app, etc. Workflows are actually incredibly powerful (basically an interface for you to run scripts with a variety of useful libraries on free servers -- you can actually do all kind of neat stuff beyond app development with this! Food for thought).
+
+Basically:
+- workflow is a set of instructions written in a file (typically `.yml`)
+- each workflow has a set of triggers that launch the workflow (manual with `workflow-dispatch` or based on repository events)
+- each workflow has a set of jobs it runs
+- each job has a set of actions it can run
+- actions can be written and shared (see Action Marketplace) so that you don't have to re-write common scripts
+- actions can also just be custom scripts (bash, like `chmod +x ./gradlew`, but other shells are possible)
+
+More information:
+
+- [(Github Documentation) Using Workflows](https://docs.github.com/en/actions/using-workflows). General description, complete usage instruction with helpful examples, syntax clarification, etc. Good starting reference point.
+- [Workflow file syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
+- [Github Actions and Gradle](https://docs.gradle.org/current/userguide/github-actions.html)
+- [(Podcast) SE Radio 567: Dave Cross on GitHub Actions](https://podcasts.google.com/feed/aHR0cHM6Ly9zZXJhZGlvLmxpYnN5bi5jb20vcnNz/episode/ZTYwODU4ZmMtZGU0Mi00NzJhLTgzNjYtZjZkNThjODBmMzRl?sa=X&ved=0CAIQuIEEahcKEwjwzqbRlP-CAxUAAAAAHQAAAAAQLQ). I seem to remember this being a pretty cool podcast about what you can do with GitHub Actions.
+
 ### Action Marketplace
 
-### Example: build & lint every pull request
+Actions written by other developers are maintained on the [GitHub Marketplace](https://github.com/marketplace?type=actions) -- despite what the name implies, most of these are free to use! We have been using actions like `actions/checkout` and `actions/setup-java` throughout the course. In Milestone 4b, I've provided some recommended actions to use, but feel free to look around this list to see if there are other useful ones (and, if you see the workflow of another developer, you'll know where these `uses` statements come from and where to find out what they do.)
 
-### Example: package every merge to main
+### M4B: Firebase App Distribution Workflow in GitHub
 
-### Example: update version with each release
+This section explains an example GitHub Action that's particularly useful for a Milestone 4b requirement. You should have already set up a Firebase account and basic Firebase dependencies/authentication before starting this one (review Talib's notes for explanations of how to do this.)
 
-### Example: manage repository secrets for authentication
+My notes here are a bit threadbare -- I have a few screenshots from key stages along the way that may be helpful.
 
-### More resources
+I implemented this workflow based on the following tutorials/instructions:
+- (most similar to what I did): [Android Factory "Deploy to Firebase with GitHub ACtions" youtube video tutorial](https://www.youtube.com/watch?v=KYG8lXZCVr4)
+- (pretty similar but a bit different to what I did): [Distribute Android apps to testers using Gradle (Firebase docs)](https://www.youtube.com/watch?v=KYG8lXZCVr4)
+- (not sure how similar this is, but seems helpful): [Distribute app bundle releases to testers (Google codelab)](https://www.youtube.com/watch?v=KYG8lXZCVr4)
+- (what I actually did): [My example workflow in my Kotlin With Compose repo][release.yml]
+
+[release.yml]: https://github.com/michaelhaaf/KotlinWithCompose/tree/main/.github/workflows/distribute.yml
+
+#### Firebase/Gcloud Setup screenshots
+
+In case you're having trouble finding where to go in the tutorials above:
+
+<Tabs>
+  <TabItem label="Project Settings">Finding the Project settings button (gearbox top left of Firebase console)
+    ![](./img/firebase-project-setttings.png)</TabItem>
+  <TabItem label="Project ID">**NOTE** the Youtube tutorial I linked incorrectly uses App ID when he meant to use Project ID. He clarifies this at the end of the tutorial. Hope this note saves you some time.
+    ![](./img/firebase-project-ID.png)</TabItem>
+  <TabItem label="Firebase Service Accounts">Finding the service account section of your Firebase where you manage remote services that want to upload things to Firebase.
+    ![](./img/firebase-service-accounts.png)</TabItem>
+  <TabItem label="Firebase Service Accounts (2)">Here is where you go to create/manage GCloud services. These gives you the ability to autheticate the GitHub action which uploads your file to Firebase (this is all free and just uses the same google account you use for Firebase)![](./img/firebase-service-accounts-2.png)</TabItem>
+  <TabItem label="GCloud">Within GCloud, you again navigate to Service Accounts to get the GCloud credentials that you need to provide to GitHub. ![](./img/gcloud-landing.png)</TabItem>
+</Tabs>
+
+#### GitHub Secrets Setup screenshots
+
+The images below show what your GitHub secret setup should look like. You will have access to variables in your GitHub Workflows of the form `secrets.VARIABLE_NAME`. This is explained in more detail in the tutorial, the M4b Issue I created, and the [github documentation about secrets in github actions](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions).
+
+(this basically lets you upload encrypted data to GitHub and safely giveing the GitHub Actions virtual machine the ability to use/decrypt that data.)
+(Advanced: a similar technique is used to automatically sign `.apk` files, which is a prerequisite for uploading your apps to Google Play automatically.)
+
+<Tabs>
+  <TabItem label="Creating a new secret">Dump the contents of a json file into the "Secret" box. Give the secret an all-caps meaningful "Name". 
+    ![](./img/github-add-secret-credentials.png)</TabItem>
+  <TabItem label="Project-ID">Here's what your GitHub secrets could look like after finishing the tutorials above. 
+    ![](./img/github-secrets-when-finished.png)</TabItem>
+</Tabs>
 
 ## GitHub Project
+
+These notes are sparse but there's some good documentation here organized by section for reference.
 
 ### Issues
 
@@ -187,7 +252,8 @@ This is why using developer branches for code changes so useful: being able to m
 
 ### Milestones
 
-- [Milestones](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/about-milestones) + [Creating and editing milestones](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/creating-and-editing-milestones-for-issues-and-pull-requests)
+- [Milestones](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/about-milestones)
+- [Creating and editing milestones](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/creating-and-editing-milestones-for-issues-and-pull-requests)
 
 ### Tasking chart
 
@@ -195,7 +261,6 @@ This is why using developer branches for code changes so useful: being able to m
 - [Creating a Task List](https://docs.github.com/en/issues/managing-your-tasks-with-tasklists/creating-a-tasklist#creating-tasklists-with-markdown)
 
 ### Roadmap
-
 
 Roadmaps are relatively common features in open-source projects for keeping-in-the-loop your community of developers, contributers, and users of your software -- the "roadmap" project is a recent attempt by GitHub to provide a GUI for automating some of this effort.
 
@@ -207,17 +272,13 @@ To adapt your proposal to a GitHub roadmap, see the links below for documentatio
 - [Github Project overview](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)
 - [Best practises for GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/best-practices-for-projects)
 
+## Misc (Gradle)
 
+These articles probably belong in another lecture, but I've run out of time. Check them out!
 
-- [Android GitHub Actions Setup](https://medium.com/coletiv-stories/android-github-actions-setup-21ba37cf5a4f)
-- [Github Actions and Gradle](https://docs.gradle.org/current/userguide/github-actions.html)
-- [Workflow file syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
-- Useful articles: [Choosing the right JDK](https://developer.android.com/build/jdks), [Understanding Android build system](https://developer.android.com/build)
-- Installing [ktlint](https://github.com/pinterest/ktlint): it's recommended you use the ktlint plugin available from the mavenCentral repository -- meaning, let Gradle automatically find and install ktlint for you, per-project. See [simple-setup](https://github.com/jlleitschuh/ktlint-gradle#simple-setup) for instructions.
-  - Using ktlint in your project gradle: [sample build.gradle.kts](https://github.com/JLLeitschuh/ktlint-gradle/blob/main/samples/kotlin-ks/build.gradle.kts)
-  - Here is another helpful example: [geeksForGeeks](https://www.geeksforgeeks.org/code-formatting-in-kotlin-using-ktlint/)
+- Useful articles: [Choosing the right JDK](https://developer.android.com/build/jdks),
+- [(Podcast) Fragmented 249: Java and the JDK](https://fragmentedpodcast.com/episodes/249-java-and-the-jdk-powering-the-android-landscape-with-michael-bailey/) REALLY helpful podcast explaining the differences between JRE/JDK and how/why versioning in Java works the way it does. Since Kotlin is based on JDK this is relevant. THere are interesting connections to Jetpack Compose/Kotlin/Gradle made in this podcast too.
+- [Understanding Android build system](https://developer.android.com/build)
 - [Gradle User Manual](https://docs.gradle.org/current/userguide/userguide.html)
 - [Gradle tutorial](https://www.youtube.com/watch?v=gKPMKRnnbXU) -- step by step for "90%" of the Gradle knowledge you need to build "any Gradle project". Good conceptual overview with examples/step-by-step.
-- [Android CI-CD using Github Actions](https://blog.logrocket.com/android-ci-cd-using-github-actions/)
-- [Securely create android release using Github Actions](https://proandroiddev.com/create-android-release-using-github-actions-c052006f6b0b)
 
